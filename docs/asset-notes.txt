@@ -1,0 +1,22 @@
+﻿# Documentary photograph provenance
+
+Downloaded from the article-matched FMINO og:image URLs on 4 October 2026.
+Original dimensions: NOA 950x633, agriculture 950x633, Abia 950x634.
+Converted to RGB WebP with Pillow, quality 85, without cropping or upscaling.
+Files: public/photos/noa.webp (67,090 bytes), farm.webp (72,144 bytes), abia.webp (68,054 bytes).
+Original URLs, report dates, captions, alt text, source IDs, credits and programme links: src/showcase.ts.
+The website displays full frames with object-fit: contain on desktop and mobile to preserve mobility aids and participant context.
+Photographs are credited to their publishing source; this attribution does not assert ownership or an open licence.
+No generated or stock beneficiary images are used. The Abia frame is the partner engagement; Gufwan is not pictured.
+Agriculture venue is not specified by the report. Its publication date (7 July 2025) is used because the body has an inconsistent event date.
+Photograph and achievement records are presentation-only; functions/api/assist.ts continues to use src/evidence.ts summaries and allowlisted learner context.
+
+## Expanded cinematic story - 4 October 2026
+
+Ten distinct accepted photographs now appear on the homepage: existing NOA, agriculture and Abia frames; FMINO leadership, UBEC meeting, voting-rights, enforcement, medical outreach and CBM frames; and The Qualitative Magazine's Otukpo mobility-device photograph. Seven additions were retrieved from their matched articles and inspected in the contact sheet at output/documentary/contact-sheet.jpg. Original URLs, retained intrinsic dimensions, captions, identification basis, credits and publication dates are recorded in src/showcase.ts and docs/documentary-photo-manifest.json.
+
+New WebPs use quality 83; existing assets retain their original optimisation. No cropping or upscaling is applied. The ten files together are approximately 590 KiB. The health frame is portrait-oriented and retains the medical team and community context. A source photograph or article caption is not proof of personal attendance: the enforcement group frame assigns no individual identity, and the health report explicitly credits Lawrence Idemudia as Gufwan's representative. The leadership photograph's venue and event date are not inferred from the profile publication date.
+
+Five selected frames are verified to depict Gufwan (NOA, leadership, UBEC meeting, civic monitoring and CBM). The gufwanPictured field means a verified identification in this showcase; false includes frames without an individually verified Gufwan. Identity bases are supplied in each record. Six unused candidate frames were omitted. The CBM article date is 31 October 2024 despite its image upload path containing November.
+
+Reproduce accepted assets with python scripts/collect-documentary.py after running node scripts/generate-static-story.mjs. The collector checks dimensions before replacing a file. Review changed imagery before changing identification records. Photo credit describes publication provenance and does not assert ownership or an open licence.

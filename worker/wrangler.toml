@@ -1,0 +1,12 @@
+name = "impact-mosaic-limiter"
+main = "limiter.ts"
+compatibility_date = "2026-10-04"
+workers_dev = false
+
+[[durable_objects.bindings]]
+name = "AI_LIMITER"
+class_name = "AiLimiter"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["AiLimiter"]

@@ -1,0 +1,20 @@
+﻿.static-story { max-width: 960px; margin: auto; padding: 32px 5%; color: #14532D; background: #FFFFFF; font: 16px/1.65 "Trebuchet MS",sans-serif; }
+body { margin: 0; background: #FFFFFF; }
+.static-story h1,.static-story h2 { font-family: Georgia,serif; line-height: 1.2; font-weight: normal; }
+.static-story h1 { font-size: clamp(2rem,6vw,4rem); }
+.static-story h2 { margin-top: 48px; font-size: 2rem; }
+.static-story article,.static-story li { padding: 24px 0; border-top: 1px solid #d9dfd4; }
+.static-story a { color: #14532D; }
+.static-story figure { margin: 24px 0; }
+.static-story img { display: block; max-width: 100%; width: 100%; height: auto; object-fit: contain; }
+.static-story figcaption { font-size: 14px; padding: 12px 0; }
+.static-gallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
+@media(max-width:479px) { .static-gallery { grid-template-columns: 1fr; } }
+
+.static-story nav { display:flex;flex-wrap:wrap;gap:16px; }
+.static-story details { padding:18px 0; border-bottom:1px solid #d9dfd4; }
+.static-story summary { cursor:pointer; color:#14532D; }
+.static-story :focus-visible { outline:3px solid #075985;outline-offset:4px; }
+.static-story footer { margin-top:40px;font-size:12px; }
+
+.static-portrait { aspect-ratio:4/3;display:grid;place-items:center;background:#f3f6f3;color:#52665a;margin-bottom:24px; }

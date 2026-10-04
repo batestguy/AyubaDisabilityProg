@@ -1,0 +1,8 @@
+name = "ncpwd-impact-mosaic"
+compatibility_date = "2026-10-04"
+pages_build_output_dir = "./dist"
+
+[[durable_objects.bindings]]
+name = "AI_LIMITER"
+class_name = "AiLimiter"
+script_name = "impact-mosaic-limiter"
