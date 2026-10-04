@@ -2,7 +2,7 @@
 
 Independent React/TypeScript/Vite showcase and fictional learning sandbox by Jerry Bannister Zachary. No NCPWD endorsement is assumed.
 
-For the next session, start with [SESSION-HANDOFF.md](SESSION-HANDOFF.md). The saved website revision is complete and validated; repository: [batestguy/AyubaDisabilityProg](https://github.com/batestguy/AyubaDisabilityProg). See the [appearance guide](docs/APPEARANCE-GUIDE.md), [architecture reference](docs/ARCHITECTURE.md) and [documentation index](docs/README.md).
+For the next session, start with [SESSION-HANDOFF.md](SESSION-HANDOFF.md). The saved website revision is complete and validated. **Next: build the demo app** in `src/AppDemoPage.tsx` (User, Administration and Facilitator panels). Repository: [batestguy/AyubaDisabilityProg](https://github.com/batestguy/AyubaDisabilityProg). See the [appearance guide](docs/APPEARANCE-GUIDE.md), [architecture reference](docs/ARCHITECTURE.md) and [documentation index](docs/README.md).
 
 ## Run
 

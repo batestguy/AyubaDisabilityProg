@@ -1,11 +1,11 @@
 {
-  "capturedAtUtc": "2026-10-04T13:18:30.273623+00:00",
+  "capturedAtUtc": "2026-10-04T13:34:26.397856+00:00",
   "checkpointDate": "2026-10-04",
   "workspace": "D:\\AyubaGufwanDisabiliyt",
-  "nextTask": "Deferred: new role workflows, profile content, live AI configuration and deployment",
+  "nextTask": "Build demo app: agree first workflow and role mapping, then implement User/Administration/Facilitator panels in AppDemoPage",
   "gitDirectoryPresent": true,
   "deployment": "Local only; no verified public URL for this revision",
-  "lastPreflight": "Passed resumed revision: 8 Node tests, TypeScript and Vite production build",
+  "lastPreflight": "Passed documentation handoff: 8 Node tests, TypeScript and Vite build; browser evidence from preceding validated implementation",
   "lastBrowserSuite": "Resumed Chrome suite and production CSP/no-JavaScript smoke passed; see docs/validation.md",
   "versions": {
     "react": "19.3.0",
@@ -299,5 +299,6 @@
   ],
   "note": "Hashes are a comparison aid, not file backups. Credentials, private input text files, node_modules, caches and generated output are excluded.",
   "repository": "https://github.com/batestguy/AyubaDisabilityProg",
-  "repositoryVisibility": "public"
+  "repositoryVisibility": "public",
+  "validatedImplementationCommit": "1332133566599b557831317aa6742fdca719f007"
 }

@@ -1,10 +1,11 @@
 ﻿# Documentation index
 
-Start with [SESSION-HANDOFF.md](../SESSION-HANDOFF.md). It records the validated website revision and GitHub repository checkpoint.
+Start with [SESSION-HANDOFF.md](../SESSION-HANDOFF.md). It records completed website work, the public repository checkpoint and the next objective: building the demo app.
 
 | Document | Purpose |
 |---|---|
 | [Session handoff](../SESSION-HANDOFF.md) | Completed work, current state, chapter facts/caveats, validation, limitations, commands and a reusable next-session brief |
+| [Historical session record](SESSION-HISTORY.md) | Archived implementation history and earlier checkpoints; current handoff takes precedence |
 | [Architecture](ARCHITECTURE.md) | File map, components, data flow, state/public helpers, AI endpoint/limits, generated artifacts and troubleshooting |
 | [Appearance guide](APPEARANCE-GUIDE.md) | Current visual defaults, edit locations, behavior to preserve, design-validation workflow and screenshots |
 | [Validation history](validation.md) | Detailed recorded tests, visual checks and external/user checks still pending |

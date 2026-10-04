@@ -90,3 +90,9 @@ This checkpoint supersedes earlier slideshow, gallery and page-structure descrip
 - Visually inspected fresh `cinematic-opening.png`, `story-chapter-390.png` and `production-portrait-dialog.png`: full photograph context, captions and source links retained. Evidence remains in ignored `output/playwright/` and is reproducible with the documented commands.
 - README, handoff, architecture, appearance guide, walkthrough, documentation index and implementation hashes now match saved code. No runtime behavior or PDF layout changed in this continuation.
 - Private briefs, credentials, caches, dependencies and generated build/test output are excluded from Git. Repository delivery does not deploy the website; Cloudflare and live AI configuration remain deferred.
+
+## Next-session demo app handoff - 4 October 2026
+
+- Rewrote SESSION-HANDOFF.md around the next user objective: build the demo app in the separate User, Administration and Facilitator panels. Documents current entry path, existing sandbox reuse options, unresolved role/workflow requirements, implementation files, scope boundaries, commands and a paste-ready continuation prompt. No demo feature was implemented.
+- Preserved the previous full handoff as docs/SESSION-HISTORY.md and repaired its relative links. README, documentation index and snapshot nextTask now point to demo app development. Records the verified public repository, validated implementation commit and completed Git API transport recovery.
+- Fresh npm.cmd run preflight passed all eight Node tests, TypeScript and Vite production build. Documentation links and implementation snapshot hashes checked. Full browser evidence remains the preceding implementation run; no new browser run was needed for this documentation-only change.
