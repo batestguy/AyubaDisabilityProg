@@ -195,8 +195,16 @@ for (const name of ['User','Administration','Facilitator']) {
  assert.equal(await tab.getAttribute('aria-selected'),'true');
  const panel=page.getByRole('tabpanel',{name,exact:true});
  assert.equal(await panel.count(),1);
- assert.equal(await panel.innerText(),'');
- assert.equal(await panel.locator('*').count(),0);
+ if (name==='User') {
+  assert.match(await panel.innerText(),/Mosaic Pathways/);
+  assert.equal(await panel.getByRole('button',{name:'Start my demo journey'}).count(),1);
+ } else if (name==='Administration') {
+  await panel.getByRole('heading',{name:'Administration overview',exact:true}).waitFor();
+  assert.equal(await panel.getByRole('button',{name:'Open User to create a profile',exact:true}).count(),1);
+ } else {
+  assert.equal(await panel.innerText(),'');
+  assert.equal(await panel.locator('*').count(),0);
+ }
 }
 await page.getByRole('tab',{name:'User',exact:true}).focus();
 await page.keyboard.press('ArrowRight');

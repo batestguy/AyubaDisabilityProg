@@ -1,3 +1,5 @@
+import { additionalSkillCourses } from './skillCourses';
+import type { SkillCategory } from './skillCategories';
 export type Lesson = {
   title: string;
   body: string;
@@ -11,6 +13,10 @@ export type QuizQuestion = {
   answer: number;
 };
 export type Course = {
+  category?: SkillCategory;
+  delivery?: 'foundation' | 'self-paced';
+  tools?: string[];
+  outcome?: string;
   id: string;
   title: string;
   description: string;
@@ -25,6 +31,8 @@ export type Course = {
 export const courses: Course[] = [
   {
     id: "digital-essentials",
+    category: 'digital',
+    delivery: 'self-paced',
     title: "Digital Essentials",
     description:
       "Use your device, organise files and communicate safely online.",
@@ -124,6 +132,8 @@ export const courses: Course[] = [
   },
   {
     id: "spreadsheet-data",
+    category: 'digital',
+    delivery: 'self-paced',
     title: "Spreadsheet and Data Skills",
     description:
       "Organise a small dataset, calculate totals and explain results with care.",
@@ -227,6 +237,8 @@ export const courses: Course[] = [
   },
   {
     id: "business-foundations",
+    category: 'business',
+    delivery: 'self-paced',
     title: "Small-Business Foundations",
     description:
       "Turn a simple idea into a customer offer, a budget and a small test.",
@@ -333,4 +345,56 @@ export const courses: Course[] = [
     assignment:
       "Write a plan for a fictional small business: customer and problem, offer and price, budget for three sales, one-week test with a spending limit and success condition, and a customer-service message. Label assumptions and explain one risk to check before spending money.",
   },
+  {
+    id: "ai-essentials",
+    category: 'digital',
+    delivery: 'self-paced',
+    title: "AI Essentials",
+    description: "Use AI thoughtfully for learning, work and business: write clear prompts, check outputs and protect private information.",
+    tag: "Build AI confidence",
+    skills: ["AI literacy", "Clear prompting", "Output checking", "Responsible AI use"],
+    status: "published",
+    consultantId: "expert-demo",
+    lessons: [
+      {
+        title: "Understand what AI can and cannot do",
+        body: "Artificial intelligence is software that uses patterns in data to perform tasks. Generative AI produces text, images or other content from instructions called prompts. It can help draft a message or suggest ideas, but a fluent answer may be wrong. It does not know your circumstances unless you describe them, and it should not decide your abilities or opportunities. You remain responsible for what you use. This course uses written examples; no live AI account, paid tool or internet experiment is required.",
+        resource: "Practice: choose one useful task, such as drafting a fictional customer message, and one decision that needs a person's judgement. Explain the difference.",
+      },
+      {
+        title: "Write a clear prompt",
+        body: "A useful prompt describes the task, relevant context, limits and the format you want. Use fictional details. Example: 'Draft a polite message for a fictional sewing service. Explain that delivery will take three days. Use five short sentences and do not invent a price.' Compare that with 'Write something for my business.' Ask for a revision when the first draft is unclear. A detailed prompt improves direction but does not guarantee accuracy.",
+        resource: "Practice: write a prompt for a fictional learning or work task. Include the task, context, one limit and the requested format. Then revise it for plain language.",
+      },
+      {
+        title: "Check before using an answer",
+        body: "AI can invent facts, references or calculations. Treat an output as a draft. Sample output: 'Three bags at 2,000 naira each total 8,000 naira.' Calculate the total yourself: 3 × 2,000 is 6,000. Check factual claims against an original trustworthy source and open any cited source to see whether it supports the claim. If you cannot verify something, mark it uncertain or remove it. Ask a qualified person to review important decisions.",
+        resource: "Practice: correct the sample total. For the fictional claim 'Every applicant is guaranteed a job', explain what evidence you would need and why you would remove an unsupported guarantee.",
+      },
+      {
+        title: "Protect privacy and respect other people's work",
+        body: "Use fictional or anonymised practice details. Do not paste passwords, sign-in codes, identity documents, medical records or private customer lists into an AI tool. Removing a name alone may not hide someone's identity. Before using a real service, check its data controls and your permission to share the material. Ask permission before using another person's work or likeness. Explain when AI helped produce work where your teacher, client or workplace expects disclosure.",
+        resource: "Practice: replace a fictional customer's name, phone number and address with placeholders. Write a short disclosure: 'I used AI to help draft this example and checked the final text myself.'",
+      },
+      {
+        title: "Use AI for access while checking fairness",
+        body: "You can request shorter sentences, step-by-step instructions or a text description. Check that a simplified draft keeps the original meaning. Example: 'Send the report by Friday' should not become 'Send the report whenever you can.' AI may make unfair assumptions about disability, gender or language. Do not accept a suggestion that someone cannot learn or work because of a disability. Describe the support needed and choose an accessible format with the learner. Generated captions or descriptions also need checking.",
+        resource: "Practice: rewrite 'Complete the registration procedure prior to commencing instruction' as clear steps. Describe one way to check the meaning and one way to offer a keyboard or text alternative.",
+      },
+      {
+        title: "Build a small human-reviewed workflow",
+        body: "Choose a small task: a fictional job-application message, a customer reply, a study plan or teaching notes. First decide the goal and prepare safe inputs. Then write a prompt, inspect the draft, verify claims and calculations, revise it and decide whether to use it. Keep a note of what you changed and ask a person for feedback. Use accessible formats and a practical alternative when a tool is unavailable. AI should support your chosen route into work or learning; it does not guarantee income, employment or funding.",
+        resource: "Practice: outline your task, fictional inputs, prompt, checking steps, edits, human review and a backup that works without an AI connection.",
+      },
+    ],
+    quiz: [
+      { question: "An AI answer sounds confident. What should you do before using its factual claims?", options: ["Assume confidence proves accuracy", "Check the claims against trustworthy original sources", "Share it immediately", "Remove all questions"], answer: 1 },
+      { question: "Which prompt gives the clearest direction?", options: ["Do something useful", "Write anything", "Draft a fictional customer reply in five short sentences; do not invent a price", "Guess my private details"], answer: 2 },
+      { question: "Which information is suitable for a practice prompt?", options: ["A customer's private phone number", "A password", "A medical record", "Fictional details and placeholders"], answer: 3 },
+      { question: "AI says three items at 2,000 naira each cost 8,000 naira. What is the checked total?", options: ["6,000 naira", "8,000 naira", "5,000 naira", "The AI total must be right"], answer: 0 },
+      { question: "An AI draft assumes a person with a disability cannot learn. What is a useful response?", options: ["Accept the assumption", "Hide the learning options", "Reject the assumption and discuss the person's goals and access needs", "Let AI choose their future"], answer: 2 },
+    ],
+    assignment: "Prepare a human-reviewed AI workflow for a fictional learning, employment, freelancing, business or teaching task. Include the task and safe inputs; a prompt with context, limits and format; a labelled sample draft you write yourself (or optional AI draft with its use disclosed); two checks including the 3 × 2,000 naira calculation and an unsupported claim you remove; your revised text; an accessibility choice; a privacy/disclosure note; and a backup without a live AI tool. Paste your work below. No live AI, paid account or real personal data is required.",
+  },
+  ...additionalSkillCourses,
 ];

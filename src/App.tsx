@@ -272,7 +272,7 @@ export default function App() {
         <p className="translation-note" role="note">
           Experimental, unreviewed translation. Sample lessons, assessments and
           navigation are translated. Some supporting content and custom courses
-          remain English. Ask the AI for experimental language support or an
+          remain English, including AI Essentials and the new workplace/livelihood courses. Ask the AI for experimental language support or an
           expert for clarification.
         </p>
       )}
@@ -661,11 +661,12 @@ export default function App() {
                               assignment approved. Demonstration only; not an
                               accredited qualification.
                             </p>
+                            {course.delivery === 'foundation' && <p>Foundation learning and a written practice plan only. Supervised hands-on practice was not assessed; this record does not certify trade competence.</p>}
                             <button
                               onClick={() =>
                                 download(
                                   "demo-certificate.txt",
-                                  `DEMO CERTIFICATE — NOT ACCREDITED\n${learner.name}\n${course.title}\nCompleted ${new Date(entry.completedAt!).toLocaleDateString()}\nSkills: ${course.skills.join(", ")}\nVerified only inside this fictional browser sandbox.`,
+                                  `DEMO CERTIFICATE — NOT ACCREDITED\n${learner.name}\n${course.title}\nCompleted ${new Date(entry.completedAt!).toLocaleDateString()}\nSkills: ${course.skills.join(", ")}\n${course.delivery === 'foundation' ? 'Foundation learning and written practice plan only; supervised hands-on practice not assessed. No trade competence certified.\n' : ''}Verified only inside this fictional browser sandbox.`,
                                 )
                               }
                             >

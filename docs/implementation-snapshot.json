@@ -1,12 +1,12 @@
 {
-  "capturedAtUtc": "2026-10-04T13:34:26.397856+00:00",
-  "checkpointDate": "2026-10-04",
+  "capturedAtUtc": "2026-10-10T02:16:46.732510+00:00",
+  "checkpointDate": "2026-10-10",
   "workspace": "D:\\AyubaGufwanDisabiliyt",
-  "nextTask": "Build demo app: agree first workflow and role mapping, then implement User/Administration/Facilitator panels in AppDemoPage",
+  "nextTask": "Finish guided revised Reports/PDF/history/settings/User/mobile/enlarged-text visual acceptance and Administrator wave5 closeout. User authorized committing/pushing accumulated work.",
   "gitDirectoryPresent": true,
-  "deployment": "Local only; no verified public URL for this revision",
-  "lastPreflight": "Passed documentation handoff: 8 Node tests, TypeScript and Vite build; browser evidence from preceding validated implementation",
-  "lastBrowserSuite": "Resumed Chrome suite and production CSP/no-JavaScript smoke passed; see docs/validation.md",
+  "deployment": "No verified deployment for this revision; Cloudflare OAuth renewal required before separately requested publish.",
+  "lastPreflight": "84 model tests, TypeScript and production build pass; fresh handoff preflight run 10 October. Main-bundle size advisory remains.",
+  "lastBrowserSuite": "All twelve scripts have consolidated/affected passing evidence. Latest grant:5 clean axe, scope variants/PDF/local atlas failure/privacy/mobile; production CSP actual PDF download atlas200 zeroPOST/errors. Five final report pages rendered and inspected.",
   "versions": {
     "react": "19.3.0",
     "react-dom": "19.3.0",
@@ -17,9 +17,134 @@
   },
   "files": [
     {
+      "path": ".gitattributes",
+      "bytes": 46,
+      "sha256": "8267cb8e9619faf8e963e82c7bc64e98ccb96dffb0653495b9bbe512a2154738"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 251,
+      "sha256": "c585d6facf75150b935ce6c94117bd1e6787b3d82e4b1c7fb761f81ec6c0ba95"
+    },
+    {
+      "path": ".npmrc",
+      "bytes": 18,
+      "sha256": "b1e599e0681c626684fb8bc6bd92bbe258d6edcb4d8150be22ee1ff682dfd27b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 10421,
+      "sha256": "486e65c64f89f0e9b69ffdc7e0fe178131ed5a40c20e47f7deeddfda453eafd5"
+    },
+    {
+      "path": "SESSION-HANDOFF.md",
+      "bytes": 19936,
+      "sha256": "1604a60752da74a5fb0160292a44c39f0f052d784b1590b307c11cf78a75f42d"
+    },
+    {
+      "path": "docs/ADMINISTRATOR-DEMO-PLAN.md",
+      "bytes": 16323,
+      "sha256": "b2381d2a33f4465ca190438946553f679199ae8d0b0ed3732c25e78999aff7e2"
+    },
+    {
+      "path": "docs/ADMINISTRATOR-WAVE-1.md",
+      "bytes": 8538,
+      "sha256": "19ee057e30e6c4e4cf4338dbd31635e95120b1d6cfb7a3fc33e8536bdaf2ff69"
+    },
+    {
+      "path": "docs/ADMINISTRATOR-WAVE-2.md",
+      "bytes": 6484,
+      "sha256": "af1f7623294783c931b99f527a7deaf93a471c1fa9666ea6e4d63932d9fb36b9"
+    },
+    {
+      "path": "docs/ADMINISTRATOR-WAVE-3.md",
+      "bytes": 5101,
+      "sha256": "60a6bc12c322910d1f1eb748c888bb0e0da693ca45dd54582d67297e9ee30888"
+    },
+    {
+      "path": "docs/ADMINISTRATOR-WAVE-4.md",
+      "bytes": 4803,
+      "sha256": "08777a26a04ae2263f9d9414d77d2ae15457aec863a6cd20f2762e12bb35053b"
+    },
+    {
+      "path": "docs/ADMINISTRATOR-WAVE-5.md",
+      "bytes": 7202,
+      "sha256": "370bc0a5c63063451cef1f78402aee102e5962cd778dace9c7fe69fb9f8eb62e"
+    },
+    {
+      "path": "docs/APPEARANCE-GUIDE.md",
+      "bytes": 15276,
+      "sha256": "3b58657d51a66a4af6bdb6e78addf62c126e9d5355e2e8c4801b1bc684a1aa83"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 34009,
+      "sha256": "0cd5257d96b63ca5148dc181f063599c05a54151ca483af3a9654cbfeaf5df7b"
+    },
+    {
+      "path": "docs/GRANT-PLANNING-REPORT.md",
+      "bytes": 9988,
+      "sha256": "1444ba55a91f19616ac0a42645a816e7696740ee81e04949adb92b0903acacdf"
+    },
+    {
+      "path": "docs/LEARNER-SCORECARD.md",
+      "bytes": 7482,
+      "sha256": "52a7aca84b57efcb8782d83c38f499ea742654fbdf24e3422081148eaa559895"
+    },
+    {
+      "path": "docs/NIGERIA-GEOGRAPHY.md",
+      "bytes": 3867,
+      "sha256": "126a4cb9aed4f9151d10412162cf6b0f1475a1922c738a5915fbdf725fefac18"
+    },
+    {
+      "path": "docs/PRACTICAL-SKILLS-EXPANSION-PLAN.md",
+      "bytes": 15348,
+      "sha256": "618d4695482747109e62d93d5cb88eb83cefd12355f635426cf09785c451d293"
+    },
+    {
+      "path": "docs/README.md",
+      "bytes": 6371,
+      "sha256": "6d0e3568962ac82bec5d2e6e49216b26eb65634a97c51ad51c4d2ed7d9e0afb7"
+    },
+    {
+      "path": "docs/SESSION-HISTORY.md",
+      "bytes": 32607,
+      "sha256": "ea6a4d2ff45c3e080af2d087a16454445bb87975b2fae6159bcb2f0a69ad9709"
+    },
+    {
+      "path": "docs/USER-DEMO-PLAN.md",
+      "bytes": 11463,
+      "sha256": "b6e018a803556014bd11ac0dbae4ab79cbd61d0f943c3306ca4e5086ef2e381e"
+    },
+    {
+      "path": "docs/USER-STAGE-CLOSEOUT.md",
+      "bytes": 7666,
+      "sha256": "f271c67524248ce817aacc622f713c408dd4a95717e49aee837afd4f8f108a4a"
+    },
+    {
+      "path": "docs/asset-notes.txt",
+      "bytes": 3107,
+      "sha256": "3097d9b68c4bbe7600bb46956868d50f06b3509b463f43d6625f9b7304ded2c4"
+    },
+    {
+      "path": "docs/deployment.md",
+      "bytes": 5654,
+      "sha256": "512ad47ed39291c9b009401db8dfd68b39a673023c8b1412d870f584b7b2e0c0"
+    },
+    {
       "path": "docs/documentary-photo-manifest.json",
       "bytes": 8810,
       "sha256": "a51a82bb41be1a4fe6b11e7a9775f210c66ccdc5e25a204917aa40a9a6cf0f85"
+    },
+    {
+      "path": "docs/nigeria-map-provenance.json",
+      "bytes": 3812,
+      "sha256": "3f640c37b3162acb9cebc1303053660c9e0fb77f292d71efe2841bbf52639304"
+    },
+    {
+      "path": "docs/validation.md",
+      "bytes": 45775,
+      "sha256": "96cf4dacb07fbc52ab1a8e48be342f5cd3418f34bea31e573bd878fddb6b769a"
     },
     {
       "path": "functions/api/assist.ts",
@@ -38,8 +163,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 911,
-      "sha256": "eb26976e2951184f1f58c34929b4c9e38829a7a0b66684e283012f544b369924"
+      "bytes": 1257,
+      "sha256": "7733617416fcfafa50d2b74a922529aa1a01fa7c7816ae3c2df9b2a041dd41d1"
     },
     {
       "path": "public/_headers",
@@ -58,8 +183,28 @@
     },
     {
       "path": "public/downloads/walkthrough.md",
-      "bytes": 5034,
-      "sha256": "4b85e6b264eb0a22307e98660004ca7a059457c2f947fad13cae694ac6a36797"
+      "bytes": 10762,
+      "sha256": "df423ef3d28d07d790f144b2a3242b591ecd433c790f388cfe554b37f4b1d1b6"
+    },
+    {
+      "path": "public/mosaic-pathways-mono.svg",
+      "bytes": 206,
+      "sha256": "aa0798dd25cbd7f3200c900aa29f96b13680d0e504df091abff83440e5f52df1"
+    },
+    {
+      "path": "public/mosaic-pathways-symbol.svg",
+      "bytes": 260,
+      "sha256": "20c400e55bbcb86ab437d06849a5dbf8d6383fd703eb1b44cd30fbc8767dbb8b"
+    },
+    {
+      "path": "public/mosaic-pathways-wordmark.svg",
+      "bytes": 668,
+      "sha256": "d2fed19e69a1d07964d932c27bc8076277951ce31a11e0df28c969f84de969ee"
+    },
+    {
+      "path": "public/nigeria-admin-map.json",
+      "bytes": 549521,
+      "sha256": "1958f8dec3541057a038054c6582445fb75fd8de5e87d47f166be6bed2815438"
     },
     {
       "path": "public/photos/abia.webp",
@@ -122,9 +267,34 @@
       "sha256": "287d133879a221acb6d2f6db83906df62d62fbbbd1865373de0fb95747c3cc13"
     },
     {
+      "path": "scripts/browser-administrator-coordination.mjs",
+      "bytes": 13440,
+      "sha256": "217d2eb98fc416a34bc1496e4a2a66c1ab4fd583615de4ea6f9f51ef04f168f0"
+    },
+    {
+      "path": "scripts/browser-administrator-reporting.mjs",
+      "bytes": 16903,
+      "sha256": "d6394ee22b916ce4b036f12558017702cb23c70d62576194ca7e6438783150d3"
+    },
+    {
+      "path": "scripts/browser-administrator-reviews.mjs",
+      "bytes": 9241,
+      "sha256": "40ec51bc7afe34fa923456b259032a4225d44b7bb36ec989b33d9d683f36a1e2"
+    },
+    {
+      "path": "scripts/browser-administrator.mjs",
+      "bytes": 18305,
+      "sha256": "22c3e0bc2ef0abbf04592e271a15814bc7b4e5fe787f922f56cb16fd2188cd74"
+    },
+    {
       "path": "scripts/browser-authoring.mjs",
       "bytes": 3263,
       "sha256": "8f56b501f493a5c4f898fe5740ad2f61acaa45c6bc8ad9aba94d12267670cbc9"
+    },
+    {
+      "path": "scripts/browser-grant-planning.mjs",
+      "bytes": 10006,
+      "sha256": "83351f63e311dcd2d0753951b45813c8ab7f24914cf48d9dd3e5c73b5acc1a24"
     },
     {
       "path": "scripts/browser-journey.mjs",
@@ -133,8 +303,13 @@
     },
     {
       "path": "scripts/browser-production.mjs",
-      "bytes": 3260,
-      "sha256": "3a51e14b628c74e939bc1db26dc38d4ed824148e97c32489ab42551adaee3ece"
+      "bytes": 9221,
+      "sha256": "408d6400075ec0528e54d092048140f678f3a21bcd112d1cfec4df68ed273654"
+    },
+    {
+      "path": "scripts/browser-scorecard.mjs",
+      "bytes": 14328,
+      "sha256": "58f4d7fbc46240a9723b157f18b3570193fea2db8dc5373baf60117cec5ab696"
     },
     {
       "path": "scripts/browser-showcase.mjs",
@@ -143,8 +318,18 @@
     },
     {
       "path": "scripts/browser-story.mjs",
-      "bytes": 15487,
-      "sha256": "43066dbef877cf759675f706ad14df82add72081f58b0dc02f4b5582b6d9a7ea"
+      "bytes": 15919,
+      "sha256": "e98ed068b9bd7ba453ad3aa5e4cddef78b2563c95717fee9791ff07ba4949e05"
+    },
+    {
+      "path": "scripts/browser-user-demo.mjs",
+      "bytes": 14064,
+      "sha256": "422ceae3fccf5456138e0a65ed7a94ffece2689e38e834e400406b1f5fb1e095"
+    },
+    {
+      "path": "scripts/build-nigeria-map.py",
+      "bytes": 6816,
+      "sha256": "d7a8751ba59d785990e16ec1957ff2939c48b601b64cc6c2250b1e68fb3280a5"
     },
     {
       "path": "scripts/collect-documentary.py",
@@ -172,14 +357,44 @@
       "sha256": "30f989358caf40a92eaf5a88382e291ded2e9aea1720bc4acc8a98ea5d9ac41c"
     },
     {
+      "path": "src/AdministratorCoordination.tsx",
+      "bytes": 20708,
+      "sha256": "f45de06e73b2dc1e8a0a16696086c1ecfc3938d691fd7c2d1e2d414c1ad6a037"
+    },
+    {
+      "path": "src/AdministratorDemo.tsx",
+      "bytes": 17283,
+      "sha256": "43ce3601e35cb281f86ffc80796c243a1a8bceb7f39e06ab9f3e72a5566d6d15"
+    },
+    {
+      "path": "src/AdministratorGeography.tsx",
+      "bytes": 8638,
+      "sha256": "c7e90c08cbeadf6786639e97a041546f40151837cb452d5e459c00167afe9f9a"
+    },
+    {
+      "path": "src/AdministratorReports.tsx",
+      "bytes": 10751,
+      "sha256": "9f24f54c95f5d28e0cfbd8f4bdeffdcc389fb402246844e9b9c6c17e5c050ffa"
+    },
+    {
+      "path": "src/AdministratorReviews.tsx",
+      "bytes": 8642,
+      "sha256": "5ca682a28db379f590635898f0835dd638f6aa8427a3d523b76619ea20ae79b8"
+    },
+    {
+      "path": "src/AdministratorScreenBoundary.tsx",
+      "bytes": 714,
+      "sha256": "ccc69263e286c6e68728e5453d98e2fcf75f304977dbf82fa4858660bcf8b401"
+    },
+    {
       "path": "src/App.tsx",
-      "bytes": 55954,
-      "sha256": "6225a63e8d053c362bb24ba340e304c25ebb7f1de4aef9de89fc78bcd8605e3a"
+      "bytes": 56407,
+      "sha256": "e8da6e1c6657ce1755c1cf8a7b7a1c218892f7914babc44568c1d238cf2471a3"
     },
     {
       "path": "src/AppDemoPage.tsx",
-      "bytes": 1192,
-      "sha256": "3da0eae13329569f0ccde11875a262f24ccd7591248f6c3302f572da00377682"
+      "bytes": 6683,
+      "sha256": "1f6dce5169f9f048c5aad92f2fa5b71202383d033304b3ca2e9e04764a42853f"
     },
     {
       "path": "src/ExplorePage.tsx",
@@ -187,9 +402,24 @@
       "sha256": "64288183a82ec1bb2185f9e1deb7992e2d04af6e5e5b0a1f6d89988a8f68c63f"
     },
     {
+      "path": "src/GrantPlanningReport.tsx",
+      "bytes": 11033,
+      "sha256": "62a10542a0d4692d3a1917de9672f7ea28815a806b0a3f48ce3c1fd11066e593"
+    },
+    {
       "path": "src/HomePage.tsx",
       "bytes": 3510,
       "sha256": "1ce0f1d888efc52e194a14aa1b35357c8e150cc2df24e30c1646b9ce637224f5"
+    },
+    {
+      "path": "src/LearnerScorecard.tsx",
+      "bytes": 19383,
+      "sha256": "b0121889b131d2367bb32d73ba4c4a12f582278884f1ec46f2bbaa492814e88b"
+    },
+    {
+      "path": "src/MosaicUserDemo.tsx",
+      "bytes": 45867,
+      "sha256": "ca4a5dcb3090f740434b75a4acaa642af32a731fe165e9d4b01daa5855d39f3a"
     },
     {
       "path": "src/PhotoCaption.tsx",
@@ -217,14 +447,49 @@
       "sha256": "0e3db0ba543e0362d24a27c9b4100d2adc61b292e665a44a038c250305d1d6ab"
     },
     {
+      "path": "src/administratorDemo.css",
+      "bytes": 5733,
+      "sha256": "6a645e8bc713ca9aa4c49a688196969034b9960e96449de04e0fe1a414342c96"
+    },
+    {
+      "path": "src/administratorDemo.test.ts",
+      "bytes": 2903,
+      "sha256": "e3d0187db1d8d877e9e6534f79e0ad3368424b84a7c99fe7bdac4a54875787d5"
+    },
+    {
+      "path": "src/administratorMetrics.ts",
+      "bytes": 1493,
+      "sha256": "3126c31da068926a924a37b409614e0dd6b9574e4970a66678985e79ce9c9760"
+    },
+    {
       "path": "src/catalogue.ts",
-      "bytes": 14649,
-      "sha256": "0fefba4f6636e8b52be33c444c3aa409efcd55466020f79ee6e336f904521e78"
+      "bytes": 21924,
+      "sha256": "653d381beb7788551f136f742d54b5e0b800c02d52ad0dc9d0cea45a4a9817fd"
+    },
+    {
+      "path": "src/coordinationDemo.test.ts",
+      "bytes": 15900,
+      "sha256": "6d998e75e5961475ced27a4359955d6fc3e7296a559464cfa623b4ad913292ff"
+    },
+    {
+      "path": "src/coordinationDemo.ts",
+      "bytes": 13112,
+      "sha256": "cc78ac886e2d76665ba1a99a64a2f5eef431795471c8de672e50b1a909d863bb"
+    },
+    {
+      "path": "src/coordinationValidation.ts",
+      "bytes": 6430,
+      "sha256": "b6775fb82f894cd920746576c82e485a0feab6d1c2b2076d1ec8072691161b41"
+    },
+    {
+      "path": "src/courseCatalogue.test.ts",
+      "bytes": 4409,
+      "sha256": "b8d321ffe9c943968610420fa156c35f3ff01dd39b2bd7a26ff1531d2691ea05"
     },
     {
       "path": "src/courseLanguages.test.ts",
-      "bytes": 1022,
-      "sha256": "d3c0bed82be1d7b089f8694fac76c9989adf43e0856d484e1482d93915f518ba"
+      "bytes": 1241,
+      "sha256": "690be68df2b28416225e979d6a144e55300b05450b1f7187b7eb39e36279eddd"
     },
     {
       "path": "src/courseLanguages.ts",
@@ -237,6 +502,31 @@
       "sha256": "bd6639511228f22d558c9d7be66000ad914c553f644d13f991de5fe089f09e32"
     },
     {
+      "path": "src/geographyDemo.test.ts",
+      "bytes": 2661,
+      "sha256": "32eadc9773a13f6a524a7b019fa203cc29f13f423843dbac0e24d9094c8da5b4"
+    },
+    {
+      "path": "src/geographyDemo.ts",
+      "bytes": 4703,
+      "sha256": "894bcf7f35186dd24b8211768e2e227295349af88db491d0ac7c039513d32dc5"
+    },
+    {
+      "path": "src/grantPlanning.test.ts",
+      "bytes": 7145,
+      "sha256": "d6eaf9504a72686162c30fb06c3038e55163a59725e8de31ea61e77c3d69bcb0"
+    },
+    {
+      "path": "src/grantPlanning.ts",
+      "bytes": 9244,
+      "sha256": "3ceb604deae73a5d8e6e183db286a456c5c35dce787adece3d224847dc1111ec"
+    },
+    {
+      "path": "src/grantPlanningPdf.ts",
+      "bytes": 19195,
+      "sha256": "d01898a15527d9afc93068b1bff74a1ac2eda929d410a3a7726966462aa3330f"
+    },
+    {
       "path": "src/i18n.ts",
       "bytes": 4372,
       "sha256": "4a54576742add216451842b23f109ea56424ce5402fb8de197748ba192ea5fc2"
@@ -247,9 +537,84 @@
       "sha256": "66b13a05278f63bed198dea75bb54b40da58be51ddd3b04e412d91ce464e6555"
     },
     {
+      "path": "src/nigeriaLocationIndex.test.ts",
+      "bytes": 1203,
+      "sha256": "54b65702815cc117af1b81bf7fdf553f806f1cbf3c2f1963eff8b8b57e65a59c"
+    },
+    {
+      "path": "src/nigeriaLocationIndex.ts",
+      "bytes": 14659,
+      "sha256": "0c84ec8c1643133e0d61edbf193d05c0740b51bd92b657c2079bd28005a023e8"
+    },
+    {
+      "path": "src/reportingDemo.test.ts",
+      "bytes": 11519,
+      "sha256": "3370d530e17ebcab1f722ce85891b59060fbf83496a42ac19142a42da99b8373"
+    },
+    {
+      "path": "src/reportingDemo.ts",
+      "bytes": 10263,
+      "sha256": "bbb83807e4fb68a63ced96cf6d130d02495900c9f3671e4ccae821824f5b7dd0"
+    },
+    {
+      "path": "src/reviewDemo.test.ts",
+      "bytes": 16309,
+      "sha256": "2aaf4293115125bfb532f655a501d352c557dcc01c013af15204fc64be7d69cb"
+    },
+    {
+      "path": "src/reviewDemo.ts",
+      "bytes": 8869,
+      "sha256": "061df1d737f45c0f75b3e2c2ab84572c9abf6e3c84ecedf2590e5aa6ec554727"
+    },
+    {
+      "path": "src/reviewValidation.ts",
+      "bytes": 4694,
+      "sha256": "a20d324e2de5ac3075c6cc3d04234ef1c041579c84516aa26ab5768aafcabbd8"
+    },
+    {
+      "path": "src/scorecard.css",
+      "bytes": 699,
+      "sha256": "6a5610d761ab24303c6ff092ba584e400784e3cb7dfa88c291363781e11d68c7"
+    },
+    {
+      "path": "src/scorecardDemo.test.ts",
+      "bytes": 13049,
+      "sha256": "fe158aea0f2cdb00dfc34d45461ec115168a3ea5a941cdccadc2eaf0d1a21136"
+    },
+    {
+      "path": "src/scorecardDemo.ts",
+      "bytes": 8272,
+      "sha256": "d3ceaceb6cff9ffa540e70a30dba35a2c07907de49a4aac70805128061b2c067"
+    },
+    {
+      "path": "src/scorecardValidation.ts",
+      "bytes": 5829,
+      "sha256": "d9da673510d1dd2b71b5d5ab7efb1d6f71352ae1b279b19a0039b9997860a91a"
+    },
+    {
+      "path": "src/sharedDemo.test.ts",
+      "bytes": 17275,
+      "sha256": "631e5cb603d3cea86b5f2f8dfd2b9f7cb1c17703899b8739fbc6c4e79a5bde5c"
+    },
+    {
+      "path": "src/sharedDemo.ts",
+      "bytes": 22348,
+      "sha256": "a4e504d12f6fee7dab4c14137270405680478fee7743af5b16c961ecc719be89"
+    },
+    {
       "path": "src/showcase.ts",
       "bytes": 19972,
       "sha256": "ceff67db811e21b9e9fea223f29e8513ebf994db668477cd0cc528ad0291c1c1"
+    },
+    {
+      "path": "src/skillCategories.ts",
+      "bytes": 1344,
+      "sha256": "89639d4c5dc6b7c71cfa921425b36df73b77498f53c74eba463dc7d2ad689bc7"
+    },
+    {
+      "path": "src/skillCourses.ts",
+      "bytes": 24974,
+      "sha256": "9bcd2ed90a1a9eac0c93e0c17e4248884929c247dc18dc33e95ba4026f0ca232"
     },
     {
       "path": "src/store.test.ts",
@@ -258,13 +623,33 @@
     },
     {
       "path": "src/store.ts",
-      "bytes": 3781,
-      "sha256": "8cd0f361eff2106e231bdfbbf5b0564f0b98022e2974548b640e8eb045dd7f0e"
+      "bytes": 4224,
+      "sha256": "064bc848409868f12558f8aa4f4555a437ade3aa870f62d26dd11386ee610952"
+    },
+    {
+      "path": "src/style.css",
+      "bytes": 27059,
+      "sha256": "9034fce2468ad2ea956c430265df2c4382cef173784953523723e59a76622faf"
     },
     {
       "path": "src/useReducedMotion.ts",
       "bytes": 578,
       "sha256": "4c452095b211fa39d3d6ded49a9541044fd112a5a70c5c482da5d7a0a0b799e0"
+    },
+    {
+      "path": "src/userDemo.css",
+      "bytes": 6770,
+      "sha256": "85007eacf100a2a9e9641944a48866e1d6a41e2a49eb993c4b3dde7959945c71"
+    },
+    {
+      "path": "src/userDemo.test.ts",
+      "bytes": 9612,
+      "sha256": "82b4f0463a6823e7c64dda8ec9b63e565b00970477203ad07908830b7c0d3d5d"
+    },
+    {
+      "path": "src/userDemo.ts",
+      "bytes": 11816,
+      "sha256": "58dfbf16eb4ae3b2802a16a3ae9159e51d1169b7eace60a5f35b4393100bb2cf"
     },
     {
       "path": "tests/assist.test.ts",
@@ -300,5 +685,6 @@
   "note": "Hashes are a comparison aid, not file backups. Credentials, private input text files, node_modules, caches and generated output are excluded.",
   "repository": "https://github.com/batestguy/AyubaDisabilityProg",
   "repositoryVisibility": "public",
-  "validatedImplementationCommit": "1332133566599b557831317aa6742fdca719f007"
+  "validatedImplementationCommit": "1332133566599b557831317aa6742fdca719f007",
+  "documentationHandoff": "All 14 Markdown files synchronized with 7 October wave 1 closeout and wave 2 next-session brief; no runtime changes"
 }

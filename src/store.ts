@@ -14,6 +14,7 @@ export type Enrolment = {
   id: string;
   learnerId: string;
   courseId: string;
+  courseVersion?: Course;
   assisted: boolean;
   lessons: number[];
   scores: number[];
@@ -94,6 +95,7 @@ export function enrol(
         id: uid(),
         learnerId,
         courseId,
+        courseVersion: structuredClone(s.courses.find(c => c.id === courseId)!),
         assisted,
         lessons: [],
         scores: [],
@@ -110,7 +112,7 @@ export function updateEnrolment(
   const target = s.enrolments.find((e) => e.id === id);
   if (!target) return s;
   const e = { ...target, ...patch };
-  const c = s.courses.find((c) => c.id === e.courseId)!;
+  const c = enrolmentCourse(s, e)!;
   const done =
     c.lessons.every((_, i) => e.lessons.includes(i)) &&
     Math.max(0, ...e.scores) >= 70 &&
@@ -126,6 +128,9 @@ export function updateEnrolment(
         : l,
     ),
   };
+}
+export function enrolmentCourse(s: State, e: Enrolment): Course | undefined {
+  return e.courseVersion ?? s.courses.find(c => c.id === e.courseId);
 }
 export function recommend(s: State, l: Learner) {
   const words = (l.interests + " " + l.skills.join(" "))
@@ -151,7 +156,10 @@ export function grade(c: Course, answers: number[]) {
 export function loadState(): State {
   try {
     const raw = sessionStorage.getItem("mosaic-v1");
-    return raw ? JSON.parse(raw) : fresh();
+    if (!raw) return fresh();
+    const saved: State = JSON.parse(raw);
+    const missing = courses.filter(c => !saved.courses.some(existing => existing.id === c.id));
+    return { ...saved, courses: [...saved.courses, ...structuredClone(missing)] };
   } catch {
     return fresh();
   }

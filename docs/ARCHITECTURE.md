@@ -1,6 +1,16 @@
-﻿# Architecture and maintenance reference
+# Architecture and maintenance reference
 
-Checkpoint: 4 October 2026. Read [the session handoff](../SESSION-HANDOFF.md) for project history, verified content and next-session intent.
+Current continuation (8 October 2026): User, Administrator waves 1–4 and the [learner scorecard/threshold follow-up](LEARNER-SCORECARD.md) are complete locally. Next: wave 5 consolidated Administrator closeout. Read [the current handoff](../SESSION-HANDOFF.md#next-session-brief); earlier milestones in this document retain their historical scope. Changes remain uncommitted and unpublished.
+
+Current continuation checkpoint (7 October 2026): [Administrator wave 2](ADMINISTRATOR-WAVE-2.md) implements application/support decisions, immutable history and User responses. Next is wave 2 user review, then wave 3 roster/course coordination. [Main handoff](../SESSION-HANDOFF.md) takes precedence over earlier checkpoint descriptions below.
+
+Checkpoint: 7 October 2026. Read [the session handoff](../SESSION-HANDOFF.md) for project history, verified content and next-session intent.
+
+The User stage is closed out with eight courses (48 lessons/39 questions), including English-first AI, workplace and livelihood courses. Both User and sandbox loaders append missing seed courses to saved catalogues without replacing existing activity or authored content. The original three-course translations remain unchanged. Read [User closeout](USER-STAGE-CLOSEOUT.md) and the [full Administrator plan](ADMINISTRATOR-DEMO-PLAN.md) for the baseline. [Administrator wave 1](ADMINISTRATOR-WAVE-1.md) now provides shared session ownership, revisions/submission history, Overview and read-only learner detail.
+
+## Grant-planning reports (10 October 2026)
+
+`grantPlanning.ts` derives scoped cohort breakdowns and separate aggregate/detailed CSV whitelists. `GrantPlanningReport.tsx` provides labelled bar charts, equivalent tables, filters and independent roster/export controls. `grantPlanningPdf.ts` generates aggregate A4 chart pages locally using canvas and a PDF writer; no remote service or new dependency. `nigeriaLocationIndex.ts` contains only canonical names from the pinned map asset. Reports unmounts on role exit; scope/state changes reset disclosure/export selections. Shared schema remains version 2. See [metric/export definitions](GRANT-PLANNING-REPORT.md).
 
 ## Application structure
 
@@ -11,13 +21,19 @@ flowchart TD
     H[index.html] --> R[src/main.tsx and App.tsx]
     R --> HOME[HomePage: documentary story]
     R --> PROJECTS[ExplorePage: Projects & Possibilities]
-    R --> DEMO[AppDemoPage: empty role panels]
+    R --> DEMO[AppDemoPage: Mosaic Pathways user demo]
+    DEMO --> USER[MosaicUserDemo: onboarding, learning, portfolio, support, teaching]
+    DEMO <--> SHARED[src/sharedDemo.ts: schema 2 shared tab session]
+    SHARED <--> USER
+    SHARED --> ADMIN[Administrator: Overview and read-only Learners]
+    USTORE[src/userDemo.ts: User rules and legacy model] --> SHARED
     R --> ABOUT[AboutPage: profile spaces]
     R --> SBOX[Learning sandbox and support navigator]
     DATA[src/showcase.ts: photos, chapters, milestones] --> HOME
     EV[src/evidence.ts: summaries and proposals] --> PROJECTS
     STORE[src/store.ts: fictional tab-session records] <--> SBOX
     CAT[src/catalogue.ts and courseLanguages.ts] --> SBOX
+    CAT --> USER
     SBOX --> API[POST /api/assist: Pages Function]
     EV --> API
     CAT --> API
@@ -39,7 +55,11 @@ Photo metadata is presentation-only. The AI endpoint imports `evidence.ts` and `
 | `src/HomePage.tsx` | Story composition, leadership and further reading, chapters with grouped photographs, timeline and source register | Primary homepage composition surface |
 | `src/Timeline.tsx` | Twelve-event, year-filtered timeline with boundary controls and source-matched photographs | Selection scrolls the date strip only |
 | `src/ExplorePage.tsx` | Projects & Possibilities: five proposals, pilot discussion, downloads and links to demos | Main navigation label differs from the component filename |
-| `src/AppDemoPage.tsx` | Separate empty User, Administration and Facilitator panels | Keyboard tabs support arrows, Home and End |
+| `src/AppDemoPage.tsx` | Shared session owner, User/Administration role panels, storage warning/recovery and reset; Facilitator deferred | Keyboard tabs support arrows, Home and End |
+| `src/MosaicUserDemo.tsx`, `src/userDemo.css` | English adult onboarding, dashboard, learning, portfolio, support, teaching and presenter controls | Scoped styling, mobile menu, text-first lessons and printable demo record |
+| `src/sharedDemo.ts`, `src/sharedDemo.test.ts` | Schema 2 envelope, verified legacy backup/migration, record revisions, submission snapshots, milestone events and scoped reset | Same primary key, backup retained until reset; invalid saved data never silently replaced |
+| `src/AdministratorDemo.tsx`, `src/administratorMetrics.ts` | Read-only Overview/Learners, derived counts and search | No administrator assessment/decision mutations; optional personal/evidence details collapsed |
+| `src/userDemo.ts`, `src/userDemo.test.ts` | User payload/rules, profile, evidence metadata, recommendations, requests and application gates | `mosaic-user-demo-v1`; reuses store completion rules; no server uploads |
 | `src/AboutPage.tsx` | Blank named portrait and biography spaces | No personal profile content supplied |
 | `src/PhotoCaption.tsx` | Shared photograph caption and provenance links | Used by chapter, timeline and dialog presentation |
 | `src/showcase.ts` | Documentary sources, photo records, achievement records, hero selection and milestones | Canonical documentary data; stable IDs link navigation, gallery, timeline and tests |
@@ -194,7 +214,7 @@ The PDF generator contains its own presentation prose/source links. A homepage w
 | `scripts/browser-journey.mjs` | Complete three-role course journey, requests, follow-up, certificate, outage, isolation, reset and mobile |
 | `scripts/browser-authoring.mjs` | Pending consultant/course publication gates and translated sample journeys |
 | `scripts/accessibility.mjs` | axe Projects & Possibilities, empty app-demo roles, About, overview, learner/expert/admin and expanded courses in all four languages |
-| `npm.cmd run test:ui` | Runs the five dev browser scripts sequentially; installed Google Chrome required |
+| `npm.cmd run test:ui` | Runs the seven dev browser scripts sequentially; installed Google Chrome required |
 | `scripts/browser-production.mjs` | CSP-applied built-site smoke, portrait dialog, sandbox, PDF and no-JS mobile; preview port 4173 |
 
 Screenshots: `output/playwright/`. Accessibility JSON: `output/playwright/accessibility.json` and `gallery-accessibility.json`. Rendered PDFs: `output/pdf/`. Initial acquired-source text and contact sheet: `output/documentary/`. Historical Worker/Functions dry-run evidence remains recorded in validation; no live deployment is implied.
@@ -216,3 +236,56 @@ Screenshots: `output/playwright/`. Accessibility JSON: `output/playwright/access
 | Persisted fictional state unsuitable for a demo | Use Reset; do not put real personal records in the sandbox |
 
 Use [the appearance guide](APPEARANCE-GUIDE.md) for the next visual revision. Use [the deployment guide](deployment.md) only when deployment becomes the user's authorised task.
+
+### Skill-area extension
+
+`src/skillCategories.ts` defines four areas and legacy-ID category fallbacks. `src/skillCourses.ts` provides workplace and three livelihood foundation courses. Course metadata carries category, delivery, tools and intended outcome. User loader fills missing `profile.categories` and appends missing seed courses while retaining activity. UI preferences filter discovery without restricting enrolment. Livelihood records cover written foundation tasks; observed specialist practice remains outside this version.
+
+
+## Administrator wave 1 shared session
+
+The app-demo shell owns the canonical `SharedDemoSession`: schemaVersion 2, the schema 1 User payload in `user`, `recordMetadata`, immutable `submissions`, and append-only milestone `events`. User receives controlled props; Administration reads the same state. UI navigation does not change records. Keep the separate `mosaic-v1` sandbox independent.
+
+`loadSharedDemo` validates legacy/schema 2, fills only historical category/seed-course additions, and preserves all recorded activity. `saveSharedDemo` verifies exact backup before replacing a legacy source and verifies saved bytes/schema with rollback on failure. `mosaic-user-demo-v1-backup` remains until confirmed reset. Bad/future data returns blocking `recovery`; valid persistence failures return `warning`/`memoryOnly`, allowing edits while automatic saving is suspended. Retry saving retains those edits rather than reloading old data.
+
+Metadata uses `kind:id` keys, stable IDs, positive revisions, UTC epoch timestamps and nullable reviewer IDs. Existing submitted support/teaching/work get snapshots at migration; unknown historical work time is null, separate from migration time. Explicit work submission intent captures identical resubmissions. Support duplicates do not add history. Events record migration, onboarding, submissions, sample feedback/approval/replies and completion/invalidation; profile typing is not a milestone. Removed-record metadata stays available for historical references until reset.
+
+`resetSharedDemo` verifies primary removal before removing backup. File contents remain in the User module's memory map through role/page navigation and are cleared only after successful reset. Hidden User panels cannot focus headings on role switches. Administration uses the same Larger text preference and inherited global controls; local dates are explicitly displayed as Africa/Lagos (UTC+01:00).
+
+`browser-administrator.mjs` checks legacy migration, live User/Admin sharing, snapshots, read-only/private fields, filters, keyboard/focus, persistence/reset isolation, storage/recovery and responsive/axe states. Existing User browser storage assertions now project the envelope's `user`; their gates remain unchanged.
+
+
+## Next-session engineering entry point
+
+Wave 1 is complete; [wave 2](ADMINISTRATOR-DEMO-PLAN.md) adds application/support review. Begin with `sharedDemo.ts` and its tests, the controlled User helpers/view, and the existing Administration view. Extend shared records and snapshots rather than restoring component-owned persistence or using legacy load/save helpers as current storage. Preserve backup/recovery, immutable submitted versions, revision monotonicity, no-op idempotency and separate sandbox. Add decision reasons/reviewer/time and stale/duplicate guards before exposing User-visible changes/resubmission. Read [the continuation brief](../SESSION-HANDOFF.md#next-session-brief); preflight and browser commands above are current.
+
+## Wave 2 review architecture
+
+`AppDemoPage.tsx` maintains a latest-session ref alongside React state and applies commands synchronously against it. `reviewDemo.ts` derives statuses from immutable snapshots plus decisions; `reviewValidation.ts` checks linked evidence, chronology, rubric and roster. `sharedDemo.ts` preserves schema 2 compatibility with additive `reviews`. `AdministratorReviews.tsx` provides queue filters, evidence, stale warnings, decision/history cards; User response forms preserve route/evidence and progression eligibility. Administrative decisions never change learning approval/completion or portfolio. Reset clears open cached evidence; storage failures remain editable in memory.
+
+## Wave 3 coordination architecture
+
+`coordinationDemo.ts` applies course drafts/decisions and reviewer assignments; `coordinationValidation.ts` validates saved content, provenance, revision links and assignment predecessor chains. Optional shared `coordination` normalizes additively and preserves old schema 2 and exact legacy backup. `AdministratorCoordination.tsx` owns roster, course editor/review and learning oversight; root callbacks use the latest-session ref. Course publishing checks accessible delivery evidence, valid complete content/quiz/assignment and an approved demo roster author for authored courses. Seed archiving/restoration preserves the original seed content.
+
+`Enrolment.courseVersion` is captured at enrolment; older records capture their existing course before mutation. `enrolmentCourse` supplies retained content for grading/completion, skills, eligibility and portfolio. User discovery uses the shared catalogue and hides unenrolled unavailable courses; enrolled retained versions remain accessible after archive or revision. Course decisions/drafts store immutable content; assignments store evidence revision, practical snapshot and previous assignment ID. Old exact retries return a no-op and stale replacements reject. Assignment changes do not assess learning or revise submitted evidence. Presenter controls in User retain trainer assessment/replies; Facilitator sign-in is still deferred.
+
+`browser-administrator-coordination.mjs` checks approval/roster, assignments/resubmission, archive, authored changes/publication, retained completion/portfolio, reload/reset/sandbox isolation, mobile layouts and nine axe states with zero POST.
+
+## Wave 4 reporting/settings/geography architecture
+
+`reportingDemo.ts` derives explicitly scoped metrics/learner rows, loads a deduplicated fictional cohort, filters events by inclusive UTC dates and builds exports from a safe whitelist. Additive `SharedDemoSession.settings` is validated with linked cohort event/metadata; absent old values normalize without adding samples. Samples have geography/readiness only and no learning evidence. Root exposes cohort/reset commands against the latest canonical session. All learning aggregate/table counts use User learner enrolments, including retained course versions.
+
+`AdministratorReports.tsx` renders reports, history and settings. Default local JSON exports omit names, locations, disclosures, attachment metadata and authored/history text. Labelled sensitive opt-in includes fictional session metadata but never File/Blob/binary contents. Existing verified reset handles shared samples/history/backup/files while preserving sandbox; User and recovery confirmations name the expanded scope.
+
+`geographyDemo.ts` validates closed nondegenerate coordinate paths/nonempty unique states and LGAs, builds finite viewboxes and joins paired normalized location names with explicit FCT aliases. `AdministratorGeography.tsx` fetches only the local map asset and provides SVG keyboard regions, state/LGA selectors, scoped counts/list/detail, unmatched national list, loading/retry/fallback and responsive display. Map geometry is pinned GRID3/geoBoundaries CC BY 4.0 with 37/774 units, reproducible via build-nigeria-map.py and recorded provenance. Both new screens load on demand; `AdministratorScreenBoundary` scopes failed imports/render errors to the view while preserving shell/session/navigation.
+
+`browser-administrator-reporting.mjs` verifies the full geographic/report/export/settings journey, error/loading/malformed data, blocked module recovery, mobile/axe and zero POST. Run builds after dev browser scripts, since static-story regeneration can refresh a page mid-test.
+
+
+## Individual scorecard and threshold follow-up extension
+
+`scorecardDemo.ts` derives per-learner completed/enrolled course counts, completion percentage and practical-review totals. `learnerProgress` classifies rows against a configurable 0 to 100 threshold: below is strictly less, equality belongs to at-or-above, and no enrolments yields no percentage. Explicit geographic samples have no learning evidence. The follow-up threshold never changes the quiz or practical assessment gates. Display percentages use one decimal place; classification compares the unrounded completed/enrolled ratio.
+
+Optional schema 2 `outcomes` stores append-only outcome updates and separate User receipts. Support records retain their original submitted checklist/item across corrections. New checklist needs receive new records. Grant records distinguish application, award and cumulative staff-recorded payment amounts in NGN; payments cannot exceed awards. Follow-up records carry owner, due date, action and status. Outcome replacement checks the expected predecessor; exact retries preserve the existing history. Receipt confirmation targets the displayed current support provision or positive payment revision. Staff entries and learner acknowledgements remain simulated statements, not financial transactions or verification of actual delivery.
+
+`LearnerScorecard.tsx` provides the shared read view, Administrator outcome editor and learner receipt forms. Administration's Learner progress view filters/searches rows and opens the individual scorecard; User's My scorecard shows the same session records. The canonical app-demo root executes commands and persists updates. `scorecardValidation.ts` validates histories, links, amounts/dates and actors against the session. Absent outcomes normalize additively; malformed outcomes retain original bytes behind recovery. Default anonymous exports omit identifying outcome text/references/history; fuller fictional export remains explicit. Shared confirmed reset removes outcomes along with existing shared records and preserves the separate sandbox.

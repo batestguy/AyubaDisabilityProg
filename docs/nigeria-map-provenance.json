@@ -1,0 +1,179 @@
+{
+  "source": "GRID3 via geoBoundaries gbOpen",
+  "yearRepresented": 2022,
+  "buildDate": "2023-12-12",
+  "license": "CC BY 4.0",
+  "licenseURL": "https://creativecommons.org/licenses/by/4.0/",
+  "citation": "Administrative boundaries: GRID3, geoBoundaries Database (www.geoboundaries.org). CC BY 4.0.",
+  "pinnedCommit": "9469f09",
+  "retrievedDate": "2026-10-08",
+  "derivedAsset": "public/nigeria-admin-map.json",
+  "derivedSHA256": "1958f8dec3541057a038054c6582445fb75fd8de5e87d47f166be6bed2815438",
+  "changes": "State/LGA hierarchy derived from unanimous three interior-point containment checks; SVG paths simplified at 0.006 degrees, projected and rounded for display. Not surveyed home locations.",
+  "layers": [
+    {
+      "level": "ADM1",
+      "units": 37,
+      "download": "https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/9469f09/releaseData/gbOpen/NGA/ADM1/geoBoundaries-NGA-ADM1_simplified.geojson",
+      "sha256": "edd28050c7f1ae40471424605f74e4d2df83502e4f301089761ae18f8ae2fbbf",
+      "metadata": "https://www.geoboundaries.org/api/current/gbOpen/NGA/ADM1/"
+    },
+    {
+      "level": "ADM2",
+      "units": 774,
+      "download": "https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/9469f09/releaseData/gbOpen/NGA/ADM2/geoBoundaries-NGA-ADM2_simplified.geojson",
+      "sha256": "daac9ba2c98f0d8984085c8a5b3a5301fca362f3ca37e6ac7dfcc7633719fc1d",
+      "metadata": "https://www.geoboundaries.org/api/current/gbOpen/NGA/ADM2/"
+    }
+  ],
+  "states": [
+    {
+      "name": "Abia",
+      "lgaCount": 17
+    },
+    {
+      "name": "Adamawa",
+      "lgaCount": 21
+    },
+    {
+      "name": "Akwa Ibom",
+      "lgaCount": 31
+    },
+    {
+      "name": "Anambra",
+      "lgaCount": 21
+    },
+    {
+      "name": "Bauchi",
+      "lgaCount": 20
+    },
+    {
+      "name": "Bayelsa",
+      "lgaCount": 8
+    },
+    {
+      "name": "Benue",
+      "lgaCount": 23
+    },
+    {
+      "name": "Borno",
+      "lgaCount": 27
+    },
+    {
+      "name": "Cross River",
+      "lgaCount": 18
+    },
+    {
+      "name": "Delta",
+      "lgaCount": 25
+    },
+    {
+      "name": "Ebonyi",
+      "lgaCount": 13
+    },
+    {
+      "name": "Edo",
+      "lgaCount": 18
+    },
+    {
+      "name": "Ekiti",
+      "lgaCount": 16
+    },
+    {
+      "name": "Enugu",
+      "lgaCount": 17
+    },
+    {
+      "name": "FCT",
+      "lgaCount": 6
+    },
+    {
+      "name": "Gombe",
+      "lgaCount": 11
+    },
+    {
+      "name": "Imo",
+      "lgaCount": 27
+    },
+    {
+      "name": "Jigawa",
+      "lgaCount": 27
+    },
+    {
+      "name": "Kaduna",
+      "lgaCount": 23
+    },
+    {
+      "name": "Kano",
+      "lgaCount": 44
+    },
+    {
+      "name": "Katsina",
+      "lgaCount": 34
+    },
+    {
+      "name": "Kebbi",
+      "lgaCount": 21
+    },
+    {
+      "name": "Kogi",
+      "lgaCount": 21
+    },
+    {
+      "name": "Kwara",
+      "lgaCount": 16
+    },
+    {
+      "name": "Lagos",
+      "lgaCount": 20
+    },
+    {
+      "name": "Nasarawa",
+      "lgaCount": 13
+    },
+    {
+      "name": "Niger",
+      "lgaCount": 25
+    },
+    {
+      "name": "Ogun",
+      "lgaCount": 20
+    },
+    {
+      "name": "Ondo",
+      "lgaCount": 18
+    },
+    {
+      "name": "Osun",
+      "lgaCount": 30
+    },
+    {
+      "name": "Oyo",
+      "lgaCount": 33
+    },
+    {
+      "name": "Plateau",
+      "lgaCount": 17
+    },
+    {
+      "name": "Rivers",
+      "lgaCount": 23
+    },
+    {
+      "name": "Sokoto",
+      "lgaCount": 23
+    },
+    {
+      "name": "Taraba",
+      "lgaCount": 16
+    },
+    {
+      "name": "Yobe",
+      "lgaCount": 17
+    },
+    {
+      "name": "Zamfara",
+      "lgaCount": 14
+    }
+  ]
+}

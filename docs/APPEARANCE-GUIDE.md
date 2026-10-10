@@ -1,6 +1,10 @@
+Current continuation (8 October 2026): User, Administrator waves 1–4 and the [learner scorecard/threshold follow-up](LEARNER-SCORECARD.md) are complete locally. Next: wave 5 consolidated Administrator closeout. Read [the current handoff](../SESSION-HANDOFF.md#next-session-brief); earlier milestones in this document retain their historical scope. Changes remain uncommitted and unpublished.
+
 ﻿# Appearance change guide
 
-Current baseline: 4 October 2026. The saved revision is validated and versioned. Further visual changes require the next user brief. This guide records the current design and where to edit it; it does not choose a new design on the user's behalf.
+Current continuation checkpoint (7 October 2026): [Administrator wave 2](ADMINISTRATOR-WAVE-2.md) implements application/support decisions, immutable history and User responses. Next is wave 2 user review, then wave 3 roster/course coordination. [Main handoff](../SESSION-HANDOFF.md) takes precedence over earlier checkpoint descriptions below.
+
+Current baseline: 7 October 2026. The website and User demo are retained; Administrator wave 1 is implemented and validated locally. Latest User/wave 1 changes remain uncommitted. Further visual changes require the next user brief. This guide records the current design and where to edit it; it does not choose a new design on the user's behalf.
 
 Read [SESSION-HANDOFF.md](../SESSION-HANDOFF.md) before changing the story or sandbox, and [ARCHITECTURE.md](ARCHITECTURE.md) for implementation detail.
 
@@ -16,7 +20,7 @@ The sections currently appear in this order:
 4. Twelve-entry milestone timeline.
 5. Source register.
 
-Ten photographs are grouped within the chapters and open full-frame dialogs. Projects & Possibilities holds five proposals, pilot discussion, downloads and demo links. Open the app demo leads to a separate page with empty User, Administration and Facilitator tabs. About reserves two profile spaces. The primary navigation is Home, Projects & Possibilities, About.
+Ten photographs are grouped within the chapters and open full-frame dialogs. Projects & Possibilities holds five proposals, pilot discussion, downloads and demo links. Open the app demo leads to a separate page with completed User, wave 1 Administration Overview/Learners, and a deferred Facilitator tab. About reserves two profile spaces. The primary navigation is Home, Projects & Possibilities, About.
 
 The story is independent and source-linked. The photos and evidence account are the foundation to retain during an appearance revision unless the user changes the content brief.
 
@@ -146,3 +150,26 @@ The introduction review image is `output/pdf/introduction-1.png`. The original a
 The access-bar separator was corrected in the saved revision. Some files appear garbled when read with an incompatible terminal encoding; use explicit UTF-8 before deciding the source text itself is damaged. The actual browser previews and PDF have been visually checked.
 
 The no-JavaScript page has its own simpler stylesheet. Large full-page screenshots can be too tall to inspect comfortably; use viewport captures of individual sections. Automated checks cover specified widths but do not establish every short-landscape or enlarged-text combination. Keep that practical scope visible when reporting the next design's validation.
+
+
+### Administrator appearance (7 October 2026)
+
+Wave 1 reuses Mosaic branding, Georgia display typography, green/blue accents and responsive sidebar/mobile navigation. Overview uses a prominent coordination next step and editorial count grid. Read-only learner detail uses definition lists, collapsible personal/evidence sections and explicit foundation/review labels. Scoped additions live in `src/administratorDemo.css`; inherited User and global enlarged-text controls remain active. Screenshots are `output/playwright/admin-overview-desktop.png` , `admin-learner-mobile.png` and the enlarged viewport capture `admin-profile-mobile-view.png`.
+
+
+## Next-session UI continuation
+
+Wave 2 application/support reviews are next. Reuse the current Administration layout/branding, readable metric and definition-list styles, mobile menu, visible focus, enlarged text and collapsed optional personal/evidence sections. Add meaningful pending/review/change-request/error states without altering documentary behavior. Read [the current handoff](../SESSION-HANDOFF.md#next-session-brief) and [wave 1 closeout](ADMINISTRATOR-WAVE-1.md) before changes; the existing next-session appearance workflow above is reference guidance, not a new appearance request.
+
+## Wave 3 views
+
+Administration adds Trainer roster, Courses and Learning oversight using the existing sidebar, cards, filters, text-first forms and responsive typography. `AdministratorCoordination.tsx` owns course previews/editor, decisions and assignment history. `administratorDemo.css` adds minimal fieldset/assignment layout. Clicking the same wave 3 destination returns to its list; role switching preserves open content for evidence review. Larger text preferences carry across User/Admin. Mobile course and learning views were inspected, axe/overflow checks pass. No website/carousel styling changed.
+
+## Wave 4 views
+
+Learner map uses geographic SVG paths in a bounded responsive panel, colour plus numeric counts, keyboard controls and paired selectors. National state and state LGA views use fit-to-region viewboxes; unknown locations remain in a separate national list. Reports use scoped metric cards, a defined completion numerator/denominator and an overflow-contained course table. History filters and sensitive action details reuse existing cards/controls. Demo settings keeps anonymous export default and explicit sample/reset controls. Desktop Nigeria and mobile Plateau views were visually inspected; no horizontal overflow was observed. New views have lazy-loading and scoped recovery messages. See Nigeria geography documentation for source/count semantics.
+
+
+## Individual scorecard and learner progress
+
+The individual scorecard uses separate metric cards for completed/enrolled, completion percentage and practical assessment status. Support, grants and follow-up each retain their own section, with evidence and revision details collapsed. Administrator editing lives in an explicitly labelled disclosure. The learner view offers receipt acknowledgement only for the current displayed provision/payment. Follow-up threshold, completion-group filter and search use labelled controls; no-enrolment rows are separate. `scorecard.css` stacks metrics/forms on narrow screens and wraps long evidence text. Preserve the existing larger-text setting, focus handling and keyboard access when adjusting these views.

@@ -1,116 +1,114 @@
-# Session handoff: build the demo app next
+# Session handoff: Mosaic Pathways and grant-planning reports
 
-Checkpoint: 4 October 2026. Workspace: `D:\AyubaGufwanDisabiliyt`.
+## Current checkpoint — 10 October 2026
 
-## Next objective
+User authorized documenting all progress, committing and pushing the accumulated project work to `batestguy/AyubaDisabilityProg`, branch `main`. This checkpoint supersedes historical continuation pointers below. Deployment is separate and has not been performed for this revision.
 
-The user's next task is **building the demo app**. Continue the existing React/TypeScript/Vite project. The website revision, browser validation, documentation and public repository delivery are complete. No new demo workflow was implemented in this handoff session.
+Delivered: eight-course User journey; Administrator waves 1–4; learner progress thresholds and individual support/grant/follow-up scorecards; wave 5 completion-corruption and navigation-contrast corrections; demographic/disability/skills grant-planning dashboard and aggregate PDF/CSV plus separately selected detailed CSV. See [report tracking](docs/GRANT-PLANNING-REPORT.md), [wave 5 gates](docs/ADMINISTRATOR-WAVE-5.md), [validation](docs/validation.md) and [session history](docs/SESSION-HISTORY.md).
 
-Start at **Projects & Possibilities → Open the app demo → Choose your role**. The User, Administration and Facilitator tabs work, but their panels are intentionally empty. Build the next features there after establishing the user's desired first workflow. Detailed feature requirements, role permissions, persistence requirements and whether to adapt the existing sandbox have not yet been agreed. Do not treat the three tab names as a finished specification.
+The latest PDF has five deliberate sections: executive briefing/KPIs/evidence table; actual Nigeria state polygons with state labels/counts/shares and LGA tables; demographic/access charts and missing-information coverage; skills/support charts and a recorded learning-pathway diagram; additional planning categories. State geometry uses the existing pinned 37-state/FCT, 774-LGA atlas with attribution. PDF failure to load/validate the atlas stops export and offers CSV. Download grant-planning PDF is beside the report heading. PDF profile charts use selected User profiles; geography and appendix tables use the entire selected cohort, with denominators labelled. No age, education or employment statistics are invented. Five geographic sample profiles have gender not collected; the eye fixture has one Woman and zero Prefer not to say answers. This is not refusal by the samples.
 
-## Repository and delivery
+Validation: 84 model tests, TypeScript and production build pass. All twelve browser scripts have passing final-source evidence from consolidated/affected reruns; latest grant journey additionally verifies all/User/sample/state/empty PDF exports, atlas failure, filters, privacy/consent resets, mobile and five clean axe audits. Production CSP verifies actual PDF download with same-origin atlas GET 200, zero POST and no page errors. All five populated PDF pages and scope variants were rendered/inspected; final geographic table spacing was corrected and reexported. The main Vite bundle still has its size advisory. No new dependency was added.
 
-| Item | Verified checkpoint |
-|---|---|
-| Public repository | [batestguy/AyubaDisabilityProg](https://github.com/batestguy/AyubaDisabilityProg) |
-| Branch | `main`, tracking `origin/main` |
-| Validated implementation commit | `1332133566599b557831317aa6742fdca719f007` |
-| Commit meaning | Saved website revision and completed validation/documentation; the later documentation-only commit contains this handoff |
-| Website preview | `http://127.0.0.1:5173/`; production preview `http://127.0.0.1:4173/` |
-| Hosting | Local preview only; GitHub publication does not deploy the website |
-| Latest user interaction | Opened the current local preview in the user's browser |
+User accepted guided visual steps 1–4: overview, progress/scorecard, trainer/support queues and courses, and Nigeria→state→LGA map drill-down. New Reports/PDF revisions were requested and opened; final explicit visual acceptance remains pending. Still review Reports/history/settings, corresponding User screens, mobile and enlarged text, then close wave 5. Do not treat automated verification as visual acceptance.
 
-Both preview servers were running during this session. Check them next time; processes may not survive a restart. GitHub visibility is public, as explicitly requested by the user. The working tree was clean after implementation delivery; inspect it again before editing.
+Local evidence is ignored under `output/pdf/` and `output/playwright/`: final `grant-planning-report.pdf`, five rendered review pages, desktop/mobile screenshots and audit JSON. Reproduce by `npm.cmd run preflight`, then `node scripts/browser-grant-planning.mjs` with dev 5173 and `node scripts/browser-production.mjs` with preview 4173. The isolated headed `grant-review` Chrome session uses fictional records; reload/build may reset its current screen. Keep credentials and machine state outside Git.
 
-The initial Git upload timed out twice with HTTP 408. The exact local commit was then transferred through the GitHub API with every blob, tree and commit hash verified. A subsequent `git push -u origin main` succeeded as up to date. No credentials were written to the workspace. This was a completed delivery, not a remaining blocker.
+GitHub access verified for the exact repository with ADMIN permission. Cloudflare Pages target remains `ncpwd-impact-mosaic`; previous `wrangler whoami` found expired OAuth and noninteractive refresh unavailable. If deployment is subsequently requested, run interactive `npx.cmd wrangler login`, verify the account/project, then deploy and verify. No public URL for this revision is verified.
 
-## What is finished
+Operational boundaries: shared schema 2 under `mosaic-user-demo-v1`, exact backup/recovery and separate sandbox `mosaic-v1`; canonical root persistence; immutable decisions/submissions/outcomes; retained enrolment courseVersion; all-lessons/quiz≥70/practical/approval completion gate. Administration coordinates; trainers assess. Outcome/grant records are simulated, not executed transactions. Optional identifiable exports are explicit and reset on cohort change or role/screen exit. Unknown/authored values cannot leak into aggregate labels. Preserve these boundaries and the historical website/source caveats.
 
-- Primary navigation: Home, Projects & Possibilities, About.
-- Home: leadership introduction with additional source-linked reading, eight documentary chapters with ten genuine locally optimized photographs, full-frame dialogs, a twelve-event filtered timeline and source register. There is no separate gallery section.
-- Projects & Possibilities: five expandable proposals, pilot discussion, downloads, the app-demo entry and separate links to the existing fictional learning sandbox and support navigator.
-- App demo: three empty role panels with accessible tabs, arrow/Home/End keyboard navigation and selected-tab state. This is the next implementation surface.
-- About: blank portrait and biography spaces for Jerry Bannister Zachary and Strong. Personal content remains unprovided.
-- Existing learning sandbox: connected learner, expert consultant and intermediary/admin perspectives; three courses, eighteen lessons, fourteen assessment questions, assignments, approval/completion gates, questions, mentoring replies, follow-up, authoring and publication review.
-- Support navigator: bounded server-side AI endpoint and persistent shared quota code. Mocked-provider tests pass; live Groq/Cloudflare configuration is unverified. Catalogue guidance remains available without AI.
-- Downloads: one-page introduction, two-page partnership proposal and aligned three-minute walkthrough. PDF layouts were preserved.
-- No-JavaScript story, photo provenance/manifest, architecture and appearance guides, validation history, implementation hashes, binary-safe Git attributes and exclusions for secrets/private briefs/generated output.
+## Historical implementation checkpoints
 
-## Exact current behavior to preserve or deliberately revise
+Earlier entries below record the evidence and authorization at their dates. Statements that work was uncommitted refer to those earlier checkpoints.
 
-The opening slideshow cycles continuously every **four seconds**. Arrows, indicators and swipe select photos; there is no pause button. Hover, focus, manual selection and app/OS reduced-motion settings do not stop this carousel. Reduced motion does stop decorative chapter motion. Earlier eight-second/pause descriptions in the history are obsolete. Automated axe results do not certify the carousel's full accessibility.
+## Individual scorecard extension checkpoint
 
-Desktop chapters use sticky full-frame photographs, 500ms crossfades and parallax bounded to 24px; tablet/mobile chapters stack normally. Photograph dialogs support initial focus, Tab/Shift+Tab wrapping, Escape and focus restoration. The timeline filters All years/2024/2025/2026, selects one event, disables boundary controls and scrolls only its horizontal date strip.
+The user authorized documenting and implementing individual progress, support receipt, grants and follow-up, then added threshold-based staff follow-up. Administration → Learner progress offers an editable 50% default threshold, below / at-or-above / no-enrolments groups and search. Each named User row opens its individual scorecard; User → My scorecard sees the same records and can acknowledge the current support provision or positive grant payment. Geographic samples have no learning evidence and no percentage. Classification uses the unrounded completed/enrolled ratio; displayed percentages use one decimal place. Assessment gates are unchanged.
 
-The existing sandbox uses `sessionStorage` key `mosaic-v1`; reload preserves fictional records within the tab. All perspectives share the same records. Role selection is not authentication or authorization. Do not assume the new demo tabs automatically inherit sandbox state: `AppDemoPage` currently owns only tab selection.
+`scorecardDemo.ts` and `scorecardValidation.ts` own separate append-only support/grant/follow-up updates and User receipts, immutable request/item links, predecessor guards, exact retries and currency/date validation. `LearnerScorecard.tsx` owns the shared view, admin editor and progress list. Optional schema 2 outcomes normalize additively; malformed histories preserve saved bytes behind recovery. No delivery/payment is inferred from plan review. Grants are simulated recorded NGN amounts, with paid no greater than awarded and positive award/payment stages. Monetary validation/totals use integer cents. Default export omits outcome text/references/history; full fictional export is opt-in. Reset clears outcomes and preserves sandbox. Read [scorecard tracking](docs/LEARNER-SCORECARD.md) before editing.
 
-Course completion requires every lesson, best quiz score at least 70%, a submitted assignment and expert approval. Resubmission requires fresh approval. Authored courses remain hidden until the consultant/profile and publication gates pass. Reuse these rules if bringing learning flows into the new demo.
+Final preflight passes 75 model tests, TypeScript and production build. Dedicated scorecard browser passes 8 axe audits with zero violations/POST; five affected User/Admin/review/coordination/reporting regressions pass. Independent review is clear after support provenance and currency precision corrections. Desktop/mobile screenshots inspected. Final production CSP smoke passes, including Administrator scorecard/progress and User My scorecard. Vite main bundle is 525.51 kB (157.30 kB gzip), with its size advisory; scorecard remains eager.
 
-## Files to read for demo app work
+Next: wave 5 consolidated Administrator stage closeout. Changes remain local/uncommitted; no publishing or financial integration was requested.
 
-| File | Use |
-|---|---|
-| `src/AppDemoPage.tsx` | Empty role tabs/panels; primary new demo surface |
-| `src/ExplorePage.tsx` | Open the app demo entry and existing demo links |
-| `src/App.tsx` | State-based page switching, shared sandbox state, existing role UI and access controls |
-| `src/store.ts`, `src/store.test.ts` | Fictional data model, enrollments, completion gates and recommendations |
-| `src/catalogue.ts`, `src/courseLanguages.ts`, `src/i18n.ts` | Courses, localized course content and interface language strings |
-| `src/style.css` | Shared green/white/blue presentation, `.role-tabs`, `.empty-role-panel`, forms and workspaces |
-| `scripts/browser-story.mjs` | Currently asserts empty app-demo panels; revise those assertions when approved content is added |
-| `scripts/browser-journey.mjs`, `scripts/browser-authoring.mjs` | Existing learning and authoring regression journeys |
-| `scripts/accessibility.mjs` | App-demo role, About, sandbox and multilingual axe audits |
+## Wave 4 current checkpoint
 
-Read [architecture](docs/ARCHITECTURE.md) for data flow and helpers, [appearance guide](docs/APPEARANCE-GUIDE.md) for styling, [validation](docs/validation.md) for evidence, and [historical session record](docs/SESSION-HISTORY.md) for earlier decisions/content caveats. `src/showcase.ts` and `src/evidence.ts` remain authoritative source records.
+The user authorized proceeding after wave 3. [Wave 4](docs/ADMINISTRATOR-WAVE-4.md) adds Reports, Activity history, Demo settings and Learner map locally. The geographic journey is Nigeria → state/FCT → LGA → matching learner list/details. Keyboard regions, selectors, breadcrumbs, readiness/scope/search filters, missing/unmatched locations and list fallback are available. Read [geography semantics/provenance](docs/NIGERIA-GEOGRAPHY.md) before changing location matching or counts.
 
-## Recommended first session
+Map data is a local, attributed GRID3/geoBoundaries asset: 37 state/FCT and 774 LGA paths, represented year 2022, pinned source commit 9469f09, CC BY 4.0. `scripts/build-nigeria-map.py` reproduces the display asset; three unanimous interior-point checks establish each LGA parent. Simplification is for display, not surveying. Runtime rejects invalid/degenerate/open/empty geometry and duplicate keys/names. Paired state/LGA matching and explicit FCT aliases retain unknowns rather than guessing locations.
 
-1. Inspect Git status and current instructions, then open the local demo page. Confirm the existing entry and three tabs.
-2. Establish the first useful end-to-end demo journey with the user: what User does, what Administration handles, and what Facilitator does. Clarify whether Facilitator maps to the existing expert consultant or intermediary, or has another purpose. Current role names alone do not settle that mapping.
-3. Agree observable acceptance criteria for that first slice. Decide whether to reuse/adapt existing sandbox components/state before introducing a separate model. Keep requirements that are not yet agreed explicitly open.
-4. Implement the agreed slice using existing components/dependencies where practical. Preserve website content, source caveats, photo context, existing sandbox gates and user edits.
-5. Update the browser assertions that expect empty panels, add meaningful flow coverage, check responsive/loading/empty/error/keyboard states as applicable, and run relevant validation. Document the completed slice and the next step.
+Reports define all denominators and distinguish User records from explicitly loaded fictional examples. `reportingDemo.ts` owns aggregate metrics, learner rows, cohort loading, export whitelisting and UTC event filters. Optional schema 2 `settings` normalizes additively. Demo settings can explicitly load five fictional geographic profiles, with no learning/reviews, without overwriting User records or duplicating the cohort event. Default exports omit all identifiers, locations, disclosures, attachments, submitted text and detailed history. Fuller fictional session export requires a labelled opt-in and still excludes in-memory file contents. Scoped confirmed reset clears shared samples/history/backup/files while preserving the separate sandbox.
 
-This is a proposed continuation sequence, not approval for invented workflows, a new backend, real participant data or deployment. Ordinary in-scope inspection, implementation and testing do not require repeated routine confirmation.
+`AdministratorReports.tsx` and `AdministratorGeography.tsx` load on demand with Suspense and a scoped `AdministratorScreenBoundary`; failed modules preserve the role shell/sidebar and saved session with a reload action. The canonical root remains authoritative for all commands and saves. Existing wave 3 retained courseVersion, immutable decisions/submissions/drafts/assignment predecessor chains and trainer-owned assessment are unchanged.
 
-## Run and validate
+Verification: 67 model tests and TypeScript pass; all ten browser scripts passed (affected Administrator scripts rerun after dev HMR/build refreshes and the reload assertion updated to await its lazy screen). Wave 4 has 14 axe audits with zero violations and zero POST; earlier User/Admin audits remain green. Dedicated browser verifies map keyboard/drill-down/FCT/scope/unmatched/loading/503/malformed200/empty-state fallback, safe/sensitive export, explicit samples, history filters, reload/reset/sandbox preservation and blocked module recovery. Independent focused rechecks have no remaining material findings. Final build/CSP evidence is in docs/validation.md.
 
-Use Node 22.12+ and npm (this machine tested Node 24.15.0). Dependencies are already installed. On a fresh checkout, run `npm.cmd ci --no-audit --no-fund`.
+Next is wave 4 user review, then wave 5 full Administrator closeout: consolidated cross-role, responsive/accessibility/recovery and documentation verification. Secure staff accounts, nationwide real-user backend, Facilitator interface and live infrastructure remain separately scoped. No commit/publication/deployment is authorized by this wave.
 
-```powershell
-Set-Location -LiteralPath 'D:\AyubaGufwanDisabiliyt'
-git status --short --branch
-npm.cmd run dev -- --port 5173 --strictPort
-```
+## Wave 1 result (historical baseline)
 
-In another terminal:
+The eight-course Mosaic Pathways User stage remains intact. Administrator wave 1 adds a shared-session Overview and read-only Learners/detail. Start at **Projects & Possibilities → Open the app demo → User**, create a profile, then choose **Administration**. Only the profile created in User is shown; the user selected no extra fictional cohort for this wave.
 
-```powershell
-npm.cmd run preflight
-npm.cmd run test:ui
-```
+Read [wave 1 specification/progress](docs/ADMINISTRATOR-WAVE-1.md), [full Administrator plan](docs/ADMINISTRATOR-DEMO-PLAN.md), [User closeout](docs/USER-STAGE-CLOSEOUT.md) and [practical-skills expansion](docs/PRACTICAL-SKILLS-EXPANSION-PLAN.md).
 
-For production checks, build first (preflight includes the build), start the preview in another terminal and run the smoke script:
+## Wave 1 implemented scope (historical baseline)
 
-```powershell
-npm.cmd run preview -- --port 4173 --strictPort
-# In another terminal:
-node scripts/browser-production.mjs
-```
+- App-demo shell owns one canonical shared session. User and Administration reflect edits immediately; role switching, profile editing, sign-out/resume and reload preserve recorded progress.
+- Overview derives learner/enrolment/completion counts and pending practical/questions/support/teaching totals. A named unfinished profile is marked incomplete. Pending support/trainer links now open wave 2 review queues; other links open read-only learner sections.
+- Learners searches display name/state/LGA and filters profile readiness. Detail shows goals, skill areas, learning circumstances, access preferences, course progress/quiz/review state, achievements, portfolio, support submission history and teaching application.
+- Optional personal/evidence details remain collapsed by default. No filtering by disability/gender, no administrator assessment approval, no support delivery or automatic facilitator role.
+- Stable record metadata/revisions, immutable submission snapshots and append-only local milestone events support later review waves. Unchanged practical resubmission still invalidates approval/completion/portfolio and records another submission.
 
-Browser scripts require installed Google Chrome and the documented ports. Do not stop unrelated processes if a port is occupied. Screenshots and audits are under ignored `output/playwright/`; `dist/` is generated output.
+## Persistence and recovery
 
-The sandbox shell could not start in this session (`helper_unknown_error: setup refresh had errors`); approved elevated execution worked. In that shell Git saw different directory ownership. Command-local `git -c safe.directory=D:/AyubaGufwanDisabiliyt ...` worked without changing global trust settings. Use normal commands first in a new session and this targeted override only if needed.
+`src/AppDemoPage.tsx` owns loading, saving, updates and reset. `src/sharedDemo.ts` stores schema 2 under **mosaic-user-demo-v1**, wrapping the existing schema 1 User payload as `user` with `recordMetadata`, `submissions` and `events`. Existing **mosaic-v1** sandbox state stays independent.
 
-## Validation evidence and remaining boundaries
+Valid legacy data is backed up exactly under **mosaic-user-demo-v1-backup** before replacement, preserving profile/onboarding/editing, category choices, all eight activities, authored content, attachments metadata, portfolio, support and teaching. Both backup and saved bytes are verified. Repeated loads cannot duplicate migration history. Invalid/future saved data remains untouched behind explicit retry/reset recovery.
 
-The validated implementation passed all eight Node tests, TypeScript and Vite build; all five dev browser scripts; and the rebuilt production smoke with the public CSP applied. Thirteen page audits plus the photograph-dialog audit reported zero axe violations. Story widths 1440/1024/768/480/390px and enlarged-text page widths 390/768/1440px had no horizontal overflow. Fresh desktop opening, mobile chapter and portrait-dialog screenshots were visually inspected.
+Valid storage failures return usable in-memory data and a warning; automatic saves are suspended when migration storage fails. Retry saving uses current edited memory data and verifies backup before overwriting legacy. Unknown original practical submission dates are null, separate from migration time. Times are UTC epochs and Administration displays Africa/Lagos (UTC+01:00).
 
-This handoff session changes documentation only. Fresh preflight passed all eight tests, TypeScript and the production build before delivery; full browser evidence above belongs to the immediately preceding implementation-validation session and is not presented as a new browser run.
+PDF/JPEG/PNG sample files remain in memory, maximum five files/5 MB each, preserved through role/page navigation; reload requires reselection. Confirmed User reset clears shared records/history/backup and files after verifying primary removal, leaving sandbox intact. Sign-out preserves everything. Closing a tab may clear records; browser session duplication/restoration may copy session storage. This is simulated role selection, not secure account isolation.
 
-Still deferred: demo app feature specification and implementation, personal profiles, public website hosting, live AI/limiter configuration, real accounts/database/messages/video/NDMIS integration, fluent-speaker translation review, participant co-design and actual screen-reader testing. The last recorded Cloudflare login was expired. Keep credentials outside the workspace. The public repository must continue excluding private briefs and secrets.
+## User baseline to preserve
 
-Historical reports do not establish currently open opportunities or measured economic/health outcomes. Preserve the agriculture date caveat, Abia office-operation uncertainty, representative attribution for enforcement/health, and unverified NDMIS deployment. Photographic attribution establishes provenance, not an open reuse license or government endorsement.
+Eight courses across Digital & AI, People & Workplace, Hands-On & Livelihood and Business & Enterprise: Digital Essentials; Spreadsheet and Data Skills; Small-Business Foundations; AI Essentials; People & Workplace Essentials; Sewing and Simple Textile Products; Small-Space Growing and Nursery Basics; Retail and Customer Service Practice. Total: 48 lessons and 39 quiz questions.
 
-## Paste into the next session
+Completion requires every lesson, best quiz >=70%, submitted practical work and explicit sample trainer approval. Every resubmission removes approval, feedback, completion and the related portfolio item. Portfolio additions are explicit. Printable records are demo-only/non-accredited. Livelihood courses assess foundation knowledge/written plans, not observed trade competence. AI Essentials uses fictional offline exercises without a live service or paid account. Original three-course translations remain; newer courses are English-first.
 
-> Resume Impact Mosaic in D:\AyubaGufwanDisabiliyt from public repo batestguy/AyubaDisabilityProg. Read SESSION-HANDOFF.md and docs/ARCHITECTURE.md first. The website revision is finished and validated. We are building the demo app next: Projects & Possibilities → Open the app demo opens src/AppDemoPage.tsx with empty User, Administration and Facilitator panels. Inspect the existing sandbox/state for reusable workflows, establish our first end-to-end demo journey and role mapping, then implement and validate the agreed slice. Preserve user changes, source caveats and existing learning/publication gates. Keep fictional demo scope unless we explicitly agree otherwise. Update the empty-panel browser assertions when adding content and leave a clear handoff of completed work and remaining decisions.
+Adult onboarding has optional disability/gender/certificates and independent access preferences. Disclosure does not restrict course access or automated ranking. Existing evidence is unverified. Both teaching application routes and submitted support now have wave 2 review queues and User-visible responses. Explicit support/grant outcomes and receipts are recorded separately in the scorecard extension. Foundation completion does not qualify a learner to supervise specialist trade tasks.
+
+## Files
+
+- `src/sharedDemo.ts` and tests: shared envelope, validation/migration, verified backup/rollback, revisions/snapshots/events/reset.
+- `src/AppDemoPage.tsx`: canonical ownership, accessible role tabs, storage warnings/recovery, saving retry and scoped reset.
+- `src/MosaicUserDemo.tsx`: controlled User view and memory-only file map; `src/userDemo.ts`: existing profile/learning/support/teaching helpers.
+- `src/AdministratorDemo.tsx`, `src/administratorMetrics.ts`, `src/administratorDemo.css`: read-only views/counts/search/date display and responsive styling.
+- `scripts/browser-administrator.mjs`: migration/cross-role/storage/recovery/accessibility journey. Existing User browser assertions project the shared envelope's `user`.
+
+## Wave 1 verification (historical baseline)
+
+Wave 1 is complete for the agreed local demo scope. Final `npm.cmd run preflight`: 36 tests, TypeScript and Vite build pass. `npm.cmd run test:ui`: all seven Chrome scripts pass. `node scripts/browser-production.mjs`: rebuilt site passes published CSP with User/Administration and existing site/sandbox/PDF/no-JavaScript flows. Nine User and eight Administrator axe audits report zero violations; both journeys record zero POST requests. Desktop overview and enlarged mobile learner details were visually inspected. See [validation history](docs/validation.md) and [wave 1 execution record](docs/ADMINISTRATOR-WAVE-1.md). Review found and corrected optional course-field validation, editable memory-only storage failures, reset backup ordering and sample-feedback milestones. Focused recheck reports no remaining material findings.
+
+## Run
+
+Dependencies are installed. Node 22.12+ (tested 24.15), npm and installed Google Chrome. `npm.cmd run dev` serves localhost:5173. `npm.cmd run preflight` runs model tests, TypeScript and production build. `npm.cmd run test:ui` runs twelve browser scripts, including grant planning and all four Administrator waves. `npm.cmd run preview -- --port 4173 --strictPort` serves the built site for `node scripts/browser-production.mjs`. Check existing preview processes before starting duplicates. Evidence is in ignored `output/playwright/`.
+
+Sandbox shell setup failed with helper_unknown_error; approved scoped require_escalated commands work. Git ownership needs command-local `git -c safe.directory=D:/AyubaGufwanDisabiliyt`; no global trust changes. Repository: batestguy/AyubaDisabilityProg, main. Existing uncommitted User work is preserved.
+
+## Next milestone: Administrator wave 5
+
+Continue from the completed wave 4 and scorecard extension, then complete the full Administrator closeout gate: cross-role journeys, error/storage/recovery, responsive/accessibility checks, defined metrics/map matching, completion threshold groups, outcome provenance/receipt acknowledgement, grant validation, follow-up and safe exports, plus consolidated documentation. The requested geographic view is implemented locally and does not create a nationwide real-user backend. Preserve all existing User, website, sandbox, course/version/review and migration boundaries.
+
+## Website and evidence boundaries
+
+Preserve Home's eight chapters/ten genuine documentary photographs, twelve-event timeline, source caveats/full-frame dialogs; Projects & Possibilities' five proposals; blank About spaces; separate sandbox/support navigator. The opening carousel continues every four seconds through hover/focus/reduced-motion and has no pause control; wave 1 does not change it.
+
+Historical reports do not establish current opportunities or measured outcomes. Preserve agriculture-date caveats, Abia office-operation uncertainty, representative attribution for enforcement/health and unverified NDMIS deployment. Photo provenance does not establish reuse licence/endorsement. Cloudflare/Groq live configuration remains unverified; credentials stay outside the workspace. Earlier website delivery is recorded in [session history](docs/SESSION-HISTORY.md).
+
+
+## Next-session brief
+
+Read the current checkpoint above, docs/GRANT-PLANNING-REPORT.md and docs/ADMINISTRATOR-WAVE-5.md first. Continue the remaining guided visual acceptance and wave 5 closeout; technical grant/PDF work is complete. Do not restart completed waves or invent demographic data. The user authorized committing/pushing all progress on 10 October; inspect Git status/log/remote to establish the result. Public deployment remains separate with Cloudflare OAuth requiring renewal.
+
+Run `npm.cmd run preflight` before new implementation or a new handoff. Use existing dev5173/preview4173 processes where available; finish build before browser tests to avoid HMR resets. `npm.cmd run test:ui` runs twelve scripts, ending with grant planning. Evidence artifacts are generated locally and ignored. Use command-local `git -c safe.directory=D:/AyubaGufwanDisabiliyt`; do not change global Git trust. Preserve secrets outside the workspace.

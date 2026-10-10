@@ -6,6 +6,10 @@ test("all localized course journeys preserve assessments and metadata", () => {
   for (const lang of ["ha", "yo", "ig"])
     for (const c of courses) {
       const x = localizeCourse(c, lang);
+      if (!['digital-essentials', 'spreadsheet-data', 'business-foundations'].includes(c.id)) {
+        assert.equal(x, c, 'Additional courses retain English until translations are reviewed');
+        continue;
+      }
       assert.notEqual(x.title, c.title);
       assert.equal(x.lessons.length, 6);
       assert.ok(

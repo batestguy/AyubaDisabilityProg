@@ -992,6 +992,7 @@ header nav button[aria-current="page"] { color: #FFFFFF; background: #14532D; }
 .home-sections { display: flex; flex-wrap: wrap; gap: 12px 28px; padding: 20px 5%; background: #f3f6f3; }
 .milestones { background: #f3f6f3; }
 .timeline-filters,.timeline-navigation,.role-tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.role-tabs button { transition: none; }
 .timeline-strip { display: flex; gap: 12px; overflow-x: auto; padding: 18px 4px; margin: 12px 0; border-block: 1px solid var(--line); }
 .timeline-strip button { flex: 0 0 180px; text-align: left; background: #FFFFFF; border-bottom: 4px solid #a7bbae; }
 .timeline-strip time,.timeline-strip span { display: block; }

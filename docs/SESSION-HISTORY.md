@@ -1,6 +1,10 @@
 # Historical session record
 
-Archived on 4 October 2026. This preserves the earlier handoff and implementation history. For the current state and next task, read [SESSION-HANDOFF.md](../SESSION-HANDOFF.md). Older behavior descriptions are historical.
+Current continuation (8 October 2026): User, Administrator waves 1–4 and the [learner scorecard/threshold follow-up](LEARNER-SCORECARD.md) are complete locally. Next: wave 5 consolidated Administrator closeout. Read [the current handoff](../SESSION-HANDOFF.md#next-session-brief); earlier milestones in this document retain their historical scope. Changes remain uncommitted and unpublished.
+
+Current continuation checkpoint (7 October 2026): [Administrator wave 2](ADMINISTRATOR-WAVE-2.md) implements application/support decisions, immutable history and User responses. Next is wave 2 user review, then wave 3 roster/course coordination. [Main handoff](../SESSION-HANDOFF.md) takes precedence over earlier checkpoint descriptions below.
+
+Archive initiated on 4 October 2026; current-status pointer refreshed on 7 October. This preserves the earlier handoff and implementation history. User and Administrator wave 1 are now complete locally, with wave 2 review planning next. For the current state and next task, read [SESSION-HANDOFF.md](../SESSION-HANDOFF.md). Older behavior descriptions are historical.
 
 # Session handoff: Impact Mosaic
 
@@ -185,3 +189,46 @@ This checkpoint supersedes earlier slideshow, gallery and page-structure descrip
 - Visually inspected fresh `cinematic-opening.png`, `story-chapter-390.png` and `production-portrait-dialog.png`: full photograph context, captions and source links retained. Evidence remains in ignored `output/playwright/` and is reproducible with the documented commands.
 - README, handoff, architecture, appearance guide, walkthrough, documentation index and implementation hashes now match saved code. No runtime behavior or PDF layout changed in this continuation.
 - Private briefs, credentials, caches, dependencies and generated build/test output are excluded from Git. Repository delivery does not deploy the website; Cloudflare and live AI configuration remain deferred.
+
+
+## 7 October 2026 continuation pointer
+
+Completed User/eight-course and Administrator wave 1 checkpoints are recorded in [User closeout](USER-STAGE-CLOSEOUT.md), [wave 1 closeout](ADMINISTRATOR-WAVE-1.md) and [validation history](validation.md). Shared schema 2/backup, Overview and read-only learner details are implemented; older empty-panel/appearance-next briefs above are historical and must not be resumed as current work. The [main handoff continuation brief](../SESSION-HANDOFF.md#next-session-brief) is the source of truth for next session. Changes remain local/uncommitted; no deployment of this revision is verified.
+
+## 8 October 2026 — Administrator wave 3
+
+User accepted wave 2 and authorized proceeding. Delivered simulated trainer roster, authored course preparation/review/publication/archive and learning reviewer coordination. Enrolments retain their reviewed content, completion/skills/portfolio; Administration cannot assess practical work or reply as a trainer. Schema 2 remains additive with validated immutable course/draft/assignment histories and exact legacy backup/recovery. Preflight passes 58 tests/type/build; all nine browser scripts and production CSP pass; independent review clear after assignment replay correction. No commit/deployment. User requested Nigeria state→LGA→learner geographic drill-down; documented for wave 4 reports/history/settings. Read current handoff and wave 3 closeout for continuation.
+
+
+## 8 October 2026 — Administrator wave 4 closeout
+
+Nigeria state/FCT → LGA → learner drill-down, scoped reports, activity history and demo settings are complete locally. Five optional fictional geographic profiles load only by explicit action; default exports omit identifying/evidence text. Local geometry/provenance covers 37 state/FCT and 774 LGA features with three interior parent checks per LGA. Unknown locations remain visible without guessed matches. Lazy screen failures retain navigation and saved session.
+
+Final preflight passes 67 model tests, TypeScript and Vite build (66 modules). All ten browser scripts pass with affected reruns after changes settled; final production CSP smoke passes. Dedicated wave 4 checks record 14 axe audits with zero violations and zero POST, including loading/failure/malformed geometry, keyboard drill-down, filtering, sample idempotency, export privacy, reset and blocked module recovery. Desktop/mobile map screenshots inspected. Independent read-only review and focused corrections/rechecks are clear. No commit or deployment; wave 5 stage closeout is next. See [wave 4 closeout](ADMINISTRATOR-WAVE-4.md) and [geography provenance](NIGERIA-GEOGRAPHY.md).
+
+
+## 8 October 2026 — Individual scorecard and threshold follow-up closeout
+
+User authorized documenting and implementing individual progress, support receipt, grant records and follow-up, then added low/high completion filtering. Administration → Learner progress now filters below / at-or-above an editable 50% default threshold, with no-enrolment records separate; rows open individual scorecards. User → My scorecard reflects the same local records and allows explicit receipt acknowledgement. Learning gates remain unchanged. Support records retain original submitted checklist/item identity across corrections. Grant award/payment records require positive amounts, valid dates and paid no greater than awarded; currency validation and totals use integer cents. Follow-up tracks owner/date/action/status. No financial transactions or actual delivery verification are performed.
+
+Final `npm.cmd run preflight`: 75 model tests, TypeScript and production build pass. Vite main bundle 525.51 kB (157.30 kB gzip) produces a size advisory; scorecard remains eager. Dedicated `node scripts/browser-scorecard.mjs` passes threshold boundaries/invalid inputs, empty/populated outcomes, invalid payment rejection, shared receipt acknowledgement, newer-checklist provenance, anonymous/full export privacy, samples without rates, mobile/reload/recovery/reset/sandbox isolation. Eight scorecard axe audits have zero violations; zero POST and no page errors.
+
+Five affected browser scripts also pass: User, Administrator baseline, review queues, coordination and reporting (existing 9/8/8/9/14 audits respectively; zero POST). The five unrelated website/sandbox browser scripts retain wave 4 baseline evidence and were not redundantly rerun for this extension. Final `node scripts/browser-production.mjs` passes under the published CSP with new Administrator individual scorecard/Learner progress and User My scorecard assertions plus existing website/sandbox/PDF/no-JavaScript checks.
+
+Independent read-only review and root final review are clear after support rebinding and currency precision corrections. Desktop/mobile and production progress screenshots inspected: `output/playwright/scorecard-admin-desktop.png`, `scorecard-mobile.png`, `scorecard-progress-production.png`; audit `scorecard-axe.json`. Earlier duplicate-text test assertions were scoped to the active role panel; accessible form labels were made stable. Existing uncommitted work preserved; no deployment, commit or dependency added. Next: wave 5 stage closeout. See [scorecard specification](LEARNER-SCORECARD.md).
+
+
+## 8 October 2026 — Next-session documentation synchronization
+
+User requested updating the handoff and all Markdown files. All 19 project Markdown files now carry the current continuation checkpoint: User, Administrator waves 1–4 and individual scorecard/threshold follow-up complete locally; wave 5 consolidated stage closeout next. The main next-session brief includes scorecard entry points, per-learner completion denominator/threshold/no-enrolment rules, support request/item provenance, separate User receipts, NGN amount validation, follow-up, export privacy, recovery/reset, current file interfaces, eleven-script suite and preserved uncommitted scope. Historical wave evidence remains labelled by its original scope.
+
+Fresh documentation-handoff `npm.cmd run preflight` passes 75 tests, TypeScript and production build (70 modules). Existing 525.51 kB main-bundle advisory remains. Local links resolve in all 19 Markdown files; source inventory refreshed. Browser/CSP evidence is retained from the completed scorecard closeout; no runtime behavior changed or browser journeys redundantly rerun for Markdown-only synchronization. No commit or publication.
+
+
+## 9–10 October 2026 — Guided review, grant planning and Git handoff
+
+User accepted four guided Administration review steps: overview; progress/scorecard; queues/eight courses; Nigeria/state/LGA map. Wave5 corrected corrupted persisted completion and navigation contrast, with independent rechecks clear. The user added demographic/disability/skills grant planning, charts, downloadable PDF and more professional geographic report layouts. Delivered filtered aggregate charts/CSV/PDF, separately selected detailed CSV, canonical privacy-safe labels and consent reset on role/scope exit. PDF final five sections include an actual attributed Nigeria state map, state/LGA counts/shares, KPI/evidence summaries, pie/bars, disclosure coverage and learning diagram. Samples lack gender collection; no sample refusal is inferred.
+
+Validation: 84 model tests, TypeScript/build, twelve browser scripts through consolidated and affected reruns, five latest grant axe audits, all/User/sample/state/empty PDF downloads, atlas failure handling and production CSP actual PDF download. Five final populated PDF pages and scope variants rendered/inspected. Final explicit revised report acceptance and remaining wave5 visual checks pending. User then explicitly requested proper handoffs, commit and push. Current checkpoint documents source interfaces, boundaries, evidence and next steps; outputs/machine state/secrets stay outside Git. No deployment for this revision; Cloudflare OAuth previously expired.
+
+Session housekeeping recorded from the preceding checkpoint: Codex CLI updated from0.160.1 to0.162.0; old installation removed after the old session closed. This is machine state, not repository content.
