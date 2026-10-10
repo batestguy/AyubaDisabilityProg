@@ -16,7 +16,7 @@ Authorized 9 October 2026: guide the user through visual review with Playwright,
 - [x] Independent review of persistence, migration, immutable decisions, assessment boundaries and export privacy; correction recheck clear.
 - [x] Correct findings and rerun affected checks: completion gates and navigation contrast fixed.
 - [x] Consolidate validation, documentation and handoff: 10 October current checkpoint.
-- [ ] Review final result and prepare commit/publication workflow under applicable authorization and access.
+- [x] Git checkpoint: implementation and handoffs committed/pushed as639e1bd on10October; deployment remains separate.
 
 ## Boundaries
 
@@ -51,3 +51,5 @@ User visual acceptance is pending; automated passes cannot substitute for it. Do
 ## 10 October final documentation and Git handoff
 
 All progress is synchronized in SESSION-HANDOFF.md, documentation index, report tracking, validation and session history. User explicitly authorized commit and push of accumulated source/assets/tests and handoffs to main. Generated PDFs/screenshots and credentials remain ignored. Latest report is five sections with geographic mapping, intentional layouts and explicit disclosure coverage; all-scope/filtered/empty variants and production CSP downloads verified. Technical checks: 84-test preflight, twelve browser scripts with consolidated/affected results, five clean latest grant axe audits. Steps1–4 visually accepted; final revised Reports/PDF, history/settings/User/mobile/enlarged text acceptance still pending. Cloudflare OAuth renewal is required only for a separately requested deployment.
+
+Git result: implementation/handoffs commit `639e1bd` pushed successfully to verified origin/main. Generated output and credentials excluded.

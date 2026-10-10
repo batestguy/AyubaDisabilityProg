@@ -2,7 +2,7 @@
 
 ## Current checkpoint — 10 October 2026
 
-User authorized documenting all progress, committing and pushing the accumulated project work to `batestguy/AyubaDisabilityProg`, branch `main`. This checkpoint supersedes historical continuation pointers below. Deployment is separate and has not been performed for this revision.
+Accumulated implementation and handoffs committed as `639e1bd` and successfully pushed to `batestguy/AyubaDisabilityProg`, branch `main`, on 10 October 2026. Git push advanced remote main from `b28bead` to the implementation checkpoint. This checkpoint supersedes historical continuation pointers below. Deployment is separate and has not been performed for this revision.
 
 Delivered: eight-course User journey; Administrator waves 1–4; learner progress thresholds and individual support/grant/follow-up scorecards; wave 5 completion-corruption and navigation-contrast corrections; demographic/disability/skills grant-planning dashboard and aggregate PDF/CSV plus separately selected detailed CSV. See [report tracking](docs/GRANT-PLANNING-REPORT.md), [wave 5 gates](docs/ADMINISTRATOR-WAVE-5.md), [validation](docs/validation.md) and [session history](docs/SESSION-HISTORY.md).
 
@@ -109,6 +109,6 @@ Historical reports do not establish current opportunities or measured outcomes. 
 
 ## Next-session brief
 
-Read the current checkpoint above, docs/GRANT-PLANNING-REPORT.md and docs/ADMINISTRATOR-WAVE-5.md first. Continue the remaining guided visual acceptance and wave 5 closeout; technical grant/PDF work is complete. Do not restart completed waves or invent demographic data. The user authorized committing/pushing all progress on 10 October; inspect Git status/log/remote to establish the result. Public deployment remains separate with Cloudflare OAuth requiring renewal.
+Read the current checkpoint above, docs/GRANT-PLANNING-REPORT.md and docs/ADMINISTRATOR-WAVE-5.md first. Continue the remaining guided visual acceptance and wave 5 closeout; technical grant/PDF work is complete. Do not restart completed waves or invent demographic data. The accumulated implementation checkpoint is committed and pushed as `639e1bd`; inspect Git status/log/remote for later documentation checkpoints. Public deployment remains separate with Cloudflare OAuth requiring renewal.
 
 Run `npm.cmd run preflight` before new implementation or a new handoff. Use existing dev5173/preview4173 processes where available; finish build before browser tests to avoid HMR resets. `npm.cmd run test:ui` runs twelve scripts, ending with grant planning. Evidence artifacts are generated locally and ignored. Use command-local `git -c safe.directory=D:/AyubaGufwanDisabiliyt`; do not change global Git trust. Preserve secrets outside the workspace.
