@@ -1,15 +1,19 @@
 ---
-status: in progress
+status: complete
 ---
 
 # Administrator wave 5: guided review and closeout
+
+## Closeout — 21 October 2026
+
+User accepted the current result and authorized closure and continuation: “It seems okay, we can close and proceed to next”. Wave 5 is closed by that acceptance and the recorded technical evidence below. No new manual device or screen-reader observations are inferred. The next stage is [Facilitator wave 1](FACILITATOR-WAVE-1.md). Historical pending statements below describe the earlier checkpoints.
 
 Authorized 9 October 2026: guide the user through visual review with Playwright, then complete subsequent validation, fixes and closeout. Preserve all existing uncommitted work.
 
 ## Plan and gates
 
-- [ ] Guided visual review: Administrator overview, learners/progress/scorecard, review queues, courses/oversight, reports/map/history/settings and corresponding User views.
-- [ ] Desktop, mobile and enlarged text checks; record user feedback separately from automated verification.
+- [x] Guided visual review closed by overall user acceptance on 21 October; prior steps and technical evidence retained below.
+- [x] Responsive/accessibility technical evidence retained; overall result accepted on 21 October. No additional manual device checks claimed.
 - [x] Baseline preflight: 75 model tests, TypeScript and production build pass. Repeat build after any source fix.
 - [x] All eleven existing browser regression scripts: final npm.cmd run test:ui exits 0 after both navigation fixes.
 - [x] Production CSP smoke: final node scripts/browser-production.mjs exits 0 after final build.
@@ -22,7 +26,7 @@ Authorized 9 October 2026: guide the user through visual review with Playwright,
 
 Shared schema 2 and exact backup/recovery remain authoritative. Keep User records and fictional geographic samples distinct, enrolment course versions retained, trainer assessment separate from administration, outcome records separate from real delivery/payment, and exports anonymous by default. Preserve website and sandbox. Credentials stay outside the workspace.
 
-User visual acceptance is pending; automated passes cannot substitute for it. Do not reset an existing user browser session. Use an isolated Playwright session with fictional records.
+User visual acceptance was received on 21 October. Do not reset an existing user browser session. Use an isolated Playwright session with fictional records for subsequent work.
 
 ## Evidence and decisions
 

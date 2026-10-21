@@ -9,10 +9,21 @@ import { loadSampleCohort } from './reportingDemo';
 import type { TeachingInput } from './userDemo';
 import type { SharedDemoSession } from './sharedDemo';
 import type { Demo } from './userDemo';
+import { FacilitatorDemo } from './FacilitatorDemo';
+import { TeachingScenarioWorkspace } from './TeachingScenarioWorkspace';
+import type { ScenarioRole } from './teachingScenario';
+import { ConnectedWorkspace } from './ConnectedWorkspace';
 
 export function AppDemoPage() {
+ const [earlier, setEarlier] = useState(() => new URLSearchParams(window.location.search).get('workspace') === 'earlier');
+ function select(value: boolean) { const url = new URL(window.location.href); if (value) url.searchParams.set('workspace', 'earlier'); else url.searchParams.delete('workspace'); window.history.replaceState(null, '', url); setEarlier(value); }
+ return earlier ? <><div className="section"><button onClick={() => select(false)}>Open connected workspace</button></div><EarlierAppDemoPage /></> : <ConnectedWorkspace onOpenEarlier={() => select(true)} />;
+}
+
+function EarlierAppDemoPage() {
  const roles = ['User', 'Administration', 'Facilitator'];
  const [active, setActive] = useState(0);
+ const [guided, setGuided] = useState(false);
  const [loaded, setLoaded] = useState(loadSharedDemo);
  const [session, setSession] = useState(loaded.session);
  const latest = useRef(session);
@@ -63,7 +74,8 @@ export function AppDemoPage() {
  }
  function openUser() { setActive(0); tabs.current[0]?.focus(); }
  return <div className="showcase"><section className="section"><p className="eyebrow">APP DEMO</p><h1>Choose your role.</h1>
-  <p>Start your Mosaic Pathways journey in User. Administration shows the same learning records. Facilitator follows later.</p>
+  <p>Start your Mosaic Pathways journey in User. Administration coordinates the same records; Facilitator shows assigned learning evidence.</p>
+  <div className="mp-actions">{guided ? <button onClick={() => setGuided(false)}>Return to my existing demo</button> : <button className="primary" onClick={() => { setGuided(true); setActive(2); }}>Open guided teaching demo</button>}</div>
   {!storageOk && <div className="mp-error"><p role="alert">Session storage is unavailable or could not be verified. Your changes remain in memory; reload may lose progress. {loaded.warning}</p>{!loaded.recovery && <button onClick={retrySaving}>Retry saving this session</button>}</div>}
   {loaded.recovery && <section className="mp-card" aria-label="Demo session recovery"><h2>Saved demo needs attention</h2><p role="alert">{loaded.recovery}</p><p>Your saved records have not been replaced. Retry loading, or explicitly reset this demo to start again. The separate learning sandbox is preserved.</p>
    <div className="mp-actions"><button onClick={retry}>Retry loading saved demo</button><button onClick={() => setResetting(!resetting)} aria-expanded={resetting}>Reset saved demo</button></div>
@@ -79,9 +91,11 @@ export function AppDemoPage() {
    else return;
    e.preventDefault(); setActive(next); tabs.current[next]?.focus();
   }}>{role}</button>)}</div>
-  {roles.map((role, i) => <div key={role} role="tabpanel" id={`role-panel-${i}`} aria-labelledby={`role-${i}`} tabIndex={0} hidden={active !== i} className={i < 2 ? 'user-role-panel' : 'empty-role-panel'}>
+  {guided && <div role="tabpanel" id={`role-panel-${active}`} aria-labelledby={`role-${active}`} tabIndex={0} className="user-role-panel"><TeachingScenarioWorkspace role={roles[active] as ScenarioRole} onRole={role => { const next = roles.indexOf(role); setActive(next); tabs.current[next]?.focus(); }} /></div>}
+  {!guided && roles.map((role, i) => <div key={role} role="tabpanel" id={`role-panel-${i}`} aria-labelledby={`role-${i}`} tabIndex={0} hidden={active !== i} className="user-role-panel">
    {!loaded.recovery && i === 0 && <UserDemo demo={session.user} active={active === 0} onChange={change} onReset={reset} session={session} onTeachingResponse={teachingResponse} onSupportResponse={supportResponse} onReceipt={receipt} />}
    {!loaded.recovery && i === 1 && <AdministratorDemo session={session} active={active === 1} onOpenUser={openUser} onDecide={review} onLoadSamples={loadSamples} onReset={reset} onCourseDecision={courseDecision} onAssignment={assignment} onCourseDraft={courseDraft} onOutcome={outcome} onReceipt={receipt} />}
+   {!loaded.recovery && i === 2 && active === 2 && <FacilitatorDemo session={session} onOpenAdministration={() => { setActive(1); tabs.current[1]?.focus(); }} />}
   </div>)}
  </section></div>;
 }

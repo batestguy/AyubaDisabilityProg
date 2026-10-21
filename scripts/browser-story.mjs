@@ -7,7 +7,7 @@ const browser=await chromium.launch({channel:'chrome',headless:true});
 const context=await browser.newContext({viewport:{width:1440,height:1000}});
 const page=await context.newPage();
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
-await page.goto('http://127.0.0.1:5173');
+await page.goto('http://127.0.0.1:5173/?workspace=earlier');
 await page.locator('.scene-enhanced').waitFor();
 assert.equal(await page.locator('.programme').count(),8);
 assert.equal(await page.locator('#in-pictures').count(),0);
@@ -90,12 +90,12 @@ for (let i=0;i<10;i++) {
 }
 const basic=await browser.newPage({viewport:{width:1440,height:900}});
 await basic.addInitScript(()=>{delete window.IntersectionObserver;});
-await basic.goto('http://127.0.0.1:5173');
+await basic.goto('http://127.0.0.1:5173/?workspace=earlier');
 assert.equal(await basic.locator('.programme-visual:visible').count(),8);
 assert.equal(await basic.locator('.sticky-scene').count(),0);
 const failed=await browser.newPage({viewport:{width:390,height:844}});
 await failed.route('**/photos/health.webp',r=>r.abort());
-await failed.goto('http://127.0.0.1:5173');
+await failed.goto('http://127.0.0.1:5173/?workspace=earlier');
 const healthButton=failed.locator('#health .gallery-open').first();
 await healthButton.focus();
 await failed.locator('#health').getByText('Photograph unavailable.',{exact:false}).first().waitFor();
@@ -104,7 +104,7 @@ await failed.keyboard.press('Enter');
 await failed.getByRole('dialog').getByText('Photograph unavailable.').waitFor();
 assert.match(await failed.getByRole('dialog').locator('figcaption').innerText(),/Lawrence Idemudia/);
 const nojs=await browser.newPage({javaScriptEnabled:false});
-await nojs.goto('http://127.0.0.1:5173');
+await nojs.goto('http://127.0.0.1:5173/?workspace=earlier');
 assert.equal(await nojs.locator('.static-story article[id^=static-]').count(),8);
 assert.equal(await nojs.locator('.static-gallery').count(),0);
 assert.equal(await nojs.locator('.static-story article[id^=static-] figure').count(),10);
@@ -178,7 +178,7 @@ assert.equal(await page.locator('.opportunity').count(),0);
 assert.deepEqual(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('button').allTextContents(),['Home','Projects & Possibilities','About']);
 const timelineFailure=await browser.newPage();
 await timelineFailure.route('**/photos/civic.webp',route=>route.abort());
-await timelineFailure.goto('http://127.0.0.1:5173');
+await timelineFailure.goto('http://127.0.0.1:5173/?workspace=earlier');
 await timelineFailure.locator('.timeline-strip button').nth(1).click();
 await timelineFailure.locator('.timeline-event').getByText('Photograph unavailable.',{exact:false}).waitFor();
 assert.match(await timelineFailure.locator('.timeline-event figcaption').innerText(),/Gufwan/);
@@ -202,8 +202,8 @@ for (const name of ['User','Administration','Facilitator']) {
   await panel.getByRole('heading',{name:'Administration overview',exact:true}).waitFor();
   assert.equal(await panel.getByRole('button',{name:'Open User to create a profile',exact:true}).count(),1);
  } else {
-  assert.equal(await panel.innerText(),'');
-  assert.equal(await panel.locator('*').count(),0);
+  await panel.getByRole('heading',{name:'Facilitator overview',exact:true}).waitFor();
+  await panel.getByRole('heading',{name:'No approved demo trainers yet',exact:true}).waitFor();
  }
 }
 await page.getByRole('tab',{name:'User',exact:true}).focus();

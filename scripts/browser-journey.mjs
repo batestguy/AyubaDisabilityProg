@@ -9,7 +9,7 @@ const context = await browser.newContext({
 const page = await context.newPage();
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
-await page.goto("http://127.0.0.1:5173");
+await page.goto("http://127.0.0.1:5173/?workspace=earlier");
 await page.getByRole("heading", { name: "Building a more inclusive Nigeria." }).waitFor();
 await page.screenshot({
   path: "output/playwright/overview.png",
@@ -138,7 +138,7 @@ await page.getByRole("button", { name: "Send", exact: true }).click();
 await page.locator(".ai-answer").waitFor();
 const second = await browser.newContext();
 const isolated = await second.newPage();
-await isolated.goto("http://127.0.0.1:5173");
+await isolated.goto("http://127.0.0.1:5173/?workspace=earlier");
 await isolated
   .getByRole("heading", { name: "Building a more inclusive Nigeria." })
   .waitFor();

@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 const browser = await chromium.launch({ channel: "chrome", headless: true });
 const context = await browser.newContext();
 const page = await context.newPage();
-await page.goto("http://127.0.0.1:5173");
+await page.goto("http://127.0.0.1:5173/?workspace=earlier");
 await page.locator("h1").waitFor();
 await page
   .getByRole("button", { name: "Projects & Possibilities", exact: true })

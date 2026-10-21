@@ -2,7 +2,7 @@
 
 Current continuation (8 October 2026): User, Administrator waves 1–4 and the [learner scorecard/threshold follow-up](LEARNER-SCORECARD.md) are complete locally. Next: wave 5 consolidated Administrator closeout. Read [the current handoff](../SESSION-HANDOFF.md#next-session-brief); earlier milestones in this document retain their historical scope. Changes remain uncommitted and unpublished.
 
-Current continuation checkpoint (8 October 2026): User and Administrator waves 1–4 plus the [learner scorecard and threshold-follow-up extension](LEARNER-SCORECARD.md) are complete locally. Next is wave 5 consolidated Administrator stage closeout. [Main handoff](../SESSION-HANDOFF.md) takes precedence over earlier specifications below.
+Current continuation checkpoint (21 October 2026): Administrator wave 5 and grant-planning reports are accepted and closed. Next is [Facilitator wave 1](FACILITATOR-WAVE-1.md). [Main handoff](../SESSION-HANDOFF.md) takes precedence over historical specifications below.
 
 Status: full-stage specification with completed waves 1–4 and the subsequently authorized scorecard extension. Earlier first-wave recommendations below are historical; continue with wave 5 closeout rather than restarting implementation.
 

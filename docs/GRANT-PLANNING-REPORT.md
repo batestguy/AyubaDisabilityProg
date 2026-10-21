@@ -1,8 +1,10 @@
 ---
-status: in progress
+status: complete
 ---
 
 # Grant-planning demographic and skills report
+
+Closeout, 21 October 2026: user accepted the current result and authorized closing Administrator wave 5. The revised Reports/PDF acceptance gate is closed by that overall acceptance. Earlier pending-review statements below are historical; recorded technical checks remain unchanged.
 
 Authorized 10 October 2026. User requested Administrator dashboard/report showing voluntary disability types, demographic features, skills and support peculiarities, with downloads to inform grant applications. This extends wave 5; remaining visual review will include the new Reports content.
 
@@ -44,7 +46,7 @@ Show clear empty/no-matching and not-disclosed/not-collected labels. Report disc
 - [x] Independent privacy/data-correctness review and corrections.
 - [x] Preflight and production CSP.
 - [x] Final reporting regressions.
-- [ ] Guided eye test for the new Reports charts and PDF.
+- [x] Current Reports/PDF accepted as part of overall user closeout, 21 October 2026.
 - [x] Update handoff, validation and report definitions.
 
 ## Ownership and gate

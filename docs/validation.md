@@ -236,3 +236,29 @@ Independent privacy/data review is clear after aggregate authored-label filterin
 
 
 10 October final Git handoff preflight: 84/84 tests, TypeScript and Vite build pass (74 modules). Main525.99kB/157.50gzip retains size advisory; lazy report50.03kB/18.23gzip. All project Markdown local links resolve; implementation snapshot refreshed for133 source/document/asset files. Existing browser evidence retained for documentation-only synchronization. User authorized commit/push to verified main repository; deployment remains separate.
+
+
+## 21 October 2026 — Administrator accepted; Facilitator first wave
+
+User accepted closing Administrator wave 5 and the current grant Reports/PDF. This closes visual acceptance without claiming additional manual device/screen-reader observations.
+
+Facilitator read-only workspace implemented with explicit approved identity, latest assignments, stale-evidence warnings, original practical snapshots and retained course requirements. No schema/dependency/write commands added. `npm.cmd run preflight`: 86/86 tests, TypeScript and production build pass. Final build after label refinement passes (76 modules; main 534.19 kB / 159.24 kB gzip, existing advisory).
+
+`node scripts/browser-facilitator.mjs` passes eight clean axe audits, empty/unassigned/search states, snapshots versus newer submissions, filters, mobile/200% text with no horizontal overflow, keyboard navigation, role-exit/reload identity reset, unchanged persisted bytes and zero POST/page errors. Desktop/mobile screenshots visually inspected. Affected story, general accessibility and User browser scripts pass; final production CSP smoke includes Facilitator empty state and existing PDF/map/website/sandbox checks. Full thirteen-script suite was not rerun. New script is included in test:ui and separately available through test:facilitator (requires preflight then dev5173).
+
+Initial harness errors were corrected: explicit Playwright context for axe, command-derived unassigned fixture and correct navigation order for production. A dev-browser rerun was required after a concurrent build regenerated index.html and reset the screen; final runs used stable built source. No user records were reset. No public deployment or Git write performed.
+
+
+## 21 October 2026 — Guided teaching interactions
+
+Final preflight passes all91 model tests, TypeScript and production build (80 modules; main559.11kB/165.94gzip, existing advisory). Guided browser passes eight clean axe audits and seven action handoffs: trainer change request, learner resubmission, admin reassignment, practical approval, question reply, support referral and admin response. Same complete journey passes on preview4173 with actual production CSP injected. Checks cover preserved existing shared/sandbox bytes, reload/reset confirmation/cancellation, malformed-storage preservation/recovery, mobile/200% text without overflow, and zeroPOST/page errors. Existing facilitator browser regression and production smoke pass; full fourteen-script suite not rerun. Independent review P2 invalid timestamp rendering risk corrected with Date validation and rejection/recovery regression; recheck clear. Desktop/mobile screenshots inspected. Visible teaching-review Chrome opened in sample Facilitator overview. No deployment or Git write.
+
+
+## 21 October 2026 — Connected participant workspace
+
+101-test preflight, TypeScript and final build pass (84 modules; main611.74kB/179.80gzip, existing advisory). Connected browser passes ten WCAG A/AA axe audits and the complete registration/teaching/study/review/chat/support flow, plus actual production CSP rerun. Checks include unenrolled learner visibility, real quizzes, revised-work reassignment, participant privacy/admin exclusion, explicit second-course chat after reassignment, keyboard-scroll access, persistent reload, confirmed/cancelled reset, malformed storage preservation/recovery, mobile/200% text and unchanged earlier shared/sandbox bytes; zeroPOST/page errors. Earlier User eight-course, Facilitator and production smoke scripts pass on ?workspace=earlier; full fifteen-script suite not rerun. Independent draft-migration and multi-course-chat findings corrected/rechecked. Desktop/mobile screenshots inspected. Chrome teaching-review opened at connected sample sign-ins. No deployment or Git write.
+
+
+## 21 October 2026 — Final documentation/Git checkpoint
+
+Fresh handoff preflight passes all101 tests, TypeScript and production build (84 modules, main611.74kB/179.80gzip, existing advisory). Runtime source is unchanged by handoff consolidation; previously passing connected dev/production-CSP ten-audit journeys and earlier User/Facilitator/production evidence retained. Full fifteen-script suite not rerun. Current handoff replaces stale continuation instructions; earlier versions archived intact. User explicitly authorized commit/push. Generated evidence, machine/browser state and credentials stay outside Git. Repository/account/branch verified, origin/main initially equals local main at518bfc3. No deployment requested. Final staging/link/snapshot and push verification recorded in the main handoff.

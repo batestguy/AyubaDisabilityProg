@@ -1,11 +1,13 @@
 # Documentation index
 
-Current checkpoint (10 October 2026): User, Administrator waves 1–4, learner scorecards and grant-planning reports are implemented and verified. The five-section PDF includes Nigeria state mapping, state/LGA tables, KPI/evidence summaries, demographic/skills/support charts and a learning diagram. Guided visual steps 1–4 are accepted; latest Reports/PDF acceptance and remaining wave 5 visual checks are pending. Implementation and handoffs committed and pushed to GitHub main (`639e1bd`); no deployment performed for this revision. Read [the handoff](../SESSION-HANDOFF.md) for current evidence and next steps. Historical checkpoints below retain their dated scope.
-
-Start with [SESSION-HANDOFF.md](../SESSION-HANDOFF.md). The eight-course Mosaic Pathways User stage is closed out; Administrator wave 1 adds shared records, Overview and read-only Learners; wave 2 application/support reviews and responses are complete locally; waves 3–4 roster/course/learning and reports/settings/geography are complete locally. The individual scorecard extension adds completion thresholds, explicit outcome records and follow-up; wave 5 closeout is next.
+Current milestone: the [connected workspace](CONNECTED-WORKSPACE.md) is implemented and ready for visual review. Begin with [SESSION-HANDOFF.md](../SESSION-HANDOFF.md) for current state, preservation boundaries, validation, commands and next-session brief. Administrator wave 5 and earlier Reports/PDF are accepted/closed. Earlier read-only/guided Facilitator stages are preserved historical implementations, not the current continuation target.
 
 | Document | Purpose |
 |---|---|
+| [Connected workspace](CONNECTED-WORKSPACE.md) | Current scope, interview decisions, privacy research, implementation, verification and limits |
+| [Earlier guided sample](FACILITATOR-GUIDED-DEMO.md) | Historical standalone teaching journey retained in the earlier workspace |
+| [Archived handoff](HANDOFF-ARCHIVE-2026-10-21.md) | Earlier handoff evidence; current handoff takes precedence |
+| [Facilitator wave 1](FACILITATOR-WAVE-1.md) | Approved demo identity, assigned courses/practical/questions, retained evidence and stale-assignment awareness |
 | [Grant-planning report](GRANT-PLANNING-REPORT.md) | Demographic/disability/skills dashboard, charts, aggregate PDF/CSV and selected detailed learner CSV |
 | [Learner scorecard](LEARNER-SCORECARD.md) | Authorized individual progress, support receipt, grant records and follow-up extension |
 | [User demo plan](USER-DEMO-PLAN.md) | Agreed Mosaic Pathways user journey, boundaries, profile, learning, support, teaching and acceptance criteria |
@@ -42,4 +44,4 @@ The snapshot intentionally excludes credentials, private input text files, node_
 
 ## Resume next session
 
-Read [the main handoff and continuation brief](../SESSION-HANDOFF.md#next-session-brief), [completed wave 1](ADMINISTRATOR-WAVE-1.md), [full Administrator specification](ADMINISTRATOR-DEMO-PLAN.md) and [practical-skills boundaries](PRACTICAL-SKILLS-EXPANSION-PLAN.md), in that order. Current User baseline has eight courses, 48 lessons and 39 quiz questions; shared schema 2 and its verified backup are already implemented. Wave 5 full Administrator closeout is the next milestone, not a restart of User or wave 1. Historical documents and dated validation entries describe their own checkpoints; the main handoff takes precedence.
+Read [the current handoff](../SESSION-HANDOFF.md#next-session-brief), [connected scope/evidence](CONNECTED-WORKSPACE.md) and [validation](validation.md). Run `npm.cmd run preflight` before implementation/handoff. Next is user visual review of connected interfaces and handoffs. Earlier detailed screens are explicitly accessible and preserved. Do not reset browser records without scoped confirmation.

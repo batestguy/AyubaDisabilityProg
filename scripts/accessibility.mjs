@@ -8,7 +8,7 @@ const browser = await chromium.launch({ channel: "chrome", headless: true });
 const context = await browser.newContext();
 const page = await context.newPage();
 const results = [];
-await page.goto("http://127.0.0.1:5173");
+await page.goto("http://127.0.0.1:5173/?workspace=earlier");
 await page.locator("h1").waitFor();
 for (const section of ["Projects & Possibilities", "About"]) {
   await page.getByRole("button", { name: section, exact: true }).click();

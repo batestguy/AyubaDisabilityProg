@@ -25,7 +25,7 @@ async function audit(name) {
   audits.push({ name, violations: result.violations });
   assert.deepEqual(result.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) })), [], name);
 }
-await page.goto('http://127.0.0.1:5173'); await open();
+await page.goto('http://127.0.0.1:5173/?workspace=earlier'); await open();
 await audit('welcome');
 await button('Start my demo journey').click();
 await page.getByLabel('Display name', { exact: true }).fill('Tola (demo)');

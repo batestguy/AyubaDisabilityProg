@@ -9,8 +9,11 @@
     "typecheck": "tsc --noEmit",
     "test": "node scripts/run-tests.mjs",
     "preview": "vite preview --host 127.0.0.1",
-    "test:ui": "node scripts/browser-showcase.mjs && node scripts/browser-story.mjs && node scripts/browser-journey.mjs && node scripts/browser-authoring.mjs && node scripts/accessibility.mjs && node scripts/browser-user-demo.mjs && node scripts/browser-administrator.mjs && node scripts/browser-administrator-reviews.mjs && node scripts/browser-administrator-coordination.mjs && node scripts/browser-administrator-reporting.mjs && node scripts/browser-scorecard.mjs && node scripts/browser-grant-planning.mjs",
-    "preflight": "npm test && npm run build"
+    "test:ui": "node scripts/browser-showcase.mjs && node scripts/browser-story.mjs && node scripts/browser-journey.mjs && node scripts/browser-authoring.mjs && node scripts/accessibility.mjs && node scripts/browser-user-demo.mjs && node scripts/browser-administrator.mjs && node scripts/browser-administrator-reviews.mjs && node scripts/browser-administrator-coordination.mjs && node scripts/browser-administrator-reporting.mjs && node scripts/browser-scorecard.mjs && node scripts/browser-grant-planning.mjs && node scripts/browser-facilitator.mjs && node scripts/browser-guided-teaching.mjs && node scripts/browser-connected.mjs",
+    "preflight": "npm test && npm run build",
+    "test:facilitator": "node scripts/browser-facilitator.mjs",
+    "test:guided-teaching": "node scripts/browser-guided-teaching.mjs",
+    "test:connected": "node scripts/browser-connected.mjs"
   },
   "dependencies": {
     "react": "^19.1.0",

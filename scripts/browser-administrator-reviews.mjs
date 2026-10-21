@@ -23,7 +23,7 @@ async function nav(name, admin = true) { const toggle = button(admin ? 'Administ
 async function audit(name) { const result = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze(); audits.push({ name, violations: result.violations }); assert.deepEqual(result.violations, [], name); }
 async function decide(outcome, reason) { await page.getByLabel('Review outcome', { exact: true }).selectOption(outcome); await page.getByLabel('Reason and next steps').fill(reason); await button('Record decision').click(); }
 try {
- await page.goto('http://127.0.0.1:5173/'); await open(); await role('Administration').click(); await nav('Trainer applications'); await audit('trainer-queue');
+ await page.goto('http://127.0.0.1:5173/?workspace=earlier'); await open(); await role('Administration').click(); await nav('Trainer applications'); await audit('trainer-queue');
  await button('Open submitted evidence').click(); await audit('trainer-evidence');
  await decide('approved', 'Ready to mentor'); await page.getByRole('alert').filter({ hasText: 'Check all four' }).waitFor(); assert.equal((await read()).reviews.decisions.length, 0);
  await decide('needs-changes', 'Add an example with numbers'); assert.equal((await read()).reviews.decisions.length, 1); await audit('trainer-needs-changes');

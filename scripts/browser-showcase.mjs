@@ -5,7 +5,7 @@ const page=await browser.newPage({viewport:{width:1440,height:1000}});
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
 await page.clock.install();
 await page.clock.pauseAt(new Date(Date.now()+1000));
-await page.goto('http://127.0.0.1:5173');
+await page.goto('http://127.0.0.1:5173/?workspace=earlier');
 const carousel=page.getByRole('region',{name:'Contributions in pictures'});
 const slide=()=>carousel.locator('figure').getAttribute('aria-label');
 assert.equal(await carousel.getByRole('button',{name:'Pause motion',exact:true}).count(),0);
@@ -40,7 +40,7 @@ await carousel.dispatchEvent('touchend',{changedTouches:[{identifier:1,clientX:1
 await page.clock.runFor(4000);assert.equal(await slide(),'Photograph 1 of 3');
 await page.setViewportSize({width:1440,height:1000});await carousel.getByRole('button',{name:'Show photograph 1'}).click();
 await page.screenshot({path:'output/playwright/showcase-desktop.png',fullPage:true});
-const failed=await browser.newPage();await failed.route('**/photos/noa.webp',r=>r.abort());await failed.goto('http://127.0.0.1:5173');await failed.getByText('Photograph unavailable.').first().waitFor();assert.match(await failed.locator('.photo-carousel figcaption').innerText(),/Gufwan/);
+const failed=await browser.newPage();await failed.route('**/photos/noa.webp',r=>r.abort());await failed.goto('http://127.0.0.1:5173/?workspace=earlier');await failed.getByText('Photograph unavailable.').first().waitFor();assert.match(await failed.locator('.photo-carousel figcaption').innerText(),/Gufwan/);
 await failed.getByRole('button',{name:'Next photograph'}).click();await failed.locator('.photo-carousel img').waitFor();
 assert.equal(await failed.locator('.photo-carousel img').evaluate(el=>el.complete&&el.naturalWidth>0),true);
 assert.deepEqual(errors,[]);await browser.close();console.log('Carousel checks passed: 4s timing, continuous hover/focus/manual/reduced-motion cycling, keyboard, indicators, swipe, mobile frames, image failures.');

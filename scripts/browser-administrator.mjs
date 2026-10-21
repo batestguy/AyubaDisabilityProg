@@ -47,7 +47,7 @@ async function createPage(source, denyMigration = false) {
  const page = await context.newPage();
  page.on('pageerror', e => errors.push(e.message));
  page.on('request', r => { if (r.method() === 'POST') writes.push(r.url()); });
- await page.goto('http://127.0.0.1:5173/'); await open(page);
+ await page.goto('http://127.0.0.1:5173/?workspace=earlier'); await open(page);
  return { page, context };
 }
 const readSession = page => page.evaluate(key => JSON.parse(sessionStorage.getItem(key)), key);

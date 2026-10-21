@@ -1,10 +1,12 @@
 # Impact Mosaic
 
-Current checkpoint (10 October 2026): User, Administrator waves 1–4, learner scorecards and grant-planning reports are implemented and verified. The five-section PDF includes Nigeria state mapping, state/LGA tables, KPI/evidence summaries, demographic/skills/support charts and a learning diagram. Guided visual steps 1–4 are accepted; latest Reports/PDF acceptance and remaining wave 5 visual checks are pending. Implementation and handoffs committed and pushed to GitHub main (`639e1bd`); no deployment performed for this revision. Read [the handoff](SESSION-HANDOFF.md) for current evidence and next steps. Historical checkpoints below retain their dated scope.
+Independent React/TypeScript/Vite showcase and sample learning workspace by Jerry Bannister Zachary. No NCPWD endorsement is assumed.
 
-Independent React/TypeScript/Vite showcase and fictional learning sandbox by Jerry Bannister Zachary. No NCPWD endorsement is assumed.
+The current app-demo entry is the **connected Mosaic Pathways workspace**: permanent sample learners Ada/Sani, facilitators Amaka/Tunde and Administration, local sign-ins/registration, reviewed teaching scopes/topics, course study, practical review, participant chat and support handoffs. Open **Projects & Possibilities → Open the app demo**, expand **Show sample sign-ins**, or register a new profile. Public demo codes do not create real accounts or secure messaging.
 
-Start with [SESSION-HANDOFF.md](SESSION-HANDOFF.md). The **Mosaic Pathways User stage is closed out**, with eight courses across four skill areas. Open Projects & Possibilities → Open the app demo → User. The [user-demo specification](docs/USER-DEMO-PLAN.md) covers onboarding, eight courses, portfolio, support and reviewed teaching applications. The [Administrator wave 1](docs/ADMINISTRATOR-WAVE-1.md) adds a shared-session Overview and read-only Learners. Open Administration to inspect the profile created in User. The [completed wave 2](docs/ADMINISTRATOR-WAVE-2.md) adds application/support decisions and User responses. The [completed wave 3](docs/ADMINISTRATOR-WAVE-3.md) adds trainer roster, course drafts/publication/archive, retained course versions and learning assignments. The [completed wave 4](docs/ADMINISTRATOR-WAVE-4.md) adds reports, activity history, safe exports, explicit fictional examples and Nigeria state/LGA learner drill-down. Next is wave 5 full-stage closeout in the [full Administrator plan](docs/ADMINISTRATOR-DEMO-PLAN.md); Facilitator screens remain deferred. Repository: [batestguy/AyubaDisabilityProg](https://github.com/batestguy/AyubaDisabilityProg). See the [appearance guide](docs/APPEARANCE-GUIDE.md), [architecture reference](docs/ARCHITECTURE.md) and [documentation index](docs/README.md).
+Start with [the current handoff](SESSION-HANDOFF.md) and [connected scope/evidence](docs/CONNECTED-WORKSPACE.md). Earlier User/Administrator records and reports remain available through **Earlier detailed demo** (`?workspace=earlier`); the connected registry imports a preserved snapshot and does not continuously merge later earlier-workspace edits. Administrator wave 5/Reports are accepted and closed. Connected workspace visual review is next.
+
+Repository: [batestguy/AyubaDisabilityProg](https://github.com/batestguy/AyubaDisabilityProg). See [documentation index](docs/README.md), [architecture](docs/ARCHITECTURE.md) and [validation](docs/validation.md). The [earlier guided sample](docs/FACILITATOR-GUIDED-DEMO.md) is preserved in the earlier workspace. Git delivery does not imply deployment.
 
 ## Run
 
@@ -21,6 +23,8 @@ npm.cmd run build
 Open http://127.0.0.1:5173. Vite serves the interface only: /api/assist needs Cloudflare Pages Functions. Missing AI still leaves courses, catalogue guidance and simulated expert workflows available.
 
 ## Deliverables
+
+- Connected participant workspace: src/ConnectedWorkspace.tsx, src/ConnectedParticipantDemo.tsx, src/connectedDemo.ts and src/connectedDemo.css; durable append-only sample records under `mosaic-connected-v1`
 
 - Documentary homepage: src/HomePage.tsx; reusable slideshow, scroll scenes and photograph dialogs: src/PhotoCarousel.tsx, src/ProgrammeScenes.tsx, src/PhotoGallery.tsx
 - Achievement, timeline and photograph records: src/showcase.ts

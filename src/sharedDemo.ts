@@ -80,7 +80,7 @@ const eventRecordKinds: Record<string, string> = {
   'support-outcome-recorded': 'outcome', 'grant-outcome-recorded': 'outcome', 'follow-up-outcome-recorded': 'outcome', 'outcome-receipt-confirmed': 'outcome', 'sample-cohort-loaded': 'settings', 'course-coordinated': 'course', 'course-draft-saved': 'course', 'course-assigned': 'course', 'enrolment-assigned': 'enrolment', 'question-assigned': 'question', 'support-reviewed': 'support', 'teaching-reviewed': 'teaching', 'session-migrated': 'profile', 'onboarding-completed': 'profile', 'support-submitted': 'support', 'teaching-submitted': 'teaching',
   'work-submitted': 'enrolment', 'sample-practical-approved': 'enrolment', 'sample-practical-feedback': 'enrolment', 'course-completed': 'enrolment', 'completion-invalidated': 'enrolment', 'sample-question-replied': 'question',
 };
-function validShared(value: unknown): value is SharedDemoSession {
+export function validShared(value: unknown): value is SharedDemoSession {
   if (!value || typeof value !== 'object') return false;
   const s = value as SharedDemoSession;
   if (s.schemaVersion !== 2 || !normalizeDemo(s.user) || !s.recordMetadata || typeof s.recordMetadata !== 'object' || Array.isArray(s.recordMetadata) || !Array.isArray(s.submissions) || !Array.isArray(s.events)) return false;

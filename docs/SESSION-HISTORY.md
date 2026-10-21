@@ -234,3 +234,25 @@ Validation: 84 model tests, TypeScript/build, twelve browser scripts through con
 Session housekeeping recorded from the preceding checkpoint: Codex CLI updated from0.160.1 to0.162.0; old installation removed after the old session closed. This is machine state, not repository content.
 
 Git checkpoint completed: `639e1bd` commits84 project files and pushes origin/main successfully (previous b28bead). All implementation/source/assets/tests and handoffs are included; outputs and secrets excluded. No public deployment performed.
+
+
+## 21 October 2026 — Administrator closeout and Facilitator continuation
+
+User accepted the current result and authorized closing Administrator wave 5 and proceeding. Grant Reports/PDF acceptance is recorded; historical pending statements remain dated evidence. Delivered Facilitator wave 1: explicit approved demo identity, latest assigned courses/practical/questions, stale evidence, original submission snapshots, retained requirements, responsive sidebar and role-exit identity reset. This wave is read-only; feedback/approval/replies and immutable actor/evidence histories are the next implementation wave.
+
+Validation: 86 model tests, TypeScript/final build, eight new axe audits, affected story/general accessibility/User journeys and production CSP pass. Desktop/mobile screenshots inspected; no saved-byte changes while browsing and zero POST. Full thirteen-script suite not rerun. New assets and evidence stay local; no commit/push/deployment. See FACILITATOR-WAVE-1.md and current handoff.
+
+
+## 21 October 2026 — Authorized interactive trainer demonstration
+
+User chose the recommended fictional trainer/two-learner setup, full teaching/support interactions and guided walkthrough, and asked for it to be opened. Delivered explicit independent guided sample mode under the existing three role tabs, preserving original records. Amaka reviews Ada’s work through revisions and reassignment, answers Sani’s question and refers an access need; Administration’s response is visible to both learner and trainer. Append-only commands, role/version/revision guards, completion boundaries, recovery and confirmed restart are implemented. Final91-test preflight, eight dev/production-CSP axe audits and full sample journey, original Facilitator regression and production smoke pass. Independent timestamp finding corrected/rechecked; screenshots inspected. Browser left visibly open for user review. No commit/push/deployment.
+
+
+## 21 October 2026 — Connected workspace after clarification interview
+
+User confirmed sample local sign-in/persistence, participant-specific interfaces, new learner/facilitator registration, reviewed teaching scope, private learner-facilitator chat views and Administration operational oversight. Added ability to select existing teaching courses/propose topics. Research informed least-privilege chat visibility and local-storage limitations. Implemented permanent Ada/Sani/Amaka/Tunde/Admin registry, new profiles, current assignment/revision learning gates, actual course study/quizzes, messaging/unread, explicit support handoffs and preserved/imported earlier learner/history. Earlier detailed reports remain accessible separately. All101 tests/typecheck/build, ten connected axe audits and full dev/production-CSP journeys, earlier User/Facilitator and production smoke pass. Review findings corrected/rechecked. Browser opened to expanded sample sign-ins; visual acceptance pending. No commit/push/deployment.
+
+
+## 21 October 2026 — Consolidated handoff and authorized Git delivery
+
+User requested proper handoffs for next time, then explicitly requested commit and push. Consolidated SESSION-HANDOFF.md around current connected workspace, source map/storage, validated import/recovery, privacy/authentication limits, reproducible commands, actual evidence and next visual-review milestone. Preserved old handoff in HANDOFF-ARCHIVE-2026-10-21.md; removed contradictory current pointers from README/index and marked earlier Facilitator milestones superseded. Connected visual acceptance remains pending; Administrator acceptance remains recorded. Fresh101-test preflight/typecheck/build passes. GitHub batestguy ADMIN access and exact origin/main verified; starting checkpoint518bfc3. Final implementation/push receipt is in the current handoff. No deployment.
