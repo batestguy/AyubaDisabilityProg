@@ -4,7 +4,7 @@
 
 The connected participant workspace is implemented, tested and open for user review. Open **Projects & Possibilities → Open the app demo**. Permanent sample learners: **Ada Okafor and Sani Musa**. Permanent sample facilitators: **Amaka Obi and Tunde Bello**. A sample administrator manages the combined registry. **Show sample sign-ins** lists public demonstration codes and fills the form; a separate Sign in action opens that identity's interface. Registration creates additional learner/facilitator profiles with generated demo codes.
 
-User explicitly authorized proper handoffs, commit and push of all accumulated work. Verified repository/account: `batestguy/AyubaDisabilityProg`, branch `main`, account `batestguy`, ADMIN permission. Starting local/remote checkpoint: `518bfc3` (implementation predecessor `639e1bd`). Final Git evidence will be recorded after verification. Deployment is separate and was not requested.
+User explicitly authorized proper handoffs, commit and push of all accumulated work. Verified repository/account: `batestguy/AyubaDisabilityProg`, branch `main`, account `batestguy`, ADMIN permission. Starting local/remote checkpoint: `518bfc3` (implementation predecessor `639e1bd`). Implementation and consolidated handoffs committed as `b3f028d` and pushed successfully to verified origin/main; remote SHA matches the local implementation commit. A documentation receipt follows this implementation checkpoint; use `git log -1` for the latest receipt commit. Deployment is separate and was not requested.
 
 Administrator wave 5 and earlier grant Reports/PDF were accepted and closed on 21 October. **The connected workspace has not received explicit visual acceptance.** Documentation/push authorization is not visual acceptance.
 
@@ -91,3 +91,10 @@ Public demo codes are **not real passwords or secure authentication**. Participa
 No deployment/public URL was verified for this revision. Cloudflare target: `ncpwd-impact-mosaic`; last OAuth check (10 October) was expired. Re-verify only for separately requested deployment. GitHub push is not deployment.
 
 Preserve Home's eight chapters/ten documentary photographs, twelve-event timeline/caveats; five Projects proposals; blank About spaces; separate sandbox/support navigator. Historical programme reports are not current opportunities or measured outcomes. Preserve representative attribution, date uncertainties, photo provenance/endorsement limits and unverified NDMIS/live AI claims. See [session history](docs/SESSION-HISTORY.md) and [archived handoff](docs/HANDOFF-ARCHIVE-2026-10-21.md) for dated evidence.
+
+
+## Verified Git delivery
+
+Implementation and consolidated handoffs: `b3f028d` (`b3f028df16060da7ef96a9452c5fabb309196a99`). Successful push advanced origin/main from `518bfc3` to this commit. `git ls-remote origin refs/heads/main` returned the identical full SHA. Staging contained 46 intended source/document/test files; no generated/private paths or credential-pattern findings. Local Markdown links pass; 153 source/document/asset hashes refreshed from canonical Git index blobs, excluding the inventory itself.
+
+This receipt and its updated source inventory are a follow-up documentation checkpoint. They do not change runtime behavior or require repeating already passing browser journeys. No deployment was performed. Current next milestone remains user visual review of the connected workspace.
