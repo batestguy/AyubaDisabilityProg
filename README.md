@@ -1,5 +1,7 @@
 # Impact Mosaic
 
+**Next-session note — 28 October:** the [facilitator directory, learner requests and state noticeboards extension](docs/FACILITATOR-DIRECTORY-STATE-BOARDS-PLAN.md) is fully planned but **not implemented**. The user's latest instruction is to document only and leave building for next time. Start with the latest continuation in [SESSION-HANDOFF.md](SESSION-HANDOFF.md); await renewed instruction before implementing.
+
 Independent React/TypeScript/Vite showcase and sample learning workspace by Jerry Bannister Zachary. No NCPWD endorsement is assumed.
 
 The current app-demo entry is the **connected Mosaic Pathways workspace**: permanent sample learners Ada/Sani, facilitators Amaka/Tunde and Administration, local sign-ins/registration, reviewed teaching scopes/topics, course study, practical review, participant chat and support handoffs. Open **Projects & Possibilities → Open the app demo**, expand **Show sample sign-ins**, or register a new profile. Public demo codes do not create real accounts or secure messaging.

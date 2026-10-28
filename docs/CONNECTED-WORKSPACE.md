@@ -4,6 +4,8 @@ status: ready for review
 
 # Connected participant workspace
 
+28 October continuation: the proposed [facilitator directory, learner preferences and state boards](FACILITATOR-DIRECTORY-STATE-BOARDS-PLAN.md) are documented separately and **not implemented**. The user explicitly deferred building. The delivered behavior/evidence below describes the existing workspace only; no visual acceptance of that workspace was added by this planning session.
+
 ## Agreed scope — 21 October 2026
 
 User confirmed three interview rounds and authorized implementation. Permanent sample learners Ada and Sani, sample facilitators Amaka and Tunde; additional learner/facilitator registrations; generated demo access codes, same-browser persistent records and individual interfaces. Administration sees all operational records and manages facilitator approval/learner assignments. Learners can enrol and study before assignment; practical review needs a current assigned facilitator. Preserve existing profile/progress/history. Facilitators select existing teaching courses and propose additional topics for review. Shared learner–facilitator chat and facilitator–Administration communication, unread indicators, explicit support referrals.

@@ -259,3 +259,11 @@ User requested proper handoffs for next time, then explicitly requested commit a
 
 
 Git delivery verified: implementation/handoffs commit `b3f028d` pushed origin/main from `518bfc3`; full local SHA equals ls-remote. Staging checks excluded generated/private paths and found no credential patterns. Documentation receipt/source inventory follow as a separate documentation checkpoint; no runtime change or deployment.
+
+## 28 October 2026 — Role walkthrough, agreed extension and documentation-only deferral
+
+Reviewed the current handoff/code and explained learner/Admin/facilitator connections, including existing facilitator registration, pending status, teaching-scope review and Admin assignment. Verified clean local Git status at `43c156d`; no new remote verification. Initial sandbox setup failed; read-only inspection succeeded after execution permission changes. No ACL or global Git trust change was made.
+
+User requested a pre-registration approved-facilitator directory and a general noticeboard for every state. Planning choices: visitors and learners browse; learners request a preferred facilitator with Admin confirmation; signed-in learners/facilitators/Admin read boards; Admin and approved facilitators publish, all signed-in participants reply; home-state default with participation across all 36 states and FCT; extend local demo first; reviewed public introduction with publication consent; text notices/replies with pinning, unread and Admin hide/close controls.
+
+User initially said “Implement the plan” and then explicitly superseded it with “Dont build anyuthing yet, document thorougly for next timew.” Inspection only occurred before that correction; no feature code was written. Created the [complete continuation specification](FACILITATOR-DIRECTORY-STATE-BOARDS-PLAN.md), updated main handoff and README/index/scope pointers, and preserved existing delivered evidence as historical. Future implementation requires a renewed user instruction. No app/model/test/dependency changes, browser mutations, runtime test/build runs, commit/push or deployment are part of this checkpoint. Existing connected workspace visual acceptance remains pending.

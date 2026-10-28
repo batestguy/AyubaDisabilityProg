@@ -1,5 +1,13 @@
 # Session handoff: connected Mosaic Pathways workspace
 
+## Latest continuation — 28 October 2026
+
+**Documentation only; do not build yet.** The user planned a public approved-facilitator directory, learner preferences subject to Admin assignment, and signed-in noticeboards for all 36 states and FCT. After initially requesting implementation, the user superseded that instruction: “Dont build anyuthing yet, document thorougly for next timew.” No feature code was changed. Await a renewed instruction before implementation.
+
+Read the [complete next-feature specification](docs/FACILITATOR-DIRECTORY-STATE-BOARDS-PLAN.md) first for agreed choices, role/action connections, public-profile consent/review, request lifecycle, home states, board permissions/moderation/unread behavior, backward compatibility, implementation sequence and acceptance checks. These features are **planned, not delivered**. Existing connected UI visual acceptance remains pending; Administrator wave 5 acceptance remains recorded.
+
+Git was clean at local `43c156d` before these documentation edits. No new remote verification, commit, push or deployment was performed. Last runtime checks below are historical 21 October evidence, not fresh tests of these proposed features. This latest instruction takes precedence over the older next-session brief below. Documentation links/diff are the appropriate checks for this prose-only checkpoint; no build or runtime tests are needed.
+
 ## Current state — 21 October 2026
 
 The connected participant workspace is implemented, tested and open for user review. Open **Projects & Possibilities → Open the app demo**. Permanent sample learners: **Ada Okafor and Sani Musa**. Permanent sample facilitators: **Amaka Obi and Tunde Bello**. A sample administrator manages the combined registry. **Show sample sign-ins** lists public demonstration codes and fills the form; a separate Sign in action opens that identity's interface. Registration creates additional learner/facilitator profiles with generated demo codes.

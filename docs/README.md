@@ -1,9 +1,12 @@
 # Documentation index
 
+Latest continuation (28 October): **implementation deferred by the user**. Read the [facilitator directory and state noticeboards plan](FACILITATOR-DIRECTORY-STATE-BOARDS-PLAN.md) for the fully documented next feature. It is not implemented; await renewed instruction before building. The existing connected workspace remains ready for visual review.
+
 Current milestone: the [connected workspace](CONNECTED-WORKSPACE.md) is implemented and ready for visual review. Begin with [SESSION-HANDOFF.md](../SESSION-HANDOFF.md) for current state, preservation boundaries, validation, commands and next-session brief. Administrator wave 5 and earlier Reports/PDF are accepted/closed. Earlier read-only/guided Facilitator stages are preserved historical implementations, not the current continuation target.
 
 | Document | Purpose |
 |---|---|
+| [Facilitator directory and state noticeboards plan](FACILITATOR-DIRECTORY-STATE-BOARDS-PLAN.md) | Planned public directory, learner preferences/Admin decisions, 37 community boards, permissions, compatibility and acceptance; implementation explicitly deferred |
 | [Connected workspace](CONNECTED-WORKSPACE.md) | Current scope, interview decisions, privacy research, implementation, verification and limits |
 | [Earlier guided sample](FACILITATOR-GUIDED-DEMO.md) | Historical standalone teaching journey retained in the earlier workspace |
 | [Archived handoff](HANDOFF-ARCHIVE-2026-10-21.md) | Earlier handoff evidence; current handoff takes precedence |
