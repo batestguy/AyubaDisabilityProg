@@ -1,5 +1,7 @@
 # Architecture and maintenance reference
 
+7 November extension: see [connected funding demonstration](FUNDING-DEMO.md). `src/connectedCommunity.ts` adds consented public projections, facilitator-request lifecycle and state boards/read/moderation to the existing schema-1 replay. `src/ConnectedCommunityPanels.tsx` supplies role home queues, directory/request/profile/state/board UI. `src/ConnectedWorkspace.tsx` retains pre-sign-in choice outside identity-remounted screens. No network API or dependency was added. `npm.cmd run test:community` runs the focused multi-role journey; `test:ui` now includes sixteen scripts.
+
 Current continuation (8 October 2026): User, Administrator waves 1–4 and the [learner scorecard/threshold follow-up](LEARNER-SCORECARD.md) are complete locally. Next: wave 5 consolidated Administrator closeout. Read [the current handoff](../SESSION-HANDOFF.md#next-session-brief); earlier milestones in this document retain their historical scope. Changes remain uncommitted and unpublished.
 
 Current continuation checkpoint (7 October 2026): [Administrator wave 2](ADMINISTRATOR-WAVE-2.md) implements application/support decisions, immutable history and User responses. Next is wave 2 user review, then wave 3 roster/course coordination. [Main handoff](../SESSION-HANDOFF.md) takes precedence over earlier checkpoint descriptions below.

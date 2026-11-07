@@ -18,3 +18,5 @@ body { margin: 0; background: #FFFFFF; }
 .static-story footer { margin-top:40px;font-size:12px; }
 
 .static-portrait { aspect-ratio:4/3;display:grid;place-items:center;background:#f3f6f3;color:#52665a;margin-bottom:24px; }
+
+#static-explore>section{min-height:160px;border-top:1px solid #d9dfd4;padding-top:16px}

@@ -1,6 +1,6 @@
 # Impact Mosaic
 
-**Next-session note — 28 October:** the [facilitator directory, learner requests and state noticeboards extension](docs/FACILITATOR-DIRECTORY-STATE-BOARDS-PLAN.md) is fully planned but **not implemented**. The user's latest instruction is to document only and leave building for next time. Start with the latest continuation in [SESSION-HANDOFF.md](SESSION-HANDOFF.md); await renewed instruction before implementing.
+**Current implementation — 7 November 2026:** the connected funding demonstration now includes role action queues, a public approved-facilitator directory, learner matching requests with Administration decisions, and signed-in noticeboards for all 36 states and FCT. See [funding demo guide](docs/FUNDING-DEMO.md) and [current handoff](SESSION-HANDOFF.md). These are same-browser demonstration connections; real service delivery remains a funding proposal.
 
 Independent React/TypeScript/Vite showcase and sample learning workspace by Jerry Bannister Zachary. No NCPWD endorsement is assumed.
 
@@ -37,7 +37,7 @@ Open http://127.0.0.1:5173. Vite serves the interface only: /api/assist needs Cl
 - Mosaic Pathways user demo: src/MosaicUserDemo.tsx, src/userDemo.ts and src/userDemo.css; sessionStorage key `mosaic-user-demo-v1` is separate from the sandbox
 - Eight courses, 48 lessons and 39 assessment questions: src/catalogue.ts and src/skillCourses.ts; area selection: src/skillCategories.ts
 - Experimental English/Hausa/Yoruba/Igbo journeys for the original three courses: src/i18n.ts and src/courseLanguages.ts; AI Essentials remains English
-- Reviewed historical programme sources and five AI pilot cards: src/evidence.ts
+- Reviewed historical programme sources: src/evidence.ts; Projects now shows a sparse planned Bayesian snowball sampling framework, with research notes in docs/BAYESIAN-SNOWBALL-FRAMEWORK.md
 - Bounded server-only Groq endpoint: functions/api/assist.ts
 - Persistent shared free-budget limiter: worker/limiter.ts
 - Downloads: public/downloads/introduction.pdf, partnership-proposal.pdf, walkthrough.md
@@ -64,7 +64,7 @@ Start `npm.cmd run dev` in another terminal, then run `npm.cmd run test:ui`. Tes
 
 ## Next session
 
-User and Administrator waves 1–4 are complete locally. Begin with the [next-session brief](SESSION-HANDOFF.md#next-session-brief); the scorecard extension is also complete, and the next milestone is wave 5 full Administrator closeout. Preserve uncommitted changes and shared schema 2/legacy backup. Wave 4 preflight passes 67 tests, TypeScript/build and production CSP smoke; all ten browser scripts pass, with zero User/Admin POST and zero violations across nine User/eight baseline Administrator/eight wave 2/nine wave 3/fourteen wave 4 audits. See [validation history](docs/validation.md). No public deployment of this revision is verified.
+Review the connected funding demonstration: public directory, explicit learner facilitator requests, Administration matching, teaching feedback/support and all 37 state noticeboards. Use [the presenter walkthrough](public/downloads/walkthrough.md) and [latest handoff](SESSION-HANDOFF.md). Earlier Administrator/report stages are complete; no deployment of this revision has been performed. Current validation is in [the latest receipt](docs/validation.md).
 
 ## Nigeria learner drill-down
 

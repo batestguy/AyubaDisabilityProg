@@ -1,6 +1,20 @@
-# Three-minute walkthrough
+# Funding demonstration walkthrough — 7 November 2026
 
-Current continuation (8 October 2026): User, Administrator waves 1–4 and the [learner scorecard/threshold follow-up](../../docs/LEARNER-SCORECARD.md) are complete locally. Next: wave 5 consolidated Administrator closeout. Read [the current handoff](../../SESSION-HANDOFF.md#next-session-brief); earlier milestones in this document retain their historical scope. Changes remain uncommitted and unpublished.
+Open **Projects & Possibilities → Open the app demo**. The current connected workspace demonstrates local learner/facilitator/Administration handoffs. Keep fictional details throughout; no reset is needed. The earlier walkthrough below is archived context.
+
+1. Show the public **Find a facilitator** directory and select Amaka for Digital Essentials. Sign in as Ada (`ada` / `DEMO-ADA`), then explicitly confirm the request. No assignment is created merely by choosing a name.
+2. Sign out, then sign in as Administration (`admin` / `DEMO-ADMIN`). Open the action queue and **Facilitator requests**. Confirm Amaka with a decision explanation. Existing records remain visible.
+3. Sign in as Ada. Open **My learning**, expand Digital Essentials, and submit or revise fictional practical work. Administration then assigns that exact current revision under **Learners**.
+4. Sign in as Amaka (`amaka` / `DEMO-AMAKA`). Review Ada's current assigned work, save feedback, and send a course message under **Messages**. Return as Ada to show the same feedback and conversation.
+5. As Ada, share a separate **Support** note. Administration responds; return as Ada to see the response. This records communication, not resource delivery.
+6. As Administration or Amaka, choose a **State noticeboard** and publish an explicitly fictional notice. Return as Ada, choose the same state, read and reply. Show explicit unread controls. Administration can pin, close or hide the discussion with a recorded reason.
+7. Explain the funding boundary: the interface and same-browser connections work; funding would establish real accounts, delivery staff, accessible training partnerships, cross-device communication and verified opportunities. Sample completion is not evidence of employment or programme impact.
+
+Sample sign-ins are listed inside the app. Sani (`sani` / `DEMO-SANI`) and Tunde (`tunde` / `DEMO-TUNDE`) can demonstrate a second teaching relationship after enrolment and assignment. Earlier demos remain available through the secondary navigation link.
+
+## Archived earlier presentation sequence
+
+The sequence below describes older sandbox interfaces. Use the connected walkthrough above for current funding presentations.
 
 0:00 - 0:15 | Introduce the leadership story.
 "Building a more inclusive Nigeria begins with people already at work. President Bola Ahmed Tinubu appointed Ayuba Gufwan Executive Secretary of NCPWD on 6 August 2024. This independent demonstration presents his public engagements alongside contributions from representatives, institutions and partners."

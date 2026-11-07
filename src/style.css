@@ -1037,3 +1037,8 @@ header nav button { transition: none; }
 .app-demo-entry p { max-width: 650px; }
 .empty-portrait { display: grid; place-items: center; color: #52665a; margin-bottom: 24px; }
 @media(max-width:700px) { .app-demo-entry { padding: 24px; } }
+
+/* Planned sampling space: generous blank surfaces; detail only on request. */
+.sampling-framework{padding-top:48px;padding-bottom:100px}.sampling-framework>h2{max-width:900px;overflow-wrap:anywhere}.sampling-intro{max-width:650px;color:#435a4d}.sampling-spaces{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;margin:48px 0 32px}.sampling-spaces>section{min-width:0;border-top:1px solid var(--line);padding-top:20px}.sampling-spaces h3{font:1.5rem Georgia,serif}.sampling-blank{min-height:180px}.sampling-outline{border-top:1px solid var(--line);padding-top:20px}.sampling-outline summary{cursor:pointer;font-weight:600}.sampling-outline li{padding:8px 0}.sampling-outline ol{padding-left:24px}
+@media(max-width:640px){.sampling-spaces{grid-template-columns:1fr;gap:24px}.sampling-blank{min-height:100px}.sampling-framework{padding-bottom:64px}}
+.explore-page{overflow-wrap:anywhere}.archived-tools{margin-top:20px}.archived-tools summary{cursor:pointer;font-weight:600}

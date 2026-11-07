@@ -1,3 +1,7 @@
+async function openOriginalTools(page) {
+ await page.getByRole('button',{name:'Open the app demo',exact:false}).click();
+ await page.getByText('Original sandbox tools',{exact:true}).click();
+}
 import { mkdir } from "node:fs/promises";
 await mkdir("output/playwright", { recursive: true });
 import { chromium } from "playwright";
@@ -16,8 +20,9 @@ await page.screenshot({
   fullPage: true,
 });
 await page
-  .getByRole("button", { name: "Projects & Possibilities", exact: true })
+  .getByRole("button", { name: "Learning Sandbox", exact: true })
   .click();
+await openOriginalTools(page);
 await page.getByRole("button", { name: "Explore the learning sandbox" }).click();
 await page.getByLabel("Perspective", { exact: true }).selectOption("admin");
 const add = page.locator("section").filter({
@@ -129,7 +134,8 @@ assert.ok(
     ),
   ),
 );
-await page.getByRole("button", { name: "Projects & Possibilities", exact: true }).click();
+await page.getByRole("button", { name: "Learning Sandbox", exact: true }).click();
+await openOriginalTools(page);
 await page
   .getByRole("button", { name: "Open the support navigator", exact: false })
   .click();

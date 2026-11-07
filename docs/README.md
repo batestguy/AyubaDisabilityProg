@@ -1,12 +1,21 @@
 # Documentation index
 
-Latest continuation (28 October): **implementation deferred by the user**. Read the [facilitator directory and state noticeboards plan](FACILITATOR-DIRECTORY-STATE-BOARDS-PLAN.md) for the fully documented next feature. It is not implemented; await renewed instruction before building. The existing connected workspace remains ready for visual review.
+Current user-review continuation (7 November): Learning Sandbox replaces Projects & Possibilities; a separate **Research & Data Collection** tab follows it. The user explicitly authorized this page split and moving the sparse research outline, plus role-button focus/scroll to sign-in. Detailed research content and collection remain deferred; sandbox acceptance is still pending. See [current handoff](../SESSION-HANDOFF.md). The earlier instruction below to preserve the placeholder on Projects is historical for its original checkpoint.
+
+Latest documentation checkpoint (7 November 2026): [Research & Data Collection: next-phase brief](RESEARCH-DATA-COLLECTION-NEXT-PHASE.md) is authoritative for the research direction, literature, proposed study and mathematics/presentation specification. **Sandbox user verification and explicit acceptance remain pending.** Recorded tests/browser checks are historical evidence. Verify and accept the three-role sandbox first; await an instruction opening research-page/presentation work; separately design, fund and approve a field protocol before collection. Keep Projects mostly blank until the phase is opened. No build/preflight is required for this documentation-only checkpoint because it regenerates tracked artifacts; this specific instruction overrides the generic resume instruction below for this checkpoint.
+
+Latest continuation (7 November): the directory, facilitator requests and 37 noticeboards are implemented in the local connected funding demo, with role action queues and a funding walkthrough. Read [the implementation guide](FUNDING-DEMO.md) and [current handoff](../SESSION-HANDOFF.md). Earlier deferral instructions below are historical.
 
 Current milestone: the [connected workspace](CONNECTED-WORKSPACE.md) is implemented and ready for visual review. Begin with [SESSION-HANDOFF.md](../SESSION-HANDOFF.md) for current state, preservation boundaries, validation, commands and next-session brief. Administrator wave 5 and earlier Reports/PDF are accepted/closed. Earlier read-only/guided Facilitator stages are preserved historical implementations, not the current continuation target.
 
+The Projects & Possibilities page now replaces its five proposal cards and older tool/download banner with a mostly blank **Bayesian snowball sampling** section. See [the planning skeleton and research notes](BAYESIAN-SNOWBALL-FRAMEWORK.md). The connected app entry remains; original sandbox/navigation tools are under Earlier demos.
+
 | Document | Purpose |
 |---|---|
-| [Facilitator directory and state noticeboards plan](FACILITATOR-DIRECTORY-STATE-BOARDS-PLAN.md) | Planned public directory, learner preferences/Admin decisions, 37 community boards, permissions, compatibility and acceptance; implementation explicitly deferred |
+| [Research & Data Collection next phase](RESEARCH-DATA-COLLECTION-NEXT-PHASE.md) | Authoritative brief, evidence register, proposed study, mathematics/presentation requirements and pending sandbox user-acceptance gate |
+| [Bayesian snowball planning skeleton](BAYESIAN-SNOWBALL-FRAMEWORK.md) | Preserved sparse framework and open questions; subject to the next-phase brief and acceptance gate |
+| [Funding demo implementation](FUNDING-DEMO.md) | Current role connections, demonstration sequence, permissions and service boundaries |
+| [Facilitator directory and state noticeboards plan](FACILITATOR-DIRECTORY-STATE-BOARDS-PLAN.md) | Original agreed directory/requests/boards specification; implementation authorized and delivered 7 November |
 | [Connected workspace](CONNECTED-WORKSPACE.md) | Current scope, interview decisions, privacy research, implementation, verification and limits |
 | [Earlier guided sample](FACILITATOR-GUIDED-DEMO.md) | Historical standalone teaching journey retained in the earlier workspace |
 | [Archived handoff](HANDOFF-ARCHIVE-2026-10-21.md) | Earlier handoff evidence; current handoff takes precedence |

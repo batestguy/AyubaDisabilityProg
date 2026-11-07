@@ -4,7 +4,7 @@ status: ready for review
 
 # Connected participant workspace
 
-28 October continuation: the proposed [facilitator directory, learner preferences and state boards](FACILITATOR-DIRECTORY-STATE-BOARDS-PLAN.md) are documented separately and **not implemented**. The user explicitly deferred building. The delivered behavior/evidence below describes the existing workspace only; no visual acceptance of that workspace was added by this planning session.
+7 November continuation: [the funding demonstration extension](FUNDING-DEMO.md) is now implemented: public consented directory, learner preferences and Admin matching, role home/action queues, home-state settings and 37 signed-in moderated noticeboards. The 28 October build deferral was superseded by the user's explicit implementation instruction. Existing learning/review/chat boundaries remain in effect. User visual acceptance is still pending.
 
 ## Agreed scope — 21 October 2026
 

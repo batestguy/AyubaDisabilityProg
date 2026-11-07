@@ -23,7 +23,7 @@ const button = name => page.getByRole('button', { name, exact: true });
 const role = name => page.getByRole('tab', { name, exact: true });
 const guide = () => page.getByRole('region', { name: 'Guided walkthrough', exact: true });
 const saved = () => page.evaluate(() => JSON.parse(sessionStorage.getItem('mosaic-guided-teaching-v1')));
-async function open() { await button('Projects & Possibilities').click(); await page.getByRole('button', { name: 'Open the app demo', exact: false }).click(); }
+async function open() { await button('Learning Sandbox').click(); await page.getByRole('button', { name: 'Open the app demo', exact: false }).click(); }
 async function sample() { await button('Open guided teaching demo').click(); }
 async function next() { await guide().getByRole('button').click(); }
 async function nav(name) { const toggle = button('Teaching demo menu'); if (await toggle.isVisible() && await toggle.getAttribute('aria-expanded') === 'false') await toggle.click(); await page.getByRole('navigation', { name: 'Teaching demo', exact: true }).getByRole('button', { name, exact: true }).click(); }
@@ -58,7 +58,7 @@ try {
  await page.setViewportSize({ width: 390, height: 844 }); await nav('My learners'); await audit('guided-mobile'); assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
  await page.screenshot({ path: 'output/playwright/guided-teaching-mobile.png', fullPage: true });
  await button('Use larger text').click(); await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; }); await audit('guided-large-text'); assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false); await page.evaluate(() => { document.documentElement.style.fontSize = ''; });
- await button('Return to my existing demo').click(); assert.equal(await page.evaluate(() => sessionStorage.getItem('mosaic-user-demo-v1')), existingBytes); assert.equal(await page.evaluate(() => sessionStorage.getItem('mosaic-v1')), sandboxBytes);
+ await button('Back to earlier demo').click(); assert.equal(await page.evaluate(() => sessionStorage.getItem('mosaic-user-demo-v1')), existingBytes); assert.equal(await page.evaluate(() => sessionStorage.getItem('mosaic-v1')), sandboxBytes);
  await sample(); await button('Restart guided scenario').click(); await button('Keep sample progress').click(); assert.equal((await saved()).events.length, 7);
  await button('Restart guided scenario').click(); await button('Confirm restart guided demo').click(); assert.equal(await page.evaluate(() => sessionStorage.getItem('mosaic-guided-teaching-v1')), null); await guide().getByText('Review Ada’s first submission', { exact: true }).waitFor();
  // Malformed scenario data must never overwrite either itself or existing records.

@@ -13,11 +13,12 @@ import { FacilitatorDemo } from './FacilitatorDemo';
 import { TeachingScenarioWorkspace } from './TeachingScenarioWorkspace';
 import type { ScenarioRole } from './teachingScenario';
 import { ConnectedWorkspace } from './ConnectedWorkspace';
+import { FreshDemoControl } from './FreshDemoControl';
 
-export function AppDemoPage() {
+export function AppDemoPage({onOpenPage}: {onOpenPage:(page:string)=>void}) {
  const [earlier, setEarlier] = useState(() => new URLSearchParams(window.location.search).get('workspace') === 'earlier');
  function select(value: boolean) { const url = new URL(window.location.href); if (value) url.searchParams.set('workspace', 'earlier'); else url.searchParams.delete('workspace'); window.history.replaceState(null, '', url); setEarlier(value); }
- return earlier ? <><div className="section"><button onClick={() => select(false)}>Open connected workspace</button></div><EarlierAppDemoPage /></> : <ConnectedWorkspace onOpenEarlier={() => select(true)} />;
+ return <><div className="section demo-tools"><h1>Learning Sandbox.</h1><FreshDemoControl/>{earlier&&<aside className="earlier-demo-notice" aria-label="Earlier demo navigation"><h2>You are viewing earlier demo screens</h2><p>These older screens keep separate records. Use the connected demo for the current learner, facilitator and Administration journey.</p><button onClick={() => select(false)}>Back to connected demo</button><details className="archived-tools"><summary>Original sandbox tools</summary><p>Earlier fictional tools, kept separately from the connected workspace.</p><div className="mp-actions"><button onClick={()=>onOpenPage('sandbox')}>Explore the learning sandbox</button><button onClick={()=>onOpenPage('navigator')}>Open the support navigator</button></div></details></aside>}</div>{earlier?<EarlierAppDemoPage/>:<ConnectedWorkspace onOpenEarlier={() => select(true)}/>}</>;
 }
 
 function EarlierAppDemoPage() {
@@ -73,9 +74,9 @@ function EarlierAppDemoPage() {
   if (saved) setLoaded({ session, storageOk: true });
  }
  function openUser() { setActive(0); tabs.current[0]?.focus(); }
- return <div className="showcase"><section className="section"><p className="eyebrow">APP DEMO</p><h1>Choose your role.</h1>
+ return <div className="showcase"><section className="section"><p className="eyebrow">EARLIER DEMO</p><h1>Choose your role.</h1>
   <p>Start your Mosaic Pathways journey in User. Administration coordinates the same records; Facilitator shows assigned learning evidence.</p>
-  <div className="mp-actions">{guided ? <button onClick={() => setGuided(false)}>Return to my existing demo</button> : <button className="primary" onClick={() => { setGuided(true); setActive(2); }}>Open guided teaching demo</button>}</div>
+  <div className="mp-actions">{guided ? <button onClick={() => setGuided(false)}>Back to earlier demo</button> : <button className="primary" onClick={() => { setGuided(true); setActive(2); }}>Open guided teaching demo</button>}</div>
   {!storageOk && <div className="mp-error"><p role="alert">Session storage is unavailable or could not be verified. Your changes remain in memory; reload may lose progress. {loaded.warning}</p>{!loaded.recovery && <button onClick={retrySaving}>Retry saving this session</button>}</div>}
   {loaded.recovery && <section className="mp-card" aria-label="Demo session recovery"><h2>Saved demo needs attention</h2><p role="alert">{loaded.recovery}</p><p>Your saved records have not been replaced. Retry loading, or explicitly reset this demo to start again. The separate learning sandbox is preserved.</p>
    <div className="mp-actions"><button onClick={retry}>Retry loading saved demo</button><button onClick={() => setResetting(!resetting)} aria-expanded={resetting}>Reset saved demo</button></div>

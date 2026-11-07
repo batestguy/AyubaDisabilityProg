@@ -16,6 +16,7 @@ import {
 import { sources } from "./evidence";
 import { HomePage } from "./HomePage";
 import { ExplorePage } from "./ExplorePage";
+import { ResearchDataCollectionPage } from "./ResearchDataCollectionPage";
 import { AppDemoPage } from "./AppDemoPage";
 import { AboutPage } from "./AboutPage";
 const download = (name: string, text: string, type = "text/plain") => {
@@ -76,7 +77,7 @@ const data = (e: FormEvent<HTMLFormElement>) => {
 };
 export default function App() {
   const [state, setState] = useState<State>(loadState),
-    [page, setPage] = useState("overview"),
+    [page, setPage] = useState(() => new URLSearchParams(window.location.search).get("demo") === "connected" ? "app-demo" : "overview"),
     [role, setRole] = useState("learner"),
     [lang, setLang] = useState("en"),
     [active, setActive] = useState("learner-demo"),
@@ -234,7 +235,7 @@ export default function App() {
           </span>
         </a>
         <nav aria-label="Main navigation">
-          {[["overview","Home"],["explore","Projects & Possibilities"],["about","About"]].map(([id,title])=><button key={id} aria-current={page===id?'page':undefined} onClick={()=>{setPage(id);window.scrollTo(0,0);}}>{title}</button>)}
+          {[["overview","Home"],["explore","Learning Sandbox"],["research","Research & Data Collection"],["about","About"]].map(([id,title])=><button key={id} aria-current={page===id||(id==='explore'&&page==='app-demo')?'page':undefined} onClick={()=>{setPage(id);window.scrollTo(0,0);}}>{title}</button>)}
         </nav>
         <label className="language">
           <span className="sr-only">{t("language")}</span>
@@ -282,7 +283,7 @@ export default function App() {
       <main id="main" tabIndex={-1}>
         {page === "overview" ? (
           <HomePage reduceMotion={reduce} />
-        ) : page === "explore" ? <ExplorePage onOpen={setPage}/> : page === "about" ? <AboutPage/> : page === "app-demo" ? <AppDemoPage/> : (
+        ) : page === "explore" ? <ExplorePage onOpen={setPage}/> : page === "research" ? <ResearchDataCollectionPage/> : page === "about" ? <AboutPage/> : page === "app-demo" ? <AppDemoPage onOpenPage={setPage}/> : (
           <>
             <section className="workspace-heading">
               <div>
@@ -1146,7 +1147,7 @@ export default function App() {
           </>
         )}
       </main>
-      <footer>
+      {page !== "explore" && page !== "research" && <footer>
         <div>
           <strong>IMPACT MOSAIC</strong>
           <p>
@@ -1168,7 +1169,7 @@ export default function App() {
         >
           Created By Deerflow ↗
         </a>
-      </footer>
+      </footer>}
     </>
   );
 }

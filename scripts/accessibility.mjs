@@ -10,9 +10,9 @@ const page = await context.newPage();
 const results = [];
 await page.goto("http://127.0.0.1:5173/?workspace=earlier");
 await page.locator("h1").waitFor();
-for (const section of ["Projects & Possibilities", "About"]) {
+for (const section of ["Learning Sandbox", "About"]) {
   await page.getByRole("button", { name: section, exact: true }).click();
-  if (section === "Projects & Possibilities") {
+  if (section === "Learning Sandbox") {
     const projectAudit = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
     results.push({ view: section, violations: projectAudit.violations });
     await page.getByRole("button", { name: "Open the app demo", exact: false }).click();
@@ -32,7 +32,7 @@ await page.getByRole("button", { name: "Home", exact: true }).click();
 for (const view of ["overview", "learner", "expert", "admin"]) {
   if (view === "learner") {
     await page
-      .getByRole("button", { name: "Projects & Possibilities", exact: true })
+      .getByRole("button", { name: "Learning Sandbox", exact: true })
       .click();
     await page.getByRole("button", { name: "Explore the learning sandbox" }).click();
   }

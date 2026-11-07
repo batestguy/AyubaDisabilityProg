@@ -1,23 +1,24 @@
 import { courses as seedCourses, type Course } from './catalogue';
 import { validShared, type SharedDemoSession } from './sharedDemo';
 import { validCourseVersion } from './coordinationValidation';
+import { communityFields, communityIssue, communityApply, initCommunity, resolveManualRequest, boardStates, type CommunityAction, type CommunityView, type PublicProfile } from './connectedCommunity';
 
 export type PersonRole = 'learner' | 'facilitator' | 'admin';
-export type Person = { id: string; username: string; name: string; role: PersonRole; sample: boolean; demoCode: string; status: 'active' | 'pending' | 'changes-requested'; goal: string; access: string; bio: string; teachingCourseIds: string[]; requestedCourseIds: string[]; teachingReviewPending: boolean; reviewNote?: string };
+export type Person = { id: string; username: string; name: string; role: PersonRole; sample: boolean; demoCode: string; status: 'active' | 'pending' | 'changes-requested'; goal: string; access: string; bio: string; teachingCourseIds: string[]; requestedCourseIds: string[]; teachingReviewPending: boolean; reviewNote?: string; homeState?: string; publicProfile?: PublicProfile };
 export type ConnectedEnrolment = { id: string; learnerId: string; course: Course; lessons: number[]; scores: number[]; work?: string; workRevision: number; review?: 'approved' | 'needs-changes'; feedback?: string };
 export type ConnectedAssignment = { id: string; learnerId: string; facilitatorId: string; courseId: string; workRevision: number; note: string };
 export type ChatMessage = { id: string; senderId: string; text: string; at: number };
 export type ChatThread = { id: string; participants: [string, string]; kind: 'teaching' | 'administration'; courseId?: string; messages: ChatMessage[]; read: Record<string, number> };
 export type ConnectedReferral = { id: string; learnerId: string; facilitatorId?: string; courseId?: string; note: string; response?: string; at: number };
 export type TopicRequest = { id: string; facilitatorId: string; title: string; description: string; status: 'pending' | 'approved' | 'changes-requested'; reviewNote?: string };
-export type ConnectedAction = 'register' | 'request-teaching' | 'review-facilitator' | 'propose-topic' | 'review-topic' | 'enrol' | 'complete-lesson' | 'submit-quiz' | 'submit-work' | 'assign' | 'review-work' | 'send-message' | 'read-thread' | 'refer-support' | 'respond-support';
+export type ConnectedAction = CommunityAction | 'register' | 'request-teaching' | 'review-facilitator' | 'propose-topic' | 'review-topic' | 'enrol' | 'complete-lesson' | 'submit-quiz' | 'submit-work' | 'assign' | 'review-work' | 'send-message' | 'read-thread' | 'refer-support' | 'respond-support';
 export type ConnectedCommand = { id: string; expectedVersion: number; actorId: string | null; type: ConnectedAction; payload: Record<string, unknown> };
 export type ConnectedEvent = ConnectedCommand & { at: number };
-export type ConnectedState = { schemaVersion: 1; courses: Course[]; legacy?: SharedDemoSession; events: ConnectedEvent[] };
-export type ConnectedView = { people: Person[]; courses: Course[]; enrolments: ConnectedEnrolment[]; assignments: ConnectedAssignment[]; threads: ChatThread[]; referrals: ConnectedReferral[]; topics: TopicRequest[]; events: ConnectedEvent[] };
+export type ConnectedState = { schemaVersion: 1; courses: Course[]; legacy?: SharedDemoSession; cleanStart?: true; events: ConnectedEvent[] };
+export type ConnectedView = CommunityView & { people: Person[]; courses: Course[]; enrolments: ConnectedEnrolment[]; assignments: ConnectedAssignment[]; threads: ChatThread[]; referrals: ConnectedReferral[]; topics: TopicRequest[]; events: ConnectedEvent[] };
 
 export const CONNECTED_KEY = 'mosaic-connected-v1';
-const actions: ConnectedAction[] = ['register', 'request-teaching', 'review-facilitator', 'propose-topic', 'review-topic', 'enrol', 'complete-lesson', 'submit-quiz', 'submit-work', 'assign', 'review-work', 'send-message', 'read-thread', 'refer-support', 'respond-support'];
+const actions: ConnectedAction[] = ['register', 'request-teaching', 'review-facilitator', 'propose-topic', 'review-topic', 'enrol', 'complete-lesson', 'submit-quiz', 'submit-work', 'assign', 'review-work', 'send-message', 'read-thread', 'refer-support', 'respond-support', ...Object.keys(communityFields) as CommunityAction[]];
 const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
 const text = (v: unknown, max = 3000): v is string => typeof v === 'string' && !!v.trim() && v.length <= max;
 const note = (v: unknown, max = 3000): v is string => typeof v === 'string' && v.length <= max;
@@ -30,6 +31,9 @@ export function freshConnected(legacy?: SharedDemoSession): ConnectedState {
  courses.push(...structuredClone(seedCourses.filter(c => !courses.some(x => x.id === c.id))));
  for (const course of courses) if (!course.lessons.length || !course.quiz.length) course.status = 'review';
  return { schemaVersion: 1, courses, ...(legacy ? { legacy: structuredClone(legacy) } : {}), events: [] };
+}
+export function freshPresentation(): ConnectedState {
+ return { ...freshConnected(), cleanStart: true };
 }
 function seedView(state: ConnectedState): ConnectedView {
  const person = (id: string, name: string, role: PersonRole, teachingCourseIds: string[] = []): Person => ({ id, name, username: id, role, sample: true, demoCode: `DEMO-${id.toUpperCase()}`, status: 'active', goal: role === 'learner' ? 'Build practical skills for learning and work.' : '', access: role === 'learner' ? 'Clear written steps and flexible pacing.' : '', bio: role === 'facilitator' ? 'Sample teaching experience; demonstration only.' : '', teachingCourseIds, requestedCourseIds: [...teachingCourseIds], teachingReviewPending: false });
@@ -45,6 +49,7 @@ function seedView(state: ConnectedState): ConnectedView {
  });
  const assignments: ConnectedAssignment[] = enrolments.map(e => ({ id: `sample-${e.learnerId}-assignment`, learnerId: e.learnerId, courseId: e.course.id, facilitatorId: e.learnerId === 'ada' ? 'amaka' : 'tunde', workRevision: 1, note: 'Sample initial teaching assignment.' }));
  const threads: ChatThread[] = assignments.map(a => ({ id: teachingThreadId(a.learnerId, a.facilitatorId, a.courseId), participants: [a.learnerId, a.facilitatorId], courseId: a.courseId, kind: 'teaching', messages: [{ id: `welcome-${a.learnerId}`, senderId: a.facilitatorId, text: 'Welcome. Send me a question about your learning or practical work here.', at: sampleAt }, { id: `question-${a.learnerId}`, senderId: a.learnerId, text: a.learnerId === 'ada' ? 'How can I choose a clear filename and keep an offline copy?' : 'How should I explain a stock mismatch to a customer?', at: sampleAt + 1 }], read: { [a.learnerId]: 2, [a.facilitatorId]: 1 } }));
+ if (state.cleanStart) { enrolments.length = 0; assignments.length = 0; threads.length = 0; }
  if (state.legacy?.user.profile.name.trim()) {
   const d = state.legacy.user;
   people.push({ ...person('existing-learner', d.profile.name, 'learner'), username: 'my-profile', sample: false, demoCode: 'DEMO-EXISTING', goal: d.profile.goals.join(' · '), access: d.profile.access.join(' · ') });
@@ -54,7 +59,9 @@ function seedView(state: ConnectedState): ConnectedView {
   }
   if (d.teaching) people.push({ ...person('existing-facilitator', d.profile.name, 'facilitator'), username: 'my-teaching-profile', sample: false, demoCode: 'DEMO-TEACHING', status: 'pending', bio: `${d.teaching.skill}\n${d.teaching.examples}\n${d.teaching.explanation}\n${d.teaching.accessibility}`, teachingCourseIds: [], requestedCourseIds: [], teachingReviewPending: true, reviewNote: 'Earlier teaching application preserved. Select current teaching courses for review.' });
  }
- return { people, courses: structuredClone(state.courses), enrolments, assignments, threads, referrals: [], topics: [], events: [] };
+ const view: ConnectedView = { people, courses: structuredClone(state.courses), enrolments, assignments, threads, referrals: [], topics: [], events: [], requests: [], notices: [], boardReads: {}, moderation: [] };
+ initCommunity(view);
+ return view;
 }
 const teachingThreadId = (learnerId: string, facilitatorId: string, courseId: string) => `teaching:${learnerId}:${facilitatorId}:${courseId}`;
 export function currentConnectedAssignment(view: ConnectedView, learnerId: string, courseId: string) {
@@ -85,13 +92,18 @@ function issue(view: ConnectedView, command: ConnectedCommand): string | undefin
  if (!command || typeof command !== 'object' || !text(command.id, 100) || !Number.isInteger(command.expectedVersion) || command.expectedVersion < 0 || !(command.actorId === null || text(command.actorId, 150)) || !actions.includes(command.type) || !command.payload || typeof command.payload !== 'object' || Array.isArray(command.payload) || Object.keys(command).some(k => !['id', 'expectedVersion', 'actorId', 'type', 'payload'].includes(k))) return 'This action is malformed. Reopen the current record.';
  const p = command.payload;
  if (view.enrolments.some(x => x.id === command.id) || view.assignments.some(x => x.id === command.id) || view.threads.some(x => x.id === command.id)) return 'This action ID conflicts with an existing record.';
- const fields: Record<ConnectedAction, string[]> = { register: ['name','username','role','goal','access','bio','courseIds','demoCode'], 'request-teaching': ['courseIds','bio'], 'review-facilitator': ['personId','outcome','note'], 'propose-topic': ['title','description'], 'review-topic': ['topicId','outcome','note'], enrol: ['courseId'], 'complete-lesson': ['enrolmentId','lesson'], 'submit-quiz': ['enrolmentId','answers'], 'submit-work': ['enrolmentId','text'], assign: ['learnerId','courseId','facilitatorId','note'], 'review-work': ['enrolmentId','revision','outcome','note'], 'send-message': ['recipientId','text','courseId'], 'read-thread': ['threadId','count'], 'refer-support': ['learnerId','courseId','note'], 'respond-support': ['referralId','text'] };
+ const fields: Record<ConnectedAction, string[]> = { ...communityFields, register: ['name','username','role','goal','access','bio','courseIds','demoCode','homeState','publicIntroduction','publicationConsent'], 'request-teaching': ['courseIds','bio'], 'review-facilitator': ['personId','outcome','note'], 'propose-topic': ['title','description'], 'review-topic': ['topicId','outcome','note'], enrol: ['courseId'], 'complete-lesson': ['enrolmentId','lesson'], 'submit-quiz': ['enrolmentId','answers'], 'submit-work': ['enrolmentId','text'], assign: ['learnerId','courseId','facilitatorId','note'], 'review-work': ['enrolmentId','revision','outcome','note'], 'send-message': ['recipientId','text','courseId'], 'read-thread': ['threadId','count'], 'refer-support': ['learnerId','courseId','note'], 'respond-support': ['referralId','text'] };
  if (Object.keys(p).some(k => !fields[command.type].includes(k))) return 'This action includes unsupported fields.';
  const validCourses = (ids: unknown) => list(ids) && ids.every(id => view.courses.some(c => c.id === id && c.status === 'published'));
  if (command.type === 'register') {
+  if (p.homeState !== undefined && !boardStates.includes(p.homeState as string)) return 'Choose a valid home state or FCT.';
+  if (p.publicIntroduction !== undefined && (!note(p.publicIntroduction) || p.role !== 'facilitator')) return 'Only facilitators can submit a public introduction.';
+  if (p.publicationConsent !== undefined && (typeof p.publicationConsent !== 'boolean' || p.role !== 'facilitator')) return 'Publication consent must be a facilitator choice.';
+  if (p.publicationConsent === true && !text(p.publicIntroduction)) return 'Provide an introduction before agreeing to publication.';
   if (command.actorId !== null || !text(p.name, 150) || typeof p.username !== 'string' || !/^[a-z][a-z0-9._-]{2,29}$/.test(p.username) || view.people.some(a => a.username === p.username) || !['learner','facilitator'].includes(p.role as string) || !note(p.goal) || !note(p.access) || !note(p.bio) || !validCourses(p.courseIds) || !text(p.demoCode, 80) || (p.role === 'facilitator' && (!text(p.bio) || !(p.courseIds as string[]).length))) return 'Use a unique username (3–30 lowercase letters, numbers, dots, underscores or hyphens), a display name and valid teaching courses. Facilitators need teaching experience and at least one course.';
   return undefined;
  }
+ if (Object.hasOwn(communityFields, command.type)) return communityIssue(view, command);
  const actor = view.people.find(a => a.id === command.actorId);
  if (!actor) return 'Sign in to your demo profile first.';
  const admin = actor.role === 'admin', fac = actor.role === 'facilitator', learner = actor.role === 'learner';
@@ -144,7 +156,7 @@ function apply(view: ConnectedView, event: ConnectedEvent) {
  const actor = view.people.find(a => a.id === event.actorId);
  const e = view.enrolments.find(e => e.id === p.enrolmentId);
  switch (event.type) {
-  case 'register': view.people.push({ id: `person-${event.id}`, name: val('name'), username: val('username'), role: p.role as PersonRole, sample: false, demoCode: val('demoCode'), status: p.role === 'facilitator' ? 'pending' : 'active', goal: val('goal'), access: val('access'), bio: val('bio'), teachingCourseIds: [], requestedCourseIds: p.role === 'facilitator' ? [...p.courseIds as string[]] : [], teachingReviewPending: p.role === 'facilitator' }); break;
+  case 'register': view.people.push({ id: `person-${event.id}`, name: val('name'), username: val('username'), role: p.role as PersonRole, sample: false, demoCode: val('demoCode'), status: p.role === 'facilitator' ? 'pending' : 'active', goal: val('goal'), access: val('access'), bio: val('bio'), teachingCourseIds: [], requestedCourseIds: p.role === 'facilitator' ? [...p.courseIds as string[]] : [], teachingReviewPending: p.role === 'facilitator', ...(p.homeState ? { homeState: val('homeState') } : {}), ...(p.publicIntroduction !== undefined ? {publicProfile: {draft:val('publicIntroduction'),consent:p.publicationConsent === true,pending:p.publicationConsent === true}} : {}) }); break;
   case 'request-teaching': actor!.requestedCourseIds = [...p.courseIds as string[]]; actor!.bio = val('bio'); actor!.teachingReviewPending = true; if (actor!.status !== 'active') actor!.status = 'pending'; break;
   case 'review-facilitator': { const target = view.people.find(a => a.id === p.personId)!; target.reviewNote = val('note'); target.teachingReviewPending = false; if (p.outcome === 'approved') { target.status = 'active'; target.teachingCourseIds = [...target.requestedCourseIds]; } else if (target.status !== 'active') target.status = 'changes-requested'; break; }
   case 'propose-topic': view.topics.push({ id: event.id, facilitatorId: actor!.id, title: val('title'), description: val('description'), status: 'pending' }); break;
@@ -156,7 +168,8 @@ function apply(view: ConnectedView, event: ConnectedEvent) {
   case 'assign': {
    const enrolment = view.enrolments.find(e => e.learnerId === p.learnerId && e.course.id === p.courseId)!;
    const next: ConnectedAssignment = { id: event.id, learnerId: val('learnerId'), facilitatorId: val('facilitatorId'), courseId: val('courseId'), workRevision: enrolment.workRevision, note: val('note') };
-   view.assignments = view.assignments.filter(a => a.learnerId !== p.learnerId || a.courseId !== p.courseId); view.assignments.push(next); break;
+   view.assignments = view.assignments.filter(a => a.learnerId !== p.learnerId || a.courseId !== p.courseId); view.assignments.push(next);
+   resolveManualRequest(view, next.learnerId, next.courseId, next.facilitatorId, next.note); break;
   }
   case 'review-work': e!.review = p.outcome === 'approved' ? 'approved' : 'needs-changes'; e!.feedback = val('note'); break;
   case 'send-message': {
@@ -174,6 +187,7 @@ function apply(view: ConnectedView, event: ConnectedEvent) {
   case 'refer-support': view.referrals.push({ id: event.id, learnerId: val('learnerId'), ...(actor!.role === 'facilitator' ? { facilitatorId: actor!.id } : {}), ...(p.courseId ? { courseId: val('courseId') } : {}), note: val('note'), at: event.at }); break;
   case 'respond-support': view.referrals.find(r => r.id === p.referralId)!.response = val('text'); break;
  }
+ if (Object.hasOwn(communityFields, event.type)) communityApply(view, event);
  view.events.push(event);
 }
 export function connectedView(state: ConnectedState): ConnectedView {
@@ -185,7 +199,7 @@ export function validConnected(value: unknown): value is ConnectedState {
  try {
   if (!value || typeof value !== 'object') return false;
   const s = value as ConnectedState;
-  if (s.schemaVersion !== 1 || Object.keys(s).some(k => !['schemaVersion','courses','legacy','events'].includes(k)) || !Array.isArray(s.courses) || s.courses.length > 200 || !s.courses.every(c => validCourseVersion(c) && (c.status !== 'published' || (c.lessons.length > 0 && c.quiz.length > 0))) || new Set(s.courses.map(c => c.id)).size !== s.courses.length || !seedCourses.every(c => s.courses.some(x => x.id === c.id)) || (s.legacy !== undefined && !validShared(s.legacy)) || !Array.isArray(s.events) || s.events.length > 2000) return false;
+  if (s.schemaVersion !== 1 || Object.keys(s).some(k => !['schemaVersion','courses','legacy','cleanStart','events'].includes(k)) || (s.cleanStart !== undefined && s.cleanStart !== true) || (s.cleanStart && s.legacy !== undefined) || !Array.isArray(s.courses) || s.courses.length > 200 || !s.courses.every(c => validCourseVersion(c) && (c.status !== 'published' || (c.lessons.length > 0 && c.quiz.length > 0))) || new Set(s.courses.map(c => c.id)).size !== s.courses.length || !seedCourses.every(c => s.courses.some(x => x.id === c.id)) || (s.legacy !== undefined && !validShared(s.legacy)) || !Array.isArray(s.events) || s.events.length > 2000) return false;
   const view = seedView(s), ids = new Set<string>(); let lastTime = 0;
   for (let i = 0; i < s.events.length; i++) {
    const e = s.events[i]; if (!e || typeof e !== 'object') return false;
@@ -213,11 +227,11 @@ export function visibleConnectedEvents(view: ConnectedView, actorId: string): { 
  const actor = view.people.find(p => p.id === actorId); if (!actor) return [];
  const people = new Set(visiblePeople(view, actorId).map(p => p.id));
  return view.events.filter(e => {
-  if (e.type === 'send-message' || e.type === 'read-thread') return false;
+  if (e.type === 'send-message' || e.type === 'read-thread' || ['publish-notice','reply-notice','moderate-board','read-notice','read-board'].includes(e.type)) return false;
   if (actor.role === 'admin' || e.actorId === actorId) return true;
   const enrolment = view.enrolments.find(x => x.id === e.payload.enrolmentId);
   return !!enrolment && people.has(enrolment.learnerId) && (actor.role !== 'learner' || enrolment.learnerId === actorId);
- }).map(e => ({ id: e.id, at: e.at, actorName: view.people.find(p => p.id === e.actorId)?.name ?? 'New participant', summary: ({ register: 'Participant registered', 'request-teaching': 'Teaching scope submitted for review', 'review-facilitator': 'Facilitator teaching scope reviewed', 'propose-topic': 'Additional topic proposed', 'review-topic': 'Additional topic reviewed', enrol: 'Course enrolment recorded', 'complete-lesson': 'Lesson completed', 'submit-quiz': 'Quiz attempt recorded', 'submit-work': 'Practical work submitted', assign: 'Learning assignment updated', 'review-work': 'Practical decision recorded', 'refer-support': 'Support referral shared with Administration', 'respond-support': 'Support response recorded', 'send-message': '', 'read-thread': '' } as Record<ConnectedAction,string>)[e.type] }));
+ }).map(e => ({ id: e.id, at: e.at, actorName: view.people.find(p => p.id === e.actorId)?.name ?? 'New participant', summary: ({ register: 'Participant registered', 'request-teaching': 'Teaching scope submitted for review', 'review-facilitator': 'Facilitator teaching scope reviewed', 'propose-topic': 'Additional topic proposed', 'review-topic': 'Additional topic reviewed', enrol: 'Course enrolment recorded', 'complete-lesson': 'Lesson completed', 'submit-quiz': 'Quiz attempt recorded', 'submit-work': 'Practical work submitted', assign: 'Learning assignment updated', 'review-work': 'Practical decision recorded', 'refer-support': 'Support referral shared with Administration', 'respond-support': 'Support response recorded', 'set-home-state':'Home state updated', 'submit-public-profile':'Public introduction submitted for review', 'withdraw-public-profile':'Public listing consent withdrawn', 'review-public-profile':'Public introduction reviewed', 'request-facilitator':'Facilitator preference sent to Administration', 'withdraw-request':'Facilitator request withdrawn', 'resolve-request':'Facilitator request resolved' } as Partial<Record<ConnectedAction,string>>)[e.type] ?? 'Workspace action recorded' }));
 }
 export function loadConnected(legacy?: SharedDemoSession): { state: ConnectedState; warning?: string; recovery?: string; raw?: string } {
  try {
@@ -233,7 +247,7 @@ export function saveConnected(state: ConnectedState): boolean {
   const previousRaw = localStorage.getItem(CONNECTED_KEY);
   if (previousRaw !== null) {
    const previous: unknown = JSON.parse(previousRaw);
-   if (!validConnected(previous) || !same(previous.courses, state.courses) || !same(previous.legacy, state.legacy) || previous.events.length > state.events.length || previous.events.some((e,i) => !same(e,state.events[i]))) return false;
+   if (!validConnected(previous) || previous.cleanStart !== state.cleanStart || !same(previous.courses, state.courses) || !same(previous.legacy, state.legacy) || previous.events.length > state.events.length || previous.events.some((e,i) => !same(e,state.events[i]))) return false;
   }
   const raw = JSON.stringify(state); localStorage.setItem(CONNECTED_KEY, raw);
   return localStorage.getItem(CONNECTED_KEY) === raw;

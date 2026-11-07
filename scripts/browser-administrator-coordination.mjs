@@ -22,7 +22,7 @@ page.on('pageerror', e => errors.push(e.message)); page.on('request', r => { if 
 const button = name => page.getByRole('button', { name, exact: true });
 const role = name => page.getByRole('tab', { name, exact: true });
 const read = () => page.evaluate(() => JSON.parse(sessionStorage.getItem('mosaic-user-demo-v1')));
-async function open() { await button('Projects & Possibilities').click(); await page.getByRole('button', { name: 'Open the app demo', exact: false }).click(); }
+async function open() { await button('Learning Sandbox').click(); await page.getByRole('button', { name: 'Open the app demo', exact: false }).click(); }
 async function nav(name, admin = true) { const toggle = button(admin ? 'Administration menu' : 'My pathway menu'); if (await toggle.isVisible() && await toggle.getAttribute('aria-expanded') === 'false') await toggle.click(); await page.getByRole('navigation', { name: admin ? 'Administration' : 'My pathway', exact: true }).getByRole('button', { name, exact: true }).click(); }
 async function audit(name) { const result = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze(); audits.push({ name, violations: result.violations }); assert.deepEqual(result.violations, [], name); }
 async function courseDecision(outcome, reason) { await page.getByLabel('Course outcome', { exact: true }).selectOption(outcome); await page.getByLabel('Course decision reason').fill(reason); await button('Record course decision').click(); }

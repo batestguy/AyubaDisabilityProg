@@ -1,6 +1,8 @@
 # Facilitator directory, learner preferences and state noticeboards
 
-Status: **agreed plan; NOT IMPLEMENTED; implementation deferred by the user**.
+Status: **implemented locally on 7 November 2026 following renewed user authorization**. See [implementation guide](FUNDING-DEMO.md) and [current handoff](../SESSION-HANDOFF.md) for verification and remaining boundaries.
+
+The 28 October instructions and future-tense sequence below preserve the original planning record. They no longer defer implementation. No commit, push or deployment is implied.
 Recorded: 28 October 2026. This is the continuation specification for a future session.
 
 ## 1. Latest instruction and authorization

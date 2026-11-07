@@ -1,3 +1,7 @@
+async function openOriginalTools(page) {
+ await page.getByRole('button',{name:'Open the app demo',exact:false}).click();
+ await page.getByText('Original sandbox tools',{exact:true}).click();
+}
 import { mkdir } from "node:fs/promises";
 await mkdir("output/playwright", { recursive: true });
 import { chromium } from "playwright";
@@ -8,8 +12,9 @@ const page = await context.newPage();
 await page.goto("http://127.0.0.1:5173/?workspace=earlier");
 await page.locator("h1").waitFor();
 await page
-  .getByRole("button", { name: "Projects & Possibilities", exact: true })
+  .getByRole("button", { name: "Learning Sandbox", exact: true })
   .click();
+await openOriginalTools(page);
 await page.getByRole("button", { name: "Explore the learning sandbox" }).click();
 await page.getByLabel("Perspective", { exact: true }).selectOption("expert");
 const profile = page.locator("section").filter({

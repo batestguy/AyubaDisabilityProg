@@ -110,8 +110,8 @@ assert.equal(await nojs.locator('.static-gallery').count(),0);
 assert.equal(await nojs.locator('.static-story article[id^=static-] figure').count(),10);
 assert.match(await nojs.locator('.static-story').innerText(),/Lawrence Edelifo Idemudia/);
 assert.equal(await nojs.locator('#static-home details').count(),12);
-assert.equal(await nojs.locator('#static-explore details').count(),5);
-assert.deepEqual(await nojs.getByRole('navigation',{name:'Main navigation'}).getByRole('link').allTextContents(),['Home','Projects & Possibilities','About']);
+assert.equal(await nojs.locator('#static-explore details').count(),0);
+assert.deepEqual(await nojs.getByRole('navigation',{name:'Main navigation'}).getByRole('link').allTextContents(),['Home','Learning Sandbox','Research & Data Collection','About']);
 for (const name of ['Jerry Bannister Zachary','Strong']) {
  const profile=nojs.locator('#static-about').getByRole('region',{name,exact:true});
  assert.equal(await profile.innerText(),name+'\nPhoto space');
@@ -175,7 +175,7 @@ await strip.getByRole('button').nth(2).focus();
 await page.keyboard.press('Enter');
 assert.equal(await event.locator('time').getAttribute('datetime'),'2024-09-26');
 assert.equal(await page.locator('.opportunity').count(),0);
-assert.deepEqual(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('button').allTextContents(),['Home','Projects & Possibilities','About']);
+assert.deepEqual(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('button').allTextContents(),['Home','Learning Sandbox','Research & Data Collection','About']);
 const timelineFailure=await browser.newPage();
 await timelineFailure.route('**/photos/civic.webp',route=>route.abort());
 await timelineFailure.goto('http://127.0.0.1:5173/?workspace=earlier');
@@ -185,8 +185,15 @@ assert.match(await timelineFailure.locator('.timeline-event figcaption').innerTe
 assert.equal(await timelineFailure.locator('.timeline-event').getByRole('link',{name:/^Source/ }).count(),1);
 await timelineFailure.close();
 // Main navigation, blank role spaces and named About profiles.
-await page.getByRole('button',{name:'Projects & Possibilities',exact:true}).click();
-assert.equal(await page.locator('.opportunity').count(),5);
+await page.getByRole('button',{name:'Learning Sandbox',exact:true}).click();
+assert.equal(await page.locator('.opportunity').count(),0);
+await page.getByRole('heading',{name:'Learning Sandbox.',exact:true}).waitFor();
+assert.equal(await page.locator('.sampling-framework').count(),0);
+await page.getByRole('button',{name:'Research & Data Collection',exact:true}).click();
+await page.getByRole('heading',{name:'Research & Data Collection.',exact:true}).waitFor();
+assert.equal(await page.locator('.sampling-outline').count(),1);
+await page.getByRole('button',{name:'Learning Sandbox',exact:true}).click();
+assert.equal(await page.locator('footer').count(),0);
 assert.equal(await page.getByRole('tab').count(),0);
 await page.getByRole('button',{name:'Open the app demo',exact:false}).click();
 for (const name of ['User','Administration','Facilitator']) {
@@ -228,7 +235,7 @@ for (const name of ['Jerry Bannister Zachary','Strong']) {
 await page.getByRole('button',{name:'A+ Text',exact:true}).click();
 for (const width of [390,768,1440]) {
  await page.setViewportSize({width,height:900});
- for (const section of ['Projects & Possibilities','About']) {
+ for (const section of ['Learning Sandbox','About']) {
   await page.getByRole('button',{name:section,exact:true}).click();
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,`${section} enlarged-text overflow at ${width}`);
  }
