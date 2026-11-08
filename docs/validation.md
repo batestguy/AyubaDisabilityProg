@@ -300,3 +300,19 @@ Fresh handoff preflight passes all101 tests, TypeScript and production build (84
 ## 8 November 2026 — Connected learner map and site refinement
 
 Preflight passes 120 tests, TypeScript and production build. The current Administration map reads current connected learner home states; earlier geography samples are kept separate. Production browser map checks pass seven accessibility audits and prove registration, later home-state update/reload, sample scopes, missing states, keyboard/LGA-reference navigation, current learner-record links, mobile/200% reflow and map-loading/malformed/offline retry without record writes. Full connected and community journeys pass ten and eleven clean audits respectively, with zero errors/POST. LGA learner counts are not shown because LGA is not yet collected. The existing large-JavaScript-chunk advisory remains. No production dependency or deployment was added.
+
+
+## 8 November 2026 - Plateau proposal and discussion brief
+
+Local content update: Home, Research and About; shared proposal content; generated standalone HTML handout and no-JavaScript story. See `docs/RESEARCH-SAMPLING-FRAMEWORK.md` for decisions and reproduction commands.
+
+Validation: preflight (120 tests and typed production build), documentary `browser-story`, learning navigation (six clean axe audits and unchanged demo storage), and new `browser-pilot` checks (five clean axe audits, live/no-JavaScript navigation, phone/200% reflow, both keyboard-scrollable tables, reduced motion, zero errors/POST and print PDF). The printed brief has two discussion pages and one source page with URLs and review dates. Print pages and desktop/phone viewports visually checked. Evidence: `output/playwright/pilot-results.json`, `learning-navigation-results.json`, `plateau-pilot-discussion-brief.pdf`, `pilot-print-page-*.png`, `pilot-research-opening.png`, `pilot-research-phone-opening.png`.
+
+Existing demo records, course content, role workflows and documentary photographs remain preserved. No deployment was requested or performed. Non-failing Vite bundle-size advisory remains.
+
+
+## 8 November 2026 - Local commit and next-session presentation checkpoint
+
+User selected “Document and commit for next time.” Added the current handoff, a planned 20–25-slide presentation brief with a suggested 24-slide story, and current-state cross-references. No slide redesign implemented. Current Nigerian-flag logo and Plateau proposal are included in the checkpoint; demo records remain unchanged.
+
+Fresh `npm.cmd run preflight` passed 120/120 tests, TypeScript and production build. Six documentation files have no unresolved local Markdown file targets. Existing non-failing Vite bundle-size advisory remains. Earlier documentary/navigation/pilot and final logo browser evidence above remains applicable; those browser suites were not repeated for this documentation-only continuation. Local commit requested; no push or deployment in this checkpoint.

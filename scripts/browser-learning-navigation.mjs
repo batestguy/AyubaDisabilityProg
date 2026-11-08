@@ -70,8 +70,13 @@ try {
  await audit('learning-entry');
  await button('Research & Data Collection').click();
  await page.getByRole('heading', { name: 'Research & Data Collection.', exact: true }).waitFor();
- await page.locator('.sampling-outline summary').click();
+ assert.equal(await page.locator('.sampling-outline').getAttribute('open'), '');
  assert.equal(await page.locator('.sampling-outline li').count(), 6);
+ assert.equal(await page.getByRole('region', { name: 'Sampling methods and pilot time frames' }).locator('tbody tr').count(), 8);
+ assert.deepEqual(await page.getByRole('region', { name: 'Sampling methods and pilot time frames' }).locator('thead th').allTextContents(), ['Stage', 'Statistical method', 'In everyday language', 'Practical time frame']);
+ await page.emulateMedia({ reducedMotion: 'reduce' });
+ assert.equal(await page.locator('.sampling-mini-group').first().evaluate(node => getComputedStyle(node).animationName), 'none');
+ await page.emulateMedia({ reducedMotion: 'no-preference' });
  assert.equal(await page.locator('.research-page form').count(), 0);
  assert.equal(await page.locator('.sampling-blank,.sampling-spaces').count(), 0, 'Research has no empty placeholders');
  await audit('research-outline');
@@ -139,6 +144,12 @@ try {
   await audit(mobile ? 'signin-mobile-200' : 'signin-desktop');
   await button('Research & Data Collection').click();
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+  if (mobile) {
+   const tableRegion = page.getByRole('region', { name: 'Sampling methods and pilot time frames' });
+   await tableRegion.focus();
+   await tableRegion.press('ArrowRight');
+   await page.waitForFunction(() => document.querySelector('.sampling-table-scroll').scrollLeft > 0);
+  }
   if (mobile) await audit('research-mobile-200');
   await button('Learning Sandbox').click();
   await page.getByRole('button', { name: 'Open the app demo', exact: false }).click();

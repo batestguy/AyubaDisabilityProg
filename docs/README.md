@@ -1,5 +1,7 @@
 # Documentation index
 
+Current checkpoint (8 November 2026): the independent Plateau proposal, shared printable brief and six-person Nigerian-flag unity logo are implemented. The user wants a captivating **20–25-slide Research presentation** with photographs of individuals, artwork, animations and mathematics, and chose **“Document and commit for next time.”** No deck is implemented. Start with [the current handoff](../SESSION-HANDOFF.md), [presentation brief](RESEARCH-PRESENTATION-BRIEF.md), [proposal implementation record](RESEARCH-SAMPLING-FRAMEWORK.md) and [logo record](UNITY-LOGO.md). The older sparse-page restrictions below are historical; sandbox acceptance and fieldwork readiness remain separate outstanding matters.
+
 Current user-review continuation (7 November): Learning Sandbox replaces Projects & Possibilities; a separate **Research & Data Collection** tab follows it. The user explicitly authorized this page split and moving the sparse research outline, plus role-button focus/scroll to sign-in. Detailed research content and collection remain deferred; sandbox acceptance is still pending. See [current handoff](../SESSION-HANDOFF.md). The earlier instruction below to preserve the placeholder on Projects is historical for its original checkpoint.
 
 Latest documentation checkpoint (7 November 2026): [Research & Data Collection: next-phase brief](RESEARCH-DATA-COLLECTION-NEXT-PHASE.md) is authoritative for the research direction, literature, proposed study and mathematics/presentation specification. **Sandbox user verification and explicit acceptance remain pending.** Recorded tests/browser checks are historical evidence. Verify and accept the three-role sandbox first; await an instruction opening research-page/presentation work; separately design, fund and approve a field protocol before collection. Keep Projects mostly blank until the phase is opened. No build/preflight is required for this documentation-only checkpoint because it regenerates tracked artifacts; this specific instruction overrides the generic resume instruction below for this checkpoint.
@@ -12,6 +14,9 @@ The Projects & Possibilities page now replaces its five proposal cards and older
 
 | Document | Purpose |
 |---|---|
+| [Research presentation brief](RESEARCH-PRESENTATION-BRIEF.md) | Planned 20–25-slide visual treatment, suggested 24-slide story, photographs/artwork, mathematics, animations and acceptance checks; deferred to next time |
+| [Plateau proposal implementation](RESEARCH-SAMPLING-FRAMEWORK.md) | Current proposal, shared handout generation, recruitment/sampling distinctions and validation |
+| [Unity logo](UNITY-LOGO.md) | Current six-person Nigerian-flag header artwork, generation prompt and preserved original |
 | [Research & Data Collection next phase](RESEARCH-DATA-COLLECTION-NEXT-PHASE.md) | Authoritative brief, evidence register, proposed study, mathematics/presentation requirements and pending sandbox user-acceptance gate |
 | [Bayesian snowball planning skeleton](BAYESIAN-SNOWBALL-FRAMEWORK.md) | Preserved sparse framework and open questions; subject to the next-phase brief and acceptance gate |
 | [Funding demo implementation](FUNDING-DEMO.md) | Current role connections, demonstration sequence, permissions and service boundaries |

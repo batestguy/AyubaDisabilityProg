@@ -75,9 +75,15 @@ const data = (e: FormEvent<HTMLFormElement>) => {
     string
   >;
 };
+function initialPage() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("demo") === "connected") return "app-demo";
+  const requested = params.get("page");
+  return requested === "research" || requested === "explore" || requested === "about" ? requested : "overview";
+}
 export default function App() {
   const [state, setState] = useState<State>(loadState),
-    [page, setPage] = useState(() => new URLSearchParams(window.location.search).get("demo") === "connected" ? "app-demo" : "overview"),
+    [page, setPage] = useState(initialPage),
     [role, setRole] = useState("learner"),
     [lang, setLang] = useState("en"),
     [active, setActive] = useState("learner-demo"),
@@ -228,7 +234,7 @@ export default function App() {
       <header>
         <a className="brand" href="#" onClick={() => setPage("overview")}>
           <span className="brand-mark" aria-hidden="true">
-            ▦
+            <img src="/impact-mosaic-unity-nigeria.png" width="56" height="56" alt="" />
           </span>
           <span>
             IMPACT MOSAIC<small>A vision for inclusive opportunity</small>

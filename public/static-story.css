@@ -1,5 +1,5 @@
 @import url("/remote-learning.css");
-.static-story { max-width: 960px; margin: auto; padding: 32px 5%; color: #14532D; background: #FFFFFF; font: 16px/1.65 "Trebuchet MS",sans-serif; }
+.static-story { max-width: 960px; margin: auto; padding: 32px 5%; color: #14532D; background: #FFFFFF; font: 1rem/1.65 "Trebuchet MS",sans-serif; overflow-wrap: anywhere; }
 body { margin: 0; background: #FFFFFF; }
 .static-story h1,.static-story h2 { font-family: Georgia,serif; line-height: 1.2; font-weight: normal; }
 .static-story h1 { font-size: clamp(2rem,6vw,4rem); }
@@ -32,3 +32,14 @@ body { margin: 0; background: #FFFFFF; }
 .static-story .about-credits li{padding:0;border:0}
 .static-story .research-status{padding:12px 16px;background:#f3f6f3;border-left:3px solid #14532d}
 @media(max-width:640px){.static-story .about-overview{grid-template-columns:1fr}}
+.static-story .sampling-table-scroll{overflow-x:auto;max-width:100%;border:1px solid #d9dfd4}
+.static-story .sampling-methods{width:100%;min-width:760px;border-collapse:collapse;text-align:left}
+.static-story .sampling-methods th,.static-story .sampling-methods td{padding:16px;vertical-align:top;border-bottom:1px solid #d9dfd4}
+.static-story .sampling-methods thead{background:#14532d;color:#fff}
+.static-story .sampling-methods caption{text-align:left;padding:16px;background:#f3f6f3}
+.static-story .sampling-methods p{margin:8px 0 0}
+.static-story .sampling-mini{display:block;width:112px;height:52px;color:#14532d}
+.static-story .sampling-source-note{font-size:.875rem;color:#435a4d}
+.static-story .proposal-links{display:flex;flex-wrap:wrap;gap:12px 24px}
+.static-story .proposal-sources li{overflow-wrap:anywhere}
+@media print{.static-story .sampling-table-scroll{overflow:visible}.static-story .sampling-methods{min-width:0}}
