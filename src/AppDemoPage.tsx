@@ -14,11 +14,21 @@ import { TeachingScenarioWorkspace } from './TeachingScenarioWorkspace';
 import type { ScenarioRole } from './teachingScenario';
 import { ConnectedWorkspace } from './ConnectedWorkspace';
 import { FreshDemoControl } from './FreshDemoControl';
+import { SandboxArtwork } from './SandboxArtwork';
 
 export function AppDemoPage({onOpenPage}: {onOpenPage:(page:string)=>void}) {
+ const [signedIn, setSignedIn] = useState(false);
  const [earlier, setEarlier] = useState(() => new URLSearchParams(window.location.search).get('workspace') === 'earlier');
  function select(value: boolean) { const url = new URL(window.location.href); if (value) url.searchParams.set('workspace', 'earlier'); else url.searchParams.delete('workspace'); window.history.replaceState(null, '', url); setEarlier(value); }
- return <><div className="section demo-tools"><h1>Learning Sandbox.</h1><FreshDemoControl/>{earlier&&<aside className="earlier-demo-notice" aria-label="Earlier demo navigation"><h2>You are viewing earlier demo screens</h2><p>These older screens keep separate records. Use the connected demo for the current learner, facilitator and Administration journey.</p><button onClick={() => select(false)}>Back to connected demo</button><details className="archived-tools"><summary>Original sandbox tools</summary><p>Earlier fictional tools, kept separately from the connected workspace.</p><div className="mp-actions"><button onClick={()=>onOpenPage('sandbox')}>Explore the learning sandbox</button><button onClick={()=>onOpenPage('navigator')}>Open the support navigator</button></div></details></aside>}</div>{earlier?<EarlierAppDemoPage/>:<ConnectedWorkspace onOpenEarlier={() => select(true)}/>}</>;
+ return <>
+  <div className="section demo-tools">
+   <div className="site-page-heading"><div><h1>Learning Sandbox.</h1>{!earlier&&!signedIn&&<p>Choose your role to explore learning, teaching and support.</p>}</div>{!earlier&&!signedIn&&<a className="primary" href="#cd-role-choice" onClick={event=>{event.preventDefault();const heading=document.getElementById('cd-role-choice');heading?.focus({preventScroll:true});heading?.scrollIntoView({behavior:'instant',block:'start'});}}>Sign in to the sandbox →</a>}</div>
+   {!earlier&&!signedIn&&<SandboxArtwork/>}
+   {earlier&&<aside className="earlier-demo-notice" aria-label="Earlier demo navigation"><h2>You are viewing earlier demo screens</h2><p>These older screens keep separate records. Use the connected demo for the current learner, facilitator and Administration journey.</p><button onClick={() => select(false)}>Back to connected demo</button><details className="archived-tools"><summary>Original sandbox tools</summary><p>Earlier fictional tools, kept separately from the connected workspace.</p><div className="mp-actions"><button onClick={()=>onOpenPage('sandbox')}>Explore the learning sandbox</button><button onClick={()=>onOpenPage('navigator')}>Open the support navigator</button></div></details></aside>}
+  </div>
+  {earlier?<EarlierAppDemoPage/>:<ConnectedWorkspace onOpenEarlier={() => select(true)} onSignedInChange={setSignedIn}/>}
+  {earlier&&<div className="showcase demo-maintenance"><FreshDemoControl/></div>}
+ </>;
 }
 
 function EarlierAppDemoPage() {

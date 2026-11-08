@@ -31,10 +31,11 @@ const button=name=>page.getByRole('button',{name,exact:true});
 const nav=async name=>page.getByRole('navigation',{name:'Connected workspace',exact:true}).getByRole('button',{name,exact:true}).click();
 async function audit(name){const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();audits.push({name,violations:result.violations});assert.deepEqual(result.violations,[],name);}
 async function fresh(){
+ const resetUrl=new URL(target);resetUrl.searchParams.set('workspace','earlier');await page.goto(resetUrl.href);
  const controls=page.locator('.fresh-demo-controls');
  if(!await controls.evaluate(el=>el.open))await controls.locator('summary').click();
  await button('Start a fresh demo').click();await button('Clear demo activity and start fresh').click();
- await page.getByText('Fresh demo ready.',{exact:false}).waitFor();
+ await page.getByRole('heading',{name:'How would you like to sign in?',exact:true}).waitFor();
 }
 async function signOut(){await button('Sign out').click();await page.getByRole('region',{name:'Choose a demo interface'}).waitFor();}
 try{
@@ -55,12 +56,13 @@ try{
   if(role==='Facilitator')await page.getByText('No learners assigned yet',{exact:true}).waitFor();
   await audit(`fresh-${file}`);await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:`output/playwright/fresh-${file}.png`,fullPage:true});await signOut();
  }
- await button('View earlier demos').click();await page.getByRole('heading',{name:'You are viewing earlier demo screens',exact:true}).waitFor();
+ await button('Use Administration interface').click();await button('Sign in').click();await button('View earlier demos').click();await page.getByRole('heading',{name:'You are viewing earlier demo screens',exact:true}).waitFor();
  await button('Open guided teaching demo').click();await button('Back to earlier demo').click();await button('Open guided teaching demo').waitFor();await button('Back to connected demo').click();
  await page.getByRole('region',{name:'Choose a demo interface'}).waitFor();
- const controls=page.locator('.fresh-demo-controls');if(!await controls.evaluate(el=>el.open))await controls.locator('summary').click();await button('Start a fresh demo').click();await button('Keep current demo').click();assert.equal(await page.getByRole('region',{name:'Fresh demo confirmation'}).count(),0);
+ const resetUrl=new URL(target);resetUrl.searchParams.set('workspace','earlier');await page.goto(resetUrl.href);
+ const controls=page.locator('.fresh-demo-controls');if(!await controls.evaluate(el=>el.open))await controls.locator('summary').click();await button('Start a fresh demo').click();await button('Keep current demo').click();assert.equal(await page.getByRole('region',{name:'Fresh demo confirmation'}).count(),0);await button('Back to connected demo').click();
  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>document.documentElement.style.fontSize='200%');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await audit('fresh-mobile-enlarged');await page.evaluate(()=>document.documentElement.style.fontSize='');await page.setViewportSize({width:1440,height:1050});
- await fresh();await page.reload();await page.getByText('Fresh demo ready.',{exact:false}).waitFor();
+ await fresh();await page.reload();await page.getByRole('heading',{name:'How would you like to sign in?',exact:true}).waitFor();
  const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('mosaic-connected-v1')));assert.deepEqual(after.events,[]);assert.equal(after.cleanStart,true);
  assert.deepEqual(errors,[]);assert.deepEqual(posts,[]);
  await page.getByRole('region',{name:'Choose a demo interface'}).scrollIntoViewIfNeeded();

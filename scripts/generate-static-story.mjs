@@ -1,8 +1,25 @@
 import ts from 'typescript';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { createElement } from 'react';
 import { readFile, writeFile } from 'node:fs/promises';
 // Build a readable no-JavaScript story from the same records as the React view.
 const compile = text => ts.transpileModule(text,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
 const moduleUrl = text => 'data:text/javascript;base64,'+Buffer.from(text).toString('base64');
+// Render the same illustration markup in both JavaScript-free entry screens.
+const remoteSource = ts.transpileModule(await readFile('src/RemoteLearningArtwork.tsx', 'utf8'), { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText.replaceAll('"react/jsx-runtime"', JSON.stringify(import.meta.resolve('react/jsx-runtime'))).replaceAll("'react'", JSON.stringify(import.meta.resolve('react')));
+const { RemoteLearningArtwork } = await import(moduleUrl(remoteSource));
+let artworkSerial = 0;
+const remoteArtwork = () => renderToStaticMarkup(createElement(RemoteLearningArtwork), { identifierPrefix: `static-artwork-${++artworkSerial}-` });
+const staticPage = async (path, name) => {
+ const code = ts.transpileModule(await readFile(path, 'utf8'), { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText.replaceAll('"react/jsx-runtime"', JSON.stringify(import.meta.resolve('react/jsx-runtime')));
+ const exports = await import(moduleUrl(code));
+ return renderToStaticMarkup(createElement(exports[name])).replaceAll('<h1>', '<h2>').replaceAll('</h1>', '</h2>');
+};
+const [staticAbout, staticResearch] = await Promise.all([
+ staticPage('src/AboutPage.tsx', 'AboutPage'),
+ staticPage('src/ResearchDataCollectionPage.tsx', 'ResearchDataCollectionPage'),
+]);
+
 const evidenceUrl=moduleUrl(compile(await readFile('src/evidence.ts','utf8')));
 const source=compile(await readFile('src/showcase.ts','utf8')).replace("'./evidence'",JSON.stringify(evidenceUrl));
 const {achievements,photos,milestones,sourceFor,sourceRegister,leadershipReading}=await import(moduleUrl(source));
@@ -17,8 +34,10 @@ const html=`<link rel="stylesheet" href="/static-story.css"><main class="static-
 ${picture(photos[0])}<h2>Chief Ayuba Gufwan.</h2><p>Appointed on 6 August 2024, Gufwan brings a background in law and disability advocacy. FMINO's leadership profile describes more than three decades of advocacy and an approach built on development partnerships.</p>${link('leadership','Read the leadership profile')}<h3>More of his story.</h3><ul>${leadershipReading.map(story=>`<li>${link(story.id,story.title)}<p>${esc(story.summary)}</p></li>`).join('')}</ul>${picture(leader)}
 <h2>Participation, in practice.</h2>${achievements.map((a,i)=>`<article id="static-${esc(a.id)}"><h3>${i+1}. ${esc(a.title)}</h3><p>${esc(a.status)} · ${esc(a.location)} · Report: ${esc(a.date)}</p>${photos.filter(p=>a.photos.includes(p.id)||(a.id==='institutions'&&p.id==='leadership')).map(picture).join('')}<p>${esc(a.account)}</p><p><b>Gufwan / NCPWD's role:</b> ${esc(a.role)}</p><p><b>Partner credit:</b> ${esc(a.partners)}</p><p><b>Evidence and activity status:</b> ${esc(a.evidence)}</p>${link(a.source)}${a.id==='institutions'?`<p>${link('cbm','CBM report')} · ${link('data','NDMIS report')}</p>`:''}${a.id==='livelihoods'?`<p>${link('partnership','Skills partnership report')}</p>`:''}</article>`).join('')}
 <h2>Milestones during his tenure.</h2>${milestones.map(m=>`<details><summary>${esc(m.date)} &middot; ${esc(m.title)}</summary><p>${esc(m.status)}</p><p>${esc(m.text)}</p>${photos.find(p=>p.source===m.source)?picture(photos.find(p=>p.source===m.source)):""}${link(m.source)}<p>Evidence caveat: ${esc(achievements.find(a=>a.source===m.source)?.evidence||sourceFor(m.source).summary)}</p></details>`).join('')}
-<h2>Sources you can check.</h2><p>Reviewed 4 October 2026. Historical reports are not open application calls. No currently verified live opportunity is listed.</p>${sourceRegister.map(s=>`<article><h3>${link(s.id,s.title)}</h3><p>${esc(s.date)} · ${esc(s.summary)}</p></article>`).join('')}</section><section id="static-explore"><h2>Learning Sandbox.</h2><p>Try the learning journey as a learner, facilitator or administrator.</p><h3>Explore the app demo.</h3><p><a href="#static-app-demo">Choose an app role</a>. Interactive tools require JavaScript.</p></section><section id="static-research"><h2>Research &amp; Data Collection.</h2><p>Planning accessible research into learning needs and facilitator capacity across all 36 states and the FCT.</p><h3>Planned research framework.</h3><p>The registry, pilot survey and sampling approach will be developed here. No research recruitment or data collection is open.</p><section aria-label="Facilitator framework space"><h3>Facilitators</h3></section><section aria-label="Learner framework space"><h3>Learners</h3></section><details><summary>Framework outline · to be developed</summary><ol><li>Population, eligibility and participation</li><li>Accessible outreach and starting contacts</li><li>Consented referrals and recruitment monitoring</li><li>Registration, verification and duplicate checks</li><li>Survey design, weighting and optional Bayesian analysis</li><li>Coverage, uncertainty and follow-up</li></ol></details>
-</section><section id="static-app-demo"><h2>Learning Sandbox.</h2><p>Learner, Facilitator and Administration interfaces require JavaScript.</p><section aria-label="User"></section><section aria-label="Administration"></section><section aria-label="Facilitator"></section></section><section id="static-about"><h2>About.</h2><section aria-label="Jerry Bannister Zachary"><h3>Jerry Bannister Zachary</h3><div class="static-portrait" role="group" aria-label="Jerry Bannister Zachary portrait space">Photo space</div><div role="group" aria-label="Jerry Bannister Zachary biography space"></div></section><section aria-label="Strong"><h3>Strong</h3><div class="static-portrait" role="group" aria-label="Strong portrait space">Photo space</div><div role="group" aria-label="Strong biography space"></div></section></section><footer><a href="https://deerflow.tech" target="_blank" rel="noreferrer">Created By Deerflow</a></footer></main>`;
+<h2>Sources you can check.</h2><p>Reviewed 4 October 2026. Historical reports are not open application calls. No currently verified live opportunity is listed.</p>${sourceRegister.map(s=>`<article><h3>${link(s.id,s.title)}</h3><p>${esc(s.date)} · ${esc(s.summary)}</p></article>`).join('')}</section><section id="static-explore"><div class="site-page-heading"><div><h2>Learning Sandbox.</h2><p>Build practical skills with guidance and support.</p></div><a href="#static-app-demo">Explore the sample workspace</a></div>${remoteArtwork()}</section>
+<section id="static-research">${staticResearch}</section>
+<section id="static-app-demo"><div class="site-page-heading"><div><h2>Learning Sandbox.</h2><p>Learner, Facilitator and Administration interfaces require JavaScript.</p></div></div>${remoteArtwork()}</section>
+<section id="static-about">${staticAbout}</section><footer><a href="https://deerflow.tech" target="_blank" rel="noreferrer">Created By Deerflow</a></footer></main>`;
 let index=await readFile('index.html','utf8');
 index=index.replace(/\s*<!-- static-story:start -->[\s\S]*?<!-- static-story:end -->/,'');
 index=index.replace('<div id="root"></div>',`<div id="root"></div>\n    <!-- static-story:start --><noscript>${html}</noscript><!-- static-story:end -->`);

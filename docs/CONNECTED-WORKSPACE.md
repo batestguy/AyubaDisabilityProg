@@ -4,6 +4,8 @@ status: ready for review
 
 # Connected participant workspace
 
+8 November update: Administration now includes a current-record [Learner map](CONNECTED-LEARNER-MAP.md), with state counts from connected registrations, learner-record links and LGA boundaries for reference. Earlier geographic samples remain separate. The latest entry flow also keeps sign-in and role-specific registration hidden until a role is chosen.
+
 7 November continuation: [the funding demonstration extension](FUNDING-DEMO.md) is now implemented: public consented directory, learner preferences and Admin matching, role home/action queues, home-state settings and 37 signed-in moderated noticeboards. The 28 October build deferral was superseded by the user's explicit implementation instruction. Existing learning/review/chat boundaries remain in effect. User visual acceptance is still pending.
 
 ## Agreed scope — 21 October 2026

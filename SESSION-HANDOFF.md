@@ -1,5 +1,27 @@
 # Session handoff: connected Mosaic Pathways workspace
 
+## Three-room skills artwork — 8 November 2026, latest direction
+
+User requested a cane visible above the table with practical alignment and hands-on skills being taught, then clarified “Several rooms within the artwork” rather than interactive app rooms. Installed `public/photos/sandbox-skills-rooms-v1.webp` (1774 × 887, 453,098 bytes), generated with the built-in image editor: digital/spreadsheet learning, sewing/embroidery and low-voltage electronics in three connected cutaway rooms. Cane stands beside the left desk, grip above the edge and lower section at floor level. Retained cool palette and Nigerian textile motifs. Both entry screens and static equivalents use this asset; alt text and focused browser selectors now describe the three rooms. No new app room, course or storage behavior implemented. Earlier round-table assets retained. Prompt/provenance in [artwork record](docs/SANDBOX-ARTWORK.md).
+
+Focused browser checks pass: five accessibility audits, six role sign-ins, responsive loading on desktop/mobile/200%, sign-in hide/sign-out restore, unchanged storage, static parity and zero page errors/POST. Desktop/mobile screenshots visually inspected. No full preflight rerun for this asset/alt-text revision; previous full preflight remains below. User visual acceptance pending. No commit, push or deployment.
+
+## Cane alignment correction — 8 November 2026
+
+User liked the cooler artwork, requested teaching-prop suggestions and correction of the cane/table alignment. Installed `public/photos/sandbox-round-table-v3.webp` (1774 × 887, 382,534 bytes), using the built-in image editor. Cane no longer crosses the tabletop or foreground arm; it is occluded behind the table and rests beside the chair with the tip on the floor. Both React entry screens and generated static sections reference v3. Existing teaching props otherwise preserved; suggestions remain unimplemented. Full prompt/provenance in [artwork record](docs/SANDBOX-ARTWORK.md). Focused learning-navigation browser checks pass again: five accessibility audits, six role sign-ins, responsive image loading, sign-in hide/sign-out restore, unchanged storage, static parity and zero errors/POST. Generated image visually inspected. Full preflight was not repeated for this image-only correction. Acceptance remains pending; no commit/push/deployment.
+
+## Artwork revision — 8 November 2026
+
+User requested less generic artwork and rejected the orange background. Replaced displayed references with `public/photos/sandbox-round-table-v2.webp` (1774 × 887, 536,250 bytes): indigo/forest-green studio, chalk-white walls, adire panel, louvred windows, grey terrazzo and shared practical/tactile learning materials. Generated with the built-in image editor using the earlier artwork as reference; original retained. Full revision prompt is in [artwork record](docs/SANDBOX-ARTWORK.md). Both React entry screens and generated no-JavaScript sections use the versioned asset to avoid the previous browser-cache URL. Focused learning-navigation checks pass again: five clean accessibility audits, six role sign-ins, image loading/aspect ratio, desktop/mobile/200%, sign-in hide/sign-out restore, unchanged storage, static parity and zero errors/POST. Revised desktop screenshot visually inspected. No functional code changes or full preflight rerun for this image/reference revision; prior implementation preflight below remains the last full run. User visual acceptance remains pending.
+
+## Learning Sandbox artwork — 8 November 2026
+
+User authorized implementation of the agreed warm painted round-table artwork on both sandbox entry screens. Added the shared `SandboxArtwork` component and `public/photos/sandbox-round-table.webp` (1774 × 887, 501,866 bytes), generated with the built-in image tool. The landing page and connected sign-in show the complete image above the title; signing in hides it and signing out restores it. Earlier demo screens remain separate. Static no-JavaScript sandbox sections include the same image and descriptive alt text. No dependencies or storage schema changed; no existing browser records were cleared.
+
+Validation: `npm.cmd run preflight` passes 118/118 tests, TypeScript and production build (existing bundle-size advisory). `node scripts/browser-learning-navigation.mjs` passes five clean accessibility audits, six keyboard role selections/sign-ins, loaded uncropped artwork on desktop/mobile/200%, hide/restore after every role, unchanged connected storage, static image parity and zero page errors/POST. Desktop and mobile-200% screenshots visually inspected; evidence in ignored `output/playwright/sandbox-artwork-*.png` and `learning-navigation-results.json`. Prompt and asset provenance: [artwork record](docs/SANDBOX-ARTWORK.md).
+
+Preview server: `http://127.0.0.1:5173/?demo=connected` while running. Next remains user review of the Learning Sandbox, including the new artwork; explicit acceptance is pending. No commit, push or deployment in this continuation. Terminal sandbox setup still fails before process start; approved command fallbacks completed checks without ACL or Git configuration changes.
+
 ## Saved-session delivery instruction — 7 November 2026
 
 The user requested: **“commit and push, we will review sandbox and continue next time.”** Commit/push of the accumulated local work is authorized. Stop feature development at this checkpoint. Next session starts with user review of the Learning Sandbox; explicit acceptance remains pending. Continue detailed research work only after the review and a renewed instruction. The separately authorized Research & Data Collection page currently contains only the sparse planning outline.
@@ -161,3 +183,42 @@ Preserve Home's eight chapters/ten documentary photographs, twelve-event timelin
 Implementation and consolidated handoffs: `b3f028d` (`b3f028df16060da7ef96a9452c5fabb309196a99`). Successful push advanced origin/main from `518bfc3` to this commit. `git ls-remote origin refs/heads/main` returned the identical full SHA. Staging contained 46 intended source/document/test files; no generated/private paths or credential-pattern findings. Local Markdown links pass; 153 source/document/asset hashes refreshed from canonical Git index blobs, excluding the inventory itself.
 
 This receipt and its updated source inventory are a follow-up documentation checkpoint. They do not change runtime behavior or require repeating already passing browser journeys. No deployment was performed. Current next milestone remains user visual review of the connected workspace.
+
+## Website page cleanup — 8 November 2026
+
+- Learning Sandbox now leads both entry screens, above the diagram, with a short introduction and one primary action.
+- Removed the duplicate entry card and repeated signed-out promotional heading. Sign-in, registration, facilitator search and the expandable guide remain.
+- Moved the existing collapsible demo controls below the workspace. Reset scope, confirmation and record logic are unchanged.
+- Replaced empty Research and About placeholders with concise content; kept research planning details expandable and the no-recruitment status visible.
+- Shared page-header styles and a consistent footer now apply across the public pages. Home documentary records and sources are preserved.
+- Static About and Research pages are generated from their React components. Static learning headings also precede the artwork.
+- Validation: repository preflight passed (118 tests and production build); learning/navigation passed six axe audits, all role sign-ins, mobile/200% text, static parity and preserved storage; fresh-demo browser checks passed five axe audits and scoped reset/cancel behavior.
+- Wider story verification passed: documentary chapters/photos, galleries, keyboard/focus behavior, timeline, static fallback, earlier role tabs and concise About content remain intact.
+- Fixed tablet header wrapping so enlarged text does not push the language selector beyond the screen edge; verified at five viewport widths.
+
+## Role-first sign-in — 8 November 2026
+
+The top sign-in link now focuses “How would you like to sign in?” with Learner, Facilitator and Administration options. Selecting a role keeps the existing sample-credential selection and focuses the sign-in form; it does not authenticate automatically. A link returns to role selection. Facilitator-choice sign-in also leads to the role question. Authentication and record logic are unchanged.
+
+Validation: preflight passed (118 tests and build); production browser checks passed six accessibility audits, keyboard choices and sign-ins for all roles, phone/200% text, static parity and unchanged saved records. Screenshots: output/playwright/signin-role-choice-desktop.png and signin-role-choice-mobile.png.
+
+## Conditional role panels — 8 November 2026
+
+The signed-out sign-in area initially contains only the three role cards. A selected role reveals its sign-in panel and filters sample/imported sign-ins to that role. Learner and Facilitator show matching registration options; Administration has no registration card. Changing role hides the panel and clears the previous input. Cross-role credentials prompt a role change before authentication.
+
+Removed the signed-out funding guide, facilitator directory and archive link. The directory remains in the signed-in Learner workspace. The app-demo page has no generic footer or fresh-demo controls; advanced reset controls remain available on the earlier-demo route. The signed-in archive link is Administration-only. No authentication model, command permissions or stored-record format changed.
+
+Preflight passed: 118 tests and production build. Learner directory/community checks passed 11 accessibility audits; advanced reset/archive checks passed five audits. Broader sign-in checks cover hidden panels, role-specific registration, switching roles, cross-role input, keyboard/mobile/200% text and preserved records. Fixed the sidebar colour transition and primary-link hover contrast discovered by the broader audits.
+
+## Current Administration map — 8 November 2026
+
+User authorized bringing the map into the current workspace, then committing and pushing the accumulated site changes. Destination verified: batestguy/AyubaDisabilityProg, main; GitHub authentication available; origin/main initially matches HEAD.
+
+- Added Administration → Learner map, loaded on demand and driven only by current connected learner records.
+- New registrations and later home-state edits update state counts; scope and missing-location filters keep sample/registered records distinct.
+- LGA boundary drill-down is reference-only because current registrations do not collect LGA. No participant locations or counts are invented.
+- Map record links focus the correct unenrolled profile or enrolled work card. Learner and Facilitator interfaces do not expose the map.
+- Existing atlas validation, state aliases, viewboxes and attribution are reused. No new production dependency, schema migration or record reset.
+- Final preflight: 120 tests, TypeScript and build pass. Production browser checks: map seven, connected workflow ten, community eleven clean accessibility audits; zero page errors/POST. Includes mobile/200% text, new registrations, state changes/reload, scopes, keyboard/LGA boundaries, record links and loading/malformed/offline recovery.
+- Documentation: docs/CONNECTED-LEARNER-MAP.md. Browser evidence: output/playwright/connected-map-* (ignored).
+- Navigation URL and illustration/curriculum alignment suggestions from the final review remain separate follow-up items. No deployment is part of this delivery.

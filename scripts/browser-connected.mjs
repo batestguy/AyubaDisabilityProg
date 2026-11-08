@@ -5,7 +5,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { freshSharedDemo, updateSharedDemo } from '../output/tests/src/sharedDemo.js';
 import { fresh as freshSandbox } from '../output/tests/src/store.js';
 import { courses } from '../output/tests/src/catalogue.js';
-import { commandConnected } from '../output/tests/src/connectedDemo.js';
+import { commandConnected, connectedView } from '../output/tests/src/connectedDemo.js';
 
 await mkdir('output/playwright', { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
@@ -22,15 +22,15 @@ if (process.env.CONNECTED_CSP) {
 page.on('pageerror',e=>errors.push(e.message)); page.on('request',r=>{if(r.method()==='POST')posts.push(r.url());});
 const button = name => page.getByRole('button',{name,exact:true});
 async function open() { await button('Learning Sandbox').click(); await page.getByRole('button',{name:'Open the app demo',exact:false}).click(); }
-async function signIn(username, code) { await page.getByLabel('Username',{exact:true}).fill(username); await page.getByLabel('Demo access code',{exact:true}).fill(code); await button('Sign in').click(); await button('Sign out').waitFor(); }
-async function signOut() { await button('Sign out').click(); await button('Sign in').waitFor(); }
+async function signIn(username, code) { const person=connectedView(await stored()).people.find(p=>p.username===username); const role=person.role==='admin'?'Administration':person.role==='facilitator'?'Facilitator':'Learner'; await button(`Use ${role} interface`).click(); await page.getByLabel('Username',{exact:true}).fill(username); await page.getByLabel('Demo access code',{exact:true}).fill(code); await button('Sign in').click(); await button('Sign out').waitFor(); }
+async function signOut() { await button('Sign out').click(); await page.getByRole('heading',{name:'How would you like to sign in?',exact:true}).waitFor(); }
 async function nav(name) { await page.getByRole('navigation',{name:'Connected workspace',exact:true}).getByRole('button',{name,exact:name!=='Messages'}).click(); }
 async function startChat(recipient,course) { await page.getByLabel('Conversation recipient').selectOption(recipient); if(course) await page.getByLabel('Conversation course').selectOption(course); await button('Open selected conversation').click(); }
 async function audit(name) { const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();audits.push({name,violations:result.violations});assert.deepEqual(result.violations,[],name); }
 const stored=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('mosaic-connected-v1')));
 const cardHeading=(name,level=3)=>page.locator('.cd-card').filter({has:page.getByRole('heading',{name,exact:true,level})});
 async function register(name,username,role='learner') {
- await button('Register a learner or facilitator').click(); await page.getByLabel('Sample role').selectOption(role); await page.getByLabel('Display name',{exact:true}).fill(name); await page.getByLabel('Choose a username').fill(username);
+ await button(`Use ${role==='facilitator'?'Facilitator':'Learner'} interface`).click(); await button(`Register as a ${role}`).click(); await page.getByLabel('Display name',{exact:true}).fill(name); await page.getByLabel('Choose a username').fill(username);
  await page.getByLabel('Home state',{exact:true}).selectOption('Plateau');
  await page.getByLabel('Learning or teaching goal').fill('Build accessible practical skills.'); await page.getByLabel('Access and learning preferences').fill('Written steps and flexible pacing.');
  if(role==='facilitator'){await page.getByLabel('Teaching biography').fill('Sample digital teaching experience with accessible text practice.');await page.getByRole('checkbox',{name:'Digital Essentials',exact:true}).check();}
@@ -38,7 +38,7 @@ async function register(name,username,role='learner') {
  const state=await stored(); return state.events.find(e=>e.type==='register'&&e.payload.username===username).payload.demoCode;
 }
 try {
- await page.goto(target);await open();await page.getByRole('heading',{name:'Sign in to your sample workspace'}).waitFor();
+ await page.goto(target);await open();await page.getByRole('heading',{name:'How would you like to sign in?'}).waitFor();await button('Use Facilitator interface').click();
  const originalBytes=await page.evaluate(()=>sessionStorage.getItem('mosaic-user-demo-v1'));const sandboxBytes=await page.evaluate(()=>sessionStorage.getItem('mosaic-v1'));
  await page.locator('summary').filter({hasText:'Show sample sign-ins'}).click();await page.getByRole('button',{name:'Use Amaka Obi sign-in',exact:true}).waitFor();await page.getByRole('button',{name:'Use Tunde Bello sign-in',exact:true}).waitFor();await audit('connected-sign-in');
  await signIn('ada','DEMO-ADA');await nav('Messages');await page.locator('.cd-chat-list button').filter({hasText:'Amaka Obi'}).first().click();
@@ -82,7 +82,7 @@ try {
  await page.getByText('Second-course conversation marker',{exact:false}).waitFor();assert.equal(await page.getByText('Private teaching marker:',{exact:false}).count(),0);
  await audit('connected-second-course-chat');await signOut();await signIn('admin','DEMO-ADMIN');
  await button('Reset connected sample workspace').click();await button('Keep workspace records').click();assert.equal((await stored()).events.some(e=>e.type==='register'),true);
- await button('Reset connected sample workspace').click();await button('Confirm reset connected workspace').click();await page.getByRole('heading',{name:'Sign in to your sample workspace'}).waitFor();assert.equal((await stored()).events.length,0);
+ await button('Reset connected sample workspace').click();await button('Confirm reset connected workspace').click();await page.getByRole('heading',{name:'How would you like to sign in?'}).waitFor();assert.equal((await stored()).events.length,0);
  await page.evaluate(()=>localStorage.setItem('mosaic-connected-v1','{malformed'));await page.reload();await open();await page.getByRole('heading',{name:'Saved workspace needs attention'}).waitFor();assert.equal(await page.evaluate(()=>localStorage.getItem('mosaic-connected-v1')),'{malformed');await audit('connected-recovery');
  assert.equal(await page.evaluate(()=>sessionStorage.getItem('mosaic-user-demo-v1')),originalBytes);assert.deepEqual(errors,[]);assert.deepEqual(posts,[]);await writeFile('output/playwright/connected-axe.json',JSON.stringify(audits,null,2));
  console.log(`Connected workspace passed: ${audits.length} clean axe audits; individual sign-in, registration, teaching/topic review, study gates, private chat/read states, support, durable reload/reset/recovery, mobile/enlarged text and preserved source records; zero POST.`);

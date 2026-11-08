@@ -4,7 +4,7 @@ import type { FacilitatorChoice } from './ConnectedCommunityPanels';
 import { authenticateConnected, commandConnected, connectedView, freshConnected, freshPresentation, loadConnected, resetConnected, saveConnected, type ConnectedAction, type Person } from './connectedDemo';
 import { loadSharedDemo } from './sharedDemo';
 
-export function ConnectedWorkspace({ onOpenEarlier }: { onOpenEarlier: () => void }) {
+export function ConnectedWorkspace({ onOpenEarlier, onSignedInChange }: { onOpenEarlier: () => void; onSignedInChange?: (signedIn: boolean) => void }) {
  const [loaded, setLoaded] = useState(() => { const earlier = loadSharedDemo(); return loadConnected(earlier.recovery ? undefined : earlier.session); });
  const [state, setState] = useState(loaded.state);
  const latest = useRef(state);
@@ -16,6 +16,7 @@ export function ConnectedWorkspace({ onOpenEarlier }: { onOpenEarlier: () => voi
  const [choice,setChoice]=useState<FacilitatorChoice|null>(null);
  const view = useMemo(() => connectedView(state), [state]);
  const actor = view.people.find(p => p.id === actorId) ?? null;
+ useEffect(() => { onSignedInChange?.(!!actor); }, [actor, onSignedInChange]);
  useEffect(() => {
   if (!loaded.recovery && !loaded.warning && !saveConnected(latest.current)) setWarning('Saving could not be verified. Keep this page open; leaving or reloading may lose changes.');
  }, []);
@@ -40,7 +41,6 @@ export function ConnectedWorkspace({ onOpenEarlier }: { onOpenEarlier: () => voi
   setWarning(saveConnected(next) ? '' : 'The restored samples are in memory. Saving could not be verified.');
  }
  return <div className="showcase"><section className="section">
-  {state.cleanStart&&state.events.length===0&&<p className="cd-fresh-notice" role="status">Fresh demo ready. Choose Learner, Facilitator or Administration below. There are no enrolments, assignments, messages or saved activity.</p>}
   {warning && <p role="status" className="mp-error">{warning}</p>}
   {loaded.recovery ? <section className="mp-card"><h1>Saved workspace needs attention</h1><p role="alert">{loaded.recovery}</p><button onClick={() => { const next = loadConnected(state.legacy); setLoaded(next); latest.current = next.state; setState(next.state); setActorId(null); setWarning(next.warning ?? ''); }}>Retry loading workspace</button><button onClick={() => setResetting(true)}>Reset connected workspace</button><button onClick={onOpenEarlier}>View earlier demos</button></section> : <ConnectedDemo choice={choice} onChoose={setChoice} key={`${actorId ?? 'signed-out'}:${epoch}`} view={view} actor={actor} onSignIn={(username, code) => { const person = authenticateConnected(view, username, code); if (!person) return 'The username or demo access code does not match. Use sample codes only, not a real password.'; setActorId(person.id); return undefined; }} onSignOut={() => { setActorId(null); setEpoch(x => x + 1); }} onCommand={command} onRegister={register} onReset={() => { setResetError(''); setResetting(true); }} onOpenEarlier={onOpenEarlier} />}
   {resetting && <section className="mp-card" aria-label="Reset connected workspace confirmation"><h2>Reset this connected workspace?</h2><p>This removes newly registered participants, new learning progress, teaching reviews, chat messages, support actions, facilitator requests, public profiles, home states, noticeboard posts/replies, moderation and read positions. The permanent sample participants return to their starting examples. The originally imported learner/history and earlier detailed demo are preserved.</p><button onClick={reset}>Confirm reset connected workspace</button><button onClick={() => setResetting(false)}>Keep workspace records</button>{resetError && <p role="alert">{resetError}</p>}</section>}

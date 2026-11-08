@@ -1,0 +1,19 @@
+.cd-geography{min-width:0}
+.cd-map-filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px;margin:24px 0}
+.cd-map-filters label,.cd-map-learners>label{display:block;font-weight:bold}
+.cd-map-filters select,.cd-map-learners input{display:block;width:100%;min-width:0;min-height:44px;margin-top:8px;padding:10px;border:1px solid #819b8d;border-radius:4px;background:#fff;color:var(--cd-ink);font:inherit;font-weight:normal}
+.cd-map-breadcrumbs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:20px 0}
+.cd-map-breadcrumbs span{padding:10px 0;overflow-wrap:anywhere}
+.cd-map-frame{margin:20px 0;padding:16px;background:#f7f9f4;border:1px solid var(--cd-line);border-radius:6px}
+.cd-nigeria-map{display:block;width:100%;max-height:560px;overflow:visible}
+.cd-nigeria-map path{stroke:#577267;stroke-width:1;cursor:pointer}
+.cd-nigeria-map path:hover,.cd-nigeria-map path:focus,.cd-nigeria-map path.is-selected{fill:#d7c58f;stroke:var(--cd-ink);stroke-width:3;outline:none}
+.cd-geography .cd-map-legend,.cd-geography .cd-map-source{font-size:.85rem;line-height:1.6}
+.cd-map-note{padding:14px 16px;background:#eef3e9;border-left:3px solid #497a61}
+.cd-map-learners{margin-top:28px}
+.cd-map-person{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;border-top:1px solid var(--cd-line)}
+.cd-map-person h4{margin:0;font-size:1.1rem}
+.cd-map-person>div{min-width:0;overflow-wrap:anywhere}
+.cd-map-person p{margin:8px 0 0;font-size:.9rem}
+.cd-map-person button{flex-shrink:0;max-width:55%;overflow-wrap:anywhere}
+@media(max-width:700px){.cd-map-person{align-items:flex-start;flex-direction:column}.cd-map-frame{padding:10px}.cd-map-person button{max-width:100%}}

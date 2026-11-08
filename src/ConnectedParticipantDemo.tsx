@@ -1,10 +1,13 @@
-import { useEffect, useState, type FormEvent, type ReactNode } from 'react';
+import { lazy, Suspense, useEffect, useState, type FormEvent, type ReactNode } from 'react';
 import type { Course } from './catalogue';
 import { currentConnectedAssignment, connectedComplete, visibleThreads, chatRecipients, threadUnread, visibleConnectedEvents, visiblePeople, type ConnectedView, type Person, type ConnectedAction, type ConnectedEnrolment } from './connectedDemo';
 import './connectedDemo.css';
 import { publicFacilitators } from './connectedCommunity';
-import { FundingGuide, RoleHome, FacilitatorDirectory, ChoiceConfirmation, RequestHistory, PublicProfileEditor, PublicProfileReviews, HomeStateSetting, StateBoards, type FacilitatorChoice } from './ConnectedCommunityPanels';
+import { RoleHome, FacilitatorDirectory, ChoiceConfirmation, RequestHistory, PublicProfileEditor, PublicProfileReviews, HomeStateSetting, StateBoards, type FacilitatorChoice } from './ConnectedCommunityPanels';
 import { boardStates } from './connectedCommunity';
+import { AdministratorScreenBoundary } from './AdministratorScreenBoundary';
+
+const ConnectedLearnerMap = lazy(() => import('./ConnectedLearnerMap').then(module => ({ default: module.ConnectedLearnerMap })));
 
 type Registration = {name:string;username:string;role:'learner'|'facilitator';goal:string;access:string;bio:string;courseIds:string[];homeState:string;publicIntroduction?:string;publicationConsent?:boolean};
 type Props = {view:ConnectedView;actor:Person|null;onSignIn:(username:string,code:string)=>string|undefined;onSignOut:()=>void;onCommand:(type:ConnectedAction,payload:Record<string,unknown>)=>string|undefined;onRegister:(payload:Registration)=>{error?:string;person?:Person};onReset:()=>void;onOpenEarlier:()=>void;choice:FacilitatorChoice|null;onChoose:(choice:FacilitatorChoice|null)=>void};
@@ -25,20 +28,21 @@ export default function ConnectedDemo(props:Props) {
  const run:Run=(type,payload,success='Saved in this sample workspace.')=>{const result=props.onCommand(type,payload);setError(result||'');setNotice(result?'':success);return !result;};
  const listings=publicFacilitators(view);
  const publishedCourseIds=view.courses.filter(c=>c.status==='published').map(c=>c.id);
- const selection=props.choice&&<ChoiceConfirmation choice={props.choice} listings={listings} actor={actor} run={run} onCancel={()=>props.onChoose(null)} onSignIn={()=>document.getElementById('cd-signin')?.focus()}/>;
+ const selection=props.choice&&<ChoiceConfirmation choice={props.choice} listings={listings} actor={actor} run={run} onCancel={()=>props.onChoose(null)} onSignIn={()=>document.getElementById('cd-role-choice')?.focus()}/>;
  const feedback=<div className="cd-feedback" aria-live="polite">{error?<p role="alert" className="cd-error">{error}</p>:notice?<p role="status">{notice}</p>:null}</div>;
- if(!actor)return <div className="cd-demo"><div className="cd-banner"><Badge>Connected sample workspace</Badge><p>Try learning, teaching and Administration together. Records stay in this browser. Use sample details and public demo access codes only.</p></div>{feedback}<div className="cd-landing-title"><p className="cd-eyebrow">Learn. Practice. Connect.</p><h2>A place to grow,<br/>together.</h2><p>Explore eight practical courses with connected learner, facilitator and Administration views.</p><a href="#cd-signin">Try the sample workspace</a></div>{selection}<FundingGuide/><Landing view={view} onSignIn={(u,c)=>{const err=onSignIn(u,c);setError(err||'');return err;}} onRegister={onRegister}/><FacilitatorDirectory listings={listings} publishedCourseIds={publishedCourseIds} onChoose={props.onChoose}/><div className="cd-bottom"><button onClick={onOpenEarlier}>View earlier demos</button></div></div>;
+ if(!actor)return <div className="cd-demo"><Landing view={view} onSignIn={onSignIn} onRegister={onRegister}/></div>;
  const people=visiblePeople(view,actor.id); const name=(id:string)=>people.find(p=>p.id===id)?.name||'Participant';
  const enrolments=view.enrolments.filter(e=>actor.role==='admin'||e.learnerId===actor.id||(actor.role==='facilitator'&&actor.status==='active'&&actor.teachingCourseIds.includes(e.course.id)&&currentConnectedAssignment(view,e.learnerId,e.course.id)?.facilitatorId===actor.id));
  const threads=visibleThreads(view,actor.id);const unread=threads.reduce((n,t)=>n+threadUnread(t,actor.id),0);
- const tabs=['Overview',...(actor.role==='learner'?['My learning','Find a facilitator']:['Learners']),...(actor.role==='admin'?['Facilitator requests','Facilitators','Courses & topics','Reports']:actor.role==='facilitator'?['Teaching profile']:[]),'Messages','Support','State noticeboards','Activity'];
- return <div className="cd-demo"><div className="cd-banner"><Badge>Sample · saved in this browser</Badge><p>Connected learning workspace. Public demonstration codes; use sample information only.</p></div><div className="cd-shell"><aside className="cd-sidebar"><div className="cd-identity"><span className="cd-avatar" aria-hidden="true">{actor.name.slice(0,1)}</span><div><strong>{actor.name}</strong><small>{roleName(actor.role)} {actor.sample?'· Sample':''}</small></div></div><nav aria-label="Connected workspace">{tabs.map(t=><button key={t} aria-current={t===tab?'page':undefined} onClick={()=>navigate(t)}>{t}{t==='Messages'&&unread>0?<span className="cd-unread" aria-label={`${unread} unread messages`}>{unread}</span>:null}</button>)}</nav><button onClick={onSignOut}>Sign out</button><button className="cd-quiet" onClick={onOpenEarlier}>View earlier demos</button></aside><section className="cd-main"><header className="cd-page-heading"><p className="cd-eyebrow">{roleName(actor.role)} workspace</p><h2 id="cd-page-title" tabIndex={-1}>{tab}</h2></header>{feedback}{selection}<HomeStateSetting actor={actor} run={run}/>
+ const tabs=['Overview',...(actor.role==='learner'?['My learning','Find a facilitator']:['Learners']),...(actor.role==='admin'?['Learner map','Facilitator requests','Facilitators','Courses & topics','Reports']:actor.role==='facilitator'?['Teaching profile']:[]),'Messages','Support','State noticeboards','Activity'];
+ return <div className="cd-demo"><div className="cd-banner"><Badge>Sample · saved in this browser</Badge><p>Connected learning workspace. Public demonstration codes; use sample information only.</p></div><div className="cd-shell"><aside className="cd-sidebar"><div className="cd-identity"><span className="cd-avatar" aria-hidden="true">{actor.name.slice(0,1)}</span><div><strong>{actor.name}</strong><small>{roleName(actor.role)} {actor.sample?'· Sample':''}</small></div></div><nav aria-label="Connected workspace">{tabs.map(t=><button key={t} aria-current={t===tab?'page':undefined} onClick={()=>navigate(t)}>{t}{t==='Messages'&&unread>0?<span className="cd-unread" aria-label={`${unread} unread messages`}>{unread}</span>:null}</button>)}</nav><button onClick={onSignOut}>Sign out</button>{actor.role==='admin'&&<button className="cd-quiet" onClick={onOpenEarlier}>View earlier demos</button>}</aside><section className="cd-main"><header className="cd-page-heading"><p className="cd-eyebrow">{roleName(actor.role)} workspace</p><h2 id="cd-page-title" tabIndex={-1}>{tab}</h2></header>{feedback}{selection}<HomeStateSetting actor={actor} run={run}/>
  {tab==='Overview'&&<RoleHome view={view} actor={actor} navigate={navigate}/>}
  {tab==='Find a facilitator'&&actor.role==='learner'&&<><FacilitatorDirectory listings={listings} publishedCourseIds={publishedCourseIds} onChoose={props.onChoose}/><RequestHistory view={view} actor={actor} run={run}/></>}
  {tab==='Facilitator requests'&&actor.role==='admin'&&<RequestHistory view={view} actor={actor} run={run}/>}
+ {tab==='Learner map'&&actor.role==='admin'&&<AdministratorScreenBoundary><Suspense fallback={<p role="status">Opening learner map…</p>}><ConnectedLearnerMap people={view.people} onOpenLearner={id=>{const enrolment=view.enrolments.find(entry=>entry.learnerId===id);navigate('Learners',enrolment?`work-${enrolment.id}`:`learner-${id}`);}}/></Suspense></AdministratorScreenBoundary>}
  {tab==='State noticeboards'&&<StateBoards view={view} actor={actor} run={run}/>}
  {tab==='My learning'&&<><p>Study any published course. Complete every lesson, score at least 70% in the quiz and receive approval for your practical work.</p>{[...view.courses.filter(c=>c.status==='published'),...enrolments.filter(e=>!view.courses.some(c=>c.id===e.course.id&&c.status==='published')).map(e=>e.course)].map(course=>{const enrolment=enrolments.find(e=>e.course.id===course.id);const retained=!view.courses.some(c=>c.id===course.id&&c.status==='published');return <Card key={course.id} id={enrolment?`course-${enrolment.id}`:undefined}><Badge>{retained?'Retained course · unavailable for new enrolment':course.tag}</Badge><h3>{course.title}</h3><p>{course.description}</p>{enrolment?<Study key={enrolment.id} enrolment={enrolment} view={view} run={run}/>:<button onClick={()=>run('enrol',{courseId:course.id},`Enrolled in ${course.title}.`)}>Enrol in {course.title}</button>}</Card>;})}</>}
- {tab==='Learners'&&<><p>{actor.role==='facilitator'?'Only your currently assigned learners and work appear here.':'Assign submitted practical work to an approved facilitator who teaches the course.'}</p>{actor.role==='admin'&&view.people.filter(p=>p.role==='learner'&&!view.enrolments.some(e=>e.learnerId===p.id)).map(p=><Card key={p.id}><h3>{p.name}</h3>{p.sample&&<Badge>Sample learner</Badge>}<p>{p.goal||'Learning goals not provided yet.'}</p><p>Access preference: {p.access||'Not provided'}</p><Badge>Awaiting course choice</Badge><p>No enrolments yet. This learner can choose a course in their own interface; their enrolment will then be available for facilitator assignment.</p></Card>)}{enrolments.length===0&&<Card><h3>No assigned learning yet</h3><p>{actor.role==='facilitator'?'Once your teaching scope is approved, Administration can assign learner work to you.':'New learner enrolments will appear here.'}</p></Card>}{enrolments.map(enrolment=><LearnerWork key={`${enrolment.id}:${enrolment.workRevision}`} enrolment={enrolment} actor={actor} view={view} run={run} name={name}/>)}</>}
+ {tab==='Learners'&&<><p>{actor.role==='facilitator'?'Only your currently assigned learners and work appear here.':'Assign submitted practical work to an approved facilitator who teaches the course.'}</p>{actor.role==='admin'&&view.people.filter(p=>p.role==='learner'&&!view.enrolments.some(e=>e.learnerId===p.id)).map(p=><Card key={p.id} id={`learner-${p.id}`}><h3>{p.name}</h3>{p.sample&&<Badge>Sample learner</Badge>}<p>{p.goal||'Learning goals not provided yet.'}</p><p>Access preference: {p.access||'Not provided'}</p><Badge>Awaiting course choice</Badge><p>No enrolments yet. This learner can choose a course in their own interface; their enrolment will then be available for facilitator assignment.</p></Card>)}{enrolments.length===0&&<Card><h3>No assigned learning yet</h3><p>{actor.role==='facilitator'?'Once your teaching scope is approved, Administration can assign learner work to you.':'New learner enrolments will appear here.'}</p></Card>}{enrolments.map(enrolment=><LearnerWork key={`${enrolment.id}:${enrolment.workRevision}`} enrolment={enrolment} actor={actor} view={view} run={run} name={name}/>)}</>}
  {tab==='Facilitators'&&actor.role==='admin'&&<><PublicProfileReviews view={view} run={run}/>{view.people.filter(p=>p.role==='facilitator').map(p=><Card key={`${p.id}:${p.requestedCourseIds.join(',')}:${p.teachingReviewPending}`}><h3>{p.name} {p.sample&&<Badge>Sample</Badge>}</h3><Badge>{p.status}</Badge>{p.teachingReviewPending&&<Badge>Scope review pending</Badge>}<p>{p.bio||'No teaching biography provided.'}</p><p><strong>Approved subjects:</strong> {p.teachingCourseIds.map(id=>view.courses.find(c=>c.id===id)?.title).join(', ')||'None'}</p><p><strong>Requested subjects:</strong> {p.requestedCourseIds.map(id=>view.courses.find(c=>c.id===id)?.title).join(', ')||'None'}</p>{p.reviewNote&&<p className="cd-note">{p.reviewNote}</p>}{(p.status==='pending'||p.teachingReviewPending)&&<ReviewForm label={`Review teaching scope for ${p.name}`} onReview={(outcome,note)=>run('review-facilitator',{personId:p.id,outcome,note})}/>}</Card>)}</>}
  {tab==='Teaching profile'&&actor.role==='facilitator'&&<><PublicProfileEditor actor={actor} run={run}/><TeachingProfile actor={actor} view={view} run={run}/></>}
  {tab==='Courses & topics'&&actor.role==='admin'&&<><h3>Published learning catalogue</h3><div className="cd-course-list">{view.courses.filter(c=>c.status==='published').map(c=><Card key={c.id}><h4>{c.title}</h4><p>{c.lessons.length} lessons · {c.quiz.length} quiz questions</p></Card>)}</div><h3>Additional topic requests</h3><p>Approved topics are planning requests. They do not become published courses automatically.</p>{view.topics.length===0&&<p>No additional topic requests yet.</p>}{view.topics.map(t=><Card key={t.id}><h4>{t.title}</h4><Badge>{t.status}</Badge><p>Proposed by {name(t.facilitatorId)}</p><p>{t.description}</p>{t.reviewNote&&<p className="cd-note">{t.reviewNote}</p>}{t.status==='pending'&&<ReviewForm label={`Review topic ${t.title}`} onReview={(outcome,note)=>run('review-topic',{topicId:t.id,outcome,note})}/>}</Card>)}</>}
@@ -49,11 +53,107 @@ export default function ConnectedDemo(props:Props) {
  </section></div>{actor.role==='admin'&&<div className="cd-bottom"><button onClick={onReset}>Reset connected sample workspace</button></div>}</div>;
 }
 
+function SignInRoleIcon({kind}:{kind:string}) {
+ return <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+  {kind==='ada'?<><path d="M16 9C12 6 7 6 3 7v19c4-1 9-1 13 2 4-3 9-3 13-2V7c-4-1-9-1-13 2Z"/><path d="M16 9v19M7 12h5M7 17h5M20 12h5M20 17h5"/></>:kind==='amaka'?<><rect x="8" y="3" width="21" height="17" rx="2"/><path d="M13 8h11M17 12h7M20 20v7M16 28h9"/><circle cx="6" cy="20" r="3"/><path d="M1 29v-2a5 5 0 0 1 10 0v2M10 23l5-6"/></>:<><circle cx="16" cy="7" r="4"/><circle cx="6" cy="26" r="3"/><circle cx="26" cy="26" r="3"/><path d="M16 11v7M6 23v-5h20v5"/></>}
+ </svg>;
+}
+
 function Landing({view,onSignIn,onRegister}:{view:ConnectedView;onSignIn:Props['onSignIn'];onRegister:Props['onRegister']}) {
- const [username,setUsername]=useState('');const [code,setCode]=useState('');const [registration,setRegistration]=useState(false);const [role,setRole]=useState<'learner'|'facilitator'>('learner');const [chosen,setChosen]=useState<string[]>([]);const [result,setResult]=useState('');const [regError,setRegError]=useState('');
- function register(e:FormEvent<HTMLFormElement>){e.preventDefault();const data=new FormData(e.currentTarget);const response=onRegister({name:String(data.get('name')||''),username:String(data.get('username')||''),role,goal:String(data.get('goal')||''),access:String(data.get('access')||''),bio:String(data.get('bio')||''),courseIds:chosen,homeState:String(data.get('homeState')||''),...(role==='facilitator'?{publicIntroduction:String(data.get('publicIntroduction')||''),publicationConsent:data.get('publicationConsent')==='on'}:{})});setRegError(response.error||'');if(response.person){setUsername(response.person.username);setCode(response.person.demoCode);setResult(`Your sample profile is ready. Username: ${response.person.username}. Demo access code: ${response.person.demoCode}. Keep this code for your next visit.`);setRegistration(false);}}
- const imported=view.people.filter(p=>p.id.startsWith('existing-')&&!p.sample);
- return <><section className="cd-role-entry" aria-label="Choose a demo interface">{[{id:'ada',role:'Learner',description:'Choose courses, request a facilitator and receive feedback.'},{id:'amaka',role:'Facilitator',description:'Guide assigned learners, review work and discuss courses.'},{id:'admin',role:'Administration',description:'Review applications, connect participants and manage support.'}].map(entry=>{const person=view.people.find(p=>p.id===entry.id)!;return <article key={entry.id}><h3>{entry.role}</h3><p>{entry.description}</p><button onClick={()=>{setUsername(person.username);setCode(person.demoCode);const heading=document.getElementById('cd-signin');heading?.focus({preventScroll:true});heading?.scrollIntoView({behavior:'instant',block:'start'});}}>Use {entry.role} interface</button><small>{person.name} · Select Sign in to continue.</small></article>;})}</section><div className="cd-landing-grid"><Card><h3 id="cd-signin" tabIndex={-1}>Sign in to your sample workspace</h3>{result&&<p className="cd-success" role="status">{result}</p>}<form className="cd-form" onSubmit={e=>{e.preventDefault();onSignIn(username,code);}}><label>Username<input autoComplete="off" required value={username} onChange={e=>setUsername(e.target.value)}/></label><label>Demo access code<input type="password" autoComplete="off" required value={code} onChange={e=>setCode(e.target.value)} aria-describedby="cd-code-hint"/></label><small id="cd-code-hint">Use a public demo code, never a real password.</small><button type="submit">Sign in</button></form><details className="cd-sample-signins"><summary>Show sample sign-ins</summary><p>Switch people to see their own learning, assignments and conversations.</p>{view.people.filter(p=>p.sample).map(p=><div key={p.id}><strong>{p.name}</strong><small>{roleName(p.role)} · {p.username} / {p.demoCode}</small><button onClick={()=>{setUsername(p.username);setCode(p.demoCode);}}>Use {p.name} sign-in</button></div>)}</details>{imported.map(p=><div className="cd-note" key={p.id}><strong>Your earlier {roleName(p.role).toLowerCase()} profile is available</strong><p>Username: {p.username}<br/>First-use demo code: {p.demoCode}</p><button onClick={()=>{setUsername(p.username);setCode(p.demoCode);}}>Use earlier {roleName(p.role).toLowerCase()} sign-in</button></div>)}</Card><Card><h3>Create a sample profile</h3><p>Choose your role and make this workspace your own. Learners can begin immediately; facilitators request approval for their teaching subjects.</p><button aria-expanded={registration} onClick={()=>setRegistration(!registration)}>{registration?'Close registration':'Register a learner or facilitator'}</button>{registration&&<form className="cd-form" onSubmit={register}><label>Sample role<select value={role} onChange={e=>setRole(e.target.value as typeof role)}><option value="learner">Learner</option><option value="facilitator">Facilitator</option></select></label><label>Display name<input name="name" required maxLength={100}/></label><label>Choose a username<input name="username" required maxLength={50} autoComplete="off"/></label><label>Home state<select name="homeState" aria-label="Home state" required defaultValue=""><option value="">Choose state or FCT</option>{boardStates.map(s=><option key={s}>{s}</option>)}</select></label><label>Learning or teaching goal<textarea name="goal" rows={2}/></label><label>Access and learning preferences<textarea name="access" rows={2}/></label>{role==='facilitator'&&<><label>Teaching biography<textarea name="bio" required rows={3}/></label><CourseChoices courses={view.courses} chosen={chosen} setChosen={setChosen}/><label>Public introduction (optional)<textarea name="publicIntroduction" maxLength={3000} rows={3}/></label><label className="cd-consent"><input type="checkbox" name="publicationConsent"/>I agree to publication of my name, approved subjects, reviewed introduction and home state. Administration reviews the introduction before listing.</label></>}{regError&&<p role="alert" className="cd-error">{regError}</p>}<button type="submit">Create sample profile</button><small>A demo access code is generated for you. There is no public Administration registration.</small></form>}</Card></div></>;
+ const [selectedRole,setSelectedRole]=useState<Person['role']|null>(null);
+ const [username,setUsername]=useState(''),[code,setCode]=useState('');
+ const [registration,setRegistration]=useState(false),[chosen,setChosen]=useState<string[]>([]);
+ const [result,setResult]=useState(''),[regError,setRegError]=useState(''),[signInError,setSignInError]=useState('');
+ const [focusSignIn,setFocusSignIn]=useState(false);
+ const role:'learner'|'facilitator'=selectedRole==='facilitator'?'facilitator':'learner';
+ useEffect(()=>{
+  if(!focusSignIn||!selectedRole)return;
+  const heading=document.getElementById('cd-signin');
+  heading?.focus({preventScroll:true});heading?.scrollIntoView({behavior:'instant',block:'start'});
+  setFocusSignIn(false);
+ },[focusSignIn,selectedRole]);
+ function chooseRole(person:Person){
+  setSelectedRole(person.role);setUsername(person.username);setCode(person.demoCode);
+  setRegistration(false);setChosen([]);setResult('');setRegError('');setSignInError('');setFocusSignIn(true);
+ }
+ function changeRole(){
+  setSelectedRole(null);setUsername('');setCode('');setRegistration(false);setChosen([]);
+  setResult('');setRegError('');setSignInError('');setFocusSignIn(false);
+  const heading=document.getElementById('cd-role-choice');
+  heading?.focus({preventScroll:true});heading?.scrollIntoView({behavior:'instant',block:'start'});
+ }
+ function signIn(e:FormEvent<HTMLFormElement>){
+  e.preventDefault();
+  const person=view.people.find(p=>p.username===username.trim().toLowerCase());
+  if(person&&person.role!==selectedRole){setSignInError(`This profile belongs to ${roleName(person.role)}. Choose that role to continue.`);return;}
+  setSignInError(onSignIn(username,code)||'');
+ }
+ function register(e:FormEvent<HTMLFormElement>){
+  e.preventDefault();
+  const data=new FormData(e.currentTarget);
+  const response=onRegister({name:String(data.get('name')||''),username:String(data.get('username')||''),role,goal:String(data.get('goal')||''),access:String(data.get('access')||''),bio:String(data.get('bio')||''),courseIds:chosen,homeState:String(data.get('homeState')||''),...(role==='facilitator'?{publicIntroduction:String(data.get('publicIntroduction')||''),publicationConsent:data.get('publicationConsent')==='on'}:{})});
+  setRegError(response.error||'');
+  if(response.person){
+   setUsername(response.person.username);setCode(response.person.demoCode);
+   setResult(`Your sample profile is ready. Username: ${response.person.username}. Demo access code: ${response.person.demoCode}. Keep this code for your next visit.`);
+   setRegistration(false);setSignInError('');setFocusSignIn(true);
+  }
+ }
+ const imported=view.people.filter(p=>p.id.startsWith('existing-')&&!p.sample&&p.role===selectedRole);
+ return <>
+  <section className="cd-role-entry" aria-label="Choose a demo interface">
+   <h2 id="cd-role-choice" tabIndex={-1}>How would you like to sign in?</h2>
+   {[{id:'ada',role:'Learner',description:'Learn new skills and receive feedback.'},{id:'amaka',role:'Facilitator',description:'Teach, guide learners and review work.'},{id:'admin',role:'Administration',description:'Connect participants and manage support.'}].map(entry=>{
+    const person=view.people.find(p=>p.id===entry.id)!;
+    return <button className="cd-role-option" data-role={entry.id} key={entry.id} aria-label={`Use ${entry.role} interface`} aria-pressed={selectedRole===person.role} onClick={()=>chooseRole(person)}>
+     <span className="cd-role-icon"><SignInRoleIcon kind={entry.id}/></span>
+     <span className="cd-role-content"><strong>{entry.role}</strong><span className="cd-role-description">{entry.description}</span><span className="cd-role-continue" aria-hidden="true">Continue <span>→</span></span></span>
+    </button>;
+   })}
+  </section>
+  {selectedRole&&<section id="cd-role-options" aria-label={`${roleName(selectedRole)} sign-in options`}>
+   <div className={`cd-landing-grid${selectedRole==='admin'?' cd-signin-only':''}`}>
+    <Card>
+     <Badge>{roleName(selectedRole)}</Badge>
+     <h3 id="cd-signin" tabIndex={-1}>Sign in to your sample workspace</h3>
+     <button className="cd-role-back" type="button" onClick={changeRole}>Choose a different role</button>
+     {result&&<p className="cd-success" role="status">{result}</p>}
+     <form className="cd-form" onSubmit={signIn}>
+      <label>Username<input autoComplete="off" required value={username} onChange={e=>{setUsername(e.target.value);setSignInError('');}}/></label>
+      <label>Demo access code<input type="password" autoComplete="off" required value={code} onChange={e=>{setCode(e.target.value);setSignInError('');}} aria-describedby="cd-code-hint"/></label>
+      <small id="cd-code-hint">Use a public demo code, never a real password.</small>
+      {signInError&&<p role="alert" className="cd-error">{signInError}</p>}
+      <button type="submit">Sign in</button>
+     </form>
+     <details className="cd-sample-signins"><summary>Show sample sign-ins</summary><p>Available {roleName(selectedRole).toLowerCase()} profiles.</p>
+      {view.people.filter(p=>p.sample&&p.role===selectedRole).map(p=><div key={p.id}><strong>{p.name}</strong><small>{p.username} / {p.demoCode}</small><button onClick={()=>{setUsername(p.username);setCode(p.demoCode);setSignInError('');}}>Use {p.name} sign-in</button></div>)}
+     </details>
+     {imported.map(p=><div className="cd-note" key={p.id}><strong>Your earlier {roleName(p.role).toLowerCase()} profile is available</strong><p>Username: {p.username}<br/>First-use demo code: {p.demoCode}</p><button onClick={()=>{setUsername(p.username);setCode(p.demoCode);setSignInError('');}}>Use earlier {roleName(p.role).toLowerCase()} sign-in</button></div>)}
+    </Card>
+    {selectedRole!=='admin'&&<Card className="cd-registration">
+     <h3>Create a sample profile</h3>
+     <p>{role==='learner'?'Create a learner profile to begin studying and request teaching support.':'Create a facilitator profile and request approval for your teaching subjects.'}</p>
+     <button aria-expanded={registration} onClick={()=>setRegistration(!registration)}>{registration?'Close registration':`Register as a ${role}`}</button>
+     {registration&&<form className="cd-form" onSubmit={register}>
+      <label>Display name<input name="name" required maxLength={100}/></label>
+      <label>Choose a username<input name="username" required maxLength={50} autoComplete="off"/></label>
+      <label>Home state<select name="homeState" aria-label="Home state" required defaultValue=""><option value="">Choose state or FCT</option>{boardStates.map(s=><option key={s}>{s}</option>)}</select></label>
+      <label>Learning or teaching goal<textarea name="goal" rows={2}/></label>
+      <label>Access and learning preferences<textarea name="access" rows={2}/></label>
+      {role==='facilitator'&&<>
+       <label>Teaching biography<textarea name="bio" required rows={3}/></label>
+       <CourseChoices courses={view.courses} chosen={chosen} setChosen={setChosen}/>
+       <label>Public introduction (optional)<textarea name="publicIntroduction" maxLength={3000} rows={3}/></label>
+       <label className="cd-consent"><input type="checkbox" name="publicationConsent"/>I agree to publication of my name, approved subjects, reviewed introduction and home state. Administration reviews the introduction before listing.</label>
+      </>}
+      {regError&&<p role="alert" className="cd-error">{regError}</p>}
+      <button type="submit">Create sample profile</button>
+      <small>A demo access code is generated for you.</small>
+     </form>}
+    </Card>}
+   </div>
+  </section>}
+ </>;
 }
 
 function Study({enrolment:e,view,run}:{enrolment:ConnectedEnrolment;view:ConnectedView;run:Run}) {

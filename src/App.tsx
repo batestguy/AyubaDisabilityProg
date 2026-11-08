@@ -1147,7 +1147,7 @@ export default function App() {
           </>
         )}
       </main>
-      {page !== "explore" && page !== "research" && <footer>
+      {page !== 'app-demo' && <footer>
         <div>
           <strong>IMPACT MOSAIC</strong>
           <p>

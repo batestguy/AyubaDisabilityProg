@@ -1,4 +1,5 @@
-﻿.static-story { max-width: 960px; margin: auto; padding: 32px 5%; color: #14532D; background: #FFFFFF; font: 16px/1.65 "Trebuchet MS",sans-serif; }
+@import url("/remote-learning.css");
+.static-story { max-width: 960px; margin: auto; padding: 32px 5%; color: #14532D; background: #FFFFFF; font: 16px/1.65 "Trebuchet MS",sans-serif; }
 body { margin: 0; background: #FFFFFF; }
 .static-story h1,.static-story h2 { font-family: Georgia,serif; line-height: 1.2; font-weight: normal; }
 .static-story h1 { font-size: clamp(2rem,6vw,4rem); }
@@ -20,3 +21,14 @@ body { margin: 0; background: #FFFFFF; }
 .static-portrait { aspect-ratio:4/3;display:grid;place-items:center;background:#f3f6f3;color:#52665a;margin-bottom:24px; }
 
 #static-explore>section{min-height:160px;border-top:1px solid #d9dfd4;padding-top:16px}
+.static-story .sandbox-artwork{display:block;width:100%;height:auto;max-width:1100px;margin:32px auto;border-radius:8px;background:#f3f6f3}
+
+.static-story .site-page-heading{border-bottom:1px solid #d9dfd4;padding-bottom:20px;margin-bottom:24px}
+.static-story .site-page-heading h2{font-size:2.2rem;margin-bottom:12px}
+.static-story .public-page{padding:0}
+.static-story .about-overview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.static-story .about-overview h2,.static-story .about-credits h2{font-size:1.6rem;margin-top:24px}
+.static-story .about-credits ul{list-style:none;display:flex;flex-wrap:wrap;gap:12px 24px;padding:0}
+.static-story .about-credits li{padding:0;border:0}
+.static-story .research-status{padding:12px 16px;background:#f3f6f3;border-left:3px solid #14532d}
+@media(max-width:640px){.static-story .about-overview{grid-template-columns:1fr}}

@@ -7,7 +7,8 @@ const browser=await chromium.launch({channel:'chrome',headless:true});
 const context=await browser.newContext({viewport:{width:1440,height:1000}});
 const page=await context.newPage();
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
-await page.goto('http://127.0.0.1:5173/?workspace=earlier');
+const target=process.env.STORY_URL||'http://127.0.0.1:5173/';
+await page.goto(new URL('?workspace=earlier', target).href);
 await page.locator('.scene-enhanced').waitFor();
 assert.equal(await page.locator('.programme').count(),8);
 assert.equal(await page.locator('#in-pictures').count(),0);
@@ -90,12 +91,12 @@ for (let i=0;i<10;i++) {
 }
 const basic=await browser.newPage({viewport:{width:1440,height:900}});
 await basic.addInitScript(()=>{delete window.IntersectionObserver;});
-await basic.goto('http://127.0.0.1:5173/?workspace=earlier');
+await basic.goto(new URL('?workspace=earlier', target).href);
 assert.equal(await basic.locator('.programme-visual:visible').count(),8);
 assert.equal(await basic.locator('.sticky-scene').count(),0);
 const failed=await browser.newPage({viewport:{width:390,height:844}});
 await failed.route('**/photos/health.webp',r=>r.abort());
-await failed.goto('http://127.0.0.1:5173/?workspace=earlier');
+await failed.goto(new URL('?workspace=earlier', target).href);
 const healthButton=failed.locator('#health .gallery-open').first();
 await healthButton.focus();
 await failed.locator('#health').getByText('Photograph unavailable.',{exact:false}).first().waitFor();
@@ -104,7 +105,7 @@ await failed.keyboard.press('Enter');
 await failed.getByRole('dialog').getByText('Photograph unavailable.').waitFor();
 assert.match(await failed.getByRole('dialog').locator('figcaption').innerText(),/Lawrence Idemudia/);
 const nojs=await browser.newPage({javaScriptEnabled:false});
-await nojs.goto('http://127.0.0.1:5173/?workspace=earlier');
+await nojs.goto(new URL('?workspace=earlier', target).href);
 assert.equal(await nojs.locator('.static-story article[id^=static-]').count(),8);
 assert.equal(await nojs.locator('.static-gallery').count(),0);
 assert.equal(await nojs.locator('.static-story article[id^=static-] figure').count(),10);
@@ -112,11 +113,8 @@ assert.match(await nojs.locator('.static-story').innerText(),/Lawrence Edelifo I
 assert.equal(await nojs.locator('#static-home details').count(),12);
 assert.equal(await nojs.locator('#static-explore details').count(),0);
 assert.deepEqual(await nojs.getByRole('navigation',{name:'Main navigation'}).getByRole('link').allTextContents(),['Home','Learning Sandbox','Research & Data Collection','About']);
-for (const name of ['Jerry Bannister Zachary','Strong']) {
- const profile=nojs.locator('#static-about').getByRole('region',{name,exact:true});
- assert.equal(await profile.innerText(),name+'\nPhoto space');
- assert.equal(await profile.locator('img,p').count(),0);
-}
+assert.equal(await nojs.locator('#static-about .empty-portrait,#static-about .empty-biography').count(),0);
+for (const name of ['Jerry Bannister Zachary','Strong']) assert.equal(await nojs.locator('#static-about').getByText(name,{exact:true}).count(),1);
 
 // Every dated record remains selectable, with only its source-matched photograph.
 const timeline=page.locator('#milestones');
@@ -178,13 +176,13 @@ assert.equal(await page.locator('.opportunity').count(),0);
 assert.deepEqual(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('button').allTextContents(),['Home','Learning Sandbox','Research & Data Collection','About']);
 const timelineFailure=await browser.newPage();
 await timelineFailure.route('**/photos/civic.webp',route=>route.abort());
-await timelineFailure.goto('http://127.0.0.1:5173/?workspace=earlier');
+await timelineFailure.goto(new URL('?workspace=earlier', target).href);
 await timelineFailure.locator('.timeline-strip button').nth(1).click();
 await timelineFailure.locator('.timeline-event').getByText('Photograph unavailable.',{exact:false}).waitFor();
 assert.match(await timelineFailure.locator('.timeline-event figcaption').innerText(),/Gufwan/);
 assert.equal(await timelineFailure.locator('.timeline-event').getByRole('link',{name:/^Source/ }).count(),1);
 await timelineFailure.close();
-// Main navigation, blank role spaces and named About profiles.
+// Main navigation, consistent footer, role tabs and useful About content.
 await page.getByRole('button',{name:'Learning Sandbox',exact:true}).click();
 assert.equal(await page.locator('.opportunity').count(),0);
 await page.getByRole('heading',{name:'Learning Sandbox.',exact:true}).waitFor();
@@ -193,7 +191,7 @@ await page.getByRole('button',{name:'Research & Data Collection',exact:true}).cl
 await page.getByRole('heading',{name:'Research & Data Collection.',exact:true}).waitFor();
 assert.equal(await page.locator('.sampling-outline').count(),1);
 await page.getByRole('button',{name:'Learning Sandbox',exact:true}).click();
-assert.equal(await page.locator('footer').count(),0);
+assert.equal(await page.locator('footer').count(),1);
 assert.equal(await page.getByRole('tab').count(),0);
 await page.getByRole('button',{name:'Open the app demo',exact:false}).click();
 for (const name of ['User','Administration','Facilitator']) {
@@ -221,17 +219,9 @@ assert.equal(await page.getByRole('tab',{name:'Facilitator',exact:true}).getAttr
 await page.keyboard.press('Home');
 assert.equal(await page.getByRole('tab',{name:'User',exact:true}).getAttribute('aria-selected'),'true');
 await page.getByRole('button',{name:'About',exact:true}).click();
-for (const name of ['Jerry Bannister Zachary','Strong']) {
- const profile=page.getByRole('region',{name,exact:true});
- assert.equal(await profile.getByRole('heading',{name,exact:true}).count(),1);
- assert.equal(await profile.evaluate(el=>el.querySelector('.empty-portrait').compareDocumentPosition(el.querySelector('.empty-biography'))&Node.DOCUMENT_POSITION_FOLLOWING),4);
- for (const part of ['portrait','biography']) {
-  const blank=profile.getByLabel(`${name} ${part} space`,{exact:true});
-  assert.equal(await blank.innerText(),part==='portrait'?'Photo space':'');
-  assert.equal(await blank.locator('img').count(),0);
-  if(part==='biography') assert.equal(await blank.locator('*').count(),0);
- }
-}
+assert.equal(await page.locator('.empty-portrait,.empty-biography').count(),0);
+assert.equal(await page.getByRole('heading',{name:'About Impact Mosaic',exact:true}).count(),1);
+for (const name of ['Jerry Bannister Zachary','Strong']) assert.equal(await page.locator('.about-credits').getByText(name,{exact:true}).count(),1);
 await page.getByRole('button',{name:'A+ Text',exact:true}).click();
 for (const width of [390,768,1440]) {
  await page.setViewportSize({width,height:900});
@@ -245,4 +235,4 @@ await page.getByRole('button',{name:'Home',exact:true}).click();
 await page.locator('.photo-carousel').waitFor();
 assert.deepEqual(errors,[]);
 await browser.close();
-console.log('Story checks passed: eight chapter/photo matches, sticky scene, bounded parallax, full frames, gallery keyboard/focus/Escape, dialog axe, reduced motion, five viewport widths, observer fallback, image failure captions, 12-record timeline/filter/boundaries/source photos, role tabs and blank About profiles.');
+console.log('Story checks passed: eight chapter/photo matches, sticky scene, bounded parallax, full frames, gallery keyboard/focus/Escape, dialog axe, reduced motion, five viewport widths, observer fallback, image failure captions, 12-record timeline/filter/boundaries/source photos, role tabs, consistent footer and concise About content.');

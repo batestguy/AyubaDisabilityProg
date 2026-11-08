@@ -1,0 +1,43 @@
+.remote-learning{--remote-ink:#173f36;--remote-line:#d9dfd4;margin:0 auto 20px;max-width:1200px;color:var(--remote-ink);font-size:.8rem;line-height:1.3}
+.remote-learning .remote-learning-title{padding:0 0 8px;font:normal clamp(1rem,2vw,1.3rem)/1.3 Georgia,serif;letter-spacing:0;text-align:center}
+.remote-learning strong,.remote-learning span{overflow-wrap:anywhere}
+.remote-network{position:relative;isolation:isolate;padding:0 28px 0 4px}
+.remote-network-arrows{position:absolute;inset:0;overflow:visible;pointer-events:none;z-index:1;color:var(--green,var(--remote-ink))}
+.remote-edge>path{fill:none;stroke-linejoin:round;stroke-linecap:round}
+.remote-arrow-body{stroke:currentColor;stroke-width:2}
+.remote-panel{background:#f3f6f3;border:1px solid var(--remote-line);border-radius:8px;padding:6px}
+.remote-panel-title,.remote-administration>strong{display:block;text-align:center;margin-bottom:4px}
+.remote-administration{width:288px;max-width:75%;margin:auto;text-align:center}
+.remote-offices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.remote-office{min-width:0;background:#fff;border:1px solid var(--remote-line);padding:3px;border-radius:4px}
+.remote-office>span{display:block;margin-bottom:2px}
+.remote-learning img{display:block;width:100%;height:auto;border-radius:3px;background:#f3f6f3}
+.remote-office img{width:96px;max-width:100%;margin:auto}
+.remote-support-label,.remote-teaching{height:32px;margin:0;display:flex;align-items:center;justify-content:center;padding-right:150px;font-size:.7rem}
+.remote-facilitators,.remote-learner-groups{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.remote-facilitator{width:180px;max-width:100%;justify-self:center;min-width:0;text-align:center;padding:3px;border-radius:5px;background:#fff}
+.remote-facilitator>strong,.remote-home>strong{display:block;font-size:.75rem;margin-bottom:3px}
+.remote-facilitator>span,.remote-home>span{display:block;font-size:.75rem;margin-top:3px}
+.remote-facilitator img{width:112px;max-width:100%;margin:auto}
+.remote-homes{min-width:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.remote-home{min-width:0;text-align:center;border-radius:4px;padding:3px;background:#fff}
+.remote-home img{max-width:104px;margin:auto}
+.remote-learning .remote-description{max-width:900px;margin:12px auto 0;font-size:.9rem;line-height:1.5;text-align:center}
+.remote-direct-label{position:absolute;right:12px;top:32%;z-index:2;writing-mode:vertical-rl;background:#fff;padding:6px 0;font-size:.65rem}
+.projects-intro:has(>.remote-learning),.demo-tools:has(>.remote-learning){padding-top:16px}
+@media(max-width:640px){
+ .remote-learning{margin-bottom:12px}
+ .projects-intro:has(>.remote-learning),.demo-tools:has(>.remote-learning){padding-top:8px}
+ .remote-panel{padding:4px}
+ .remote-administration{width:220px}
+ .remote-office img{width:64px}
+ .remote-facilitators,.remote-learner-groups{gap:4px}
+ .remote-facilitator{padding:2px}
+ .remote-facilitator>strong,.remote-home>strong,.remote-facilitator>span,.remote-home>span{font-size:.65rem}
+ .remote-facilitator img{width:64px}
+ .remote-home img{max-width:64px}
+ .remote-homes{grid-template-columns:minmax(0,1fr);gap:6px}
+ .remote-home{padding:2px}
+ .remote-support-label,.remote-teaching{height:28px;padding-right:120px;font-size:.65rem}
+ .remote-panel-title{font-size:.75rem}
+}

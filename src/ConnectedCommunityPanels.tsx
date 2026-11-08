@@ -62,7 +62,7 @@ function ProfileReview({person,run}:{person:Person;run:CommunityRun}) {
 
 export function HomeStateSetting({actor,run}:{actor:Person;run:CommunityRun}) {
  const [state,setState]=useState(actor.homeState||'');
- return <details className="cd-state-setting"><summary>Home state: {actor.homeState||'Choose your state or FCT'}</summary><p>This sets your default noticeboard. You can participate in every state board. For consenting listed facilitators, it also appears in your public profile.</p><form className="cd-form" onSubmit={e=>{e.preventDefault();run('set-home-state',{state},'Home state updated.');}}><label>Home state<select required value={state} onChange={e=>setState(e.target.value)}><option value="">Choose state or FCT</option>{boardStates.map(s=><option key={s}>{s}</option>)}</select></label><button type="submit">Save home state</button></form></details>;
+ return <details className="cd-state-setting"><summary>Home state: {actor.homeState||'Choose your state or FCT'}</summary><p>This sets your default noticeboard. You can participate in every state board. Learner home states also update the Administration map. For consenting listed facilitators, it also appears in your public profile.</p><form className="cd-form" onSubmit={e=>{e.preventDefault();run('set-home-state',{state},'Home state updated.');}}><label>Home state<select aria-label="Home state" required value={state} onChange={e=>setState(e.target.value)}><option value="">Choose state or FCT</option>{boardStates.map(s=><option key={s}>{s}</option>)}</select></label><button type="submit">Save home state</button></form></details>;
 }
 
 export function RoleHome({view,actor,navigate}:{view:ConnectedView;actor:Person;navigate:(tab:string,target?:string)=>void}) {
