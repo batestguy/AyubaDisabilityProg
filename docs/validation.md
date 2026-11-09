@@ -414,3 +414,10 @@ Validation completed:
 - `git -c safe.directory=D:/AyubaGufwanDisabiliyt diff --check`: passes. The per-command safe-directory setting is needed because this workspace's .git owner differs from the human account; no global Git configuration or ownership change was made.
 
 Evidence: ignored `output/playwright/research-*` screenshots, PDFs, axe JSON and `research-verification.json`, plus existing pilot/navigation/accessibility artifacts. Review URLs and build/provenance notes: `docs/RESEARCH-FIVE-SLIDES.md`. Separate mock draft files were unavailable; supplied titles/layout and existing proposal/source wording were used. Owner visual acceptance remains pending. Speech text selection was tested, not audible voice availability. Header behavior was verified locally; no deployed production headers are claimed.
+
+
+## Slide 4 thought explanations — 9 November 2026
+
+Shared exact explanations for five stages and the database; native modal thought bubble beside the selected item, transparent backdrop, circular tail, viewport clamping and inner scrolling. User steering changed the original compact centred panel to this thought design. Own heading row and foundation arrow; documentary photos and original detailed notes preserved. Owner subsequently authorized committing and pushing the completed thought-bubble changes and updated handoff; preceding slide revisions were already pushed and verified as b17db5659239b935a1d1108b0fe37d4bdb295bca.
+
+Final preflight: 120 tests, TypeScript and build passed. Expanded browser regression: 22 clean accessibility audits; all six exact strings; Enter/Space, Tab containment, Escape/Close/outside focus restoration; deck navigation and swipe blocking; desktop, 390px phone, 200% text and A+; reading/no-JS/read-aloud parity; print ring/stage labels with popup and controls hidden; saved bytes unchanged. Zero page errors, failed resources or content-policy violations. Five-page PDF and screenshots visually reviewed. Print-only foundation-arrow fix verified with final full browser rerun and PDF render. Existing non-failing bundle-size advisory remains.

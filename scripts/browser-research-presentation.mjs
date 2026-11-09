@@ -26,6 +26,25 @@ try {
  const stored=await page.evaluate(()=>({local:{...localStorage},session:{...sessionStorage}}));
  await page.getByRole('button',{name:'Research',exact:true}).click();
  const f=page.frameLocator('#research-deck');
+ const records=await (await page.request.get(new URL('research/slides.json',origin).href)).json();
+ const pathway=records.find(record=>record.pathway)?.pathway;
+ assert.ok(pathway,'shared pathway content exists');
+ const explanations=[...pathway.steps.map((step,i)=>({id:`step-${i}`,title:step.title,text:step.explanation})),{id:'database',title:pathway.database.title,text:pathway.database.explanation}];
+ assert.equal(explanations.length,6);
+ for(const item of explanations)assert.ok(typeof item.text==='string'&&item.text.trim().length>0,`${item.id} has a shared explanation`);
+ assert.equal(new Set(explanations.map(item=>item.text)).size,6,'six distinct explanations');
+ const explanationDialog=f.locator('#explanation-dialog');
+ const assertPanelFits=async name=>{
+  assert.equal(await explanationDialog.evaluate(e=>{const r=e.getBoundingClientRect();return r.left>=-1&&r.top>=-1&&r.right<=innerWidth+1&&r.bottom<=innerHeight+1&&e.querySelector('.thought-content').scrollWidth<=e.querySelector('.thought-content').clientWidth+2;}),true,`${name} explanation fits viewport`);
+  assert.equal(await explanationDialog.evaluate(e=>{const candidates=[e,...e.querySelectorAll('*')];const scroll=candidates.filter(n=>n.scrollHeight>n.clientHeight+2&&['auto','scroll'].includes(getComputedStyle(n).overflowY));return scroll.every(n=>{n.scrollTop=n.scrollHeight;const moved=n.scrollTop>0;n.scrollTop=0;return moved;});}),true,`${name} overflow can scroll`);
+  await explanationDialog.locator('[data-close]').scrollIntoViewIfNeeded();
+  assert.equal(await explanationDialog.locator('[data-close]').evaluate(e=>{const r=e.getBoundingClientRect();return r.top>=-1&&r.bottom<=innerHeight+1;}),true,`${name} Close reachable`);
+ };
+ const assertExplanationsIn=async (locator,name)=>{
+  const text=await locator.textContent();
+  for(const item of explanations)assert.ok(text.includes(item.text),`${name} includes exact ${item.id} explanation`);
+ };
+ const swipe=async()=>{await f.locator('body').dispatchEvent('touchstart',{touches:[{identifier:0,clientX:300,clientY:300}]});await f.locator('body').dispatchEvent('touchend',{changedTouches:[{identifier:0,clientX:100,clientY:310}]});};
  await f.locator('#slide-count').filter({hasText:'1 / 5'}).waitFor();
  assert.equal(await page.locator('header,footer,.accessbar,.research-page').count(),0);
  assert.equal(await page.evaluate(()=>window.__fullscreenRequests),1);
@@ -105,6 +124,40 @@ try {
    assert.match(await f.locator('.present .cycle-repeat').innerText(),/repeat/);
    assert.match(await f.locator('.present .cycle-insight').innerText(),/Recruitment builds the database/);
    assert.match(await f.locator('.present .cycle-insight').innerText(),/Progress updates the database/);
+   assert.equal(await f.locator('[data-explanation]').count(),6);
+   assert.equal(await explanationDialog.count(),1,'one shared popup');
+   assert.equal(await f.locator('.extension-heading h3').count(),1);
+   assert.equal(await f.locator('.extension-heading .extension-instruction').count(),1);
+   assert.equal(await f.locator('.cycle-area .extension-heading').count(),0,'heading sits outside ring');
+   assert.equal(await f.locator('.foundation-connection').count(),1);
+   for(const [index,item] of explanations.entries()){
+    const trigger=f.locator(`[data-explanation="${item.id}"]`);
+    assert.equal(await trigger.evaluate(e=>e.tagName),'BUTTON','explanation trigger is a native button');
+    await trigger.focus();await trigger.press(index%2?'Space':'Enter');
+    await explanationDialog.waitFor({state:'visible'});
+    assert.equal(await f.locator('#explanation-title').innerText(),item.title);
+    assert.equal(await f.locator('#explanation-text').innerText(),item.text);
+    assert.equal(await explanationDialog.evaluate(e=>getComputedStyle(e,'::backdrop').backgroundColor),'rgba(0, 0, 0, 0)','thought bubble leaves the slide undimmed');
+    assert.equal(await explanationDialog.evaluate(e=>{const r=e.getBoundingClientRect();return r.width<=360&&r.height<innerHeight*.7&&['left','right'].includes(e.dataset.tail);}),true,'desktop thought is compact and beside its selected item');
+    assert.equal(await explanationDialog.getAttribute('aria-labelledby'),'explanation-title');
+    assert.equal(await explanationDialog.evaluate(e=>e.contains(document.activeElement)),true,'focus enters popup');
+    for(const key of ['Tab','Shift+Tab','Tab','Shift+Tab']){await page.keyboard.press(key);assert.equal(await explanationDialog.evaluate(e=>e.contains(document.activeElement)),true,'popup traps keyboard focus');}
+    for(const key of ['ArrowRight','ArrowLeft','PageDown','PageUp','Home','End']){await page.keyboard.press(key);assert.equal(await f.locator('#slide-count').innerText(),'4 / 5',`${key} cannot navigate behind popup`);}
+    await swipe();assert.equal(await f.locator('#slide-count').innerText(),'4 / 5','popup blocks swipes');
+    await assertPanelFits(`desktop ${item.id}`);
+    if(index===0){await audit('explanation-desktop');await page.locator('#research-deck').screenshot({path:'output/playwright/research-explanation-desktop.png'});}
+    if(index%3===0)await page.keyboard.press('Escape');
+    else if(index%3===1)await explanationDialog.locator('[data-close]').click();
+    else {
+     // A click on the native backdrop must dismiss without activating the diagram.
+     const frameBox=await page.locator('#research-deck').boundingBox();
+     const point=await explanationDialog.evaluate(e=>{const r=e.getBoundingClientRect();return {x:r.left>4?2:innerWidth-2,y:r.top>4?2:innerHeight-2};});
+     await page.mouse.click(frameBox.x+point.x,frameBox.y+point.y);
+    }
+    await explanationDialog.waitFor({state:'hidden'});
+    assert.equal(await trigger.evaluate(e=>e===document.activeElement),true,'each close method restores the exact trigger');
+   }
+
   }
 
   for(const img of await f.locator('.present img').all())assert.equal(await img.evaluate(e=>e.complete&&e.naturalWidth>0),true);
@@ -125,18 +178,28 @@ try {
  await select(3);
  await f.locator('#menu-trigger').click();await f.getByText('Accessibility options',{exact:true}).click();await f.locator('#deck-read').click();
  assert.match(await f.locator('body').evaluate(()=>window.__spoken.at(-1)),/Building on your work/);
+ const spoken=await f.locator('body').evaluate(()=>window.__spoken.at(-1));
+ for(const item of explanations)assert.ok(spoken.includes(item.text),`read aloud includes exact ${item.id} explanation`);
  await f.locator('#deck-motion').click();await f.locator('[data-close]').first().click();
  await select(4);assert.equal(await f.locator('.present .composition').evaluate(e=>getComputedStyle(e).animationName),'none');
  await f.locator('#menu-trigger').click();await f.locator('#deck-motion').click();await f.locator('[data-close]').first().click();
  await page.emulateMedia({reducedMotion:'reduce'});await select(2);assert.equal(await f.locator('.present .composition').evaluate(e=>getComputedStyle(e).animationName),'none');
- for(const [width,size,name] of [[390,'','phone'],[390,'200%','phone-200'],[1440,'200%','desktop-200']]){
+ for(const [width,size,name] of [[390,'','phone'],[390,'200%','phone-200'],[1440,'200%','desktop-200'],[390,'','phone-a-plus']]){
   await page.setViewportSize({width,height:900});
   await f.locator('html').evaluate((e,size)=>e.style.fontSize=size,size);
+  if(name==='phone-a-plus'){await f.locator('#menu-trigger').click();await f.locator('#deck-large').click();await f.locator('#deck-menu [data-close]').click();}
   for(let i=0;i<5;i++){
    await select(i);
    assert.equal(await f.locator('.slides > section.present').evaluate(e=>e.scrollWidth<=e.clientWidth+2),true,`${name}-${i+1} no horizontal overflow`);
    assert.equal(await f.locator('.present .slide-copy').evaluate(e=>{const r=e.getBoundingClientRect();return r.height>=e.scrollHeight-2;}),true,`${name}-${i+1} copy not clipped`);
-   if(i===3) assert.equal(await f.locator('.present .pathway-steps li').first().evaluate(e=>getComputedStyle(e).position),width<=1100||size?'relative':'absolute',`${name} cycle layout`);
+   if(i===3){
+    assert.equal(await f.locator('.present .pathway-steps li').first().evaluate(e=>getComputedStyle(e).position),width<=1100||size?'relative':'absolute',`${name} cycle layout`);
+    await f.locator('[data-explanation="database"]').click();
+    assert.equal(await f.locator('#explanation-text').innerText(),explanations.at(-1).text);
+    await assertPanelFits(name);await audit(`explanation-${name}`);
+    await page.screenshot({path:`output/playwright/research-explanation-${name}.png`});
+    await explanationDialog.locator('[data-close]').click();
+   }
    if(width===390&&[2,4].includes(i))assert.equal(await f.locator('.present .slide-visual').evaluate(e=>e.getBoundingClientRect().top<e.parentElement.querySelector('.slide-copy').getBoundingClientRect().top),true);
   }
   const controls=await f.locator('#back').evaluate(e=>{const back=e.getBoundingClientRect(),next=document.querySelector('#next').getBoundingClientRect(),exit=document.querySelector('#exit-presentation').getBoundingClientRect();const apart=(a,b)=>a.right<=b.left||b.right<=a.left||a.bottom<=b.top||b.bottom<=a.top;return apart(back,next)&&apart(exit,back)&&apart(exit,next);});assert.equal(controls,true,`${name} controls do not overlap`);
@@ -151,6 +214,7 @@ try {
   await firstGroup.evaluate(e=>{e.open=false;});await plannedGroup.evaluate(e=>{e.open=false;});
   await select(4);
   await audit(`mosaic-${name}`);await page.screenshot({path:`output/playwright/research-${name}.png`});
+  if(name==='phone-a-plus'){await f.locator('#menu-trigger').click();await f.locator('#deck-large').click();await f.locator('#deck-menu [data-close]').click();}
  }
  await f.locator('html').evaluate(e=>e.style.fontSize='');await page.setViewportSize({width:1440,height:900});
  await select(0);await f.locator('#menu-trigger').click();await f.locator('#previous:disabled').waitFor();await f.locator('[data-close]').first().click();
@@ -172,18 +236,26 @@ try {
  assert.equal(await page.evaluate(()=>window.__fullscreenRequests),0);
  await f.locator('#menu-trigger').focus();await f.locator('#menu-trigger').click();await f.getByRole('link',{name:'Detailed Research proposal',exact:true}).click();await page.locator('.research-page').waitFor();
  await page.getByRole('link',{name:'Return to the presentation',exact:true}).click();await f.locator('.slides > section.present').waitFor();
- await page.goto(new URL('research/reading.html',origin).href);assert.equal(await page.locator('article').count(),5);assert.equal(await page.locator('figure').count(),5);await audit('mosaic-reading');
+ await page.goto(new URL('research/reading.html',origin).href);assert.equal(await page.locator('article').count(),5);assert.equal(await page.locator('figure').count(),5);await assertExplanationsIn(page.locator('main'),'reading edition');await audit('mosaic-reading');
  await page.pdf({path:'output/playwright/research-reading.pdf',format:'A4',printBackground:true});
- await page.goto(new URL('research/index.html',origin).href);await page.locator('#slide-count').filter({hasText:'1 / 5'}).waitFor();await page.emulateMedia({media:'print'});
+ await page.goto(new URL('research/index.html',origin).href);await page.locator('#slide-count').filter({hasText:'1 / 5'}).waitFor();await page.locator('#menu-trigger').focus();await page.locator('#menu-trigger').click();await page.locator('#slide-selector').selectOption('3');await page.locator('[data-explanation="step-0"]').click();await page.emulateMedia({media:'print'});
+ assert.equal(await page.locator('#explanation-dialog').isVisible(),false,'print hides open popup');
+ assert.equal(await page.locator('.extension-instruction').isVisible(),false,'print hides interaction instruction');
+ for(const button of await page.locator('[data-explanation]').all()){
+  assert.equal(await button.isVisible(),true,'print preserves stage labels');
+  assert.equal(await button.evaluate(e=>{const style=getComputedStyle(e);return style.boxShadow==='none'&&parseFloat(style.borderTopWidth)===0;}),true,'printed labels have no button chrome');
+ }
  for(const slide of await page.locator('.slides>section').all())assert.equal(await slide.isVisible(),true);
  assert.equal(await page.locator('.closed-cycle').count(),1,'printed diagram has a closed feedback ring');
+ assert.equal(await page.locator('.foundation-connection').evaluate(e=>{const r=e.getBoundingClientRect(),s=e.closest('section').getBoundingClientRect();return r.left>=s.left&&r.right<=s.right;}),true,'printed foundation arrow stays on the slide');
  assert.equal(await page.locator('.pathway-steps li').first().evaluate(e=>getComputedStyle(e).position),'absolute','printed cycle retains radial stages');
  await page.pdf({path:'output/playwright/research-slides.pdf',format:'A4',landscape:true,printBackground:true});
  const nojs=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:900}}),np=await nojs.newPage();await np.goto(origin);
  assert.equal(await np.locator('#static-research iframe').count(),0);assert.equal(await np.locator('#static-research .research-linear[open] article').count(),5);
- await np.goto(new URL('research/index.html',origin).href);await np.getByRole('link',{name:'Read all five slides without JavaScript'}).click();assert.equal(await np.locator('article').count(),5);assert.equal(await np.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+ await assertExplanationsIn(np.locator('#static-research'),'site no-JS');
+ await np.goto(new URL('research/index.html',origin).href);await np.getByRole('link',{name:'Read all five slides without JavaScript'}).click();assert.equal(await np.locator('article').count(),5);assert.equal(await np.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await assertExplanationsIn(np.locator('main'),'standalone no-JS reading');
  await nojs.close();
- evidence.checks=['visible central exit preserves records and leaves fullscreen','six-section contents: live links, planned topics, single expansion, keyboard, focus, return/current marker and responsive layout','fullscreen entry/refusal/direct links','five exact headlines, loaded uncropped photographs and accessible proposed pathway with database/two feedback loops','Next/Finish/menu/keyboard/swipe/exit','sources/dialog focus/read aloud','OS and manual reduced motion','desktop/phone/200% text','reading/detailed proposal/no-JS/print','stored demo bytes preserved'];
+ evidence.checks=['six exact shared explanations; native buttons, Enter/Space, focus trap/restoration, Escape/Close/backdrop, blocked keyboard/swipes','popup desktop/phone/A+/200% fits and scrolls, axe, reading/no-JS/read-aloud parity and print labels/ring','visible central exit preserves records and leaves fullscreen','six-section contents: live links, planned topics, single expansion, keyboard, focus, return/current marker and responsive layout','fullscreen entry/refusal/direct links','five exact headlines, loaded uncropped photographs and accessible proposed pathway with database/two feedback loops','Next/Finish/menu/keyboard/swipe/exit','sources/dialog focus/read aloud','OS and manual reduced motion','desktop/phone/200% text','reading/detailed proposal/no-JS/print','stored demo bytes preserved'];
  assert.deepEqual(evidence.errors,[]);assert.deepEqual(evidence.csp,[]);assert.deepEqual(evidence.failed,[]);
  await writeFile('output/playwright/research-verification.json',JSON.stringify(evidence,null,2));console.log('Research presentation checks passed:',evidence);
 }finally{await browser.close();}

@@ -279,3 +279,67 @@ dialog{background:#fff8ef;color:#411b16;border:0;border-radius:4px;padding:1.5re
  html:not(.print-pdf) .reveal .pathway .cycle-insight{font-size:10pt!important;line-height:1.3!important;margin:3mm 0 0!important}
  .cycle-spokes{display:block!important}
 }
+/* Explanation controls inherit the existing diagram and menu palette. */
+.cycle-extension{min-width:0}
+.extension-heading{position:relative;min-width:0;padding:0 0 1rem}
+.reveal .extension-heading h3{font-size:2rem;font-weight:700;color:var(--mosaic-gold);margin:0;line-height:1.15}
+.reveal .extension-heading .extension-subtitle{font-size:1.15rem;line-height:1.35;margin:.3rem 0 0;font-weight:600}
+.reveal .extension-heading .extension-instruction{font-size:1rem;line-height:1.4;margin:.5rem 0 0}
+.cycle-grid{column-gap:3.5rem}
+.foundation-connection{position:absolute;left:-3.5rem;top:.35rem;width:3rem;height:1.5rem;color:var(--mosaic-gold);overflow:visible}
+.explanation-trigger{font:inherit;color:inherit;line-height:inherit;letter-spacing:inherit;border:0;border-radius:4px;padding:0;background:transparent;text-align:inherit;min-height:44px}
+.explanation-trigger::after{content:'';position:absolute;inset:0;border-radius:inherit}
+.explanation-trigger:hover{text-decoration:underline;text-underline-offset:5px}
+.explanation-trigger:active{opacity:.8}
+.explanation-trigger:focus-visible{outline:0}
+.explanation-trigger:focus-visible::after{outline:3px solid var(--mosaic-gold);outline-offset:4px}
+#explanation-dialog{width:calc(100vw - 2rem);max-width:30rem;max-height:calc(100dvh - 2rem);padding:1.5rem;overscroll-behavior:contain;overflow-wrap:anywhere}
+#explanation-dialog h2{font-family:inherit;font-size:1.6rem;line-height:1.2;text-transform:none;letter-spacing:0;margin:0 0 1rem;color:inherit}
+#explanation-dialog p{font-size:1.1rem;line-height:1.55;margin:0 0 1.5rem;color:inherit}
+#explanation-dialog button{font-size:1rem;min-height:44px;padding:.65rem 1rem}
+#explanation-dialog button:focus-visible{outline-color:#762211}
+@media(max-width:1100px){
+ .foundation-connection{position:static;display:block;transform:rotate(90deg);transform-origin:center;width:3rem;height:1.5rem;margin:.5rem 0 1.5rem}
+ .extension-heading{padding-top:.5rem}
+ .reveal .extension-heading h3{font-size:2rem}
+}
+@media screen{
+ :is(html.large,html[style*="200%"]) .foundation-connection{position:static;display:block;transform:rotate(90deg);width:3rem;height:1.5rem;margin:.5rem 0 1.5rem}
+ :is(html.large,html[style*="200%"]) .extension-heading{padding-top:.5rem}
+}
+@media print{
+ #explanation-dialog,.extension-instruction{display:none!important}
+ .explanation-trigger{border:0!important;outline:0!important;padding:0!important;min-height:0!important;background:transparent!important;color:inherit!important;text-decoration:none!important;pointer-events:none}
+ .explanation-trigger::after{display:none!important}
+ html:not(.print-pdf) .reveal .pathway .cycle-grid{column-gap:9mm!important}
+ html:not(.print-pdf) .reveal .pathway .extension-heading{padding:0 0 4mm!important}
+ html:not(.print-pdf) .reveal .pathway .extension-heading h3{font-size:19pt!important;line-height:1.1!important;color:var(--mosaic-gold)!important}
+ html:not(.print-pdf) .reveal .pathway .extension-heading .extension-subtitle{font-size:10pt!important;line-height:1.2!important;margin:1mm 0 0!important}
+ html:not(.print-pdf) .reveal .pathway .foundation-connection{position:absolute!important;left:-9mm!important;top:0!important;width:8mm!important;height:5mm!important;transform:none!important;margin:0!important}
+ html:not(.print-pdf) .reveal .pathway .cycle-area{height:108mm!important}
+}
+@media screen and (min-width:1101px){
+ .cycle-area{height:460px}
+}
+.explanation-trigger{max-width:100%;overflow-wrap:anywhere;white-space:normal}
+/* A compact cartoon thought beside the selected idea; the slide stays visible. */
+#explanation-dialog{position:fixed;inset:auto;margin:0;width:min(22rem,calc(100vw - 32px));max-width:none;max-height:none;padding:0;border-radius:32px;overflow:visible;box-shadow:0 3px 18px rgb(65 27 22 / .18)}
+#explanation-dialog::backdrop{background:transparent}
+#explanation-dialog .thought-content{padding:24px;max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;border-radius:inherit}
+#explanation-dialog h2{font-size:1.35rem;margin-bottom:.75rem}
+#explanation-dialog p{font-size:1rem;line-height:1.5;margin-bottom:1rem}
+#explanation-dialog::before,#explanation-dialog::after{content:'';position:absolute;border-radius:50%;background:#fff8ef;pointer-events:none}
+#explanation-dialog::before{width:18px;height:18px}
+#explanation-dialog::after{width:9px;height:9px}
+#explanation-dialog[data-tail="left"]::before{left:-22px;top:calc(var(--thought-anchor) - 9px)}
+#explanation-dialog[data-tail="left"]::after{left:-36px;top:calc(var(--thought-anchor) - 4px)}
+#explanation-dialog[data-tail="right"]::before{right:-22px;top:calc(var(--thought-anchor) - 9px)}
+#explanation-dialog[data-tail="right"]::after{right:-36px;top:calc(var(--thought-anchor) - 4px)}
+#explanation-dialog[data-tail="top"]::before{top:-22px;left:calc(var(--thought-anchor) - 9px)}
+#explanation-dialog[data-tail="top"]::after{top:-36px;left:calc(var(--thought-anchor) - 4px)}
+#explanation-dialog[data-tail="bottom"]::before{bottom:-22px;left:calc(var(--thought-anchor) - 9px)}
+#explanation-dialog[data-tail="bottom"]::after{bottom:-36px;left:calc(var(--thought-anchor) - 4px)}
+@media print{#explanation-dialog::before,#explanation-dialog::after{display:none!important}}
+@media print{
+ html:not(.print-pdf) .reveal .pathway .extension-heading{position:relative!important}
+}

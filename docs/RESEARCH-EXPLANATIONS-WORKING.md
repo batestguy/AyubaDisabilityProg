@@ -1,0 +1,19 @@
+# Clickable cycle explanations — implementation record
+
+Scope: presentation only. Existing revisions saved and pushed as b17db5659239b935a1d1108b0fe37d4bdb295bca; remote receipt matched. Baseline preflight: 120 tests, TypeScript and build passed. No deployment or database changes.
+
+Design: partnership audience can choose brief explanations while discussing recruitment, records, needs, teaching, practice and review. Preserve red/deep red, gold, cream menu surfaces, Segoe UI, documentary collage and closed ring. Give the extension its own heading row; use a gold connection from the foundation. Native dialog and native buttons preserve keyboard semantics. Compact cream panel, dark text, existing quiet border treatment and 8px spacing. Title has priority over explanation and Close.
+
+Delegated scope: scripts/browser-research-presentation.mjs only. Add checks for all six exact shared explanations, dialog content, keyboard/focus return, Escape/outside/Close, focus trap, navigation/swipe blocking, responsive and enlarged-text panel scrolling, accessibility, print ring/no popup controls, reading/no-JS/read-aloud parity and storage preservation. Existing test/server setup retained, no new dependencies. Main owns source, generator, runtime, styles and documentation. Both work in shared checkout; preserve others' changes. No recursive delegation.
+
+Contract: six native buttons [data-explanation="step-0"] through step-4 and [data-explanation="database"]. Shared slide.pathway.steps[].explanation and .database.explanation. Dialog #explanation-dialog, title #explanation-title, body #explanation-text, Close [data-close]. Heading .extension-heading contains h3, subtitle and .extension-instruction; .foundation-connection is the gold connection. Diagram wrapped in .cycle-area, heading outside this area. One dialog only, print keeps button text/diagram but removes interactive appearance. The existing check script runs with node scripts/browser-research-presentation.mjs against local production server on 4175 after npm.cmd run build:research and npm.cmd run preflight.
+
+Progress: implementation complete and verified. Owner authorized commit and push of the thought-bubble changes and handoff on 9 November 2026.
+
+User steering: replace centred panel with a compact cartoon thought bubble beside the selected item. Implemented rounded cream bubble with two small thought circles; slide backdrop is transparent. Desktop prefers left/right; small and enlarged-text views place above/below when possible, clamp within viewport and scroll the inner content. Native modal behavior retains keyboard/focus and blocks deck navigation. No additional content beyond title, exact explanation and Close.
+
+Validation: original popup regression passed after correcting focus containment, desktop heading space, enlarged button wrapping and print-test menu focus. Thought-bubble revision passed 22 accessibility audits and all six keyboard/close/content/navigation checks, desktop/phone/200%/A+, reading/no-JavaScript/read-aloud, printed ring/labels and unchanged local/session storage. No page/resource/CSP errors. Full preflight passed 120 tests, TypeScript and build. Visual review: thought bubble and phone enlarged-text screenshot inspected; five-page PDF rendered and slide 4 inspected. A print-only foundation-arrow positioning fix was identified during visual review; final full browser rerun passed, including the arrow staying within the printed slide.
+
+Delegation result: helper owned only scripts/browser-research-presentation.mjs, returned syntax-checked additions. Main integrated, fixed test menu focus, added thought appearance/print arrow assertions and ran actual browser suite. No delegate remains active.
+
+Delivery: commit and push authorized for verified batestguy/AyubaDisabilityProg main. No deployment requested. Final commit identity and remote-match result are reported after delivery.

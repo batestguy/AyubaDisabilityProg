@@ -4,8 +4,10 @@ export interface ResearchSlide { layout: "cover" | "contents" | "split" | "pathw
 export interface ResearchPathway {
  foundation: { title: string; detail: string };
  extensionLabel: string;
- steps: { title: string; detail: string; summary?: string }[];
- database: { title: string; records: string[] };
+ extensionSubtitle: string;
+ instruction: string;
+ steps: { title: string; detail: string; explanation: string; summary?: string }[];
+ database: { title: string; explanation: string; records: string[] };
  feedback: { title: string; detail: string }[];
  sellingPoint: { title: string; detail: string };
  status: string;
@@ -147,36 +149,44 @@ const researchPathway: ResearchPathway = {
     "title": "Your work is the foundation",
     "detail": "Your community relationships, outreach and practical support"
   },
-  "extensionLabel": "Proposed extension, designed together",
+  "extensionLabel": "Proposed extension",
+  "extensionSubtitle": "Designed together",
+  "instruction": "Select a stage or the database to read more.",
   "steps": [
     {
       "title": "Adaptive sampling",
+      "explanation": "Use recorded recruitment evidence to adjust the next outreach round, investigate gaps and decide where to focus effort.",
       "detail": "Adaptive recruitment feeds the participant database. Recorded recruitment evidence guides each new sampling round.",
       "summary": "Recruit · register · update"
     },
     {
       "title": "Understand needs",
+      "explanation": "Review recorded skills, interests and access needs with participants to understand the learning and support that would suit them.",
       "detail": "Skills, interests and learning needs",
       "summary": "Skills, interests and access needs"
     },
     {
       "title": "Match teaching",
+      "explanation": "Use recorded interests and learning needs to identify suitable teaching. The learner and facilitator agree the arrangement.",
       "detail": "Agree suitable teaching with the learner and facilitator",
       "summary": "Learner and facilitator agree a pathway"
     },
     {
       "title": "Support practice",
+      "explanation": "Use the agreed learning plan and support needs to guide accessible teaching, practical tasks and feedback.",
       "detail": "Accessible teaching and practical feedback",
       "summary": "Accessible teaching and feedback"
     },
     {
       "title": "Monitor & review",
+      "explanation": "Record learning progress and recruitment evidence in the database. Use progress to adjust support and recruitment evidence to refine outreach.",
       "detail": "Monitor recruitment evidence and learning progress, update the participant database, then use the updated records to refine recruitment, teaching and support. The cycle repeats.",
       "summary": "Review recruitment and learning evidence"
     }
   ],
   "database": {
     "title": "Participant database",
+    "explanation": "Keep recruitment details, skills, learning needs, agreed support and progress together. These records inform decisions throughout the cycle.",
     "records": [
       "Recruitment routes",
       "Skills and interests",
@@ -203,7 +213,9 @@ const researchPathway: ResearchPathway = {
 };
 const pathwayReadingPoints = [
  researchPathway.foundation.detail,
- researchPathway.extensionLabel,
+ `${researchPathway.extensionLabel}: ${researchPathway.extensionSubtitle}`,
+ ...researchPathway.steps.map(step => `${step.title}: ${step.explanation}`),
+ `${researchPathway.database.title}: ${researchPathway.database.explanation}`,
  `${researchPathway.sellingPoint.title}: ${researchPathway.sellingPoint.detail}`,
  ...researchPathway.steps.map(step => `${step.title}: ${step.detail}`),
  `${researchPathway.database.title}: ${researchPathway.database.records.join('; ')}`,

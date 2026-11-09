@@ -10,9 +10,11 @@
   const hostParams = new URLSearchParams((parent !== window ? parent.location : location).search);
   if(hostParams.get('workspace') === 'earlier') proposal.href = '/?workspace=earlier&page=research-reading';
   const menu = document.querySelector('#deck-menu'), sources = document.querySelector('#sources-dialog');
+  const explanation = document.querySelector('#explanation-dialog');
+  const modalOpen = () => menu.open || sources.open || explanation.open;
   const trigger = document.querySelector('#menu-trigger'), previous = document.querySelector('#previous'), next = document.querySelector('#next'), selector = document.querySelector('#slide-selector');
   let timer, returnFocus = trigger;
-  const awake = () => { document.body.classList.add('controls-awake'); clearTimeout(timer); timer = setTimeout(() => { if (!menu.open && !sources.open && document.activeElement !== trigger) document.body.classList.remove('controls-awake'); }, 2200); };
+  const awake = () => { document.body.classList.add('controls-awake'); clearTimeout(timer); timer = setTimeout(() => { if (!modalOpen() && document.activeElement !== trigger) document.body.classList.remove('controls-awake'); }, 2200); };
   document.addEventListener('pointermove', awake, {passive:true});
   document.addEventListener('focusin', awake);
   trigger.addEventListener('blur', awake);
@@ -20,6 +22,51 @@
   document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => b.closest('dialog').close());
   menu.addEventListener('close', () => { trigger.focus(); awake(); });
   sources.addEventListener('close', () => { returnFocus.focus(); awake(); });
+  let explanationTrigger;
+  document.querySelectorAll('[data-explanation]').forEach(button => button.addEventListener('click', () => {
+   const slide = button.closest('.slides > section');
+   const pathway = records[slides.indexOf(slide)].pathway;
+   const key = button.dataset.explanation;
+   const item = key === 'database' ? pathway.database : pathway.steps[Number(key.slice(5))];
+   document.querySelector('#explanation-title').textContent = item.title;
+   document.querySelector('#explanation-text').textContent = item.explanation;
+   explanationTrigger = button;
+   touch = null;
+   window.speechSynthesis?.cancel();
+   explanation.showModal();
+   placeThought();
+   explanation.querySelector('.thought-content').scrollTop = 0;
+  }));
+  function placeThought() {
+   if(!explanation.open || !explanationTrigger) return;
+   const target = explanationTrigger.closest('[data-cycle-step],.cycle-hub').getBoundingClientRect();
+   const width = explanation.getBoundingClientRect().width, height = explanation.getBoundingClientRect().height;
+   const gap = 32, edge = 16;
+   let x, y, side;
+   if(target.right + gap + width <= innerWidth - edge) {
+    x = target.right + gap; y = target.top + (target.height - height) / 2; side = 'left';
+   } else if(target.left - gap - width >= edge) {
+    x = target.left - gap - width; y = target.top + (target.height - height) / 2; side = 'right';
+   } else {
+    x = target.left + (target.width - width) / 2;
+    if(target.bottom + gap + height <= innerHeight - edge) { y = target.bottom + gap; side = 'top'; }
+    else if(target.top - gap - height >= edge) { y = target.top - gap - height; side = 'bottom'; }
+    else { y = (innerHeight - height) / 2; side = target.top < innerHeight / 2 ? 'top' : 'bottom'; }
+   }
+   x = Math.max(edge, Math.min(x, innerWidth - width - edge));
+   y = Math.max(edge, Math.min(y, innerHeight - height - edge));
+   explanation.style.left = `${x}px`; explanation.style.top = `${y}px`;
+   explanation.dataset.tail = side;
+   const anchor = side === 'left' || side === 'right' ? target.top + target.height / 2 - y : target.left + target.width / 2 - x;
+   explanation.style.setProperty('--thought-anchor', `${Math.max(32, Math.min(anchor, (side === 'left' || side === 'right' ? height : width) - 32))}px`);
+  }
+  window.addEventListener('resize', placeThought);
+  explanation.addEventListener('keydown', event => { if(event.key === 'Tab') { event.preventDefault(); explanation.querySelector('[data-close]').focus(); } });
+  explanation.addEventListener('close', () => { touch = null; explanationTrigger?.focus({preventScroll:true}); awake(); });
+  let backdropStart = false;
+  const outside = event => { const r = explanation.getBoundingClientRect(); return event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom; };
+  explanation.addEventListener('pointerdown', event => { backdropStart = event.target === explanation && outside(event); });
+  explanation.addEventListener('click', event => { if(backdropStart && event.target === explanation && outside(event)) explanation.close(); backdropStart = false; });
   const contentsButton = document.querySelector('#contents');
   const contentsSlide = slides.find(s => s.classList.contains('layout-contents'));
   const contentsIndex = slides.indexOf(contentsSlide);
@@ -36,6 +83,7 @@
    slides[index].focus({preventScroll:true});
   }));
   contentsButton.onclick = () => {
+   if(modalOpen()) return;
    contentsSlide.querySelectorAll('[aria-current]').forEach(link => link.removeAttribute('aria-current'));
    const current = lastContentSlide && contentsSlide.querySelector(`li a[data-slide="${lastContentSlide}"]`);
    if(current) {
@@ -65,8 +113,8 @@
    if(parent !== window) parent.postMessage({type:'mosaic-presentation-exit'}, location.origin);
    else { if(document.fullscreenElement) void document.exitFullscreen().catch(()=>{}); location.assign('/'); }
   };
-  next.onclick = () => deck.getIndices().h === slides.length-1 ? finish() : deck.next();
-  document.querySelector('#back').onclick = () => { deck.prev(); if(document.querySelector('#back').disabled) next.focus(); };
+  next.onclick = () => { if(!modalOpen()) deck.getIndices().h === slides.length-1 ? finish() : deck.next(); };
+  document.querySelector('#back').onclick = () => { if(modalOpen()) return; deck.prev(); if(document.querySelector('#back').disabled) next.focus(); };
   previous.onclick = () => { deck.prev(); menu.close(); next.focus(); };
   selector.onchange = () => { deck.slide(Number(selector.value)); menu.close(); next.focus(); };
   document.querySelector('#exit').onclick = finish;
@@ -89,13 +137,13 @@
    returnFocus=trigger; menu.close(); sources.showModal();
   };
   document.addEventListener('keydown',e=>{
-   if(menu.open || sources.open || e.altKey || e.ctrlKey || e.metaKey || e.target.closest('select,input,textarea,summary,.contents-nav')) return;
+   if(modalOpen() || e.altKey || e.ctrlKey || e.metaKey || e.target.closest('select,input,textarea,summary,.contents-nav')) return;
    const actions={ArrowRight:()=>deck.next(),PageDown:()=>deck.next(),ArrowLeft:()=>deck.prev(),PageUp:()=>deck.prev(),Home:()=>deck.slide(0),End:()=>deck.slide(slides.length-1)};
    if(actions[e.key]) {e.preventDefault(); actions[e.key]();}
   });
   let touch;
-  document.addEventListener('touchstart',e=>{if(e.target.closest('.contents-nav')){touch=null;return;}touch=e.touches.length===1 ? {x:e.touches[0].clientX,y:e.touches[0].clientY}:null;},{passive:true});
-  document.addEventListener('touchend',e=>{if(!touch || menu.open || sources.open || e.changedTouches.length!==1)return; const dx=e.changedTouches[0].clientX-touch.x,dy=e.changedTouches[0].clientY-touch.y; touch=null; if(Math.abs(dx)>70 && Math.abs(dx)>Math.abs(dy)*1.7) dx<0 ? deck.next() : deck.prev();},{passive:true});
+  document.addEventListener('touchstart',e=>{if(modalOpen() || e.target.closest('.contents-nav')){touch=null;return;}touch=e.touches.length===1 ? {x:e.touches[0].clientX,y:e.touches[0].clientY}:null;},{passive:true});
+  document.addEventListener('touchend',e=>{if(!touch || modalOpen() || e.changedTouches.length!==1)return; const dx=e.changedTouches[0].clientX-touch.x,dy=e.changedTouches[0].clientY-touch.y; touch=null; if(Math.abs(dx)>70 && Math.abs(dx)>Math.abs(dy)*1.7) dx<0 ? deck.next() : deck.prev();},{passive:true});
   function preference(id,cls) { const b=document.querySelector(id); b.setAttribute('aria-pressed',String(document.documentElement.classList.contains(cls))); b.onclick=()=>{const enabled=document.documentElement.classList.toggle(cls); b.setAttribute('aria-pressed',String(enabled));}; }
   preference('#deck-large','large'); preference('#deck-motion','reduce');
   document.querySelector('#deck-read').onclick=()=>{const status=document.querySelector('#speech-status'); if(!('speechSynthesis' in window)){status.textContent='Device read-aloud is unavailable.';return;} speechSynthesis.cancel();const record=records[deck.getIndices().h];const utterance=new SpeechSynthesisUtterance([record.title,...record.points].join('. '));utterance.lang='en';speechSynthesis.speak(utterance);};
