@@ -56,11 +56,11 @@ export const researchSections: ResearchSection[] = [
         "slideNumber": 10
       },
       {
-        "title": "Use evidence to guide outreach effort",
+        "title": "From community outreach to a measurable recruitment process",
         "slideNumber": 11
       },
       {
-        "title": "Match the research method to the question",
+        "title": "A model that learns and guides the next round",
         "slideNumber": 12
       },
       {
@@ -166,25 +166,29 @@ export const researchSlides: ResearchSlide[] = [
     "layout": "split",
     "title": "Talent is everywhere.\nAccess to learning should be too.",
     "points": [
-      "Understand people.",
-      "Connect learning.",
-      "Follow progress."
-    ],
-    "note": "Historical skills example from Shell LiveWIRE, not a Gufwan/Beautiful Gate project or an activity of the proposed Plateau pilot. The accompanying story identifies Mbuotidem Okorie as a Nigerian shoemaker with a disability. No connection to Impact Mosaic is claimed.",
+      "Through Beautiful Gate, your work has helped remove mobility barriers for people like James Ahumbe.",
+      "We propose to build on that foundation through adaptive sampling and a participant register capturing people’s skills, interests and learning needs.",
+      "This would help us connect participants with suitable teaching, monitor their learning progress and adjust support as their needs change."
+],
+    "note": "Historical Beautiful Gate beneficiary, identified by name and photograph on page 3 of Wheelchairs for Nigeria’s July 2023 newsletter. The source identifies James Ahumbe as a cobbler who received a replacement tricycle. The photograph shows him with that tricycle; it does not show shoemaking or establish that Beautiful Gate taught him his trade. The proposed learning pathway and sandbox are separate prospective work; no partnership, endorsement or learning outcome is implied.",
     "links": [
   {
-    "label": "First-person programme account by Chukwudi Nwanze (Shell), 12 September 2014",
-    "url": "https://businessfightspoverty.org/making-a-better-life-in-business/"
+    "label": "Wheelchairs for Nigeria · newsletter archive",
+    "url": "https://www.wheelchairsfornigeria.org/newsletters"
   }
 ],
     "images": [
   {
-    "path": "/photos/mbuotidem-shoemaking.jpg",
-    "displayCredit": { "name": "Mbuotidem Okorie · Shoemaker, Nigeria", "credit": "Credit: Shell LiveWIRE / BellaNaija", "sourceLabel": "Source: BellaNaija, 2014" },
-    "alt": "Mbuotidem Okorie seated in his shoemaking workshop, holding a shoe component with gloved hands beside a bench of shoes.",
-    "caption": "Mbuotidem Okorie practising shoemaking in Nigeria. Published with the Shell LiveWIRE story on BellaNaija, 16 December 2014; the accompanying report identifies him as a shoemaker with a disability from Uyo, Akwa Ibom.",
-    "credit": "Shell LiveWIRE photograph published by BellaNaija; photographer not named",
-    "source": "https://www.bellanaija.com/2014/12/building-lives-shell-livewire-supports-people-with-disabilities-to-achieve-their-dreams/"
+    "path": "/photos/james-ahumbe-beautiful-gate.jpg",
+    "displayCredit": {
+      "name": "James Ahumbe · Cobbler and Beautiful Gate beneficiary",
+      "credit": "Photo published by Wheelchairs for Nigeria",
+      "sourceLabel": "July 2023, p. 3"
+    },
+    "alt": "James Ahumbe smiling while seated on a tricycle wheelchair, wearing a navy shirt and resting one hand on its red hand pedal.",
+    "caption": "James Ahumbe with a tricycle wheelchair. Wheelchairs for Nigeria’s July 2023 newsletter, page 3, identifies him as a cobbler who received a replacement tricycle through Beautiful Gate. The photograph shows mobility support, not shoemaking or skills training.",
+    "credit": "Photograph published by Wheelchairs for Nigeria; photographer not named",
+    "source": "https://www.wheelchairsfornigeria.org/_files/ugd/8d854e_ffd0fdd619874f11a285bcacaa816a64.pdf#page=3"
   }
 ]
   },

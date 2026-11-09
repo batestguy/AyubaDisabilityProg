@@ -43,8 +43,8 @@ Slide 1 is the cover; slide 2 is the clickable Table of Contents. These opening 
 | 3. Strengthening Recruitment with Statistics | Start with varied community contacts | 8 | Planned |
 |  | Let each recruitment round guide the next | 9 | Planned |
 |  | Give people several ways to join | 10 | Planned |
-|  | Use evidence to guide outreach effort | 11 | Planned |
-|  | Match the research method to the question | 12 | Planned |
+|  | From community outreach to a measurable recruitment process | 11 | Planned |
+|  | A model that learns and guides the next round | 12 | Planned |
 |  | Test whether the additions help | 13 | Planned |
 |  | Make participation simple and respectful | 14 | Planned |
 | 4. Connecting People to Accessible Learning | Turn registration into a learning pathway | 15 | Planned |
@@ -57,6 +57,53 @@ Slide 1 is the cover; slide 2 is the clickable Table of Contents. These opening 
 |  | Turn experience into shared evidence | 22 | Planned |
 | 6. Building the Partnership | Build the team around the work | 23 | Planned |
 |  | Three agreements to begin | 24 | Planned |
+
+## Agreed brief section: building on the current framework
+
+Owner requested an explicit, brief explanation of the mathematical/methodological refinement. Reserve slides 11–12 within Section 3; retain 24 slides overall. These are documented content briefs and Planned contents entries, not implemented slides or a fitted model. Slides 13–14 retain evaluation and respectful participation. Discuss the research sampling design and any wider population estimation in supporting notes, rather than claiming that registration or adaptive outreach alone supports representative estimates.
+
+### Slide 11 — From community outreach to a measurable recruitment process
+
+Section label: **Building on the Current Framework: Our Proposed Refinement**.
+
+Opening copy:
+
+> We propose to build on Gufwan’s community relationships by adding a statistical layer that records recruitment patterns, identifies gaps and guides subsequent outreach.
+
+| Foundation to document with his team | Proposed methodological addition | Benefit to test |
+|---|---|---|
+| Community contacts and introductions | Plan starting contacts across agreed areas and groups | Broader initial reach |
+| Referrals through existing relationships | Record referral routes and recruitment rounds | Understand network concentration and gaps |
+| Decisions about further outreach | Use recruitment evidence and uncertainty to inform adjustments | Better use of available effort |
+| Participant registration | Check unique registrations and record relevant invitation outcomes | More reliable recruitment measures |
+
+Visual direction: show the jointly documented existing process and highlight proposed statistical additions in gold. No photograph is needed. This is a proposed extension; confirm which practices already exist before presenting any as new to his team. Keep full comparison detail in the reading edition if it crowds the slide.
+
+### Slide 12 — A model that learns and guides the next round
+
+Three visible steps:
+
+1. **Measure:** record unique eligible registrations, recruitment route, agreed group characteristics and staff effort.
+2. **Update:** use a proposed Bayesian model to revise estimates of recruitment performance as observations accumulate.
+3. **Allocate:** recommend the next round of outreach, subject to available resources, uncertainty, human review and minimum effort for groups needing additional support.
+
+Small mathematical panel:
+
+\[
+p(\theta\mid D)\propto p(D\mid\theta)\,p(\theta)
+\]
+
+Plain explanation: **Combine initial knowledge with observed recruitment to update what we expect from each route.**
+
+Here, \(D\) represents recruitment observations and \(\theta\) the quantities the model estimates, such as recruitment rates across routes and groups. This is the Bayesian updating principle, not a specified or fitted recruitment model. The likelihood, priors, network dependence, attribution of overlapping routes, effort measurement, missing data, adaptation rules and safeguards require joint scoping and validation. No model coefficients, sample sizes, population totals or performance gains have been established.
+
+Visual sequence: **Community knowledge + recruitment records → updated estimates and uncertainty → proposed next outreach round → observe and review**. Use a feedback diagram. Retain a basic accessible explanation of the mathematical panel in the reading edition when the slide is implemented.
+
+Closing copy:
+
+> The proposed improvement is a repeatable, evidence-informed way to adapt recruitment. The Plateau pilot will test whether it improves inclusion and recruitment efficiency.
+
+Evaluation stays explicit in slide 13 and the Plateau pilot section. Separate improvement of recruitment from estimation of the wider population; the latter needs a suitable sampling design and defensible assumptions. Do not imply that his team currently lacks these practices or that proposed gains have already been observed.
 
 ## Show how statistical methods change recruitment
 

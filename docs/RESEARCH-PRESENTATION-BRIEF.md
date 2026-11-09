@@ -1,3 +1,17 @@
+# Approved slide 3 supporting copy — 9 November 2026
+
+Owner approved the following exact supporting text. Keep the existing headline, verified James Ahumbe photograph and source caption. The short conceptual pathway is “Reach people → Understand needs → Connect teaching → Monitor and support learning”; it is a discussion summary, not additional on-slide text.
+
+> Through Beautiful Gate, your work has helped remove mobility barriers for people like James Ahumbe.
+
+> We propose to build on that foundation through adaptive sampling and a participant register capturing people’s skills, interests and learning needs.
+
+> This would help us connect participants with suitable teaching, monitor their learning progress and adjust support as their needs change.
+
+Sampling, register and monitoring are proposed work. No model fit, pilot recruitment or learner outcomes are implied.
+
+---
+
 # Impact Mosaic: immersive first-five presentation review
 
 ## Latest planning direction — 9 November 2026
@@ -70,7 +84,7 @@ Owner correction, 9 November: show a small name, credit and linked source direct
 
 Artwork: `/impact-mosaic-unity-crutch.png`, a revision of the approved six-person unity composition and Nigeria flag. Owner correction, 9 November: the person in green now leans on a visible crutch while embracing the group. The original `/impact-mosaic-unity-nigeria.png` is retained unchanged. Its identifying features include albinism, wheelchair, white cane, walking stick, glasses, crutch and hijab. See [unity provenance](UNITY-LOGO.md). It is labelled as artwork in the sources panel and reading edition.
 
-- Slide 3: `/photos/mbuotidem-shoemaking.jpg`. Mbuotidem Okorie practising shoemaking in Nigeria. Published with the Shell LiveWIRE story on BellaNaija, 16 December 2014; the accompanying report identifies him as a shoemaker with a disability from Uyo, Akwa Ibom. [Shell LiveWIRE photograph published by BellaNaija; photographer not named](https://www.bellanaija.com/2014/12/building-lives-shell-livewire-supports-people-with-disabilities-to-achieve-their-dreams/). Corroboration: [first-person Shell programme account](https://businessfightspoverty.org/making-a-better-life-in-business/). Original 1000 × 667 JPEG retained without cropping or retouching. This is a Shell LiveWIRE skills example, not a Gufwan/Beautiful Gate or Impact Mosaic activity. Gufwan-related sources were prioritised, but no suitable skill-in-action image with a verified individual disability identification was established.
+- Slide 3: `/photos/james-ahumbe-beautiful-gate.jpg`. James Ahumbe, a cobbler and Beautiful Gate replacement-tricycle recipient. Named photograph and paragraph: [Wheelchairs for Nigeria, July 2023, page 3](https://www.wheelchairsfornigeria.org/_files/ugd/8d854e_ffd0fdd619874f11a285bcacaa816a64.pdf#page=3), linked from the partner’s newsletter archive. Original embedded 785 × 521 JPEG retained unchanged. The photograph shows James with his tricycle, not practising shoemaking; no claim Beautiful Gate taught his trade. Photographer not named. Caption credits the publisher. Checksums, extraction and identification are in `docs/research-slide-3-photo-provenance.json`. Earlier Shell LiveWIRE photograph preserved as an unused asset.
 - Slide 4: `/photos/leadership.webp`. Chief Ayuba Gufwan, in the photograph published with FMINOâ€™s leadership profile. Report: 2024-10-26. Nigeria; photograph venue not specified. [Photograph published by FMINO](https://fmino.gov.ng/championing-inclusion-chief-ayuba-gufwans-mission-for-persons-with-disabilities-in-nigeria/). WHO’s 2019 profile connects Gufwan’s experience of polio with mobility and education work. Historical sources do not establish a project partnership or endorsement. The photograph’s venue and event date are not inferred.
 - Slide 5: `/photos/education-2.webp`. Gufwan during the UBEC partnership discussion on inclusive education. Report: 2024-09-26. UBEC, Abuja. [Photograph published by FMINO](https://fmino.gov.ng/children-with-disabilities-deserve-more-attention-to-attain-their-aspirations-in-life-ayuba-gufwan/). Historical UBEC inclusive-education discussion, not an activity of the proposed pilot. Registration and optional research remain separate; resources and operational arrangements are to be agreed.
 

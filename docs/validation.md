@@ -1,3 +1,25 @@
+# Slide 3 approved supporting text — 9 November 2026
+
+Exact three-paragraph owner-approved copy now connects Beautiful Gate’s mobility support with proposed adaptive sampling, a participant register, suitable teaching, monitoring learning progress and adjusting support. Headline, verified photograph and source caption retained. Quarto/static/reading outputs regenerated. Fresh preflight: 120 tests, TypeScript and production build pass; production-CSP presentation regression: 15 clean accessibility audits and desktop/phone/200% text, navigation/exit, sources/reading/no-JavaScript/print and exact saved-record checks pass. Zero product errors/resources/CSP failures. Existing non-failing bundle-size advisory remains. Local preview on slide 3; no commit, push or deployment for this continuation.
+
+---
+
+# Verified beneficiary photograph and slide 3 acknowledgement — 9 November 2026
+
+- James Ahumbe matched to named photograph and beneficiary paragraph in Wheelchairs for Nigeria, July 2023, page 3. Original 785×521 JPEG extracted unchanged, checksums and identification limits recorded in `docs/research-slide-3-photo-provenance.json`. Photograph depicts him with the tricycle, not practising his trade.
+- Shared slide source, visible caption, source context and reading/static paths updated. Previous photograph retained unused.
+- Quarto regeneration and fresh preflight pass: 120 tests, TypeScript and production build. Existing non-failing bundle-size advisory remains.
+- Focused production-CSP presentation regression passes 15 accessibility audits, desktop/phone/200% text, full-frame image, navigation/exit, sources/read-aloud/reduced-motion, reading/no-JavaScript/print and unchanged saved records. Zero page errors, failed resources or CSP violations. Desktop screenshot `output/playwright/research-slide-3.png` visually inspected.
+- Local owner review; no commit, push or deployment for this continuation.
+
+---
+
+# Methodological refinement contents update — 9 November 2026
+
+Slides 11–12 renamed in the shared mapping and documented with the proposed methodological comparison and Bayesian updating explanation. Quarto/static/reading outputs regenerated. Fresh preflight passes 120 tests, TypeScript and build; focused production presentation regression passes 15 accessibility audits, responsive/200% text, links, keyboard, exit and saved-record preservation. Zero page errors/resources/CSP failures. Each planned slide 3–24 occurs once; five implemented slides remain. No model fit, later-slide implementation or deployment. Existing non-failing Vite bundle-size advisory remains.
+
+---
+
 # Clickable contents, hairstyle revision and visible exit — 9 November 2026
 
 - Regenerated Quarto; fresh preflight: 120/120 tests, TypeScript and production build pass. Existing non-failing bundle-size advisory remains.
