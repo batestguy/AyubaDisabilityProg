@@ -31,3 +31,12 @@ dialog{background:#fff8ef;color:#411b16;border:0;border-radius:4px;padding:1.5re
 @media print{html:has(.reveal),body:has(.reveal){page:mosaic-slides}}
 @media print{html:not(.print-pdf) .reveal .slides>section{break-before:auto!important;page-break-before:auto!important}}
 @media print{html:not(.print-pdf) .reveal .slides>section{height:200mm!important;min-height:0!important;max-height:200mm!important;padding:0!important;margin:0!important;width:100%!important}}
+
+/* A quiet, visible attribution for the opportunity slide. */
+.reveal .credited-photo{width:100%;margin:0}
+.reveal .credited-photo img{height:auto;max-height:calc(100dvh - 12rem)}
+.reveal .photo-credit{padding:.75rem 1.25rem 0;font-size:.85rem;line-height:1.55;letter-spacing:0;text-align:left;color:#fff;overflow-wrap:anywhere}
+.photo-credit strong,.photo-credit span{display:block}
+.reveal .photo-credit a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:700px){.slide-visual.credited{height:auto;min-height:0;padding:0 0 1rem}.reveal .credited-photo img{height:auto;max-height:38dvh}}
+@media print{.reveal .credited-photo img{height:auto!important;max-height:160mm!important}}

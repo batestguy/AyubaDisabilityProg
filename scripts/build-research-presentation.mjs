@@ -18,7 +18,11 @@ const composition = slide => {
  const lines = slide.points.map(p => `<p>${esc(p)}</p>`).join('');
  if (slide.layout === 'cover') return `<div class="composition cover"><img class="cover-art" src="${esc(slide.images[0].path)}" alt="${esc(slide.images[0].alt)}"><div class="cover-shade"></div><div class="slide-copy">${title}<p class="tagline">${esc(slide.points[0])}</p><div class="pilot-lines"><p>${esc(slide.points[1])}</p><p>${esc(slide.points[2])}</p></div><div class="creators"><p>${esc(slide.points[3])}</p><p>${esc(slide.points[4])}</p></div></div></div>`;
  if (slide.layout === 'contents') return `<div class="composition contents"><div class="mosaic-motif" aria-hidden="true"></div><div class="slide-copy">${title}<ol>${slide.points.map(p => `<li>${esc(p)}</li>`).join('')}</ol></div></div>`;
- return `<div class="composition split"><div class="slide-copy">${title}<div class="supporting">${lines}</div></div><div class="slide-visual"><img src="${esc(slide.images[0].path)}" alt="${esc(slide.images[0].alt)}"></div></div>`;
+ const image = slide.images[0];
+ const photo = `<img src="${esc(image.path)}" alt="${esc(image.alt)}">`;
+ const credit = image.displayCredit;
+ const visual = credit ? `<figure class="credited-photo">${photo}<figcaption class="photo-credit"><strong>${esc(credit.name)}</strong><span>${esc(credit.credit)} · <a href="${esc(image.source)}" target="_blank" rel="noopener">${esc(credit.sourceLabel)}</a></span></figcaption></figure>` : photo;
+ return `<div class="composition split"><div class="slide-copy">${title}<div class="supporting">${lines}</div></div><div class="slide-visual${credit ? ' credited' : ''}">${visual}</div></div>`;
 };
 await writeFile('public/research/slides.json', JSON.stringify(slides));
 await writeFile('presentation/before.html', top);

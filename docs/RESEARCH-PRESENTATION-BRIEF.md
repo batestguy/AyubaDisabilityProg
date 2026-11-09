@@ -1,5 +1,11 @@
 # Impact Mosaic: immersive first-five presentation review
 
+## Latest planning direction — 9 November 2026
+
+The owner selected a **Plateau pilot partnership and technical scoping** as the main presentation outcome. Frame the research as appreciation of Gufwan’s existing outreach and an academic extension of it. Show how statistical sampling methods could strengthen recruitment: starting-contact selection, adaptive referral waves, complementary routes, allocation of effort and a pilot comparison. Verify the actual current procedure jointly before assigning a formal method label or specifying additions.
+
+See [proposed six-part contents, 24-slide story and recruitment-method evidence](RESEARCH-CONTENTS-AND-RECRUITMENT-PLAN.md). These are planning options for discussion. No later slides or changes to the live roadmap are implemented by this planning step.
+
 Agreed direction, 9 November 2026. This section supersedes the older embedded deck and suggested 24-slide outline below. Implement **five slides only** and stop for the owner’s visual corrections before developing later slides. No commit, push, publishing or deployment is authorized.
 
 ## Audience and visual direction
@@ -57,6 +63,8 @@ Slides 1–2 use the full canvas. Slides 3–5 divide the desktop equally betwee
 > Suitable teaching
 > Accessible communication
 > Devices and connectivity
+
+Owner correction, 9 November: show a small name, credit and linked source directly beneath slide 3’s photograph. Detailed historical context stays in Sources and the reading edition. This supersedes the initial hidden-caption rule for this photograph.
 
 ## Photograph and artwork provenance
 

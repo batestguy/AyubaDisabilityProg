@@ -1,5 +1,5 @@
 // Shared source for the Quarto presentation, reading edition and no-JavaScript alternative.
-export interface ResearchImage { path: string; alt: string; caption: string; credit: string; source: string }
+export interface ResearchImage { path: string; alt: string; caption: string; credit: string; source: string; displayCredit?: { name: string; credit: string; sourceLabel: string } }
 export interface ResearchSlide { layout: "cover" | "contents" | "split"; title: string; points: string[]; note: string; images: ResearchImage[]; links?: { label: string; url: string }[] }
 export const researchSlides: ResearchSlide[] = [
   {
@@ -55,6 +55,7 @@ export const researchSlides: ResearchSlide[] = [
     "images": [
   {
     "path": "/photos/mbuotidem-shoemaking.jpg",
+    "displayCredit": { "name": "Mbuotidem Okorie · Shoemaker, Nigeria", "credit": "Credit: Shell LiveWIRE / BellaNaija", "sourceLabel": "Source: BellaNaija, 2014" },
     "alt": "Mbuotidem Okorie seated in his shoemaking workshop, holding a shoe component with gloved hands beside a bench of shoes.",
     "caption": "Mbuotidem Okorie practising shoemaking in Nigeria. Published with the Shell LiveWIRE story on BellaNaija, 16 December 2014; the accompanying report identifies him as a shoemaker with a disability from Uyo, Akwa Ibom.",
     "credit": "Shell LiveWIRE photograph published by BellaNaija; photographer not named",

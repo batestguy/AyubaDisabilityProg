@@ -1,3 +1,58 @@
+# Resume here: caption and recruitment-research planning checkpoint — 9 November 2026
+
+The owner is leaving this task to do other work and explicitly requested **documenting the handoff, committing and pushing all pending updates**. This supersedes the local-only/no-new-commit notes in the historical entries below. Destination: `batestguy/AyubaDisabilityProg`, `main`. No deployment is requested.
+
+## Delivered and ready to resume
+
+- Five working Research slides, immersive full-screen entry, visible Back/Next/Finish, menu, reading/source/accessibility paths and the revised crutch logo were delivered in pushed commit `11ba0a5`.
+- The pending follow-up adds a small caption beneath slide 3’s photograph: **Mbuotidem Okorie · Shoemaker, Nigeria**, credit **Shell LiveWIRE / BellaNaija**, with a linked **BellaNaija, 2014** source. Original photo and full source context remain. This is not a Gufwan-project photograph.
+- [Researched contents and recruitment plan](docs/RESEARCH-CONTENTS-AND-RECRUITMENT-PLAN.md) records a proposed six-section, 24-slide presentation, method options, evidence, pilot comparisons and measures. The live roadmap is unchanged and slides 6–24 are not implemented.
+
+## Owner decisions to preserve
+
+1. Primary purpose: **secure a Plateau pilot partnership and technical scoping discussion**.
+2. Appreciate Gufwan’s existing community outreach and practical experience. Present our work as a complementary academic/statistical extension, with roles agreed jointly.
+3. Make the central research contribution concrete: **show how statistical sampling methods could improve recruitment**. Cover planned starting contacts, adaptive referral waves, complementary accessible routes and adaptive allocation of recruitment effort, including a Bayesian option to investigate.
+4. Document his actual current procedure with his team before assigning formal sampling labels or choosing additions. Proposed benefits must be evaluated; no recruitment gains or population estimates have been measured here.
+5. Keep learner/facilitator matching and accessible teaching connected to the recruitment story. Start with Plateau; national reach is a longer-term ambition.
+
+## Proposed contents awaiting discussion
+
+1. The foundation and shared vision.
+2. The community approach we can build on.
+3. Statistical methods to strengthen recruitment — the central section.
+4. From recruitment to accessible learning.
+5. Testing the approach in Plateau.
+6. A partnership to take the next step.
+
+When the owner returns, review these titles and the method sequence in the planning document first. Then agree the next slide batch before implementation. Keep ordinary registration distinct from any optional research sample; define measures, frames and comparison designs before claiming improvements or representativeness. No fieldwork, participant recruitment, real data collection or new operational partnership is authorized by this checkpoint.
+
+## Resume and verification
+
+Local review: `http://127.0.0.1:4175/?page=research`. Server: `node scripts/serve-production-local.mjs` after a production build. Development: `npm.cmd run dev`, then `http://127.0.0.1:5173/?page=research`. The headed Chrome session was `mosaic-review`, tab 1, but browser/server processes may need reopening. Screenshots and verification JSON are ignored local artifacts under `output/playwright/research-*`.
+
+Shared content: `src/researchSlides.ts`; generator: `scripts/build-research-presentation.mjs`; source/runtime: `presentation/research.qmd`, `public/research/deck.css`, `public/research/deck.js`. After content edits, run `npm.cmd run build:research`, then `npm.cmd run preflight`. Browser regression: `node scripts/browser-research-presentation.mjs` against the local production server.
+
+The caption revision passed Quarto regeneration, repository preflight (120 tests, TypeScript and build), ten presentation accessibility audits, full presentation/reading/no-JavaScript paths, 200% phone caption placement and zero product errors/resources/CSP violations. Saved demo bytes remain unchanged. Fresh handoff preflight also passed all 120 tests, TypeScript and production build; local document links resolve. The verified push receipt is reported in the delivery response. The existing non-failing Vite bundle-size advisory remains.
+
+Original PowerPoint and original logo assets are preserved. No new production dependency or storage schema change. The next action is owner discussion of the proposed contents and sampling contribution, not automatic construction of the remaining deck.
+
+---
+
+# Historical discussion: contents and statistical recruitment improvements — 9 November 2026
+
+The owner requested a fresh page with all updates and a researched table of contents. A fresh browser tab (`mosaic-review`, tab 1) shows the current local deck, including the visible opportunity-photo caption. They selected **Plateau pilot partnership and technical scoping** as the main outcome and clarified that the research should appreciate Gufwan’s existing work and show how statistical sampling methods can improve recruitment.
+
+Planning artifact: [six-part contents, 24-slide proposal, sampling methods and evidence](docs/RESEARCH-CONTENTS-AND-RECRUITMENT-PLAN.md). Document the existing procedure with his team, then discuss planned starting contacts, adaptive referrals, accessible complementary routes and adaptive allocation. The proposal defines pilot measures/comparisons and distinguishes practical registration from formal probability/network sampling. Local adaptation and evaluation are prospective academic contributions; gains are hypotheses, not measured results.
+
+Planning only: later slides, the live roadmap and runtime are unchanged. Immediately preceding successful preflight/browser checks still apply. No new commit, push or deployment. The visible-caption follow-up remains local after pushed commit `11ba0a5`.
+
+---
+
+## Visible photo caption — 9 November 2026
+
+Owner requested a little name, source and credit beneath the opportunity photograph. Slide 3 now has a small two-line caption naming Mbuotidem Okorie as a Nigerian shoemaker, crediting Shell LiveWIRE / BellaNaija and linking BellaNaija’s 2014 source. `displayCredit` in the shared image record drives the generated figure/figcaption. Full attribution remains in Sources and reading editions. Quarto regenerated; typed build and ten focused presentation accessibility audits pass, with zero product errors, failed resources or CSP violations. Local review browser reloaded to slide 3. This caption follow-up is local and is not included in the previous pushed commit `11ba0a5`.
+
 # Commit-and-push delivery — 9 November 2026
 
 The owner authorized committing and pushing the accumulated five-slide redesign and requested a skill-in-action photograph for “Talent is everywhere”, preferably from Gufwan’s projects. This supersedes earlier no-commit/no-push instructions below; deployment remains outside this request.
