@@ -1,3 +1,31 @@
+# Slide 4 continuous database-centred adaptive cycle — 9 November 2026
+
+Central Participant database explicitly informs all decisions. Highlighted adaptive sampling feeds records in and is refined using recorded recruitment evidence. Five decision spokes and closed circular ring show continuous review/update/adaptation. Removed redundant captions/numbering and repeated feedback panels; full semantics remain in reading/read-aloud. Documentary collage and source context preserved. Phone and A+ show a closed-ring overview plus readable details.
+
+Quarto/static/reading regenerated. Fresh preflight passes 120 tests, TypeScript and production build. Production-CSP presentation regression passes 15 accessibility audits, hub/spokes/ring/sampling checks, source-image resolution, desktop/phone/200% text, navigation/exit/read-aloud/reading/no-JavaScript/print and unchanged stored records. Zero product errors, failed resources or CSP violations. Additional five-page PDF text check confirms all decisions, central database and update/repeat loop; page 4 rendered for visual inspection. Evidence under `output/playwright/`. Existing non-failing Vite bundle-size advisory remains. Local preview on slide 4; no commit, push or deployment.
+
+---
+
+# Slide 4 larger collage and text-led proposed extension — 9 November 2026
+
+- Original publisher JPEGs retained unchanged: mobility 1080×720; education 950×633. Larger unified CSS collage preserves both full frames; no generated enhancement. Provenance/checksums: `docs/research-foundation-photo-provenance.json`.
+- Smaller stage illustrations; larger stage labels and shorter summaries. “Understand skills & needs” and “Match teaching” clarify actions. Full detail preserved for reading/read-aloud. Explicit database, recruitment-evidence→outreach and learning-progress→support feedback headings retained. Historical photograph caption remains education discussion, not a concluded agreement.
+- Fresh Quarto regeneration and preflight pass 120 tests, TypeScript and production build. Focused production-CSP presentation regression passes 15 accessibility audits, original-image resolution, larger labels/secondary illustrations, desktop/phone/200% text, navigation/exit/source/reading/no-JavaScript/print and exact saved-record preservation. Zero page errors, failed resources or CSP violations.
+- Five-page PDF includes all five stages, database, feedback headings and final status on page 4. Desktop and printed slide visually inspected. Evidence: `output/playwright/research-slide-4.png`, `research-pathway-print.png`, `research-slides.pdf`, `research-verification.json`.
+- Browser open on slide 4. Existing non-failing Vite bundle-size advisory remains. No commit, push or deployment for this continuation.
+
+---
+
+# Slides 4–5 narrative and illustrated-journey revision — 9 November 2026
+
+- Slide 4 is the proposed foundation/pathway/database diagram, with five native illustrative SVG scenes on a connected route and two distinct feedback loops. Two documentary photographs show mobility devices from the Beautiful Gate/Senator Abba Moro partnership and Gufwan’s historical UBEC education discussion; source/partner credit preserved, full frames retained. No fictional results or real pilot participation implied.
+- Slide 5 now says “Participation needs more than registration.” and covers teaching/facilitator capacity, accessible communication/formats, devices/connectivity where needed and participant-agreed support. Historical education photo retained. Contents, reading/static and read-aloud match the shared source.
+- Quarto regenerated. Preflight passes 120 tests, TypeScript and production build. Illustrated production-CSP presentation regression passes 15 accessibility audits, photo/diagram counts, database/two loops, desktop/phone/200% layouts, navigation/exit, read-aloud, source/reading/no-JavaScript/print and exact saved-record preservation. Zero page errors, failed resources or CSP violations.
+- Additional visual PDF inspection caught Reveal print rules overriding the native layout. After inspecting those overrides, explicit print rules were added. Final rebuild and focused print verification pass: five PDF pages and all five stages, database, both loop descriptions and status present on page 4. Rendered diagram page and desktop screenshot visually inspected. Evidence: `output/playwright/research-slide-4.png`, `research-slide-5.png`, `research-verification.json`, `research-slides.pdf`, `research-pathway-print.png`.
+- Local browser open on slide 4. Existing non-failing bundle-size advisory remains. No commit, push or deployment for this revision.
+
+---
+
 # Slide 3 approved supporting text — 9 November 2026
 
 Exact three-paragraph owner-approved copy now connects Beautiful Gate’s mobility support with proposed adaptive sampling, a participant register, suitable teaching, monitoring learning progress and adjusting support. Headline, verified photograph and source caption retained. Quarto/static/reading outputs regenerated. Fresh preflight: 120 tests, TypeScript and production build pass; production-CSP presentation regression: 15 clean accessibility audits and desktop/phone/200% text, navigation/exit, sources/reading/no-JavaScript/print and exact saved-record checks pass. Zero product errors/resources/CSP failures. Existing non-failing bundle-size advisory remains. Local preview on slide 3; no commit, push or deployment for this continuation.

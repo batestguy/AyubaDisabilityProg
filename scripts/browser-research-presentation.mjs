@@ -43,7 +43,7 @@ try {
  };
  const select=async i=>{await f.locator('#menu-trigger').focus();await f.locator('#menu-trigger').click();await f.locator('#slide-selector').selectOption(String(i));await f.locator('#slide-count').filter({hasText:`${i+1} / 5`}).waitFor();};
  assert.equal(await f.locator('#back').isDisabled(),true);
- const expected=['IMPACT MOSAIC','Table of Contents','Talent is everywhere. Access to learning should be too.','Gufwan’s story connects mobility with opportunity.','Reaching the classroom is only the beginning.'];
+ const expected=['IMPACT MOSAIC','Table of Contents','Talent is everywhere. Access to learning should be too.','Building on your work: one database, an adaptive cycle','Participation needs more than registration.'];
  // Contents destinations are live only for the three built subsections.
  await select(1);
  assert.equal(await f.locator('.contents-section').count(),6);
@@ -85,6 +85,28 @@ try {
   if(i===2){await f.locator('#back').click();assert.equal(await f.locator('#slide-count').innerText(),'2 / 5');await f.locator('#next').click();}
   assert.equal((await f.locator('.present .slide-copy h2').innerText()).replace(/\s+/g,' '),expected[i]);
   assert.equal(await f.locator('.slides>section:not([inert])').count(),1);
+  if(i===3){
+   assert.equal(await f.locator('.present .pathway-steps>li').count(),5);
+   assert.equal(await f.locator('.present img').count(),2);
+   assert.equal(await f.locator('.present .journey-art').count(),5);
+   assert.equal(await f.locator('.present .foundation-photos figure').count(),2);
+   for(const photo of await f.locator('.present .foundation-photos img').all()) assert.equal(await photo.evaluate(e=>e.naturalWidth>=950),true,'foundation collage uses original resolution');
+   assert.equal(await f.locator('.present .pathway-steps h3').first().evaluate(e=>parseFloat(getComputedStyle(e).fontSize)>=24),true,'main stage labels are presentation-size');
+   assert.equal(await f.locator('.present .journey-art').first().evaluate(e=>e.getBoundingClientRect().height<80),true,'illustrations remain secondary');
+
+   assert.match(await f.locator('.present .pathway-foundation').innerText(),/Your community relationships/);
+   assert.match(await f.locator('.present .pathway-database').innerText(),/Participant database/);
+   assert.equal(await f.locator('.present .cycle-spoke').count(),5);
+   assert.match(await f.locator('.present .cycle-hub').innerText(),/Participant database/);
+   assert.match(await f.locator('.present .database-role').innerText(),/Records inform every decision/);
+   assert.equal(await f.locator('.present .closed-cycle').count(),1);
+   assert.match(await f.locator('.present .sampling-emphasis').innerText(),/Adaptive sampling/);
+   assert.match(await f.locator('.present .sampling-promise').innerText(),/Recruit.*register.*update/);
+   assert.match(await f.locator('.present .cycle-repeat').innerText(),/repeat/);
+   assert.match(await f.locator('.present .cycle-insight').innerText(),/Recruitment builds the database/);
+   assert.match(await f.locator('.present .cycle-insight').innerText(),/Progress updates the database/);
+  }
+
   for(const img of await f.locator('.present img').all())assert.equal(await img.evaluate(e=>e.complete&&e.naturalWidth>0),true);
   await page.waitForTimeout(230);
   assert.equal(await f.locator('.slides > section.present').evaluate(e=>e.scrollHeight<=e.clientHeight+2),true,`desktop fits ${i+1}`);
@@ -102,7 +124,7 @@ try {
  for(const [key,count] of [['Home','1 / 5'],['PageDown','2 / 5'],['ArrowRight','3 / 5'],['PageUp','2 / 5'],['ArrowLeft','1 / 5'],['End','5 / 5']]){await page.keyboard.press(key);assert.equal(await f.locator('#slide-count').innerText(),count);}
  await select(3);
  await f.locator('#menu-trigger').click();await f.getByText('Accessibility options',{exact:true}).click();await f.locator('#deck-read').click();
- assert.match(await f.locator('body').evaluate(()=>window.__spoken.at(-1)),/Gufwan’s story connects/);
+ assert.match(await f.locator('body').evaluate(()=>window.__spoken.at(-1)),/Building on your work/);
  await f.locator('#deck-motion').click();await f.locator('[data-close]').first().click();
  await select(4);assert.equal(await f.locator('.present .composition').evaluate(e=>getComputedStyle(e).animationName),'none');
  await f.locator('#menu-trigger').click();await f.locator('#deck-motion').click();await f.locator('[data-close]').first().click();
@@ -114,7 +136,8 @@ try {
    await select(i);
    assert.equal(await f.locator('.slides > section.present').evaluate(e=>e.scrollWidth<=e.clientWidth+2),true,`${name}-${i+1} no horizontal overflow`);
    assert.equal(await f.locator('.present .slide-copy').evaluate(e=>{const r=e.getBoundingClientRect();return r.height>=e.scrollHeight-2;}),true,`${name}-${i+1} copy not clipped`);
-   if(width===390&&i>=2)assert.equal(await f.locator('.present .slide-visual').evaluate(e=>e.getBoundingClientRect().top<e.parentElement.querySelector('.slide-copy').getBoundingClientRect().top),true);
+   if(i===3) assert.equal(await f.locator('.present .pathway-steps li').first().evaluate(e=>getComputedStyle(e).position),width<=1100||size?'relative':'absolute',`${name} cycle layout`);
+   if(width===390&&[2,4].includes(i))assert.equal(await f.locator('.present .slide-visual').evaluate(e=>e.getBoundingClientRect().top<e.parentElement.querySelector('.slide-copy').getBoundingClientRect().top),true);
   }
   const controls=await f.locator('#back').evaluate(e=>{const back=e.getBoundingClientRect(),next=document.querySelector('#next').getBoundingClientRect(),exit=document.querySelector('#exit-presentation').getBoundingClientRect();const apart=(a,b)=>a.right<=b.left||b.right<=a.left||a.bottom<=b.top||b.bottom<=a.top;return apart(back,next)&&apart(exit,back)&&apart(exit,next);});assert.equal(controls,true,`${name} controls do not overlap`);
   await select(1);
@@ -149,16 +172,18 @@ try {
  assert.equal(await page.evaluate(()=>window.__fullscreenRequests),0);
  await f.locator('#menu-trigger').focus();await f.locator('#menu-trigger').click();await f.getByRole('link',{name:'Detailed Research proposal',exact:true}).click();await page.locator('.research-page').waitFor();
  await page.getByRole('link',{name:'Return to the presentation',exact:true}).click();await f.locator('.slides > section.present').waitFor();
- await page.goto(new URL('research/reading.html',origin).href);assert.equal(await page.locator('article').count(),5);assert.equal(await page.locator('figure').count(),4);await audit('mosaic-reading');
+ await page.goto(new URL('research/reading.html',origin).href);assert.equal(await page.locator('article').count(),5);assert.equal(await page.locator('figure').count(),5);await audit('mosaic-reading');
  await page.pdf({path:'output/playwright/research-reading.pdf',format:'A4',printBackground:true});
  await page.goto(new URL('research/index.html',origin).href);await page.locator('#slide-count').filter({hasText:'1 / 5'}).waitFor();await page.emulateMedia({media:'print'});
  for(const slide of await page.locator('.slides>section').all())assert.equal(await slide.isVisible(),true);
+ assert.equal(await page.locator('.closed-cycle').count(),1,'printed diagram has a closed feedback ring');
+ assert.equal(await page.locator('.pathway-steps li').first().evaluate(e=>getComputedStyle(e).position),'absolute','printed cycle retains radial stages');
  await page.pdf({path:'output/playwright/research-slides.pdf',format:'A4',landscape:true,printBackground:true});
  const nojs=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:900}}),np=await nojs.newPage();await np.goto(origin);
  assert.equal(await np.locator('#static-research iframe').count(),0);assert.equal(await np.locator('#static-research .research-linear[open] article').count(),5);
  await np.goto(new URL('research/index.html',origin).href);await np.getByRole('link',{name:'Read all five slides without JavaScript'}).click();assert.equal(await np.locator('article').count(),5);assert.equal(await np.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
  await nojs.close();
- evidence.checks=['visible central exit preserves records and leaves fullscreen','six-section contents: live links, planned topics, single expansion, keyboard, focus, return/current marker and responsive layout','fullscreen entry/refusal/direct links','five exact headlines and loaded uncropped images','Next/Finish/menu/keyboard/swipe/exit','sources/dialog focus/read aloud','OS and manual reduced motion','desktop/phone/200% text','reading/detailed proposal/no-JS/print','stored demo bytes preserved'];
+ evidence.checks=['visible central exit preserves records and leaves fullscreen','six-section contents: live links, planned topics, single expansion, keyboard, focus, return/current marker and responsive layout','fullscreen entry/refusal/direct links','five exact headlines, loaded uncropped photographs and accessible proposed pathway with database/two feedback loops','Next/Finish/menu/keyboard/swipe/exit','sources/dialog focus/read aloud','OS and manual reduced motion','desktop/phone/200% text','reading/detailed proposal/no-JS/print','stored demo bytes preserved'];
  assert.deepEqual(evidence.errors,[]);assert.deepEqual(evidence.csp,[]);assert.deepEqual(evidence.failed,[]);
  await writeFile('output/playwright/research-verification.json',JSON.stringify(evidence,null,2));console.log('Research presentation checks passed:',evidence);
 }finally{await browser.close();}

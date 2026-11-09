@@ -1,0 +1,26 @@
+[
+  {
+    "id": "mobility-2",
+    "url": "https://qualitativemagazine.com/wp-content/uploads/2025/10/1000489676.jpg",
+    "path": "/photos/mobility-foundation-original.jpg",
+    "size": [
+      1080,
+      720
+    ],
+    "bytes": 137447,
+    "sha256": "b05150fb036a27cd657b6aebfbc9eb9a437e0cfad7e4b069c825f990fbd93fcf",
+    "processing": "Original publisher JPEG bytes retained unchanged; CSS collage preserves full frames. No generated pixels, resampling or claimed resolution beyond source."
+  },
+  {
+    "id": "education-2",
+    "url": "https://fmicgovng.s3.amazonaws.com/cityhill/wp-content/uploads/2024/09/Children-With-Disabilities1.jpg",
+    "path": "/photos/education-foundation-original.jpg",
+    "size": [
+      950,
+      633
+    ],
+    "bytes": 51242,
+    "sha256": "d9eeefc7877c9fb501b9f2292113e4bc0b768a2aa91fcd419dc11d38290023eb",
+    "processing": "Original publisher JPEG bytes retained unchanged; CSS collage preserves full frames. No generated pixels, resampling or claimed resolution beyond source."
+  }
+]

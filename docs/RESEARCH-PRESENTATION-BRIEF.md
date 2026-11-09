@@ -1,3 +1,31 @@
+# Current slide 4: database-centred adaptive cycle — 9 November 2026
+
+Owner requested a continuous circular cycle, adaptive sampling as the selling point, then less clutter and a central database informing all subsequent decisions. The documentary foundation collage remains at left. At right, a closed ring surrounds the Participant database hub (“Records inform every decision”). Adaptive sampling is the highlighted entry node: recruit/register/update; its evidence guides each subsequent recruitment round. Five spokes connect the database with adaptive recruitment, needs, teaching, practice and monitoring. Monitoring updates records. Removed numbering, redundant stage descriptions and repeated feedback panels from the slide. Full detailed evidence uses and database record categories remain in reading/read-aloud. Participant/facilitator decisions are informed by records; no automatic decision engine or fitted recruitment model is claimed. Circle represents continuing programme improvement, not indefinite individual participation. Phone/A+ uses a closed-ring overview and readable detail layout. Earlier descriptions below are historical.
+
+---
+
+# Current slide 4: larger original-photo collage and text-first pathway — 9 November 2026
+
+Owner retained both documentary photographs and requested a larger unified collage, smaller extension illustrations and larger text/main ideas. Use original publisher JPEGs: community mobility support 1080×720, inclusive-education discussion 950×633. Full frames and source/partner context preserved; no generated resolution. Original asset provenance and checksums in `docs/research-foundation-photo-provenance.json`. Describe the education image as a discussion, not proof of a concluded agreement.
+
+On-slide stages: Reach people; Understand skills & needs; Match teaching; Support practice; Review progress. Short summaries sit under larger labels; full details remain in shared source for reading/read-aloud. Database remains explicit. Feedback headings directly connect recruitment evidence→outreach and learning progress→support, with return-arrow accents. Proposed scope remains distinct from historical photographs. Earlier visual descriptions below are historical.
+
+---
+
+# Current slide 4: illustrated journey with documentary foundation — 9 November 2026
+
+Owner chose five large illustrated journey stages and then requested photographs of Gufwan’s contributions specifically in the “building on your work” area. The foundation band now includes existing full-frame documentary photographs of mobility devices from a Beautiful Gate/Senator Abba Moro partnership and Gufwan’s UBEC inclusive-education discussion. Visible activity labels, complete source captions and partner credit remain available; historical photographs do not depict pilot activity. Five native SVG concept scenes show community connections, needs profile, learner/facilitator connection, practical work and progress review. Connected route, explicit participant database and separate outreach/learning feedback loops retained. Original words, participant records and five-slide scope preserved. Earlier no-photo/plain-diagram descriptions below are historical.
+
+---
+
+# Approved slides 4–5 narrative revision — 9 November 2026
+
+Slide 4 is now a diagram: **Building on your work: from outreach to learning**. Foundation: his community relationships, outreach and practical support. Proposed extension: Reach people → Understand their needs → Connect learning → Support practice → Review progress. Explicit participant database connects recruitment routes, skills/interests, needs, agreed teaching/support and learning progress. Separate feedback: recruitment evidence informs outreach; learning progress informs teaching/support. Conceptual proposed pilot, not observed operations or an agreed partnership. Native text/lists, red/white/gold, horizontal five stages on desktop and stacked on smaller screens. Shared data also drives linear reading and read-aloud; no photograph on this slide and no new dependency.
+
+Slide 5: **Participation needs more than registration.** Teaching/facilitator capacity; communication/formats; devices/connectivity where needed; participant-agreed support. Existing historical UBEC photograph and source retained. Assess requirements with participants; do not imply measured deficiencies in his existing work. Five slides remain; later slides still Planned. Earlier descriptions below are historical.
+
+---
+
 # Approved slide 3 supporting copy — 9 November 2026
 
 Owner approved the following exact supporting text. Keep the existing headline, verified James Ahumbe photograph and source caption. The short conceptual pathway is “Reach people → Understand needs → Connect teaching → Monitor and support learning”; it is a discussion summary, not additional on-slide text.

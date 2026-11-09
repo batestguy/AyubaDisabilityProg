@@ -110,3 +110,172 @@ dialog{background:#fff8ef;color:#411b16;border:0;border-radius:4px;padding:1.5re
  .menu-trigger{top:4.5rem}
  body:has(.slides>.layout-contents.present) .menu-trigger{top:1rem}
 }
+
+/* Continuous adaptive cycle: documentary foundation, evidence and learning. */
+.pathway{background:#c53f22}
+.pathway .slide-copy{justify-content:flex-start;width:100%;padding:4.5rem 5vw 6rem}
+.reveal .pathway h2{font-size:clamp(2rem,2.65vw,2.5rem);line-height:1.15;margin:0 0 1rem;max-width:100%}
+.pathway-diagram{width:100%;min-width:0}
+.cycle-grid{display:grid;grid-template-columns:minmax(320px,.35fr) minmax(0,.65fr);gap:1.5rem;align-items:start}
+.pathway-foundation{background:var(--mosaic-deep);border-left:4px solid var(--mosaic-gold);padding:.75rem 1rem;border-radius:0 10px 10px 0;min-width:0}
+.pathway-eyebrow{display:block;color:var(--mosaic-gold);font-size:1rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.reveal .pathway-foundation p{font-size:1.1rem;line-height:1.4;margin:.4rem 0 .75rem}
+.foundation-photos{display:grid;grid-template-columns:1fr;gap:2px;background:#48140f;border:1px solid rgb(255 255 255 / .25);border-radius:7px;overflow:hidden}
+.reveal .foundation-photos figure{margin:0;min-width:0}
+.reveal .foundation-photos img{display:block;width:100%;height:176px;max-height:none;object-fit:contain;border:0;box-shadow:none;margin:0}
+.reveal .foundation-photos figcaption{font-size:.9rem;line-height:1.3;color:#fff;text-align:center;margin:0;padding:.3rem .4rem}
+.cycle-area{position:relative;min-width:0;height:500px}
+.reveal .pathway-extension{position:absolute;left:0;top:0;max-width:13rem;font-size:.9rem;line-height:1.35;font-weight:600;margin:0}
+.cycle-ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.cycle-map-dots{display:none}
+.reveal .pathway-steps{position:static;display:block;list-style:none;padding:0;margin:0;width:100%}
+.pathway-steps li{position:absolute;width:25%;max-width:205px;min-width:0;margin:0;padding:.25rem .3rem;transform:translate(-50%,-50%);text-align:center;background:#c53f22;border-radius:10px;overflow-wrap:anywhere}
+.pathway-steps li:nth-child(1){left:50%;top:13%}
+.pathway-steps li:nth-child(2){left:77%;top:40%}
+.pathway-steps li:nth-child(3){left:66.5%;top:84%}
+.pathway-steps li:nth-child(4){left:33.5%;top:84%}
+.pathway-steps li:nth-child(5){left:23%;top:40%}
+.journey-scene{position:relative;display:flex;align-items:center;justify-content:center;height:34px}
+.reveal .journey-art{display:block;width:47px;height:34px;max-width:100%;margin:0;overflow:visible}
+.pathway-number{position:absolute;left:0;bottom:0;width:1.4rem;height:1.4rem;display:grid;place-items:center;border-radius:50%;background:var(--mosaic-gold);color:var(--mosaic-deep);font-size:.8rem;font-weight:700}
+.reveal .pathway h3{text-transform:none;letter-spacing:0;color:#fff;line-height:1.15;margin:0}
+.reveal .pathway-steps h3{font-size:1.5rem;font-weight:650;line-height:1.1;margin:.3rem 0 .25rem}
+.reveal .pathway-steps p{font-size:1.05rem;line-height:1.3;margin:0}
+.cycle-hub{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:26%;max-width:215px;min-width:175px;padding:1rem .75rem;background:var(--mosaic-deep);border:2px solid var(--mosaic-gold);border-radius:50% / 20%;text-align:center;box-shadow:0 0 0 7px rgb(239 200 141 / .09)}
+.reveal .sampling-emphasis{color:var(--mosaic-gold);font-size:1.85rem;font-weight:700}
+.reveal .sampling-promise{font-size:1rem;line-height:1.35;margin:.45rem 0 .6rem}
+.pathway-database{padding-top:.5rem;border-top:1px solid rgb(255 255 255 / .35)}
+.database-art{display:inline-block;width:18px;height:21px;color:var(--mosaic-gold);vertical-align:middle;margin-right:.35rem}
+.reveal .pathway-database h3{display:inline;font-size:1rem;line-height:1.25}
+.reveal .pathway-database ul{display:none}
+.reveal .cycle-repeat{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:1rem;font-weight:600;white-space:nowrap;margin:0}
+.pathway-feedback{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:.75rem}
+.pathway-feedback>div{border-top:2px solid var(--mosaic-gold);padding-top:.5rem}
+.reveal .pathway-feedback h3{font-size:1.1rem;line-height:1.25}
+.reveal .pathway-feedback p{display:none}
+.reveal .pathway-status{font-size:.8rem;line-height:1.4;margin:.5rem 0 0}
+@media(max-width:1100px){
+ .cycle-grid{grid-template-columns:1fr}
+ .foundation-photos{grid-template-columns:1fr 1fr}
+ .reveal .foundation-photos img{height:170px}
+ .cycle-area{height:auto;display:flex;flex-direction:column;align-items:center;padding-top:1rem}
+ .reveal .pathway-extension{position:static;max-width:none;width:100%;margin-bottom:.5rem;order:0}
+ .cycle-ring{position:relative;width:min(100%,340px);height:250px;flex-shrink:0;order:2}
+ .cycle-map-dots{display:block}
+ .cycle-hub{position:static;transform:none;top:auto;width:100%;max-width:24rem;min-width:0;padding:1rem;border-radius:15px;order:1}
+ .reveal .sampling-emphasis{font-size:1.25rem}
+ .reveal .sampling-promise{font-size:.85rem}
+ .reveal .pathway-database h3{font-size:.85rem}
+ .database-art{width:15px;height:18px}
+ .reveal .pathway-steps{position:relative;width:100%;order:3;display:grid;grid-template-columns:1fr;gap:1rem;margin-top:.5rem;padding-left:1rem;border-left:2px solid var(--mosaic-gold);border-radius:12px}
+ .pathway-steps li{position:relative;left:auto!important;top:auto!important;transform:none;width:100%;max-width:none;display:grid;grid-template-columns:55px minmax(0,1fr);grid-template-areas:'scene title' 'scene detail';gap:0 1rem;padding:.5rem 0;text-align:left;border-radius:0;background:transparent}
+ .journey-scene{grid-area:scene;align-self:start;height:42px}
+ .reveal .pathway-steps h3{grid-area:title;font-size:1.5rem;margin:0 0 .4rem}
+ .reveal .pathway-steps p{grid-area:detail;font-size:1.15rem}
+ .reveal .cycle-repeat{position:static;order:4;transform:none;white-space:normal;width:100%;margin:1rem 0 0;padding:.5rem 0 .5rem 1rem;border-left:2px solid var(--mosaic-gold);border-bottom:2px solid var(--mosaic-gold);border-radius:0 0 0 12px}
+ .pathway-feedback{grid-template-columns:1fr;gap:1rem}
+}
+@media(max-width:700px){
+ .pathway .slide-copy{padding:8rem 1rem 10rem}
+ .reveal .pathway h2{font-size:2rem}
+ .reveal .foundation-photos img{height:auto;aspect-ratio:3/2}
+ .reveal .foundation-photos figcaption{font-size:.85rem;overflow-wrap:anywhere}
+ .cycle-hub{top:145px}
+}
+@media print{
+ html:not(.print-pdf) .reveal .pathway .slide-copy{padding:8mm 12mm!important}
+ html:not(.print-pdf) .reveal .pathway h2{color:#fff!important;font-size:23pt!important;line-height:1.1!important;margin:0 0 4mm!important}
+ html:not(.print-pdf) .reveal .pathway h3,html:not(.print-pdf) .reveal .pathway p,html:not(.print-pdf) .reveal .pathway li{color:#fff!important}
+ html:not(.print-pdf) .reveal .pathway .cycle-grid{display:grid!important;grid-template-columns:32% minmax(0,1fr)!important;gap:6mm!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-foundation{padding:3mm!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-foundation p{font-size:10pt!important;line-height:1.3!important;margin:2mm 0 3mm!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-eyebrow{font-size:10pt!important}
+ html:not(.print-pdf) .reveal .pathway .foundation-photos{display:grid!important;grid-template-columns:1fr!important;gap:1mm!important}
+ html:not(.print-pdf) .reveal .pathway .foundation-photos figure{margin:0!important}
+ html:not(.print-pdf) .reveal .pathway .foundation-photos img{width:100%!important;height:38mm!important;object-fit:contain!important;border:0!important;margin:0!important;background:transparent!important}
+ html:not(.print-pdf) .reveal .pathway .foundation-photos figcaption{color:#fff!important;font-size:8pt!important}
+ html:not(.print-pdf) .reveal .pathway .cycle-area{position:relative!important;display:block!important;width:100%!important;height:125mm!important;padding:0!important}
+ html:not(.print-pdf) .reveal .pathway .cycle-ring{position:absolute!important;inset:0!important;width:100%!important;height:100%!important}
+ .cycle-map-dots{display:none!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-extension{position:absolute!important;top:0!important;left:0!important;max-width:38mm!important;font-size:9pt!important;margin:0!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-steps{position:static!important;display:block!important;margin:0!important;padding:0!important;border:0!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-steps li{position:absolute!important;display:block!important;width:25%!important;max-width:50mm!important;transform:translate(-50%,-50%)!important;text-align:center!important;padding:1mm!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-steps li:nth-child(1){left:50%!important;top:13%!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-steps li:nth-child(2){left:77%!important;top:40%!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-steps li:nth-child(3){left:66.5%!important;top:84%!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-steps li:nth-child(4){left:33.5%!important;top:84%!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-steps li:nth-child(5){left:23%!important;top:40%!important}
+ html:not(.print-pdf) .reveal .pathway .journey-scene{position:relative!important;display:flex!important;height:8mm!important}
+ html:not(.print-pdf) .reveal .pathway .journey-art{width:11mm!important;height:8mm!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-number{position:absolute!important;left:0!important;bottom:0!important;font-size:7pt!important;width:5mm!important;height:5mm!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-steps h3{font-size:12pt!important;line-height:1.1!important;margin:1mm 0!important;text-align:center!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-steps p{font-size:9pt!important;line-height:1.2!important;text-align:center!important}
+ html:not(.print-pdf) .reveal .pathway .cycle-hub{position:absolute!important;left:50%!important;top:52%!important;transform:translate(-50%,-50%)!important;width:27%!important;min-width:0!important;max-width:none!important;padding:3mm 2mm!important;box-sizing:border-box!important}
+ html:not(.print-pdf) .reveal .pathway .sampling-emphasis{font-size:16pt!important;color:var(--mosaic-gold)!important;margin:0!important}
+ html:not(.print-pdf) .reveal .pathway .sampling-promise{font-size:9pt!important;line-height:1.25!important;margin:2mm 0!important;text-align:center!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-database{margin:0!important;padding:2mm 0 0!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-database h3{font-size:9pt!important;display:inline!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-database ul{display:none!important}
+ html:not(.print-pdf) .reveal .pathway .cycle-repeat{position:absolute!important;bottom:0!important;left:50%!important;transform:translateX(-50%)!important;width:auto!important;font-size:9pt!important;margin:0!important;padding:0!important;border:0!important;white-space:nowrap!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-feedback{display:grid!important;grid-template-columns:1fr 1fr!important;gap:5mm!important;margin-top:3mm!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-feedback h3{font-size:10pt!important;line-height:1.2!important;margin:0!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-feedback p{display:none!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-status{font-size:8pt!important;line-height:1.2!important;margin:2mm 0 0!important}
+}
+
+@media screen{
+:is(html.large, html[style*="200%"]) .cycle-grid{grid-template-columns:1fr}
+:is(html.large, html[style*="200%"]) .foundation-photos{grid-template-columns:1fr 1fr}
+:is(html.large, html[style*="200%"]) .reveal .foundation-photos img{height:170px}
+:is(html.large, html[style*="200%"]) .cycle-area{height:auto;display:flex;flex-direction:column;align-items:center;padding-top:1rem}
+:is(html.large, html[style*="200%"]) .reveal .pathway-extension{position:static;max-width:none;width:100%;margin-bottom:.5rem;order:0}
+:is(html.large, html[style*="200%"]) .cycle-ring{position:relative;width:min(100%,340px);height:250px;flex-shrink:0;order:2}
+:is(html.large, html[style*="200%"]) .cycle-map-dots{display:block}
+:is(html.large, html[style*="200%"]) .cycle-hub{position:static;transform:none;top:auto;width:100%;max-width:24rem;min-width:0;padding:1rem;border-radius:15px;order:1}
+:is(html.large, html[style*="200%"]) .reveal .sampling-emphasis{font-size:1.25rem}
+:is(html.large, html[style*="200%"]) .reveal .sampling-promise{font-size:.85rem}
+:is(html.large, html[style*="200%"]) .reveal .pathway-database h3{font-size:.85rem}
+:is(html.large, html[style*="200%"]) .database-art{width:15px;height:18px}
+:is(html.large, html[style*="200%"]) .reveal .pathway-steps{position:relative;width:100%;order:3;display:grid;grid-template-columns:1fr;gap:1rem;margin-top:.5rem;padding-left:1rem;border-left:2px solid var(--mosaic-gold);border-radius:12px}
+:is(html.large, html[style*="200%"]) .pathway-steps li{position:relative;left:auto!important;top:auto!important;transform:none;width:100%;max-width:none;display:grid;grid-template-columns:55px minmax(0,1fr);grid-template-areas:'scene title' 'scene detail';gap:0 1rem;padding:.5rem 0;text-align:left;border-radius:0;background:transparent}
+:is(html.large, html[style*="200%"]) .journey-scene{grid-area:scene;align-self:start;height:42px}
+:is(html.large, html[style*="200%"]) .reveal .pathway-steps h3{grid-area:title;font-size:1.5rem;margin:0 0 .4rem}
+:is(html.large, html[style*="200%"]) .reveal .pathway-steps p{grid-area:detail;font-size:1.15rem}
+:is(html.large, html[style*="200%"]) .reveal .cycle-repeat{position:static;order:4;transform:none;white-space:normal;width:100%;margin:1rem 0 0;padding:.5rem 0 .5rem 1rem;border-left:2px solid var(--mosaic-gold);border-bottom:2px solid var(--mosaic-gold);border-radius:0 0 0 12px}
+:is(html.large, html[style*="200%"]) .pathway-feedback{grid-template-columns:1fr;gap:1rem}
+}
+
+/* Database is the decision hub; only the recruitment node needs a subtitle. */
+.cycle-spokes{pointer-events:none}
+.cycle-ring .closed-cycle{opacity:.3;stroke-width:2}
+.pathway-number{display:none}
+.reveal .pathway-steps p{display:none}
+.reveal .pathway-steps .sampling-promise{display:block;font-size:1rem;margin-top:.35rem}
+.reveal .pathway-steps .sampling-emphasis{font-size:1.65rem;color:var(--mosaic-gold)}
+.cycle-hub{padding:1.1rem .75rem;border-radius:50% / 24%}
+.pathway-database{padding:0;border:0}
+.database-art{display:block;width:28px;height:31px;margin:0 auto .5rem}
+.reveal .cycle-hub .pathway-database h3{display:block;color:var(--mosaic-gold);font-size:1.85rem;font-weight:700;line-height:1.12}
+.reveal .database-role{display:block;font-size:1.05rem;line-height:1.3;margin:.5rem 0 0}
+.reveal .cycle-insight{font-size:1.1rem;line-height:1.4;margin:.75rem 0 0}
+@media(max-width:1100px){
+ .reveal .cycle-hub .pathway-database h3{font-size:1.6rem}
+ .cycle-hub{padding:1rem}
+ .reveal .database-role{font-size:1.1rem}
+ .cycle-spokes{display:none}
+}
+@media screen{
+ :is(html.large,html[style*="200%"]) .reveal .cycle-hub .pathway-database h3{font-size:1.6rem}
+ :is(html.large,html[style*="200%"]) .cycle-spokes{display:none}
+}
+@media print{
+ html:not(.print-pdf) .reveal .pathway .cycle-hub .pathway-database h3{display:block!important;color:var(--mosaic-gold)!important;font-size:17pt!important;line-height:1.1!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-database{border:0!important;padding:0!important}
+ html:not(.print-pdf) .reveal .pathway .database-art{display:block!important;width:7mm!important;height:8mm!important;margin:0 auto 2mm!important}
+ html:not(.print-pdf) .reveal .pathway .database-role{display:block!important;font-size:10pt!important;text-align:center!important;line-height:1.2!important;margin:2mm 0 0!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-steps p{display:none!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-steps .sampling-promise{display:block!important;font-size:9pt!important}
+ html:not(.print-pdf) .reveal .pathway .pathway-steps .sampling-emphasis{color:var(--mosaic-gold)!important;font-size:13pt!important}
+ html:not(.print-pdf) .reveal .pathway .cycle-insight{font-size:10pt!important;line-height:1.3!important;margin:3mm 0 0!important}
+ .cycle-spokes{display:block!important}
+}

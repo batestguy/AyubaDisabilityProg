@@ -36,8 +36,8 @@ Slide 1 is the cover; slide 2 is the clickable Table of Contents. These opening 
 | Section | Subsection / slide title | Slide | Status |
 |---|---|---|---|
 | 1. Our Shared Vision | Talent is everywhere. Access to learning should be too. | 3 | Available |
-|  | Gufwan’s story connects mobility with opportunity. | 4 | Available |
-|  | Reaching the classroom is only the beginning. | 5 | Available |
+|  | Building on your work: one database, an adaptive cycle | 4 | Available |
+|  | Participation needs more than registration. | 5 | Available |
 | 2. Building on Community Experience | A community foundation already in motion | 6 | Planned |
 |  | Practical experience and statistics, together | 7 | Planned |
 | 3. Strengthening Recruitment with Statistics | Start with varied community contacts | 8 | Planned |

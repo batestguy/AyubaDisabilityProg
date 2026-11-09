@@ -1,6 +1,15 @@
 // Shared source for the Quarto presentation, reading edition and no-JavaScript alternative.
 export interface ResearchImage { path: string; alt: string; caption: string; credit: string; source: string; displayCredit?: { name: string; credit: string; sourceLabel: string } }
-export interface ResearchSlide { layout: "cover" | "contents" | "split"; title: string; points: string[]; note: string; images: ResearchImage[]; links?: { label: string; url: string }[] }
+export interface ResearchSlide { layout: "cover" | "contents" | "split" | "pathway"; pathway?: ResearchPathway; title: string; points: string[]; note: string; images: ResearchImage[]; links?: { label: string; url: string }[] }
+export interface ResearchPathway {
+ foundation: { title: string; detail: string };
+ extensionLabel: string;
+ steps: { title: string; detail: string; summary?: string }[];
+ database: { title: string; records: string[] };
+ feedback: { title: string; detail: string }[];
+ sellingPoint: { title: string; detail: string };
+ status: string;
+}
 export interface ResearchSubsection { title: string; slideNumber: number; destination?: string }
 export interface ResearchSection { id: string; title: string; subsections: ResearchSubsection[] }
 export const researchSections: ResearchSection[] = [
@@ -14,12 +23,12 @@ export const researchSections: ResearchSection[] = [
         "destination": "research-slide-3"
       },
       {
-        "title": "Gufwan’s story connects mobility with opportunity.",
+        "title": "Building on your work: one database, an adaptive cycle",
         "slideNumber": 4,
         "destination": "research-slide-4"
       },
       {
-        "title": "Reaching the classroom is only the beginning.",
+        "title": "Participation needs more than registration.",
         "slideNumber": 5,
         "destination": "research-slide-5"
       }
@@ -133,6 +142,75 @@ export const researchSections: ResearchSection[] = [
   }
 ];
 
+const researchPathway: ResearchPathway = {
+  "foundation": {
+    "title": "Your work is the foundation",
+    "detail": "Your community relationships, outreach and practical support"
+  },
+  "extensionLabel": "Proposed extension, designed together",
+  "steps": [
+    {
+      "title": "Adaptive sampling",
+      "detail": "Adaptive recruitment feeds the participant database. Recorded recruitment evidence guides each new sampling round.",
+      "summary": "Recruit · register · update"
+    },
+    {
+      "title": "Understand needs",
+      "detail": "Skills, interests and learning needs",
+      "summary": "Skills, interests and access needs"
+    },
+    {
+      "title": "Match teaching",
+      "detail": "Agree suitable teaching with the learner and facilitator",
+      "summary": "Learner and facilitator agree a pathway"
+    },
+    {
+      "title": "Support practice",
+      "detail": "Accessible teaching and practical feedback",
+      "summary": "Accessible teaching and feedback"
+    },
+    {
+      "title": "Monitor & review",
+      "detail": "Monitor recruitment evidence and learning progress, update the participant database, then use the updated records to refine recruitment, teaching and support. The cycle repeats.",
+      "summary": "Review recruitment and learning evidence"
+    }
+  ],
+  "database": {
+    "title": "Participant database",
+    "records": [
+      "Recruitment routes",
+      "Skills and interests",
+      "Learning needs",
+      "Agreed teaching and support",
+      "Learning progress"
+    ]
+  },
+  "feedback": [
+    {
+      "title": "Recruitment evidence → outreach",
+      "detail": "Recruitment evidence informs each new outreach round; the cycle repeats."
+    },
+    {
+      "title": "Learning progress → support",
+      "detail": "Learning progress informs teaching and support adjustments."
+    }
+  ],
+  "status": "Proposed Plateau pilot · Records inform decisions throughout the cycle",
+  "sellingPoint": {
+    "title": "Adaptive sampling",
+    "detail": "Recruitment feeds the database; its records guide the next round."
+  }
+};
+const pathwayReadingPoints = [
+ researchPathway.foundation.detail,
+ researchPathway.extensionLabel,
+ `${researchPathway.sellingPoint.title}: ${researchPathway.sellingPoint.detail}`,
+ ...researchPathway.steps.map(step => `${step.title}: ${step.detail}`),
+ `${researchPathway.database.title}: ${researchPathway.database.records.join('; ')}`,
+ ...researchPathway.feedback.map(loop => `${loop.title}: ${loop.detail}`),
+ researchPathway.status
+];
+
 export const researchSlides: ResearchSlide[] = [
   {
     "layout": "cover",
@@ -193,39 +271,48 @@ export const researchSlides: ResearchSlide[] = [
 ]
   },
   {
-    "layout": "split",
-    "title": "Gufwan’s story connects mobility with opportunity.",
-    "points": [
-      "A foundation in community outreach and practical support.",
-      "Our proposal starts with a conversation about building on that experience."
-    ],
-    "note": "WHO’s 2019 profile connects Gufwan’s experience of polio with mobility and education work. Historical sources do not establish a project partnership or endorsement. The photograph’s venue and event date are not inferred.",
-    "links": [
-      {
-        "label": "WHO · Gufwan’s story (2019)",
-        "url": "https://www.afro.who.int/news/neglect-inspiration-ayuba-gufwans-story"
-      }
-    ],
+    "layout": "pathway",
+    "title": "Building on your work: one database, an adaptive cycle",
+    "pathway": researchPathway,
+    "points": pathwayReadingPoints,
+    "note": "Conceptual proposed Plateau pilot pathway, not an observation of an existing end-to-end service or an agreed partnership. Build on Gufwan’s community relationships and practical support; confirm the existing process with his team. Adaptive sampling, the participant database, teaching arrangements and monitoring require joint design. Recruitment evidence informs outreach; learning progress informs teaching/support. Registration and optional research remain separate. Foundation photographs document a Beautiful Gate/Senator Abba Moro mobility partnership and Gufwan’s historical UBEC education discussion. Partner credits remain explicit; photographs are not pilot activity or evidence of delivered learning. Illustrated stages are conceptual. The closed loop represents continuing programme improvement, not a requirement for individual participants to remain indefinitely. Recruitment populates the database. Its records inform all subsequent needs, teaching and support decisions; monitoring updates those records and informs later adaptive recruitment. Decisions remain participant/facilitator-led, not automatic database actions. No model fit, participant records, recruitment outcome or pilot activity is depicted.",
     "images": [
-      {
-        "path": "/photos/leadership.webp",
-        "alt": "Chief Ayuba Gufwan seated at a table, speaking into a microphone.",
-        "caption": "Chief Ayuba Gufwan, in the photograph published with FMINO’s leadership profile. Report: 2024-10-26. Nigeria; photograph venue not specified.",
+    {
+        "path": "/photos/mobility-foundation-original.jpg",
+        "alt": "Rows of colourful three-wheeled mobility devices arranged at the Otukpo activity.",
+        "caption": "Tricycles pictured in the mobility-support report, delivered through a partnership with Beautiful Gate and Senator Abba Moro. Report: 2025-10-11. Otukpo, Benue State.",
+        "credit": "Photograph published by The Qualitative Magazine",
+        "source": "https://qualitativemagazine.com/ncpwd-beautiful-gate-foundation-senator-abba-moro-empower-pwds-in-benue-with-thousands-of-tricycles-and-assistive-devices/",
+        "displayCredit": {
+            "name": "Community mobility support",
+            "credit": "Photograph published by The Qualitative Magazine",
+            "sourceLabel": "2025-10-11"
+        }
+    },
+    {
+        "path": "/photos/education-foundation-original.jpg",
+        "alt": "Gufwan, seated on the right, speaking across a meeting table with a UBEC official.",
+        "caption": "Gufwan during the UBEC partnership discussion on inclusive education. Report: 2024-09-26. UBEC, Abuja.",
         "credit": "Photograph published by FMINO",
-        "source": "https://fmino.gov.ng/championing-inclusion-chief-ayuba-gufwans-mission-for-persons-with-disabilities-in-nigeria/"
-      }
-    ]
+        "source": "https://fmino.gov.ng/children-with-disabilities-deserve-more-attention-to-attain-their-aspirations-in-life-ayuba-gufwan/",
+        "displayCredit": {
+            "name": "Inclusive-education discussion",
+            "credit": "Photograph published by FMINO",
+            "sourceLabel": "2024-09-26"
+        }
+    }
+]
   },
   {
     "layout": "split",
-    "title": "Reaching the classroom is only the beginning.",
+    "title": "Participation needs more than registration.",
     "points": [
-      "Participation also needs:",
-      "Suitable teaching",
-      "Accessible communication",
-      "Devices and connectivity"
+      "Suitable teaching and facilitator capacity",
+      "Accessible communication and learning formats",
+      "Devices and connectivity, where needed",
+      "Support agreed with participants"
     ],
-    "note": "Historical UBEC inclusive-education discussion, not an activity of the proposed pilot. Registration and optional research remain separate; resources and operational arrangements are to be agreed.",
+    "note": "Historical UBEC inclusive-education discussion, not an activity of the proposed pilot. These are practical requirements to assess and agree with participants, not measured deficiencies in Gufwan’s existing work. Registration and optional research remain separate; resources and operational arrangements are to be agreed.",
     "images": [
       {
         "path": "/photos/education-2.webp",

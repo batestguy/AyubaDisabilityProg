@@ -1,3 +1,9 @@
+# Current opening: approved pathway and participation requirements — 9 November 2026
+
+Five implemented slides: cover, clickable contents, verified James Ahumbe opportunity/proposal slide, illustrated pathway/database diagram with two documentary foundation photographs, and participation requirements with historical education meeting photo. Slide 4 replaces the biography/leadership portrait; slide 5 reframes the classroom title. Original photographs retained. See current shared source and latest handoff/validation. Historical layout descriptions follow below.
+
+---
+
 # Five Research slides — local owner review
 
 Implemented 9 November 2026 using the approved [immersive redesign brief](RESEARCH-PRESENTATION-BRIEF.md). Slides 1–5 only; owner visual approval is pending. No commit, push, deployment or publishing.
