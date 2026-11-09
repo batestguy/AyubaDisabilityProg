@@ -1,3 +1,13 @@
+# KPI planning checkpoint — 9 November 2026
+
+**Slide 20 — Decide what success means** is the main home for pilot KPIs (key performance indicators), under Designing a Plateau Pilot. Use the visible lead **“How we will know it is helping.”** Cover four areas: who outreach reaches; suitable teaching and agreed support; learning progress and demonstrated skills; participant experience and feedback. Show how reviewing this evidence leads to agreed changes and another review. Baselines, numerical targets, measure definitions, responsible reviewers and review frequency must be agreed during pilot design; no results or thresholds are invented.
+
+Slide 13 covers recruitment evaluation specifically, including unique eligible registrations, inclusion across agreed groups and recruitment effort/cost where records permit. Slide 4 retains the short database/feedback overview. Slide 21 connects agreed evidence to readiness decisions, and slide 22 covers shared learning and evidence. Preserve the existing 24-slide order and titles. Slide 20 remains Planned; no later slide is implemented by this documentation update. The immediate next working slide after slide 4 remains slide 5, Participation needs more than registration.
+
+Full proposed measures, interpretation and supporting-note requirements: [KPI placement and monitoring brief](RESEARCH-CONTENTS-AND-RECRUITMENT-PLAN.md#kpi-placement-and-monitoring-brief--9-november-2026).
+
+---
+
 # Current slide 4: database-centred adaptive cycle — 9 November 2026
 
 Owner requested a continuous circular cycle, adaptive sampling as the selling point, then less clutter and a central database informing all subsequent decisions. The documentary foundation collage remains at left. At right, a closed ring surrounds the Participant database hub (“Records inform every decision”). Adaptive sampling is the highlighted entry node: recruit/register/update; its evidence guides each subsequent recruitment round. Five spokes connect the database with adaptive recruitment, needs, teaching, practice and monitoring. Monitoring updates records. Removed numbering, redundant stage descriptions and repeated feedback panels from the slide. Full detailed evidence uses and database record categories remain in reading/read-aloud. Participant/facilitator decisions are informed by records; no automatic decision engine or fitted recruitment model is claimed. Circle represents continuing programme improvement, not indefinite individual participation. Phone/A+ uses a closed-ring overview and readable detail layout. Earlier descriptions below are historical.

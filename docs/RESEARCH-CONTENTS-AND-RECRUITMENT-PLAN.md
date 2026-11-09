@@ -58,6 +58,33 @@ Slide 1 is the cover; slide 2 is the clickable Table of Contents. These opening 
 | 6. Building the Partnership | Build the team around the work | 23 | Planned |
 |  | Three agreements to begin | 24 | Planned |
 
+## KPI placement and monitoring brief — 9 November 2026
+
+**Main location: slide 20 — Decide what success means**, in Section 5, Designing a Plateau Pilot. Keep the agreed title and 24-slide mapping. Introduce KPIs (key performance indicators) in everyday language as **“How we will know it is helping.”** This is a planning brief; slide 20 remains Planned and the working deck still contains five slides.
+
+| Slide | Role in monitoring and feedback |
+|---|---|
+| 4 — Building on your work: one database, an adaptive cycle | Introduce the feedback loop: recorded recruitment evidence refines outreach; learning progress adjusts teaching and support. Keep the existing short explanation, rather than adding a KPI table to the opening diagram. |
+| 13 — Test whether the additions help | Explain recruitment evaluation: unique eligible registrations, reach across agreed groups, registrations per recorded staff hour and attributable cost per unique eligible registration where data permit. Use the definitions and comparison limitations below. |
+| 20 — Decide what success means | Present the small set of jointly agreed pilot KPIs covering recruitment, learning connections, support, learning progress and participant experience. This is the main monitoring-and-feedback slide. |
+| 21 — Move forward when each stage is ready | Use the agreed evidence and readiness conditions to discuss continuing, adjusting or pausing a stage; do not invent numerical release gates. |
+| 22 — Turn experience into shared evidence | Explain how jointly reviewed records, participant feedback and limitations inform programme improvements and any separately agreed research outputs. |
+
+### Slide 20 content brief
+
+Visible lead: **How we will know it is helping.** Show four clear areas, with proposed measures to agree:
+
+| Area | Proposed evidence to review | What it should inform |
+|---|---|---|
+| Who outreach reaches | Unique eligible registrations by agreed route, area and group; missing/unknown characteristics and groups reached less often remain visible. | Where the next outreach round needs attention. |
+| Suitable teaching and agreed support | Requests, matches and learning starts for a defined cohort; whether agreed support is provided, with waiting cases visible. | Teaching arrangements, facilitator capacity and access support. |
+| Learning progress and demonstrated skills | Progress toward participant-agreed goals and evidence from accessible practical tasks; missing assessments and follow-ups remain visible. | Teaching pace, practice and support adjustments. |
+| Participant experience and feedback | Voluntary feedback about what helps, barriers, participation burden and requested changes; record who was invited and who responded where measurable. | Improvements agreed with participants, and whether those changes helped. |
+
+Suggested visual: **Review records and participant feedback → agree a change → try it → review again.** Recruitment evidence should guide outreach; learning progress and participant feedback should guide teaching and support. The database supports human decisions with participants and facilitators.
+
+Keep the visible slide concise. Put full KPI definitions in supporting notes or the reading edition: the question each measure answers, eligible cohort, numerator/denominator where relevant, observation period, data source, missing/pending cases, responsible reviewer and review schedule. Agree baselines, targets, priorities and review frequency jointly during pilot design. No numerical targets, achieved results or automatic performance thresholds are established here. Do not treat unobserved invitations as a measurable response denominator, or registration composition as population coverage. Before/after changes alone do not establish that the pilot caused an improvement. Access to support must remain separate from optional research participation.
+
 ## Agreed brief section: building on the current framework
 
 Owner requested an explicit, brief explanation of the mathematical/methodological refinement. Reserve slides 11–12 within Section 3; retain 24 slides overall. These are documented content briefs and Planned contents entries, not implemented slides or a fitted model. Slides 13–14 retain evaluation and respectful participation. Discuss the research sampling design and any wider population estimation in supporting notes, rather than claiming that registration or adaptive outreach alone supports representative estimates.

@@ -1,3 +1,13 @@
+# KPI planning checkpoint — 9 November 2026
+
+**Slide 20 — Decide what success means** is the main home for pilot KPIs (key performance indicators), under Designing a Plateau Pilot. Use the visible lead **“How we will know it is helping.”** Cover four areas: who outreach reaches; suitable teaching and agreed support; learning progress and demonstrated skills; participant experience and feedback. Show how reviewing this evidence leads to agreed changes and another review. Baselines, numerical targets, measure definitions, responsible reviewers and review frequency must be agreed during pilot design; no results or thresholds are invented.
+
+Slide 13 covers recruitment evaluation specifically, including unique eligible registrations, inclusion across agreed groups and recruitment effort/cost where records permit. Slide 4 retains the short database/feedback overview. Slide 21 connects agreed evidence to readiness decisions, and slide 22 covers shared learning and evidence. Preserve the existing 24-slide order and titles. Slide 20 remains Planned; no later slide is implemented by this documentation update. The immediate next working slide after slide 4 remains slide 5, Participation needs more than registration.
+
+Full proposed measures, interpretation and supporting-note requirements: [KPI placement and monitoring brief](RESEARCH-CONTENTS-AND-RECRUITMENT-PLAN.md#kpi-placement-and-monitoring-brief--9-november-2026).
+
+---
+
 # Current opening: approved pathway and participation requirements — 9 November 2026
 
 Five implemented slides: cover, clickable contents, verified James Ahumbe opportunity/proposal slide, illustrated pathway/database diagram with two documentary foundation photographs, and participation requirements with historical education meeting photo. Slide 4 replaces the biography/leadership portrait; slide 5 reframes the classroom title. Original photographs retained. See current shared source and latest handoff/validation. Historical layout descriptions follow below.
