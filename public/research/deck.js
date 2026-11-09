@@ -20,8 +20,37 @@
   document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => b.closest('dialog').close());
   menu.addEventListener('close', () => { trigger.focus(); awake(); });
   sources.addEventListener('close', () => { returnFocus.focus(); awake(); });
+  const contentsButton = document.querySelector('#contents');
+  const contentsSlide = slides.find(s => s.classList.contains('layout-contents'));
+  const contentsIndex = slides.indexOf(contentsSlide);
+  const groups = [...contentsSlide.querySelectorAll('.contents-section')];
+  let lastContentSlide;
+  groups.forEach(group => group.addEventListener('toggle', () => {
+   if(group.open) groups.forEach(other => { if(other !== group && other.open) other.open = false; });
+  }));
+  contentsSlide.querySelectorAll('[data-slide]').forEach(link => link.addEventListener('click', event => {
+   event.preventDefault();
+   const index = slides.findIndex(s => s.id === link.dataset.slide);
+   if(index < 0) return;
+   deck.slide(index);
+   slides[index].focus({preventScroll:true});
+  }));
+  contentsButton.onclick = () => {
+   contentsSlide.querySelectorAll('[aria-current]').forEach(link => link.removeAttribute('aria-current'));
+   const current = lastContentSlide && contentsSlide.querySelector(`li a[data-slide="${lastContentSlide}"]`);
+   if(current) {
+    const group = current.closest('details');
+    groups.forEach(other => { other.open = other === group; });
+    current.setAttribute('aria-current','page');
+   }
+   deck.slide(contentsIndex);
+   (current || groups[0].querySelector('summary')).focus({preventScroll:true});
+   if(current) current.scrollIntoView({block:'nearest'});
+  };
   function update() {
    const i = deck.getIndices().h;
+   if(i !== contentsIndex) lastContentSlide = i > contentsIndex ? slides[i].id : undefined;
+   contentsButton.hidden = i === contentsIndex;
    previous.disabled = i === 0; document.querySelector('#back').disabled = i === 0; selector.value = String(i);
    next.replaceChildren(document.createTextNode(i === slides.length - 1 ? 'Finish' : 'Next '));
    if(i < slides.length - 1) { const arrow = document.createElement('span'); arrow.setAttribute('aria-hidden','true'); arrow.textContent='→'; next.append(arrow); }
@@ -41,6 +70,7 @@
   previous.onclick = () => { deck.prev(); menu.close(); next.focus(); };
   selector.onchange = () => { deck.slide(Number(selector.value)); menu.close(); next.focus(); };
   document.querySelector('#exit').onclick = finish;
+  document.querySelector('#exit-presentation').onclick = finish;
   document.querySelector('#fullscreen').onclick = () => {
    const host = parent !== window ? parent.document : document;
    try { if(host.fullscreenElement) void host.exitFullscreen().catch(()=>{}); else void host.documentElement.requestFullscreen?.().catch(()=>{}); } catch {}
@@ -59,12 +89,12 @@
    returnFocus=trigger; menu.close(); sources.showModal();
   };
   document.addEventListener('keydown',e=>{
-   if(menu.open || sources.open || e.altKey || e.ctrlKey || e.metaKey || e.target.closest('select,input,textarea')) return;
+   if(menu.open || sources.open || e.altKey || e.ctrlKey || e.metaKey || e.target.closest('select,input,textarea,summary,.contents-nav')) return;
    const actions={ArrowRight:()=>deck.next(),PageDown:()=>deck.next(),ArrowLeft:()=>deck.prev(),PageUp:()=>deck.prev(),Home:()=>deck.slide(0),End:()=>deck.slide(slides.length-1)};
    if(actions[e.key]) {e.preventDefault(); actions[e.key]();}
   });
   let touch;
-  document.addEventListener('touchstart',e=>{touch=e.touches.length===1 ? {x:e.touches[0].clientX,y:e.touches[0].clientY}:null;},{passive:true});
+  document.addEventListener('touchstart',e=>{if(e.target.closest('.contents-nav')){touch=null;return;}touch=e.touches.length===1 ? {x:e.touches[0].clientX,y:e.touches[0].clientY}:null;},{passive:true});
   document.addEventListener('touchend',e=>{if(!touch || menu.open || sources.open || e.changedTouches.length!==1)return; const dx=e.changedTouches[0].clientX-touch.x,dy=e.changedTouches[0].clientY-touch.y; touch=null; if(Math.abs(dx)>70 && Math.abs(dx)>Math.abs(dy)*1.7) dx<0 ? deck.next() : deck.prev();},{passive:true});
   function preference(id,cls) { const b=document.querySelector(id); b.setAttribute('aria-pressed',String(document.documentElement.classList.contains(cls))); b.onclick=()=>{const enabled=document.documentElement.classList.toggle(cls); b.setAttribute('aria-pressed',String(enabled));}; }
   preference('#deck-large','large'); preference('#deck-motion','reduce');

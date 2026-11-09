@@ -1,3 +1,11 @@
+# Current revision: skin cut and low cut — 9 November 2026
+
+User requested hairstyle variation. Built-in image editing of `public/impact-mosaic-unity-crutch.png` produced `public/impact-mosaic-unity-haircuts.png`. Wheelchair user: closely shaved skin cut. Person with dark glasses and white cane: short textured low cut. Crutch user's curls, other hairstyles, all six people, albinism, hijab, embracing poses, Nigerian flag and mobility aids preserved. Transparent PNG visually inspected; previous assets retained. Header, favicon, slide cover and reading/static paths use the revision.
+
+Prompt: edit only the wheelchair user's hair to a skin cut and the sunglasses user's hair to a low cut; preserve all remaining identities, clothing, poses, flag, full wheelchair/cane/stick/crutch, crisp illustration style and transparent background. No added text, people, accessories or redesign.
+
+---
+
 # Current revision — visible crutch and team embrace, 9 November 2026
 
 The owner requested: “Somebody in the main impact mosai logo should have a crutch leaning on and holding the team too.” Edited the existing six-person raster mark with the built-in `image_gen` tool. Current asset: `public/impact-mosaic-unity-crutch.png` (1254 × 1254 RGBA PNG, genuine alpha range 0–255). The person in green at back right visibly uses an underarm crutch and remains connected to the embracing group. Six people, albinism, glasses and white cane, hijab, wheelchair, walking stick and Nigeria flag are preserved. Header, favicon, presentation cover and reading/no-JavaScript versions use the revised asset. The prior `public/impact-mosaic-unity-nigeria.png` is retained unchanged. Owner visual review is pending.

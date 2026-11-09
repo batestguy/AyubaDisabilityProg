@@ -1,3 +1,13 @@
+# Clickable contents, hairstyle revision and visible exit — 9 November 2026
+
+- Regenerated Quarto; fresh preflight: 120/120 tests, TypeScript and production build pass. Existing non-failing bundle-size advisory remains.
+- Production-CSP presentation regression: 15 zero-violation accessibility audits, all live contents destinations, 19 Planned entries, single disclosure, keyboard/focus, return/current marker, phone and 200% text, all existing fullscreen/touch/read-aloud/reading/no-JavaScript/print paths pass.
+- Visible bottom-centre Exit presentation returns to the site, leaves full screen and preserves exact saved demo bytes. No page errors, failed resources or CSP violations.
+- Revised logo visually inspected: skin cut for wheelchair user, low cut for sunglasses/white-cane user; remaining hairstyles, six people, flag and mobility aids retained. 1254×1254 RGBA PNG with alpha range 0–255. Original assets preserved.
+- Evidence: `output/playwright/research-verification.json`, `research-axe-*.json`, `research-contents-*.png`, `research-slide-1.png`, reading/slide PDFs. Local preview only; no commit, push or deployment.
+
+---
+
 # Validation evidence and history
 
 ## Skill-in-action photo and Git delivery — 9 November 2026

@@ -262,7 +262,7 @@ export default function App() {
       <header>
         <a className="brand" href="#" onClick={() => setPage("overview")}>
           <span className="brand-mark" aria-hidden="true">
-            <img src="/impact-mosaic-unity-crutch.png" width="56" height="56" alt="" />
+            <img src="/impact-mosaic-unity-haircuts.png" width="56" height="56" alt="" />
           </span>
           <span>
             IMPACT MOSAIC<small>A vision for inclusive opportunity</small>

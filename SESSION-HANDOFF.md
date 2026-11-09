@@ -1,3 +1,19 @@
+# Commit-and-push authorization — 9 November 2026
+
+Owner requested committing and pushing the completed clickable Table of Contents, revised hairstyles, visible central exit, generated presentation/static outputs and supporting documentation to the verified origin `batestguy/AyubaDisabilityProg`, branch `main`. This supersedes local-only/no-commit notes in the checkpoint below. No deployment requested. Preflight and browser evidence recorded below remain current; only delivery notes changed after verification. Next discussion: photographs and diagrams for the remaining slides; no new photo acquisition or later-slide implementation requested yet. Push verification is reported in the delivery response.
+
+---
+
+# Clickable contents implementation — 9 November 2026
+
+Owner authorized the contents-first plan: rename slide 2, six single-open sections, exact 3–24 mapping, live slides 3–5, remaining topics Planned, persistent Contents return/highlight, reading parity. Five slides remain; no later-slide authoring, publication, commit or push.
+
+Design intent: partnership audience chooses depth during a presentation. Existing red/deep-red, white and gold; Segoe UI; six numbered native disclosure rows, 8px spacing rhythm, quiet separators, gold number hierarchy, generous readable links. Domain: community relationships, recruitment, accessible learning, pilot and partnership. Signature: section numbers distinct from slide destinations; avoid dashboard cards, tiny navigation and decorative photography on contents.
+
+Implemented shared mapping, native expandable contents, built-slide links, return/current highlight, reading/static parity and responsive controls. Owner then requested a skin cut (wheelchair user), low cut (sunglasses/white-cane user), and visible bottom-centre Exit presentation. Edited artwork is `public/impact-mosaic-unity-haircuts.png`; original retained. Header, favicon, cover and reading/static paths updated. Added visible exit using existing exit flow. COMPLETE locally: Quarto regenerated; fresh repository preflight passes 120 tests, TypeScript and production build. Focused production-CSP browser regression passes 15 accessibility audits, native disclosures, exact 3–24 mapping, live jumps, planned items, return/current focus, phone/200% layouts, keyboard/touch, visible exit/fullscreen and unchanged saved records. Zero page errors, failed resources or CSP violations. Artwork is 1254×1254 RGBA with transparent pixels, visually inspected. Screenshots: `output/playwright/research-contents-collapsed.png`, `research-contents-expanded.png`, `research-slide-1.png`; responsive and PDF evidence also saved there. Browser `mosaic-review`, tab 1, local preview open. Non-failing existing Vite bundle-size advisory remains. No commit, push or deployment. Existing historical notes below remain chronological evidence.
+
+---
+
 # Resume here: caption and recruitment-research planning checkpoint — 9 November 2026
 
 The owner is leaving this task to do other work and explicitly requested **documenting the handoff, committing and pushing all pending updates**. This supersedes the local-only/no-new-commit notes in the historical entries below. Destination: `batestguy/AyubaDisabilityProg`, `main`. No deployment is requested.

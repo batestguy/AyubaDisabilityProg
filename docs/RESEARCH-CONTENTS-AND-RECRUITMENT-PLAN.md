@@ -1,6 +1,6 @@
 # Impact Mosaic: proposed contents and recruitment research
 
-Planning draft · 9 November 2026 · For owner discussion. Slides 6–24 have not been implemented. The five current slides and visible photo attribution remain intact. A fresh local browser tab is open at `http://127.0.0.1:4175/?page=research`.
+Contents-first implementation · 9 November 2026. Owner approved the six section names and subsection mapping below. Slide 2 is an expandable Table of Contents; slides 3–5 are linked and slides 6–24 are marked Planned. The five existing slides remain the working deck. Local review: `http://127.0.0.1:4175/?page=research`.
 
 ## Agreed purpose and framing
 
@@ -20,49 +20,43 @@ A reported interview describes invitations through community leaders, student un
 
 Public sources do not establish the complete current sampling protocol, selection probabilities, records or every adaptation already used. Document those with his team during scoping. Proposed additions are options to discuss; do not assume that the team lacks them or assign its current procedure a formal statistical label without verification.
 
-## Proposed table of contents
+## Agreed table of contents and slide mapping
 
-These six titles are proposed replacements for slide 2’s roadmap, subject to discussion.
+Slide 1 is the cover; slide 2 is the clickable Table of Contents. These opening slides sit outside the six numbered sections. One section opens at a time; each subsection is one slide. Contents returns from a built subsection with its section expanded and destination highlighted. Slides 6–24 are visible planning entries without active destinations.
 
-| Section | What it should carry | Proposed slides |
-|---|---|---|
-| 1. The foundation and shared vision | Talent, Gufwan’s work, mobility, participation and the opportunity to build together | 1–5 |
-| 2. The community approach we can build on | How existing outreach works and the complementary contribution of practical experience and statistics | 6–7 |
-| 3. Statistical methods to strengthen recruitment | Starting contacts, adaptive referral waves, complementary routes, allocation of effort, sampling choices and testing | 8–14 |
-| 4. From recruitment to accessible learning | Learner preferences, facilitator matching, access support and a brief prototype demonstration | 15–18 |
-| 5. Testing the approach in Plateau | Pilot scope, success measures, readiness, costs and shared research outputs | 19–22 |
-| 6. A partnership to take the next step | Responsibilities and three agreements needed to begin scoping | 23–24 |
+| Section | Slide range |
+|---|---|
+| 1. Our Shared Vision | 3–5 |
+| 2. Building on Community Experience | 6–7 |
+| 3. Strengthening Recruitment with Statistics | 8–14 |
+| 4. Connecting People to Accessible Learning | 15–18 |
+| 5. Designing a Plateau Pilot | 19–22 |
+| 6. Building the Partnership | 23–24 |
 
-## Proposed 24-slide story
-
-Slides 1–5 retain their current copy and imagery. Later titles and allocations are planning options.
-
-| Slide | Focal message | Suggested visual or evidence |
-|---|---|---|
-| 1 | Impact Mosaic | Current unity artwork and co-creators |
-| 2 | Our roadmap | Six sections above, after agreement |
-| 3 | Talent is everywhere. Access to learning should be too. | Current credited Mbuotidem Okorie shoemaking photograph; retain its Shell LiveWIRE context |
-| 4 | Gufwan’s story connects mobility with opportunity. | Current leadership photo and historical sources |
-| 5 | Reaching the classroom is only the beginning. | Current education meeting and participation needs |
-| 6 | A community foundation already in motion | Check the outreach pathway with his team: introductions → invitations → needs assessment → practical support |
-| 7 | Practical experience and statistical design, together | Complementary contributions joined in one process; proposed roles |
-| 8 | Start with a broader set of community contacts | Starting contacts across agreed areas and priority groups; distinguish purposive starts from random survey selection |
-| 9 | Let each recruitment wave guide the next | Illustrative referral waves and a review-and-adapt loop |
-| 10 | Reach people through several accessible routes | Networks alongside agreed venue/time visits, assisted entry, phone and offline routes |
-| 11 | Use evidence to direct recruitment effort | Channel results → uncertainty-aware allocation → next round; model-assisted option to investigate |
-| 12 | Match the sampling design to the research question | Registration and optional research as linked branches; assess probability sampling or formal RDS where appropriate |
-| 13 | Test which approach recruits more inclusively | Equal-resource comparison of documented practice and proposed additions; no invented results |
-| 14 | Make every invitation and record count | Voluntary participation, invitation outcomes, duplicate review and accessible consent |
-| 15 | Turn registration into a learning pathway | Preferences/access needs → facilitator match → supported teaching → follow-up |
-| 16 | Match people with suitable teaching | Learner interests, language, availability and accommodations alongside reviewed facilitator capacity |
-| 17 | Build accessibility into teaching and assessment | One lesson goal offered through appropriate formats and assessment routes, with human support |
-| 18 | See the working prototype | Short fictional learner–facilitator–administrator journey; operational preparation still needed |
-| 19 | Agree a focused Plateau pilot | Area, eligibility, courses and collection modes as decisions to agree |
-| 20 | Define recruitment success before the pilot | Counts, denominators, staff time, cost, participation and assessed skills |
-| 21 | Sequence the work around readiness | Scoping → instruments/access testing → recruitment rounds → teaching/follow-up → review |
-| 22 | Turn pilot experience into shared evidence | Joint protocol, documented adaptations, accessible community feedback and possible academic outputs |
-| 23 | Bring complementary responsibilities together | Community/practical leadership, statistics, fieldwork, teaching and stewardship; joint costing |
-| 24 | Three agreements to begin | A technical counterpart, potential community introductions and a joint pilot-design session |
+| Section | Subsection / slide title | Slide | Status |
+|---|---|---|---|
+| 1. Our Shared Vision | Talent is everywhere. Access to learning should be too. | 3 | Available |
+|  | Gufwan’s story connects mobility with opportunity. | 4 | Available |
+|  | Reaching the classroom is only the beginning. | 5 | Available |
+| 2. Building on Community Experience | A community foundation already in motion | 6 | Planned |
+|  | Practical experience and statistics, together | 7 | Planned |
+| 3. Strengthening Recruitment with Statistics | Start with varied community contacts | 8 | Planned |
+|  | Let each recruitment round guide the next | 9 | Planned |
+|  | Give people several ways to join | 10 | Planned |
+|  | Use evidence to guide outreach effort | 11 | Planned |
+|  | Match the research method to the question | 12 | Planned |
+|  | Test whether the additions help | 13 | Planned |
+|  | Make participation simple and respectful | 14 | Planned |
+| 4. Connecting People to Accessible Learning | Turn registration into a learning pathway | 15 | Planned |
+|  | Match people with suitable teaching | 16 | Planned |
+|  | One learning goal, accessible ways to practise | 17 | Planned |
+|  | See the working prototype | 18 | Planned |
+| 5. Designing a Plateau Pilot | Agree a focused Plateau pilot | 19 | Planned |
+|  | Decide what success means | 20 | Planned |
+|  | Move forward when each stage is ready | 21 | Planned |
+|  | Turn experience into shared evidence | 22 | Planned |
+| 6. Building the Partnership | Build the team around the work | 23 | Planned |
+|  | Three agreements to begin | 24 | Planned |
 
 ## Show how statistical methods change recruitment
 
@@ -118,4 +112,4 @@ Use real credited photographs, an illustrative recruitment animation, a labelled
 
 Scoping questions: Which channels, referral rules, eligibility/needs assessments, records and monitoring practices already exist? What evidence would his team value? Which additions are feasible? Discuss institutional alignment only after agreeing definitions, permissions and stewardship.
 
-Next owner decision: settle the six section titles and recruitment-method sequence. Later slide production remains pending that discussion.
+The six section titles and subsection mapping are agreed. Later slide production remains pending owner discussion of the next slide batch.

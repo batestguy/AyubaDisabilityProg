@@ -43,7 +43,43 @@ try {
  };
  const select=async i=>{await f.locator('#menu-trigger').focus();await f.locator('#menu-trigger').click();await f.locator('#slide-selector').selectOption(String(i));await f.locator('#slide-count').filter({hasText:`${i+1} / 5`}).waitFor();};
  assert.equal(await f.locator('#back').isDisabled(),true);
- const expected=['IMPACT MOSAIC','Our roadmap','Talent is everywhere. Access to learning should be too.','Gufwan’s story connects mobility with opportunity.','Reaching the classroom is only the beginning.'];
+ const expected=['IMPACT MOSAIC','Table of Contents','Talent is everywhere. Access to learning should be too.','Gufwan’s story connects mobility with opportunity.','Reaching the classroom is only the beginning.'];
+ // Contents destinations are live only for the three built subsections.
+ await select(1);
+ assert.equal(await f.locator('.contents-section').count(),6);
+ assert.equal(await f.locator('.contents-section[open]').count(),0);
+ assert.equal(await f.locator('.contents-subsections li a').count(),3);
+ assert.equal(await f.locator('.planned-item').count(),19);
+ await audit('contents-collapsed');
+ await page.locator('#research-deck').screenshot({path:'output/playwright/research-contents-collapsed.png'});
+ const firstGroup=f.locator('.contents-section').nth(0);
+ await firstGroup.locator('summary').click();
+ await page.locator('#research-deck').screenshot({path:'output/playwright/research-contents-expanded.png'});
+ await audit('contents-expanded');
+ for(let number=3;number<=5;number++) {
+  await firstGroup.locator(`li a[data-slide="research-slide-${number}"]`).click();
+  assert.equal(await f.locator('#slide-count').innerText(),`${number} / 5`);
+  await f.locator('#contents').click();
+  assert.equal(await f.locator('#slide-count').innerText(),'2 / 5');
+  assert.equal(await f.locator(`li a[data-slide="research-slide-${number}"][aria-current="page"]`).count(),1);
+  assert.equal(await f.locator(`li a[data-slide="research-slide-${number}"]`).evaluate(e=>e===document.activeElement),true);
+ }
+ await firstGroup.locator('.section-start').click();
+ assert.equal(await f.locator('#slide-count').innerText(),'3 / 5');
+ await f.locator('#contents').click();
+ const plannedGroup=f.locator('.contents-section').nth(2);
+ await plannedGroup.locator('summary').click();
+ await firstGroup.locator('summary').evaluate(e=>new Promise(resolve=>setTimeout(resolve,30)));
+ assert.equal(await f.locator('.contents-section[open]').count(),1);
+ assert.equal(await plannedGroup.locator('.planned-item').count(),7);
+ await page.keyboard.press('ArrowRight');
+ assert.equal(await f.locator('#slide-count').innerText(),'2 / 5','contents keyboard does not advance deck');
+ await plannedGroup.locator('summary').press('Enter');
+ assert.equal(await plannedGroup.getAttribute('open'),null);
+ await firstGroup.locator('summary').focus();await page.keyboard.press('Enter');
+ assert.equal(await firstGroup.evaluate(e=>e.open),true,'native disclosure keyboard support');
+ await firstGroup.locator('summary').press('Enter');
+ await select(0);
  for(let i=0;i<5;i++){
   if(i)await f.locator('#next').click();
   if(i===2){await f.locator('#back').click();assert.equal(await f.locator('#slide-count').innerText(),'2 / 5');await f.locator('#next').click();}
@@ -80,7 +116,17 @@ try {
    assert.equal(await f.locator('.present .slide-copy').evaluate(e=>{const r=e.getBoundingClientRect();return r.height>=e.scrollHeight-2;}),true,`${name}-${i+1} copy not clipped`);
    if(width===390&&i>=2)assert.equal(await f.locator('.present .slide-visual').evaluate(e=>e.getBoundingClientRect().top<e.parentElement.querySelector('.slide-copy').getBoundingClientRect().top),true);
   }
-  const controls=await f.locator('#back').evaluate(e=>{const back=e.getBoundingClientRect(),next=document.querySelector('#next').getBoundingClientRect();return back.right<=next.left;});assert.equal(controls,true,`${name} controls do not overlap`);
+  const controls=await f.locator('#back').evaluate(e=>{const back=e.getBoundingClientRect(),next=document.querySelector('#next').getBoundingClientRect(),exit=document.querySelector('#exit-presentation').getBoundingClientRect();const apart=(a,b)=>a.right<=b.left||b.right<=a.left||a.bottom<=b.top||b.bottom<=a.top;return apart(back,next)&&apart(exit,back)&&apart(exit,next);});assert.equal(controls,true,`${name} controls do not overlap`);
+  await select(1);
+  await firstGroup.evaluate(e=>{e.open=true;});
+  await audit(`contents-${name}`);
+  assert.equal(await f.locator('.slides > section.present').evaluate(e=>e.scrollWidth<=e.clientWidth+2),true,`contents ${name} width`);
+  for(const summary of await f.locator('.contents-section summary').all()) assert.equal(await summary.evaluate(e=>e.scrollWidth<=e.clientWidth+2),true,`contents ${name} summary fits`);
+  await page.screenshot({path:`output/playwright/research-contents-${name}.png`});
+  await plannedGroup.locator('summary').click();
+  assert.equal(await f.locator('.slides > section.present').evaluate(e=>e.scrollWidth<=e.clientWidth+2),true,`planned contents ${name} width`);
+  await firstGroup.evaluate(e=>{e.open=false;});await plannedGroup.evaluate(e=>{e.open=false;});
+  await select(4);
   await audit(`mosaic-${name}`);await page.screenshot({path:`output/playwright/research-${name}.png`});
  }
  await f.locator('html').evaluate(e=>e.style.fontSize='');await page.setViewportSize({width:1440,height:900});
@@ -90,6 +136,14 @@ try {
  await f.locator('body').dispatchEvent('touchstart',{touches:[{identifier:0,clientX:300,clientY:300}]});await f.locator('body').dispatchEvent('touchend',{changedTouches:[{identifier:0,clientX:290,clientY:100}]});assert.equal(await f.locator('#slide-count').innerText(),'2 / 5');
  await select(4);await f.locator('#next').click();await page.getByRole('button',{name:'Research',exact:true}).waitFor();
  assert.deepEqual(await page.evaluate(()=>({local:{...localStorage},session:{...sessionStorage}})),stored,'stored demo bytes unchanged');
+ // Visible central exit returns to the site and preserves records.
+ await page.getByRole('button',{name:'Research',exact:true}).click();
+ await f.locator('#contents').click();await firstGroup.locator('summary').click();
+ await firstGroup.locator('.section-start').click();
+ await f.getByRole('button',{name:'Exit presentation',exact:true}).click();
+ await page.getByRole('button',{name:'Research',exact:true}).waitFor();
+ assert.equal(await page.evaluate(()=>!!document.fullscreenElement),false);
+ assert.deepEqual(await page.evaluate(()=>({local:{...localStorage},session:{...sessionStorage}})),stored,'visible exit preserves stored records');
  await page.evaluate(()=>window.__refuseFullscreen=true);await page.getByRole('button',{name:'Research',exact:true}).click();await f.locator('.slides > section.present').waitFor();assert.equal(await page.evaluate(()=>!!document.fullscreenElement),false);
  await page.goto(new URL('?page=research',origin).href);await f.locator('#slide-count').filter({hasText:'1 / 5'}).waitFor();assert.equal(await page.locator('header,footer').count(),0);
  assert.equal(await page.evaluate(()=>window.__fullscreenRequests),0);
@@ -104,7 +158,7 @@ try {
  assert.equal(await np.locator('#static-research iframe').count(),0);assert.equal(await np.locator('#static-research .research-linear[open] article').count(),5);
  await np.goto(new URL('research/index.html',origin).href);await np.getByRole('link',{name:'Read all five slides without JavaScript'}).click();assert.equal(await np.locator('article').count(),5);assert.equal(await np.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
  await nojs.close();
- evidence.checks=['fullscreen entry/refusal/direct links','five exact headlines and loaded uncropped images','Next/Finish/menu/keyboard/swipe/exit','sources/dialog focus/read aloud','OS and manual reduced motion','desktop/phone/200% text','reading/detailed proposal/no-JS/print','stored demo bytes preserved'];
+ evidence.checks=['visible central exit preserves records and leaves fullscreen','six-section contents: live links, planned topics, single expansion, keyboard, focus, return/current marker and responsive layout','fullscreen entry/refusal/direct links','five exact headlines and loaded uncropped images','Next/Finish/menu/keyboard/swipe/exit','sources/dialog focus/read aloud','OS and manual reduced motion','desktop/phone/200% text','reading/detailed proposal/no-JS/print','stored demo bytes preserved'];
  assert.deepEqual(evidence.errors,[]);assert.deepEqual(evidence.csp,[]);assert.deepEqual(evidence.failed,[]);
  await writeFile('output/playwright/research-verification.json',JSON.stringify(evidence,null,2));console.log('Research presentation checks passed:',evidence);
 }finally{await browser.close();}
