@@ -34,6 +34,8 @@ for (const view of ["overview", "learner", "expert", "admin"]) {
     await page
       .getByRole("button", { name: "Learning Sandbox", exact: true })
       .click();
+    await page.getByRole("button", { name: "Open the app demo", exact: false }).click();
+    await page.getByText("Original sandbox tools", { exact: true }).click();
     await page.getByRole("button", { name: "Explore the learning sandbox" }).click();
   }
   if (view === "expert" || view === "admin")

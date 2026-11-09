@@ -38,7 +38,7 @@ function Cite({ id }: { id: string }) {
 }
 
 export function ProposalLinks() {
- return <p className="proposal-links"><a href="/?page=research#static-research">Read the research plan →</a> <a href="/downloads/plateau-pilot-discussion-brief.html">Plateau Pilot Discussion Brief →</a> <a href="/?page=explore#static-explore">Explore the learning sandbox →</a></p>;
+ return <p className="proposal-links"><a href="/?page=research-reading#static-research">Read the research plan →</a> <a href="/downloads/plateau-pilot-discussion-brief.html">Plateau Pilot Discussion Brief →</a> <a href="/?page=explore#static-explore">Explore the learning sandbox →</a></p>;
 }
 
 export function HomeProposal() {
@@ -84,5 +84,5 @@ export function ProposalSources() {
 }
 
 export function PilotBrief() {
- return <><header><p>IMPACT MOSAIC · INDEPENDENT PROPOSAL · 8 NOVEMBER 2026</p><h1>Plateau Pilot Discussion Brief</h1><p>Use your browser’s Print command to print or save as PDF.</p><p className="proposal-links"><a href="/?page=research#static-research">Read the research plan →</a><a href="/?page=explore#static-explore">Explore the learning sandbox →</a></p></header><main id="brief-main"><section><h2>Objective</h2><p>{pilot.objective}</p></section><Foundation/><TeamContribution/><PilotScope brief/><section><h2>Evidence outputs for review</h2><p>{pilot.outputs}</p><p>Agree measurement definitions, denominators and review frequency using the research plan. No results or targets are claimed.</p></section><Readiness/><ProposalSources/></main><footer><a href="https://deerflow.tech" target="_blank" rel="noreferrer">Created By Deerflow</a></footer></>;
+ return <><header><p>IMPACT MOSAIC · INDEPENDENT PROPOSAL · 8 NOVEMBER 2026</p><h1>Plateau Pilot Discussion Brief</h1><p>Use your browser’s Print command to print or save as PDF.</p><p className="proposal-links"><a href="/?page=research-reading#static-research">Read the research plan →</a><a href="/?page=explore#static-explore">Explore the learning sandbox →</a></p></header><main id="brief-main"><section><h2>Objective</h2><p>{pilot.objective}</p></section><Foundation/><TeamContribution/><PilotScope brief/><section><h2>Evidence outputs for review</h2><p>{pilot.outputs}</p><p>Agree measurement definitions, denominators and review frequency using the research plan. No results or targets are claimed.</p></section><Readiness/><ProposalSources/></main><footer><a href="https://deerflow.tech" target="_blank" rel="noreferrer">Created By Deerflow</a></footer></>;
 }

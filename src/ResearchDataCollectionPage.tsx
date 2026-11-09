@@ -1,4 +1,5 @@
 import { Foundation, TeamContribution, PilotScope, Measures, Readiness, ProposalSources, pilot } from './PilotProposal';
+import { ResearchPresentation } from './ResearchPresentation';
 
 const samplingStages = [
  { name: 'Define coverage', symbol: 'groups', method: 'Stratification and frame assessment', statistic: 'Group by geography and relevant participant characteristics; document who the available lists exclude.', plain: 'Plan who we need to reach, so one well-connected community does not stand in for the whole country.', time: 'Weeks 1–3', gate: 'Agree pilot area, eligibility, partners and data arrangements.' },
@@ -30,6 +31,7 @@ export function ResearchDataCollectionPage() {
  return <div className="showcase research-page">
   <section className="section public-page sampling-framework" aria-labelledby="sampling-heading">
    <div className="site-page-heading"><div><h1>Research &amp; Data Collection.</h1><p>A proposed Plateau pilot: reliable disability data connected to accessible online teaching.</p></div></div>
+   <ResearchPresentation/>
    <Foundation/>
    <TeamContribution/>
    <PilotScope/>

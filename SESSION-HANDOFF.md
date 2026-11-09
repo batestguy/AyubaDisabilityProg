@@ -1,6 +1,67 @@
+# Commit-and-push delivery — 9 November 2026
+
+The owner authorized committing and pushing the accumulated five-slide redesign and requested a skill-in-action photograph for “Talent is everywhere”, preferably from Gufwan’s projects. This supersedes earlier no-commit/no-push instructions below; deployment remains outside this request.
+
+Slide 3 now shows **Mbuotidem Okorie practising shoemaking in Nigeria**, using the original 1000 × 667 JPEG published in BellaNaija’s 16 December 2014 Shell LiveWIRE story. His disability, occupation and Nigerian context are documented by the article and independently corroborated by Shell programme adviser Chukwudi Nwanze’s first-person account. The image sits immediately after the paragraphs about his shoemaking. Source: `public/photos/mbuotidem-shoemaking.jpg`; original bytes, checksum, image/context links and identification reasoning are recorded in `docs/documentary-photo-manifest.json`. Captions, credits and the source limit are in Sources and the reading/no-JavaScript edition. No change to the slide headline or supporting copy.
+
+Gufwan/Beautiful Gate sources were prioritised: the official gallery shows distributions/recipients; workshop reports establish employment but did not verify an individual craftsperson’s disability in an appropriate action image. The chosen photograph is a **Shell LiveWIRE** example, with no claimed Gufwan, Beautiful Gate or Impact Mosaic connection. Main-logo crutch and visible Back corrections remain.
+
+Regenerated Quarto and static output. Repository preflight passes 120 tests, TypeScript and production build. The focused production-CSP presentation check covers ten clean accessibility audits, photo loading, exact five slides, Back/Next/Finish, keyboard/touch/full-screen/menu, reading/no-JavaScript/print and unchanged saved records. Earlier broader learning/pilot/story checks are recorded below. No source PowerPoint edits, production dependency or storage changes. A narrow gitignore exception includes the checked-in Reveal runtime’s `dist` directory while leaving the application build ignored, so a fresh checkout contains required presentation assets.
+
+Git destination verified: `batestguy/AyubaDisabilityProg`, branch `main`; GitHub CLI authenticated as `batestguy`. Existing local predecessor commit is preserved. Commit/push receipt is reported after remote verification. No deployment performed. Visual corrections and later slides remain owner-review work.
+
+---
+
+# Current handoff: immersive first-five review — 9 November 2026
+
+**Implemented locally; owner visual corrections are the next step. Stop before later slides. No commit, push, publishing or deployment.** This checkpoint supersedes the embedded presentation descriptions below.
+
+Open `http://127.0.0.1:4175/?page=research` (local production/CSP server), or `http://127.0.0.1:5173/?page=research` (development). Visible Playwright Chrome session `mosaic-review` is left on the title slide. Server helper: `node scripts/serve-production-local.mjs`. Five current screenshots: `output/playwright/research-slide-1.png` through `research-slide-5.png`. Slide print PDF: `output/playwright/research-slides.pdf`; reading PDF and browser JSON share that directory.
+
+Research now replaces the entire site with a dedicated viewport shell. Its navigation click requests browser full screen; direct links and refusal remain usable. Escape leaves full screen without closing the deck; menu Exit and slide-five Finish return to the site. Parent exit messages check origin and the iframe source. Earlier-demo query context is retained when navigating through the presentation to the detailed proposal.
+
+Five exact-copy slides: Impact Mosaic unity cover and co-creators; six-part roadmap; talent/access opportunity; Gufwan’s foundation; participation barriers. Main red #D24726, Segoe UI, white text, deep-red cover/letterboxing, warm-gold roadmap numbers. Cover/contents use the full canvas; slides 3–5 use equal red text and uncropped real-photo halves. Sources/captions and explanations are in the menu and reading editions. Photography: accessibility-training group, leadership portrait, UBEC education meeting. No pilot activity or invented results are implied.
+
+Two owner corrections implemented during this session:
+
+- **Visible Back** at bottom left, disabled on the title. Next/Finish stays bottom right. This supersedes the original Next-only rule. Slide number remains secondary. Enlarged phone controls do not overlap.
+- **Visible crutch in the main logo.** The person in green at back right now uses an underarm crutch while remaining connected to the group. Built-in image edit saved as `public/impact-mosaic-unity-crutch.png`; header, favicon, slide cover and reading/static paths use it. Original Nigerian-flag artwork is retained unchanged. Six people, albinism, glasses/white cane, hijab, wheelchair and walking stick are retained. See [logo prompt/provenance](docs/UNITY-LOGO.md).
+
+Menu reveals on pointer movement or keyboard focus, remains visible while focused, and offers Previous, slide selection, full screen, reading/print, detailed proposal, sources/full images, accessibility, current-slide read aloud/Stop and Exit. Arrow/Page Up/Page Down/Home/End and horizontal touch navigation work. Whole compositions enter in 220ms; manual/OS reduced motion suppresses animation. Phone images stack above copy; 200% content scrolls in the keyboard-focusable active slide. No iframe height expansion remains.
+
+Detailed proposal: `/?page=research-reading`; slide reading/no-JavaScript/print: `/research/reading.html`, with return links. Home/brief “Read the research plan” links point to the detailed proposal. Shared source: `src/researchSlides.ts`, with typed cover/contents/split layouts. Generator/QMD/runtime remain actual Quarto/reveal.js. Run `npm.cmd run build:research` after content edits, then `npm.cmd run preflight`. Never patch generated HTML. No production dependency, security-header relaxation, storage schema change or record reset.
+
+Verification: final Quarto render and preflight passed **120 tests, TypeScript and production build**. Focused production-CSP browser checks passed **10 accessibility audits**, full-screen entry/refusal/direct load, five exact headlines and loaded full-frame images, Back/Next/Finish, keyboard/touch/menu/exit, source-dialog Escape/focus, read-aloud text, reduced motion, phone/desktop/200%, reading/detailed proposal/no-JavaScript/print and exact stored-byte preservation; zero product errors, failed resources or CSP violations. Slide PDF checked as exactly **five pages**, with no blank pages. Learning-navigation checks passed six clean audits and six role sign-ins, preserved bytes and zero errors/POST. Pilot checks passed five clean audits and brief/table/static paths. Broader story checks passed documentary chapters/gallery/timeline, image failure, responsive/reduced-motion paths and earlier-demo role tabs. Full UI suite was not rerun. Vite’s existing non-failing large-bundle advisory remains.
+
+PowerPoint source unchanged: `Welcome to PowerPoint.pptx`, SHA-256 `10D27B8B7079314BA1DE7D554420A78BDF5B79E42A2C652525BA3990340C9809`. The separate PhD proposal reference is not present locally; its agreed hierarchy/alignment/image-led layout is implemented from the written plan. [Exact agreed copy, references, provenance and review boundary](docs/RESEARCH-PRESENTATION-BRIEF.md); [implementation guide](docs/RESEARCH-FIVE-SLIDES.md).
+
+**Next:** review these five slides and the revised logo with the owner; incorporate their visual corrections before any later slides. Local screenshots and browser sessions are review evidence, not owner approval.
+
+---
+
+# Earlier handoff history
+
 # Session handoff: connected Mosaic Pathways workspace
 
-## Current checkpoint: Plateau proposal, unity logo and future presentation — 8 November 2026
+## Current checkpoint: five working Research slides for visual review — 8 November 2026
+
+The latest user instruction supersedes the earlier deferral: implement the first five actual Quarto/reveal.js slides locally, keep the expanded research reference below, and stop for owner corrections before slides 6–24. **Five slides are now implemented; visual approval is pending. No publishing or deployment.**
+
+Review `http://127.0.0.1:5173/?page=research` (development), or `http://127.0.0.1:4175/?page=research` while the local production verification server is running. Standalone deck: `/research/index.html`; complete reading/no-JavaScript/print alternative: `/research/reading.html`. [Implementation, assets, build instructions and limitations](docs/RESEARCH-FIVE-SLIDES.md).
+
+The deck uses the five supplied titles, existing proposal wording, the approved unity logo, three newly generated labelled illustrations, and source-linked documentary photographs. Separate mock draft files were unavailable. Slide 2 offers a second documented Gufwan photograph; slide 3 offers Mobility/Education image switching without changing prose. No contributor portraits, new credentials, participant records or results are invented. The independent Plateau scope and recruitment-closed status remain explicit.
+
+Desktop bullets/image columns, phone imagery-first stacking, manual Previous/Next boundaries, live count/progress/title selector, gentle layered-card settling, full-frame image dialogs with Escape/focus restoration, 200% text, site/OS reduced motion and site/deck accessibility controls are implemented. The iframe grows with its content. Site Read aloud selects the current slide; standalone read/stop controls are available. Audible device output depends on installed voices; the browser test verifies speech text with a stub.
+
+Content source: `src/researchSlides.ts`; React embed/linear alternative: `src/ResearchPresentation.tsx`; QMD: `presentation/research.qmd`; renderer: `scripts/build-research-presentation.mjs`; runtime assets: `public/research/`. Quarto 1.9.38 renders the source with `npm run build:research`; regular build uses checked-in local output and requires no Quarto installation. Re-render after slide-content changes, then build for no-JavaScript parity. No production dependency was added.
+
+Only `/research/*` permits same-origin framing. Global DENY and frame-ancestors none remain. Deck scripts stay self-only; script/style blocks are externalized, optional plugins and imported web fonts removed, and only runtime style attributes are allowed under the deck path. A fresh independent security/bridge review found no remaining material issue and confirmed Cloudflare's unset-and-set header semantics.
+
+Verification: final preflight passed 120 tests, TypeScript and production build. The five-slide production-header browser check passed nine accessibility audits, all slide/image/dialog/navigation states, keyboard boundaries, phone and desktop 200%, reduced motion, reading/no-JavaScript paths, print, and exact preservation of stored demo bytes. Zero JavaScript errors, product CSP violations, audit CSP events or failed resources. The deck PDF contains five pages. Original pilot checks passed five additional clean audits, two keyboard-scrollable tables, brief/live/static links and zero errors/POST. Learning navigation passed six audits and preserved stored records; general accessibility passed 13 audits (33 across these four checks). Final no-JavaScript check confirms five expanded slides, no interactive iframe, working reading link and phone reflow. Full command evidence is recorded in [validation history](docs/validation.md); screenshots/PDFs/JSON remain under ignored `output/playwright/research-*`.
+
+Do not continue the remaining slides until the owner reviews these five. Earlier research deferral and commit-only instructions below are historical; this implementation did not publish, deploy, push or reset any records.
+
+## Historical checkpoint: Plateau proposal, unity logo and future presentation — 8 November 2026
 
 **Latest instruction: document and commit for next time.** The user called the Research & Data Collection page bland and wants a captivating **20–25-slide presentation in the style of Quarto**, with pictures of individuals, original artwork, animations and mathematical explanations of what the team hopes to do. Asked whether to implement now or document/commit, the user chose **“Document and commit for next time.”** No slide redesign was built in this checkpoint. Start next session with [the presentation brief and suggested 24-slide story](docs/RESEARCH-PRESENTATION-BRIEF.md).
 

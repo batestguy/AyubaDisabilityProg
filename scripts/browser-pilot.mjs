@@ -62,7 +62,7 @@ try {
  await nojs.goto(target);
  await nojs.locator('#static-home .pilot-proposal').getByRole('link', { name: /research plan/ }).click();
  assert.equal(new URL(nojs.url()).hash, '#static-research');
- assert.equal(await nojs.locator('#static-research .sampling-methods').count(), 2);
+ assert.equal(await nojs.locator('#static-research .sampling-methods').count(), 1);
  await nojs.setViewportSize({ width: 390, height: 900 });
  await nojs.evaluate(() => document.documentElement.style.fontSize = '200%');
  assert.equal(await nojs.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);

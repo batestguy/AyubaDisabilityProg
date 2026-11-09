@@ -1,0 +1,4 @@
+.presentation-shell{position:fixed;inset:0;width:100%;height:100dvh;max-width:none;margin:0;padding:0;background:#701f18;overflow:hidden}
+.presentation-shell iframe{display:block;width:100%;height:100%;border:0;background:#D24726}
+.research-presentation{margin:2rem 0 3rem}.research-presentation p{overflow-wrap:anywhere}.research-linear article{padding:1.5rem 0}.research-linear img{max-width:100%;width:600px;height:auto}.research-linear figcaption{font-size:1rem}
+@media print{.research-linear summary{display:none}.research-linear::details-content{content-visibility:visible}.research-linear article{break-before:page}}

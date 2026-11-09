@@ -1,0 +1,1 @@
+window.backupDefine = window.define; window.define = undefined;

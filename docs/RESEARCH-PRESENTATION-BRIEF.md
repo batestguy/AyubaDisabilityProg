@@ -1,4 +1,90 @@
+# Impact Mosaic: immersive first-five presentation review
+
+Agreed direction, 9 November 2026. This section supersedes the older embedded deck and suggested 24-slide outline below. Implement **five slides only** and stop for the owner’s visual corrections before developing later slides. No commit, push, publishing or deployment is authorized.
+
+## Audience and visual direction
+
+Independent project beginning with a proposed Plateau pilot and an ambition to extend across Nigeria. Audience: Gufwan and potential community, technical and funding partners. Use natural, concise copy, one focal message per slide and supporting explanations in the reading edition. Domain: people, mobility, learning, community, evidence and opportunity. Signature: the approved unity artwork and flag on the cover, echoed by a faint geometric Mosaic motif on the roadmap.
+
+Use the clear hierarchy, alignment and image-led structure specified from the owner’s PhD proposal reference. That reference deck is not present in this workspace; the agreed written layout is the implementation reference. `Welcome to PowerPoint.pptx` supplies the approved **#D24726** main red; deep red overlays, white lettering and restrained warm-gold numbers support it. Installed Segoe UI; large, readable text; no new dependency. No source PowerPoint is edited. SHA-256 of the available original: `10D27B8B7079314BA1DE7D554420A78BDF5B79E42A2C652525BA3990340C9809`.
+
+Slides 1–2 use the full canvas. Slides 3–5 divide the desktop equally between red text and a real photograph. Phones put the image above the text. All people and assistive devices in the source frames stay visible through object-fit contain; letterboxing uses the deck’s deep red. The cover is the agreed artwork exception. No new illustrations, identities, credentials, outcomes or statistics are introduced. Enlarged content scrolls within the active slide.
+
+## Exact slide copy
+
+### Slide 1 — Title
+
+> **IMPACT MOSAIC**
+>
+> Connecting people, evidence and accessible learning
+> A proposed Plateau pilot
+> Building toward wider reach across Nigeria
+> Strong · Jerry Bannister Zachary
+> Project Co-Creators
+
+### Slide 2 — Our roadmap
+
+> **Our roadmap**
+>
+> The vision
+> Gufwan’s story and the foundation
+> Understanding people and learning needs
+> Building the register and research
+> Connecting learners and facilitators
+> Measuring progress and expanding reach
+
+### Slide 3 — Opportunity
+
+> **Talent is everywhere.<br>
+> Access to learning should be too.**
+>
+> Understand people.
+> Connect learning.
+> Follow progress.
+
+### Slide 4 — Gufwan’s foundation
+
+> **Gufwan’s story connects mobility with opportunity.**
+>
+> A foundation in community outreach and practical support.
+> Our proposal starts with a conversation about building on that experience.
+
+### Slide 5 — Participation
+
+> **Reaching the classroom is only the beginning.**
+>
+> Participation also needs:
+> Suitable teaching
+> Accessible communication
+> Devices and connectivity
+
+## Photograph and artwork provenance
+
+Artwork: `/impact-mosaic-unity-crutch.png`, a revision of the approved six-person unity composition and Nigeria flag. Owner correction, 9 November: the person in green now leans on a visible crutch while embracing the group. The original `/impact-mosaic-unity-nigeria.png` is retained unchanged. Its identifying features include albinism, wheelchair, white cane, walking stick, glasses, crutch and hijab. See [unity provenance](UNITY-LOGO.md). It is labelled as artwork in the sources panel and reading edition.
+
+- Slide 3: `/photos/mbuotidem-shoemaking.jpg`. Mbuotidem Okorie practising shoemaking in Nigeria. Published with the Shell LiveWIRE story on BellaNaija, 16 December 2014; the accompanying report identifies him as a shoemaker with a disability from Uyo, Akwa Ibom. [Shell LiveWIRE photograph published by BellaNaija; photographer not named](https://www.bellanaija.com/2014/12/building-lives-shell-livewire-supports-people-with-disabilities-to-achieve-their-dreams/). Corroboration: [first-person Shell programme account](https://businessfightspoverty.org/making-a-better-life-in-business/). Original 1000 × 667 JPEG retained without cropping or retouching. This is a Shell LiveWIRE skills example, not a Gufwan/Beautiful Gate or Impact Mosaic activity. Gufwan-related sources were prioritised, but no suitable skill-in-action image with a verified individual disability identification was established.
+- Slide 4: `/photos/leadership.webp`. Chief Ayuba Gufwan, in the photograph published with FMINOâ€™s leadership profile. Report: 2024-10-26. Nigeria; photograph venue not specified. [Photograph published by FMINO](https://fmino.gov.ng/championing-inclusion-chief-ayuba-gufwans-mission-for-persons-with-disabilities-in-nigeria/). WHO’s 2019 profile connects Gufwan’s experience of polio with mobility and education work. Historical sources do not establish a project partnership or endorsement. The photograph’s venue and event date are not inferred.
+- Slide 5: `/photos/education-2.webp`. Gufwan during the UBEC partnership discussion on inclusive education. Report: 2024-09-26. UBEC, Abuja. [Photograph published by FMINO](https://fmino.gov.ng/children-with-disabilities-deserve-more-attention-to-attain-their-aspirations-in-life-ayuba-gufwan/). Historical UBEC inclusive-education discussion, not an activity of the proposed pilot. Registration and optional research remain separate; resources and operational arrangements are to be agreed.
+
+Photo identities, dates, locations and original URLs are retained in `docs/documentary-photo-manifest.json`. These are historical activities, not evidence that the proposed pilot has operated. Detailed captions and the WHO link remain in Sources and the reading edition, outside the main slide composition.
+
+## Presentation behavior and review boundary
+
+Research opens a dedicated presentation shell and requests browser full screen directly from the navigation click. Direct `/?page=research` and `/research/index.html` links show the same deck; direct loads do not request full screen automatically. Refusal or unsupported full screen leaves a viewport-filling deck. Escape exits browser full screen without exiting the presentation; native image/source dialog Escape closes the dialog and restores focus. Exit and slide-five Finish return to the site. Finish means the end of the implemented review set only.
+
+Owner correction, 9 November: a visible Back button is also required. Back stays at bottom left and is disabled on the title; Next (Finish on slide five) stays at bottom right, with a small slide number. This supersedes the initial Next-only control rule. Pointer movement or keyboard focus reveals Menu; a focused trigger stays visible. Menu contains Previous, slide selection, full screen, slide reading/print, detailed Research proposal, sources and full images, accessibility options, and Exit. Left/Right, Page Up/Down, Home/End navigate. Horizontal touch swipes navigate; vertical swipes remain available for scrolling enlarged content. All transitions are manual and animate the whole composition together with a 220ms fade and small horizontal movement. OS/manual reduced motion disables transitions.
+
+Shared content: `src/researchSlides.ts`, explicitly typed cover/contents/split layouts. Regenerate with `npm.cmd run build:research`, then `npm.cmd run build` for static/no-JavaScript parity. Never manually patch the generated HTML. React, TypeScript, Quarto/reveal.js and the security headers remain. The iframe uses viewport height and no content-height expansion. Detailed proposal: `/?page=research-reading`; slide reading/print edition: `/research/reading.html`, with return links. Source PPTX and learning records remain unchanged.
+
+Review the five local slide screenshots and the running local presentation, collect owner corrections, and stop. The roadmap describes the intended complete presentation, not delivered later slides. See [current implementation and verification](RESEARCH-FIVE-SLIDES.md) and `SESSION-HANDOFF.md`.
+
+---
+
+## Earlier planning history (superseded where it conflicts above)
+
 # Research presentation: next-session direction
+
+**Current checkpoint, 8 November 2026:** the first five slides are now implemented locally for visual review. See [implementation and verification details](RESEARCH-FIVE-SLIDES.md). The remaining slides 6–24 remain future work. The original direction below is retained as planning history; owner corrections are pending and nothing has been published.
 
 Recorded 8 November 2026. **Planned, not implemented.** The user finds the current Research & Data Collection page bland and wants a captivating presentation of everything the team hopes to do, in the style of a Quarto presentation, with 20–25 slides, pictures of individuals, artwork, animations and mathematical sections.
 

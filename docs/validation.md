@@ -1,5 +1,24 @@
 # Validation evidence and history
 
+## Skill-in-action photo and Git delivery — 9 November 2026
+
+- Owner authorized commit and push after replacing the opportunity slide photograph. Selected an original, source-documented photograph of Mbuotidem Okorie practising shoemaking in Nigeria (Shell LiveWIRE). Original JPEG retained; source/primary corroboration and SHA-256 recorded in the documentary manifest. No Gufwan project connection is claimed.
+- Quarto regeneration and `npm.cmd run preflight` pass: 120 tests, TypeScript, build. Production-CSP presentation browser check passes ten clean audits, photography, all navigation/accessibility/read/print/no-JavaScript paths and unchanged demo bytes; zero product errors/resources/CSP violations. Existing bundle-size advisory remains non-failing.
+- Checked-in Reveal runtime is explicitly exempted from the generic `dist/` ignore. The application’s root build directory stays ignored. Source PPTX preserved byte-for-byte. Deployment not requested.
+
+
+## Immersive presentation and owner corrections — 9 November 2026
+
+- `npm.cmd run build:research`: Quarto regeneration succeeds; shared exact-copy cover/contents/split content, runtime styles/scripts, sources and reading edition agree.
+- Final `npm.cmd run preflight`: **120/120 tests**, TypeScript and production build pass. Existing non-failing Vite bundle advisory remains; no new runtime dependency.
+- `node scripts/browser-research-presentation.mjs` against production4175 with checked-in CSP: **10 clean accessibility audits**, full-screen entry/refusal/direct links, Back/Next/Finish, menu/selection/exit, keyboard/swipes, full-image/source dialog/focus, read-aloud text, OS/manual reduced motion, phone/desktop/200%, reading/detailed proposal/no-JavaScript/printing and exact demo-byte preservation. Zero product errors, failed resources or CSP violations. Current evidence: `output/playwright/research-verification.json`, five `research-slide-N.png` screenshots, responsive captures and two PDFs. Slide PDF independently checked with pypdf: **five pages**.
+- `LEARNING_URL=http://127.0.0.1:4175/ node scripts/browser-learning-navigation.mjs`: six clean audits, all six sample role sign-ins, phone/enlarged reflow, static parity and unchanged saved bytes; zero errors/POST.
+- `STORY_URL=http://127.0.0.1:4175/ node scripts/browser-pilot.mjs`: five clean audits, proposal/brief/static links, two scrollable table regions, reduced motion, PDF; zero errors/POST.
+- `STORY_URL=http://127.0.0.1:4175/ node scripts/browser-story.mjs`: documentary chapters/photos/gallery/timeline, fallback/error captions, five widths, reduced motion, original demo role tabs and static paths pass. Corrected preservation of the earlier-workspace query through the new Research menu route.
+- Owner requested visible Back and a person leaning on a crutch while connected to the main-logo team. Back is now persistent; generated raster edit saved unchanged as `public/impact-mosaic-unity-crutch.png` (1254 square RGBA, genuine transparency). Original retained. Header/favicon/cover/static/reading paths use the revision; prompt is in `UNITY-LOGO.md`.
+- Local headed Chrome `mosaic-review` left on the title for owner corrections. Original PowerPoint hash unchanged. No commit/push/deployment, later slides or stored-record changes. Full UI suite not rerun.
+
+
 ## Projects sampling skeleton — 7 November latest continuation
 
 - Removed Projects' five proposal cards, older demonstration/download banner and page-specific promotional footer. Added the planned Bayesian snowball sampling heading, blank facilitator/student spaces and collapsed six-stage outline. Existing connected entry remains; legacy tool links moved under Earlier demos. Sources and deferred method questions are documented separately; no sampling, recruitment or inference is implemented.
@@ -316,3 +335,22 @@ Existing demo records, course content, role workflows and documentary photograph
 User selected “Document and commit for next time.” Added the current handoff, a planned 20–25-slide presentation brief with a suggested 24-slide story, and current-state cross-references. No slide redesign implemented. Current Nigerian-flag logo and Plateau proposal are included in the checkpoint; demo records remain unchanged.
 
 Fresh `npm.cmd run preflight` passed 120/120 tests, TypeScript and production build. Six documentation files have no unresolved local Markdown file targets. Existing non-failing Vite bundle-size advisory remains. Earlier documentary/navigation/pilot and final logo browser evidence above remains applicable; those browser suites were not repeated for this documentation-only continuation. Local commit requested; no push or deployment in this checkpoint.
+
+## 8 November 2026 — Five Research slides, local visual-review checkpoint
+
+Implemented only slides 1–5, using actual Quarto/reveal.js output above the expanded Research material. Slides 6–24 remain future work pending owner corrections. No deployment, publishing, push, collection backend or record reset.
+
+Validation completed:
+
+- `npm run build:research` using Quarto 1.9.38: five-slide QMD rendered, local dependencies copied, script/style blocks externalized, unused plugins and imported web fonts removed. No new production dependency.
+- `C:/Program Files/nodejs/npm.cmd run preflight`: 120/120 tests, TypeScript and production build pass. A subsequent build after the no-JavaScript fallback refinement also passes. Existing Vite bundle-size advisory remains non-failing.
+- `node scripts/browser-research-presentation.mjs` against local production build with checked-in header rules applied at port 4175: nine clean axe audits (five slides, image dialog, phone, phone 200%, desktop 200%). Verified Previous/Next boundaries, selector/count/progress, all slide dialogs and Escape/focus return, second documentary photograph, Mobility/Education switch with stable prose, arrow keys, no autoplay, inherited accessibility settings, read-aloud current-slide text using a stub, OS/site reduced motion, imagery-first phone layout, print and exact stored demo byte preservation. Zero page errors, product CSP violations, audit CSP events or failed responses.
+- `STORY_URL=http://127.0.0.1:4175/ node scripts/browser-pilot.mjs`: five clean audits; existing proposal, brief, research tables, live/static navigation, keyboard scrolling, phone/200%, reduced motion and print pass; zero errors/POST.
+- `LEARNING_URL=http://127.0.0.1:4175/ node scripts/browser-learning-navigation.mjs`: six clean audits, six keyboard role selections/sign-ins, desktop/phone 200%, unchanged demo storage, no-JavaScript parity, zero errors/POST. Updated its overly broad details-count assertion to check the expanded sampling outline and all five linear slides explicitly.
+- `node scripts/accessibility.mjs`: 13 clean audits including earlier app roles, About, original sandbox perspectives and expanded courses in four languages. Repaired its stale route sequence to open the app demo and Original sandbox tools before entering the archived sandbox. Total across the four browser suites: 33 clean accessibility audits.
+- Final focused no-JavaScript production check: five expanded linear slides, no interactive iframe, working reading link and phone reflow. Main-page print media exposes all five linear articles even when the live details element is closed.
+- Print artifacts inspected with pypdf: standalone deck PDF has five pages with extracted text on every page; full reading edition has eight pages including both documentary variants and sources. Desktop and phone/200% screenshots reviewed; phone title sizing and illustration crop boundaries corrected from actual 2172 × 724 generation dimensions.
+- Fresh independent security/accessibility-bridge review confirmed same-origin-only framing under `/research/*`, unchanged global DENY, self-only scripts, correct Cloudflare header replacement syntax, no external requests/inline executable blocks, preference synchronization in both directions and iframe content resizing. No remaining material findings. Unused MathJax/menu/font imports and stale preference pressed states found during review were corrected and rechecked.
+- `git -c safe.directory=D:/AyubaGufwanDisabiliyt diff --check`: passes. The per-command safe-directory setting is needed because this workspace's .git owner differs from the human account; no global Git configuration or ownership change was made.
+
+Evidence: ignored `output/playwright/research-*` screenshots, PDFs, axe JSON and `research-verification.json`, plus existing pilot/navigation/accessibility artifacts. Review URLs and build/provenance notes: `docs/RESEARCH-FIVE-SLIDES.md`. Separate mock draft files were unavailable; supplied titles/layout and existing proposal/source wording were used. Owner visual acceptance remains pending. Speech text selection was tested, not audible voice availability. Header behavior was verified locally; no deployed production headers are claimed.

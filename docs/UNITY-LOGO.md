@@ -1,3 +1,15 @@
+# Current revision — visible crutch and team embrace, 9 November 2026
+
+The owner requested: “Somebody in the main impact mosai logo should have a crutch leaning on and holding the team too.” Edited the existing six-person raster mark with the built-in `image_gen` tool. Current asset: `public/impact-mosaic-unity-crutch.png` (1254 × 1254 RGBA PNG, genuine alpha range 0–255). The person in green at back right visibly uses an underarm crutch and remains connected to the embracing group. Six people, albinism, glasses and white cane, hijab, wheelchair, walking stick and Nigeria flag are preserved. Header, favicon, presentation cover and reading/no-JavaScript versions use the revised asset. The prior `public/impact-mosaic-unity-nigeria.png` is retained unchanged. Owner visual review is pending.
+
+Edit target: `public/impact-mosaic-unity-nigeria.png`. Built-in output copied unchanged from `C:/Users/TOSHIBA/.codex/generated_images/01a1bed1-d77b-7901-ba3d-e7a56a2efc24/exec-fd35f8f0-1c2f-45ba-99c0-7aadb939b04c.png`.
+
+Final edit prompt:
+
+> Use case: precise-object-edit. Edit target: the attached existing Impact Mosaic six-person unity emblem. Make one targeted change: give the tall standing dark-skinned person in the BACK RIGHT, currently wearing a green top behind the woman in yellow, a clearly visible weight-bearing UNDERARM CRUTCH. The padded upper support sits properly beneath that person's arm, with their hand gripping the crutch handgrip, the long shaft and rubber foot visible down to floor level to their outer right side. Their body visibly leans/supports weight on the crutch naturally. Their OTHER arm remains affectionately around a neighbouring teammate's shoulder, participating in the united team embrace. Adjust this person's pose and the neighbouring arm only as necessary to make the crutch use and team embrace anatomically clear; no extra limbs or disconnected hands. Preserve EXACTLY six distinct African people, their existing arrangement, clothing colours and crisp flat graphic style. Preserve the person with albinism and pale curled hair, the person with dark glasses and long white cane, the woman wearing a hijab, the front-left manual wheelchair user and the front-right woman's existing walking stick. Keep all six heads, people, full wheelchair, white cane, walking stick AND new crutch fully within frame with a little safe clearance. Preserve Nigeria's waving vertical green-white-green flag behind them. Actual transparent pixels outside the emblem. No text, letters, shadows, new people, extra accessories, cropping or background rectangle. This is a careful revision of the existing mark, not a redesign. Return one finished square emblem.
+
+---
+
 # Impact Mosaic unity logo
 
 ## Current revision: Nigerian flag and six people

@@ -79,7 +79,7 @@ function initialPage() {
   const params = new URLSearchParams(window.location.search);
   if (params.get("demo") === "connected") return "app-demo";
   const requested = params.get("page");
-  return requested === "research" || requested === "explore" || requested === "about" ? requested : "overview";
+  return requested === "research" || requested === "research-reading" || requested === "explore" || requested === "about" ? requested : "overview";
 }
 export default function App() {
   const [state, setState] = useState<State>(loadState),
@@ -107,6 +107,7 @@ export default function App() {
   );
   useEffect(() => {
     try {
+      if (page === 'research') return;
       sessionStorage.setItem("mosaic-v1", JSON.stringify(state));
     } catch {
       setNotice(
@@ -119,6 +120,32 @@ export default function App() {
     document.documentElement.classList.toggle("large", large);
     document.documentElement.classList.toggle("reduce", reduce);
   }, [lang, large, reduce]);
+  useEffect(() => {
+    const receive = (event: MessageEvent) => {
+      const frame = document.querySelector<HTMLIFrameElement>('#research-deck');
+      if (event.origin !== window.location.origin || event.source !== frame?.contentWindow || event.data?.type !== 'mosaic-presentation-exit') return;
+      if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
+      const destination = new URL(window.location.href);
+      destination.searchParams.delete('page'); destination.hash = '';
+      window.history.replaceState(null, '', destination);
+      setPage('overview');
+      requestAnimationFrame(() => { [...document.querySelectorAll<HTMLButtonElement>('nav[aria-label="Main navigation"] button')].find(b => b.textContent === 'Research')?.focus(); });
+    };
+    const restore = () => setPage(initialPage());
+    window.addEventListener('message', receive);
+    window.addEventListener('popstate', restore);
+    return () => { window.removeEventListener('message', receive); window.removeEventListener('popstate', restore); };
+  }, []);
+  function navigate(id: string) {
+    setPage(id);
+    window.scrollTo(0, 0);
+    if (id === 'research') {
+      const destination = new URL(window.location.href);
+      destination.searchParams.set('page', 'research'); destination.hash = '';
+      window.history.pushState(null, '', destination);
+      try { void document.documentElement.requestFullscreen?.().catch(() => {}); } catch { /* Viewport shell remains usable. */ }
+    }
+  }
   const change = (s: State, msg = "Saved in this fictional sandbox.") => {
     setState(s);
     setNotice(msg);
@@ -226,6 +253,7 @@ export default function App() {
     u.voice = voice;
     speechSynthesis.speak(u);
   }
+  if (page === 'research') return <main className="presentation-shell" aria-label="Impact Mosaic presentation"><iframe id="research-deck" title="Impact Mosaic — five opening slides" src="/research/index.html" allow="fullscreen" onLoad={event => event.currentTarget.contentWindow?.focus()} /></main>;
   return (
     <>
       <a className="skip" href="#main">
@@ -234,14 +262,14 @@ export default function App() {
       <header>
         <a className="brand" href="#" onClick={() => setPage("overview")}>
           <span className="brand-mark" aria-hidden="true">
-            <img src="/impact-mosaic-unity-nigeria.png" width="56" height="56" alt="" />
+            <img src="/impact-mosaic-unity-crutch.png" width="56" height="56" alt="" />
           </span>
           <span>
             IMPACT MOSAIC<small>A vision for inclusive opportunity</small>
           </span>
         </a>
         <nav aria-label="Main navigation">
-          {[["overview","Home"],["explore","Learning Sandbox"],["research","Research & Data Collection"],["about","About"]].map(([id,title])=><button key={id} aria-current={page===id||(id==='explore'&&page==='app-demo')?'page':undefined} onClick={()=>{setPage(id);window.scrollTo(0,0);}}>{title}</button>)}
+          {[["overview","Home"],["explore","Learning Sandbox"],["research","Research"],["about","About"]].map(([id,title])=><button key={id} aria-current={page===id||(id==='explore'&&page==='app-demo')?'page':undefined} onClick={()=>navigate(id)}>{title}</button>)}
         </nav>
         <label className="language">
           <span className="sr-only">{t("language")}</span>
@@ -289,7 +317,7 @@ export default function App() {
       <main id="main" tabIndex={-1}>
         {page === "overview" ? (
           <HomePage reduceMotion={reduce} />
-        ) : page === "explore" ? <ExplorePage onOpen={setPage}/> : page === "research" ? <ResearchDataCollectionPage/> : page === "about" ? <AboutPage/> : page === "app-demo" ? <AppDemoPage onOpenPage={setPage}/> : (
+        ) : page === "explore" ? <ExplorePage onOpen={navigate}/> : page === "research-reading" ? <ResearchDataCollectionPage/> : page === "about" ? <AboutPage/> : page === "app-demo" ? <AppDemoPage onOpenPage={navigate}/> : (
           <>
             <section className="workspace-heading">
               <div>

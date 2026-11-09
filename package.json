@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build:research": "node scripts/build-research-presentation.mjs",
     "dev": "vite --host 127.0.0.1",
     "build": "node scripts/generate-static-story.mjs && tsc --noEmit && vite build",
     "typecheck": "tsc --noEmit",

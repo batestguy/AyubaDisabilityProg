@@ -1,5 +1,7 @@
 # Impact Mosaic
 
+**Research review checkpoint — 9 November 2026:** Research opens an immersive five-slide Quarto/reveal.js presentation with full-screen entry, a quiet menu and the agreed red theme. Open `/?page=research`; detailed proposal: `/?page=research-reading`; slide reading/print: `/research/reading.html`. [Implementation and verification guide](docs/RESEARCH-FIVE-SLIDES.md). Later slides await owner corrections; no publishing or deployment.
+
 **Current implementation — 7 November 2026:** the connected funding demonstration now includes role action queues, a public approved-facilitator directory, learner matching requests with Administration decisions, and signed-in noticeboards for all 36 states and FCT. See [funding demo guide](docs/FUNDING-DEMO.md) and [current handoff](SESSION-HANDOFF.md). These are same-browser demonstration connections; real service delivery remains a funding proposal.
 
 Independent React/TypeScript/Vite showcase and sample learning workspace by Jerry Bannister Zachary. No NCPWD endorsement is assumed.

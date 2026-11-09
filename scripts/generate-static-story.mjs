@@ -7,6 +7,9 @@ const compile = text => ts.transpileModule(text,{compilerOptions:{module:ts.Modu
 const moduleUrl = text => 'data:text/javascript;base64,'+Buffer.from(text).toString('base64');
 const proposalCode = ts.transpileModule(await readFile('src/PilotProposal.tsx', 'utf8'), { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText.replaceAll('"react/jsx-runtime"', JSON.stringify(import.meta.resolve('react/jsx-runtime')));
 const proposalUrl = moduleUrl(proposalCode);
+const slideUrl = moduleUrl(compile(await readFile('src/researchSlides.ts', 'utf8')));
+const presentationCode = ts.transpileModule(await readFile('src/ResearchPresentation.tsx', 'utf8'), { compilerOptions: { module: ts.ModuleKind.ESNext, jsx: ts.JsxEmit.ReactJSX } }).outputText.replaceAll('"react/jsx-runtime"', JSON.stringify(import.meta.resolve('react/jsx-runtime'))).replaceAll("'./researchSlides'", JSON.stringify(slideUrl));
+const presentationUrl = moduleUrl(presentationCode);
 const { HomeProposal, PilotBrief } = await import(proposalUrl);
 const staticProposal = renderToStaticMarkup(createElement(HomeProposal));
 // Render the same illustration markup in both JavaScript-free entry screens.
@@ -16,8 +19,10 @@ let artworkSerial = 0;
 const remoteArtwork = () => renderToStaticMarkup(createElement(RemoteLearningArtwork), { identifierPrefix: `static-artwork-${++artworkSerial}-` });
 const staticPage = async (path, name) => {
  const code = ts.transpileModule(await readFile(path, 'utf8'), { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText.replaceAll('"react/jsx-runtime"', JSON.stringify(import.meta.resolve('react/jsx-runtime')));
- const exports = await import(moduleUrl(code.replaceAll("'./PilotProposal'", JSON.stringify(proposalUrl))));
- return renderToStaticMarkup(createElement(exports[name])).replaceAll('<h1>', '<h2>').replaceAll('</h1>', '</h2>');
+ const exports = await import(moduleUrl(code.replaceAll("'./PilotProposal'", JSON.stringify(proposalUrl)).replaceAll("'./ResearchPresentation'", JSON.stringify(presentationUrl))));
+ return renderToStaticMarkup(createElement(exports[name])).replaceAll('<h1>', '<h2>').replaceAll('</h1>', '</h2>')
+  .replace(/<iframe[^>]*id="research-deck"[^>]*><\/iframe>/, '')
+  .replace('<details class="research-linear">', '<details class="research-linear" open="">');
 };
 const [staticAbout, staticResearch] = await Promise.all([
  staticPage('src/AboutPage.tsx', 'AboutPage'),

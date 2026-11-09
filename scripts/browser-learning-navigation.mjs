@@ -44,7 +44,7 @@ async function audit(name) {
 }
 try {
  await page.goto(target);
- assert.deepEqual(await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button').allTextContents(), ['Home', 'Learning Sandbox', 'Research & Data Collection', 'About']);
+ assert.deepEqual(await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button').allTextContents(), ['Home', 'Learning Sandbox', 'Research', 'About']);
  await button('Learning Sandbox').click();
  await page.getByRole('heading', { name: 'Learning Sandbox.', exact: true }).waitFor();
  await artworkVisible();
@@ -68,7 +68,10 @@ try {
  assert.match(await page.locator('.remote-description').innerText(), /Administrators, facilitators and learners connect on one platform/);
  assert.doesNotMatch(await page.locator('main').innerText(), /snowball|Bayesian|sampling/i);
  await audit('learning-entry');
- await button('Research & Data Collection').click();
+ await button('Research').click();
+ await page.frameLocator('#research-deck').locator('#menu-trigger').focus();
+ await page.frameLocator('#research-deck').locator('#menu-trigger').click();
+ await page.frameLocator('#research-deck').getByRole('link', {name:'Detailed Research proposal',exact:true}).click();
  await page.getByRole('heading', { name: 'Research & Data Collection.', exact: true }).waitFor();
  assert.equal(await page.locator('.sampling-outline').getAttribute('open'), '');
  assert.equal(await page.locator('.sampling-outline li').count(), 6);
@@ -142,7 +145,10 @@ try {
    await artworkVisible();
   }
   await audit(mobile ? 'signin-mobile-200' : 'signin-desktop');
-  await button('Research & Data Collection').click();
+  await button('Research').click();
+ await page.frameLocator('#research-deck').locator('#menu-trigger').focus();
+ await page.frameLocator('#research-deck').locator('#menu-trigger').click();
+ await page.frameLocator('#research-deck').getByRole('link', {name:'Detailed Research proposal',exact:true}).click();
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
   if (mobile) {
    const tableRegion = page.getByRole('region', { name: 'Sampling methods and pilot time frames' });
@@ -160,7 +166,8 @@ try {
  await nojs.goto(target);
  assert.deepEqual(await nojs.getByRole('navigation', { name: 'Main navigation' }).getByRole('link').allTextContents(), ['Home', 'Learning Sandbox', 'Research & Data Collection', 'About']);
  assert.doesNotMatch(await nojs.locator('#static-explore').innerText(), /sampling|Bayesian|snowball/i);
- assert.equal(await nojs.locator('#static-research details').count(), 1);
+ assert.equal(await nojs.locator('#static-research .sampling-outline[open]').count(), 1);
+ assert.equal(await nojs.locator('#static-research .research-linear article').count(), 5);
  for (const section of ['#static-explore', '#static-app-demo']) {
   assert.equal(await nojs.locator(`${section} .sandbox-artwork`).count(), 0);
   assert.equal(await nojs.locator(`${section} .remote-learning img`).count(), 14);
