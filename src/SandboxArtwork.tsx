@@ -1,9 +1,5 @@
-import { RemoteLearningArtwork } from './RemoteLearningArtwork';
-import { SandboxStory } from './SandboxStory';
+import { RolesNetwork } from './RolesNetwork';
 
 export function SandboxArtwork() {
- return <>
-  <SandboxStory/>
-  <div className="sandbox-community"><RemoteLearningArtwork/></div>
- </>;
+ return <RolesNetwork/>;
 }

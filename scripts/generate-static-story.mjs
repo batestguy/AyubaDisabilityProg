@@ -13,12 +13,10 @@ const presentationUrl = moduleUrl(presentationCode);
 const { HomeProposal, PilotBrief } = await import(proposalUrl);
 const staticProposal = renderToStaticMarkup(createElement(HomeProposal));
 // Render the same illustration markup in both JavaScript-free entry screens.
-const remoteSource = ts.transpileModule(await readFile('src/RemoteLearningArtwork.tsx', 'utf8'), { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText.replaceAll('"react/jsx-runtime"', JSON.stringify(import.meta.resolve('react/jsx-runtime'))).replaceAll("'react'", JSON.stringify(import.meta.resolve('react')));
-const { RemoteLearningArtwork } = await import(moduleUrl(remoteSource));
+const remoteSource = ts.transpileModule(await readFile('src/RolesNetwork.tsx', 'utf8'), { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText.replaceAll('"react/jsx-runtime"', JSON.stringify(import.meta.resolve('react/jsx-runtime'))).replaceAll("'react'", JSON.stringify(import.meta.resolve('react')));
+const { RolesNetwork } = await import(moduleUrl(remoteSource));
 let artworkSerial = 0;
-const storySource = ts.transpileModule(await readFile('src/SandboxStory.tsx', 'utf8'), { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText.replaceAll('"react/jsx-runtime"', JSON.stringify(import.meta.resolve('react/jsx-runtime')));
-const { SandboxStory } = await import(moduleUrl(storySource));
-const remoteArtwork = () => renderToStaticMarkup(createElement(SandboxStory)) + '<div class="sandbox-community">' + renderToStaticMarkup(createElement(RemoteLearningArtwork), { identifierPrefix: `static-artwork-${++artworkSerial}-` }) + '</div>';
+const remoteArtwork = () => renderToStaticMarkup(createElement(RolesNetwork), { identifierPrefix: `static-artwork-${++artworkSerial}-` });
 const staticPage = async (path, name) => {
  const code = ts.transpileModule(await readFile(path, 'utf8'), { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText.replaceAll('"react/jsx-runtime"', JSON.stringify(import.meta.resolve('react/jsx-runtime')));
  const exports = await import(moduleUrl(code.replaceAll("'./PilotProposal'", JSON.stringify(proposalUrl)).replaceAll("'./ResearchPresentation'", JSON.stringify(presentationUrl))));

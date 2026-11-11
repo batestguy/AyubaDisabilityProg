@@ -13,29 +13,18 @@ page.on('request', request => { if (request.method() === 'POST') posts.push(requ
 const target = process.env.LEARNING_URL || 'http://127.0.0.1:5173/';
 const button = name => page.getByRole('button', { name, exact: true });
 async function artworkVisible() {
- const remote = page.getByRole('figure', { name: 'Remote learning and support network' });
- await remote.waitFor({ state: 'visible' });
+ const network = page.getByRole('figure', { name: 'How the Learning Sandbox connects' });
+ await network.waitFor({ state: 'visible' });
  const title = page.getByRole('heading', { name: 'Learning Sandbox.', level: 1, exact: true });
  assert.equal(await title.count(), 1);
- assert.ok(await title.evaluate(node => !!(node.compareDocumentPosition(document.querySelector('.remote-learning')) & Node.DOCUMENT_POSITION_FOLLOWING)), 'Learning Sandbox heading precedes the illustration');
- assert.equal(await page.locator('img[src*="sandbox-skills-rooms"]').count(), 0, 'Older learning-room image is removed');
- assert.equal(await remote.count(), 1);
- assert.equal(await remote.locator('.remote-activity').count(), 4);
- assert.equal(await remote.locator('.remote-home').count(), 8);
- assert.equal(await remote.locator('.remote-office').count(), 2);
- assert.equal(await remote.locator('.remote-teaching').count(), 1);
- assert.equal(await remote.locator('.remote-panel').count(), 3, 'One box for each role');
- await page.waitForFunction(() => document.querySelectorAll('.remote-edge').length === 3);
- assert.equal(await remote.locator('.remote-edge-support').count(), 2);
- assert.equal(await remote.locator('.remote-edge-teaching').count(), 1);
- assert.equal(await remote.locator('[data-connection="administration-learners"]').count(), 1, 'Administration connects to learners from the side');
- assert.equal(await remote.getByRole('img', { name: /wearing a navy hijab/ }).count(), 1);
- for (const image of await remote.locator('img').all()) {
-  await image.scrollIntoViewIfNeeded();
-  await image.evaluate(image => image.decode());
-  assert.ok(await image.evaluate(image => image.naturalWidth >= 360 && !!image.alt));
- }
- assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+ assert.ok(await title.evaluate(node => !!(node.compareDocumentPosition(document.querySelector('.roles-network')) & Node.DOCUMENT_POSITION_FOLLOWING)), 'Learning Sandbox heading precedes the roles network');
+ assert.equal(await page.locator('.sandbox-story').count(), 0, 'Learner story is removed');
+ assert.equal(await page.locator('img[src*="sandbox-skills-rooms"], .remote-learning').count(), 0, 'Older artwork is removed');
+ assert.equal(await network.locator('.roles-node').count(), 3, 'One node for each role');
+ for (const role of ['Administration', 'Facilitators', 'Learners']) assert.equal(await network.getByRole('heading', { name: role, exact: true }).count(), 1);
+ assert.equal(await network.locator('.roles-node li').count(), 18, 'Six duties per role');
+ assert.equal(await network.locator('[data-connection]').count(), 3, 'Each role links to the other two');
+ assert.equal(await network.locator('.roles-monitoring li').count(), 6, 'Six Administration monitoring steps');
 }
 async function audit(name) {
  const results = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();
@@ -55,18 +44,17 @@ try {
   await artworkVisible();
   if (!size) {
    await page.evaluate(() => scrollTo(0, 0));
-   const story = await page.locator('.sandbox-story').boundingBox();
-   assert.ok(story.y < height, `${name}: learner story begins in the initial viewport`);
-   const tutors = await page.locator('.remote-facilitator').evaluateAll(nodes => nodes.map(node => node.getBoundingClientRect().top));
-   assert.ok(Math.max(...tutors) - Math.min(...tutors) < 1, 'All four facilitators stay on one row');
+   const story = await page.locator('.roles-network').boundingBox();
+   assert.ok(story.y < height, `${name}: roles network begins in the initial viewport`);
+   const drawn = await page.locator('.roles-lines line').count();
+   assert.equal(drawn, width > 860 ? 3 : 0, `${name}: network lines drawn on wide screens only`);
   }
   await page.screenshot({ path: `output/playwright/sandbox-artwork-${name}.png`, fullPage: true });
  }
  await page.setViewportSize({ width: 1440, height: 1000 });
  await page.evaluate(() => document.documentElement.style.fontSize = '');
  assert.equal(await page.locator('.remote-flow,.remote-animation-toggle').count(), 0, 'Flowchart arrows are static');
- assert.equal(await page.locator('.remote-learning-title').innerText(), 'Connected Learning Community');
- assert.match(await page.locator('.remote-description').innerText(), /Administrators, facilitators and learners connect on one platform/);
+ assert.match(await page.locator('.roles-network-intro').innerText(), /Administration sits at the top because it monitors every step/);
  assert.doesNotMatch(await page.locator('main').innerText(), /snowball|Bayesian|sampling/i);
  await audit('learning-entry');
  await button('Research').click();
@@ -139,8 +127,8 @@ try {
    assert.equal(await button('Sign out').count(), 0);
    await button('Sign in').click();
    await page.getByRole('heading', { name: desk, exact: true }).waitFor();
-   await page.locator('.remote-learning').waitFor({ state: 'detached' });
-   assert.equal(await page.locator('.remote-learning').count(), 0, 'Remote artwork hides after sign-in');
+   await page.locator('.roles-network').waitFor({ state: 'detached' });
+   assert.equal(await page.locator('.roles-network').count(), 0, 'Roles network hides after sign-in');
    await button('Sign out').click();
    await artworkVisible();
   }
@@ -170,7 +158,8 @@ try {
  assert.equal(await nojs.locator('#static-app-demo').count(), 0);
  for (const section of ['#static-explore']) {
   assert.equal(await nojs.locator(`${section} .sandbox-artwork`).count(), 0);
-  assert.equal(await nojs.locator(`${section} .remote-learning img`).count(), 14);
+  assert.equal(await nojs.locator(`${section} .roles-node`).count(), 3);
+  assert.equal(await nojs.locator(`${section} .sandbox-story`).count(), 0);
  }
  await nojsContext.close();
  assert.deepEqual(errors, []);

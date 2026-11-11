@@ -41,31 +41,36 @@
  .remote-support-label,.remote-teaching{height:28px;padding-right:120px;font-size:.65rem}
  .remote-panel-title{font-size:.75rem}
 }
-/* Learning Sandbox story: one learner and one facilitator, shown large, above a smaller community chart. */
-.sandbox-story{--story-ink:#173f36;--story-line:#d9dfd4;--story-soft:#f3f6f3;max-width:1100px;margin:8px auto 40px;color:var(--story-ink)}
-.sandbox-story-eyebrow{margin:0 0 4px;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#4a5a52}
-.sandbox-story h2{margin:0 0 20px;font:normal clamp(1.5rem,3vw,2.1rem)/1.2 Georgia,serif;letter-spacing:0}
-.sandbox-story-scene{display:grid;grid-template-columns:minmax(0,1fr) minmax(120px,170px) minmax(0,1fr);align-items:center;gap:16px}
-.sandbox-story-person{margin:0}
-.sandbox-story-person img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:6px;background:var(--story-soft)}
-.sandbox-story-person figcaption{margin-top:8px;font-size:.95rem}
-.sandbox-story-link{text-align:center;font-size:.9rem;line-height:1.4}
-.sandbox-story-link svg{display:block;width:100%;max-width:150px;margin:0 auto 8px;fill:none;stroke:var(--story-ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.sandbox-story-link p{margin:0}
-.sandbox-story-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:24px 0 0;padding:0;list-style:none;counter-reset:story}
-.sandbox-story-steps li{counter-increment:story;display:flex;flex-direction:column;gap:4px;padding:12px;border-top:3px solid var(--story-ink);background:var(--story-soft);font-size:.92rem;line-height:1.45}
-.sandbox-story-steps li strong::before{content:counter(story) ". "}
-/* The community chart sits below the story at a smaller size. */
-.sandbox-community .remote-learning{max-width:1000px}
-.sandbox-community .remote-learning .remote-office img{width:72px}
-.sandbox-community .remote-learning .remote-facilitator img{width:84px}
-.sandbox-community .remote-learning .remote-home img{max-width:76px}
-@media(max-width:900px){.sandbox-story-steps{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){
- .sandbox-story-scene{grid-template-columns:1fr}
- .sandbox-story-person{max-width:340px;margin:0 auto;width:100%}
- .sandbox-story-link svg{max-width:110px;margin-bottom:4px}
- .sandbox-story-steps{grid-template-columns:1fr}
- .sandbox-community .remote-learning .remote-office img,.sandbox-community .remote-learning .remote-facilitator img{width:64px}
- .sandbox-community .remote-learning .remote-home img{max-width:64px}
+/* Learning Sandbox roles network: three blue role nodes joined by drawn, labelled lines. */
+.roles-network{--roles-navy:#0f2a5c;--roles-line:#1e3a8a;max-width:1100px;margin:0 auto 32px;color:var(--roles-navy)}
+.roles-network-title{margin:0 0 4px;font:normal clamp(1.4rem,2.6vw,1.9rem)/1.2 Georgia,serif;letter-spacing:0}
+.roles-network-intro{margin:0 0 20px;font-size:.95rem}
+.roles-map{--roles-draw:1;position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:". admin ." "laf . lal" "fac lfl learn";column-gap:56px;row-gap:28px;align-items:start}
+.roles-lines{position:absolute;inset:0;overflow:visible;pointer-events:none;color:var(--roles-line)}
+.roles-lines line{stroke:currentColor;stroke-width:2.5}
+.roles-node{position:relative;z-index:1;padding:16px 18px;border-radius:10px;color:#fff;box-shadow:0 2px 0 rgba(15,42,92,.25)}
+.roles-node h3{margin:0 0 2px;font:normal 1.3rem/1.25 Georgia,serif;letter-spacing:0;color:#fff}
+.roles-summary{margin:0 0 10px;font-size:.9rem;font-weight:600;color:#fff}
+.roles-node ul{margin:0;padding-left:18px;font-size:.88rem;line-height:1.45}
+.roles-node li+li{margin-top:4px}
+.roles-node-admin{grid-area:admin;background:#1e3a8a}
+.roles-node-facilitators{grid-area:fac;background:#1d4ed8}
+.roles-node-learners{grid-area:learn;background:#0c4a6e}
+.roles-link{position:relative;z-index:1;display:flex;flex-direction:column;gap:2px;margin:0;padding:8px 12px;border:2px solid var(--roles-line);border-radius:8px;background:#fff;font-size:.84rem;line-height:1.4}
+.roles-link strong{font-size:.86rem}
+.roles-link-admin-facilitators{grid-area:laf;justify-self:end;max-width:240px}
+.roles-link-admin-learners{grid-area:lal;justify-self:start;max-width:240px}
+.roles-link-facilitators-learners{grid-area:lfl;align-self:center}
+.roles-monitoring{margin-top:28px;padding:18px;border-radius:10px;background:#dbeafe}
+.roles-monitoring h3{margin:0 0 12px;font:normal 1.2rem/1.3 Georgia,serif;letter-spacing:0;color:var(--roles-navy)}
+.roles-monitoring ol{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin:0;padding:0;list-style:none;counter-reset:monitor}
+.roles-monitoring li{counter-increment:monitor;display:flex;flex-direction:column;gap:4px;padding:10px;border-radius:8px;background:#fff;border-top:4px solid var(--roles-line);font-size:.86rem;line-height:1.4}
+.roles-monitoring li strong::before{content:counter(monitor) ". "}
+@media(max-width:1000px){.roles-monitoring ol{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:860px){
+ .roles-map{--roles-draw:0;grid-template-columns:1fr;grid-template-areas:"admin" "laf" "fac" "lfl" "learn" "lal";row-gap:0}
+ .roles-link{justify-self:center!important;max-width:none;margin:10px 0;text-align:center;align-items:center}
+ .roles-link::before{content:"↕";font-size:1.3rem;line-height:1;color:var(--roles-line)}
+ .roles-lines{display:none}
 }
+@media(max-width:600px){.roles-monitoring ol{grid-template-columns:1fr}}

@@ -2,6 +2,10 @@
 
 Initially added 8 November 2026; the current revision replaces the older learning-room banner. Fictional painted scenes, generated with the built-in image_gen tool; these are illustrative activities, not additional courses or programme records.
 
+## Replaced by the roles network — 11 November 2026
+
+The 14-portrait chart described below no longer appears on the site. The sandbox page now shows only the roles network (`src/RolesNetwork.tsx`); the Hauwa story described next was removed the same day at the owner's request. The component was removed; the images remain in `public/photos`, and the sections below are history.
+
 ## Learning Sandbox story above the chart — 11 November 2026
 
 The sandbox page now opens with one made-up learner's story (Hauwa, learning tailoring at home in Bukuru, with facilitator Nanle in Jos), shown large and reusing the sewing learner and facilitator images, followed by five cycle steps. The chart described below now sits underneath it at a smaller size (72/84/76px desktop photos). See `src/SandboxStory.tsx`.
