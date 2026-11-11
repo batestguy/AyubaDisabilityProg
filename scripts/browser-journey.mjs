@@ -154,12 +154,9 @@ assert.equal(
   1,
 );
 await second.close();
-for (const lang of ["en", "ha", "yo", "ig"]) {
-  await page.locator("header select").selectOption(lang);
-  assert.equal(await page.locator("html").getAttribute("lang"), lang);
-  if (lang !== "en") await page.locator(".translation-note").waitFor();
-}
-await page.locator("header select").selectOption("en");
+// The language picker was removed (11 November 2026).
+assert.equal(await page.locator("header select").count(), 0);
+assert.equal(await page.locator("html").getAttribute("lang"), "en");
 await page.getByRole("button", { name: "Reset demo" }).click();
 assert.equal(
   await page.evaluate(
@@ -179,7 +176,7 @@ assert.equal(
 await page.keyboard.press("Tab");
 assert.ok(await page.evaluate(() => document.activeElement !== document.body));
 console.log(
-  "PASS complete 3-role journey, mentoring replies/follow-up, certificate/skills, AI outage, 4 language switches, independent session, reset, mobile overflow, keyboard focus.",
+  "PASS complete 3-role journey, mentoring replies/follow-up, certificate/skills, AI outage, no language picker, independent session, reset, mobile overflow, keyboard focus.",
 );
 assert.deepEqual(errors, []);
 await browser.close();

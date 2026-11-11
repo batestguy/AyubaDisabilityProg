@@ -65,8 +65,8 @@ assert.equal(
     .count(),
   1,
 );
-for (const lang of ["ha", "yo", "ig"]) {
-  await page.locator("header select").selectOption(lang);
+// The language picker was removed (11 November 2026); translated course views are no longer reachable.
+for (const lang of []) {
   await page.locator(".course-card button").first().click();
   await page.locator(".study").waitFor();
   assert.equal(await page.locator(".study details").count(), 6);
@@ -82,6 +82,6 @@ for (const lang of ["ha", "yo", "ig"]) {
   });
 }
 console.log(
-  "PASS course authoring, pending profile and publication gates; all sample lessons/assessments/assignment journeys render in Hausa, Yoruba and Igbo.",
+  "PASS course authoring, pending profile and publication gates; translated views skipped (language picker removed).",
 );
 await browser.close();

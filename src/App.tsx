@@ -280,16 +280,6 @@ export default function App() {
             </>;
           })()}
         </nav>
-        <label className="language">
-          <span className="sr-only">{t("language")}</span>
-          <select value={lang} onChange={(e) => setLang(e.target.value)}>
-            {languages.map((l) => (
-              <option value={l.code} key={l.code}>
-                {l.name}
-              </option>
-            ))}
-          </select>
-        </label>
       </header>
       {lang !== "en" && (
         <p className="translation-note" role="note">

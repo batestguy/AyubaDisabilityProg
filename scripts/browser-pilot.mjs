@@ -13,12 +13,12 @@ try {
  page.on('pageerror', e => errors.push(e.message));
  page.on('request', r => { if (r.method() === 'POST') posts.push(r.url()); });
  await page.goto(target);
- assert.equal(await page.locator('.documentary-hero + .pilot-proposal').count(), 1);
- const objective = await page.locator('.pilot-proposal .lead').innerText();
- const briefPath = await page.locator('.pilot-proposal').getByRole('link', { name: /Discussion Brief/ }).getAttribute('href');
- await page.locator('.pilot-proposal').getByRole('link', { name: /research plan/ }).click();
+ // The home-page proposal block was removed (11 November 2026); the brief is reached from the Research page.
+ assert.equal(await page.locator('.pilot-proposal').count(), 0);
+ assert.equal(await page.locator('.home-title').innerText(), 'A tribute to Chief Ayuba Gufwan, and an invitation to partner');
+ await page.goto(new URL('?page=research-reading', target).href);
  await page.getByRole('heading', { name: 'Research & Data Collection.', exact: true }).waitFor();
- assert.ok((await page.locator('.research-page').innerText()).includes(objective));
+ const briefPath = await page.locator('.research-page').getByRole('link', { name: /Discussion Brief/ }).first().getAttribute('href');
  assert.equal(await page.locator('.sampling-outline[open]').count(), 1);
  assert.equal(await page.locator('.sampling-methods').first().locator('tbody tr').count(), 8);
  assert.equal(await page.getByRole('region', { name: 'Proposed pilot measurements' }).locator('tbody tr').count(), 6);
@@ -43,7 +43,7 @@ try {
  assert.equal(await page.locator('.sampling-mini-group').first().evaluate(e => getComputedStyle(e).animationName), 'none');
  await page.goto(new URL(briefPath, target).href);
  await page.getByRole('heading', { name: 'Pilot Discussion Brief', exact: true }).waitFor();
- assert.ok((await page.locator('main').innerText()).includes(objective));
+ assert.ok((await page.locator('main').innerText()).includes('Two statisticians helping build a reliable database'));
  for (const width of [1440, 390]) {
   await page.setViewportSize({ width, height: 900 });
   await page.evaluate(size => document.documentElement.style.fontSize = size, width === 390 ? '200%' : '');
@@ -60,8 +60,7 @@ try {
  const nojsContext = await browser.newContext({ javaScriptEnabled: false });
  const nojs = await nojsContext.newPage();
  await nojs.goto(target);
- await nojs.locator('#static-home .pilot-proposal').getByRole('link', { name: /research plan/ }).click();
- assert.equal(new URL(nojs.url()).hash, '#static-research');
+ assert.equal(await nojs.locator('#static-home .pilot-proposal').count(), 0);
  assert.equal(await nojs.locator('#static-research .sampling-methods[aria-describedby="sampling-timing-note"]').count(), 1);
  await nojs.setViewportSize({ width: 390, height: 900 });
  await nojs.evaluate(() => document.documentElement.style.fontSize = '200%');
@@ -74,8 +73,8 @@ try {
  assert.equal(await nojs.locator('#static-explore').isVisible(), true);
  await nojsContext.close();
  await page.emulateMedia({ media: 'screen' });
- await page.goto(target);
- await page.locator('.pilot-proposal').getByRole('link', { name: /learning sandbox/ }).click();
+ await page.goto(new URL(briefPath, target).href);
+ await page.getByRole('link', { name: /learning sandbox/ }).first().click();
  await page.getByRole('heading', { name: 'Learning Sandbox.', exact: true }).waitFor();
  assert.deepEqual(errors, []);
  assert.deepEqual(posts, []);

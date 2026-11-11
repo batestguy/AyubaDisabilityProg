@@ -51,9 +51,9 @@ for (const view of ["overview", "learner", "expert", "admin"]) {
     })),
   );
 }
-for (const lang of ["en", "ha", "yo", "ig"]) {
+// The language picker was removed (11 November 2026); audit the English course view.
+for (const lang of ["en"]) {
   await page.getByLabel("Perspective", { exact: true }).selectOption("learner");
-  await page.locator("header select").selectOption(lang);
   await page.locator(".course-card button").first().click();
   await page.locator(".study").waitFor();
   for (const summary of await page.locator(".study details summary").all())

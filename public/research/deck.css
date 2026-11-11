@@ -883,3 +883,6 @@ dialog{background:#fff8ef;color:#411b16;border:0;border-radius:4px;padding:1.5re
  html:not(.print-pdf) .reveal .closing-tagline,html:not(.print-pdf) .reveal .closing-creators{font-size:9pt!important;color:#f6d6bd!important}
  html:not(.print-pdf) .reveal .closing-status{font-size:8pt!important;color:#efcbb5!important;text-align:center!important}
 }
+
+/* Print: keep cover text clear of the artwork now that both full names appear (11 November 2026). */
+@media print{.reveal .cover .slide-copy{max-width:36% !important;box-sizing:border-box}.reveal .cover .pilot-lines p,.reveal .cover .creators p{overflow-wrap:break-word}}

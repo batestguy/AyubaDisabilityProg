@@ -175,7 +175,7 @@ const closingContent: ResearchClosing = {
  together: ['Your trusted community relationships', 'Shared records that guide every decision', 'Learning that becomes real skill'],
  brand: 'IMPACT MOSAIC',
  tagline: 'Connecting people, evidence and accessible learning',
- creators: ['Strong · Jerry Bannister Zachary', 'Project Co-Creators'],
+ creators: ['Jerry Bannister Zachary · Yusuf Strong Mashat', 'Project Co-Creators'],
  status: 'Independent proposal · The photograph records a 2025 national honour, not an endorsement of this proposal'
 };
 
@@ -200,7 +200,7 @@ export const researchSlides: ResearchSlide[] = [
       "Connecting people, evidence and accessible learning",
       "A proposed pilot for Nigeria",
       "Building toward reach across the whole country",
-      "Strong · Jerry Bannister Zachary",
+      "Jerry Bannister Zachary · Yusuf Strong Mashat",
       "Project Co-Creators"
     ],
     "note": "Approved unity artwork: six African people with Nigeria’s flag, including a person with albinism, a wheelchair user, white cane, walking stick, crutch and hijab. AI-generated artwork; no actual participants depicted.",

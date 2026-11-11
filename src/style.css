@@ -1138,3 +1138,4 @@ header nav button { transition: none; }
 .about-contact ul{margin:0;padding:0;list-style:none;line-height:1.8}
 @media(max-width:760px){.about-contact-grid{grid-template-columns:1fr}}
 .about-contact>h2{font-size:1.75rem;letter-spacing:-.03em;margin-bottom:8px}
+.home-title{margin:0;padding:18px 5%;background:#f3f6f3;color:#14532D;font:normal clamp(1.05rem,2vw,1.35rem)/1.35 Georgia,serif;letter-spacing:0}

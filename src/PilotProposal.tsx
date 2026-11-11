@@ -41,9 +41,6 @@ export function ProposalLinks() {
  return <p className="proposal-links"><a href="/?page=research-reading#static-research">Read the research plan →</a> <a href="/downloads/pilot-discussion-brief.html">Pilot Discussion Brief →</a> <a href="/?page=explore#static-explore">Explore the learning sandbox →</a></p>;
 }
 
-export function HomeProposal() {
- return <section className="section pilot-proposal" aria-labelledby="home-proposal-heading"><p className="eyebrow">AN INDEPENDENT PROPOSAL</p><h2 id="home-proposal-heading">Building on this foundation.</h2><p className="lead">{pilot.objective}</p><p>Voluntary registration would help us understand learning interests and access needs, then match willing learners with reviewed online facilitators and follow up on participation and skills.</p><p>{pilot.scope}</p><p>Our immediate request is a technical discussion, community introductions and agreement on pilot-scoping requirements.</p><ProposalLinks/><p className="sampling-source-note">{pilot.status}</p></section>;
-}
 
 export function Foundation() {
  return <section aria-labelledby="sampling-heading"><h2 id="sampling-heading">Building on Gufwan’s foundation.</h2>
