@@ -421,3 +421,28 @@ Evidence: ignored `output/playwright/research-*` screenshots, PDFs, axe JSON and
 Shared exact explanations for five stages and the database; native modal thought bubble beside the selected item, transparent backdrop, circular tail, viewport clamping and inner scrolling. User steering changed the original compact centred panel to this thought design. Own heading row and foundation arrow; documentary photos and original detailed notes preserved. Owner subsequently authorized committing and pushing the completed thought-bubble changes and updated handoff; preceding slide revisions were already pushed and verified as b17db5659239b935a1d1108b0fe37d4bdb295bca.
 
 Final preflight: 120 tests, TypeScript and build passed. Expanded browser regression: 22 clean accessibility audits; all six exact strings; Enter/Space, Tab containment, Escape/Close/outside focus restoration; deck navigation and swipe blocking; desktop, 390px phone, 200% text and A+; reading/no-JS/read-aloud parity; print ring/stage labels with popup and controls hidden; saved bytes unchanged. Zero page errors, failed resources or content-policy violations. Five-page PDF and screenshots visually reviewed. Print-only foundation-arrow fix verified with final full browser rerun and PDF render. Existing non-failing bundle-size advisory remains.
+
+
+## 10 November 2026 — Recruitment slide and Bayesian side explanation
+
+`npm.cmd run build:research` regenerated five slides/reading output. Implementation preflight passed 120 tests, TypeScript and build. `node scripts/browser-research-presentation.mjs` on production-CSP localhost4175 passed 27 axe audits, all seven exact explanation checks, native Bayesian trigger/keyboard/focus/dismissal/navigation guards, responsive/A+/200%, source credits, reading/static/no-JS/read-aloud/print structure and saved-byte preservation. Zero page errors, CSP violations or failed requests. Parent inspected desktop/popup/print; desktop fits1440×900. Final print-only overrides checked with a fresh five-page PDF, extracted labels and rendered page5. Existing bundle-size advisory remains. No deployment. Full receipt and limitations: [recruitment working record](RESEARCH-RECRUITMENT-WORKING.md).
+
+
+## 10 November 2026 — Simplified recruitment diagram and actual-window Brave
+
+Owner-authorized visual revision replaces card/grid clutter with four native SVG stages in a vertical process and gold return, one photo/acknowledgment, equation and closing question. Supporting details retained in popup/accessible editions. Full browser script passes29 axe audits, zero page/CSP/resource errors and saved-byte preservation. Final targeted six-window fit/control/popup checks pass from1024×600 to1440×900, including1266×505 and actual Brave1280×535. Final five-page PDF text/render checked. Browser preview uses viewport:null; earlier fixed viewport caused owner-reported clipping. See current working record for scope and evidence.
+
+
+## 10 November 2026 — Six-slide participant database delivery
+
+Fresh preflight120tests/typecheck/build and updated production-CSP browser suite36 axe audits passed. Zero page/CSP/resource errors, saved bytes preserved. Exact dated interview quote/link, separate portrait provenance, native database/arrows/labels, six-slide navigation/contents/reading/static/no-JS/read-aloud/print and previous popup controls pass. First browser run found enlarged-phone quote overflow; scoped wrapping fixed it and full rerun passed. Root checked six window geometries, actual Brave1280×535,390px200% horizontal fit and final six-page PDF text/render/link contrast. Existing bundle advisory only. [Full database receipt](RESEARCH-DATABASE-WORKING.md). No deployment.
+
+
+## 10 November 2026 — Facilitators and support planning in database slide
+
+Added distinct learner adaptive-snowball and facilitator volunteering/recruitment routes with merging arrows; facilitator skills/availability field; Plan support together wording. TypeScript/build and36-audit full browser regression pass, zero page/CSP/resource errors, original interactions and stored bytes preserved. Six-window geometry/controls and six-page PDF text/render pass. Shared reading/static/read-aloud include both routes and support-plan meaning; no delivered-support claim. Brave opened on updated slide6.
+
+
+## 10 November 2026 — Database slide larger typography
+
+CSS-only readability revision. Main record/outcome labels17.6/16px on actual1280×535; role/detail16.8/13.6px. Six final desktop/laptop geometries fit and clear controls. Three focused axe audits (actual laptop, phone, phone200%) pass, no horizontal overflow. Six-page PDF text/render retains facilitator and support labels with line wrapping. Existing full36-audit baseline retained; no redundant full suite/model-test rerun for font sizes. Build/typecheck and whitespace checks complete handoff.

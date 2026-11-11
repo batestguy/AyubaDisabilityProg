@@ -1,3 +1,116 @@
+# Current delivery: participant database slide 6 — 10 November 2026
+
+Owner authorized an illustrated database slide after recruitment. **Six slides are now built.** Slide6 acknowledges Gufwan’s national data ambition with the exact dated TheCable quote and linked interview (15 November2025), plus a separately credited FMINO leadership photograph. Curved gold arrows carry recruitment records into a native illustrated database cylinder with skills/interests, learning goals, access/support needs and agreed pathway/progress, then branch toward needs, teaching, support and review. Labels and notes distinguish our proposed Plateau participant database from the national database and historical collection work. No real participant records, numerical outcomes, national integration or official partnership is claimed.
+
+Current order:1 cover;2 contents;3 opportunity;4 full cycle;5 adaptive snowball recruitment;6 participant database. Next planned stages:7 understand needs;8 match teaching;9 support practice;10 monitor/review. Later numbering remains provisional. The original participation material is retained in shared source for planned9. Contents now has four available destinations, ten planned topics and six groups. Reading/static/no-JS/read-aloud/print counts and content are synchronised. Owner visual review of slide6 is next. No operational database/data/dependency changes, commit, push or deployment.
+
+Fresh preflight passed120 tests, TypeScript and production build. Desktop/laptop six-window geometry and six-page print text/render checked. Full six-slide production-CSP browser verification passed36 accessibility audits, with zero page/CSP/resource errors and unchanged saved records; enlarged-phone wrapping is corrected. Final receipt: [database working record](RESEARCH-DATABASE-WORKING.md). Brave opened on slide6 using actual1280×535 window dimensions. This supersedes older five-slide limits and previous continuation pointers below.
+
+
+Latest owner addition: replace “Agree support” with **“Plan support together”**. The database graphic now has separate Learners / Adaptive snowball recruitment and Facilitators / Volunteering or recruitment routes merging into the database. Four concise record groups distinguish learner goals/access needs, facilitator skills/availability and agreed pathways/progress. Supporting text explains that teaching scope is reviewed before matching and that agreed support is a plan, not confirmed delivery. No operational profiles/accounts/data changed.
+
+Facilitator/support update verification: TypeScript/build and full36-audit browser regression passed; six-window layout and six-page print checks passed. Brave refreshed on slide6; owner review next.
+
+Latest owner readability correction: enlarged typography on database slide6, including route roles/descriptions, database labels, outcomes, quote and attribution. At actual1280×535: record labels17.6px, outcomes16px, role labels16.8px, route descriptions13.6px. Tightened arrow/padding space and placed outcome icons beside labels in short windows. Six normal window geometries and focused laptop/phone/200% accessibility checks pass; six-page print keeps wrapped labels. Other slide typography unchanged.
+
+---
+
+# Current visual revision — 10 November 2026
+
+Owner found the first recruitment slide cluttered and authorized a clearer, more engaging diagram. Slide 5 now uses the red canvas, a prominent full-frame credited photograph and acknowledgment, four short vertical stages with native SVG concept icons/gold arrows/return loop, one clickable Bayesian equation, and the question and its answer directly above the diagram. Repeated panel headings, numbering, cream card and visible gap list removed; full distinctions/gap cautions remain in the exact shared popup/reading/read-aloud text. No invented numerical results; diagram is conceptual. Existing five-slide/preservation boundaries remain.
+
+Brave reopened on slide 5 using actual window dimensions (1280×535), correcting the earlier fixed-preview clipping. Current regression passed 29 accessibility audits, no page/CSP/resource errors and unchanged stored bytes. Final targeted checks cover complete-slide/control clearance and popup/focus at 1440×900,1280×720,1280×600,1280×535,1266×505,1024×600. Five-page PDF text and rendered slide checked. Next: owner visual review; no commit/push/deployment. [Working record](RESEARCH-RECRUITMENT-WORKING.md). Earlier layout descriptions below are historical.
+
+
+Latest owner correction: the question now leads directly into the right-hand recruitment graphic: “Who are we missing—and how can we reach them?” followed by “Adaptive snowball recruitment helps us investigate gaps and adjust outreach.” The detached footer is removed. Shared reading/read-aloud/static/print outputs include both lines.
+
+
+Popup wording approved and shortened: “How each round helps us learn” now gives four brief plain-language steps. Symbol definitions are collapsed under “What the symbols mean”; proposed-model/team-decision status stays visible. Definitions/status remain in reading, static and read-aloud outputs. Keyboard focus includes the expandable summary and Close; opening another explanation resets/hides the definitions appropriately. Brave opened on slide5 with the shorter equation explanation visible.
+
+
+Owner follow-up: question and answer above the graphic now have stronger emphasis (750/650 weight). Compact popup/default-collapsed keyboard symbols, all accessible editions and six window-fit checks verified. Final preflight120 tests/typecheck/build and full browser regression29 audits passed with zero errors/CSP/resource failures and unchanged records.
+
+---
+
+# Recruitment slide built for review — 10 November 2026
+
+User authorized implementation after discussing the final layout. **Slide 5 is now Adaptive snowball recruitment**, with the full-frame Otukpo photograph and partner/source credit, short acknowledgment, four-step referral/review/adjustment loop, potential gaps to assess together, and a clickable Bayesian equation opening the existing side thought bubble. The equation is a proposed refinement, not a fitted model. Current method wording is synchronised across opportunity/cycle/contents and reading/static/read-aloud outputs.
+
+Five working slides remain. The original participation slide is preserved unchanged as `retainedParticipationSlide` in shared source for future Support practice (planned position 8), not rendered as an out-of-order sixth slide. Contents now follows the cycle with three available destinations and ten planned topics; later numbering remains provisional. Detailed recruitment/mathematical evidence remains in supporting notes. Needs, teaching, practice and monitoring slides remain planned.
+
+Validation: 120 tests, TypeScript and production build passed; full production-CSP browser regression passed 27 accessibility audits, keyboard/popup/phone/A+/200%, reading/no-JS/read-aloud/print structure and unchanged saved records, with zero page/resource/CSP errors. Final print-only colour/position corrections were checked by a fresh five-page PDF, text extraction and rendered slide-5 visual inspection. Existing non-failing bundle-size advisory remains. Preview opened visibly on slide 5 at http://127.0.0.1:4175/research/index.html; select the equation for the explanation. **Next: owner visual review and corrections before another stage slide.** No commit, push, deployment, new dependency or operational-data change.
+
+[Implementation and verification record](RESEARCH-RECRUITMENT-WORKING.md). This delivery supersedes earlier documentation-only/no-implementation instructions below for this authorized slide.
+
+---
+
+# Agreed method: adaptive snowball recruitment — 10 November 2026
+
+The owner agreed **adaptive snowball recruitment** as the proposed method. This replaces Adaptive sampling as the current presentation-planning term. Next discuss what appears on the slide: exact title, visible copy and visual treatment are pending, including earlier proposed slogans. This is documentation only; existing deck labels and generated outputs remain unchanged until subsequent implementation.
+
+## Definition and proposed application
+
+Start through varied trusted connections and invite voluntary participant-to-participant referrals. Those referrals are the snowball component. Record unique eligible registrations, recruitment routes/rounds, agreed group and area characteristics, access barriers and effort where measurable. Review gaps and uncertainty, then deliberately adjust contacts, referral outreach, messages, accessible participation options and effort. This evidence-guided adjustment is the adaptive component. Keep complementary routes such as radio, organisations and direct visits; not all routes are snowball referrals. The wider programme can be described as adaptive recruitment with snowball referrals and complementary routes, while the agreed core name remains adaptive snowball recruitment.
+
+The database supports human review. Registration alone does not establish this method. Bayesian modelling is an optional later addition, not a defining requirement or an already fitted model. Record referral information with appropriate consent and privacy; participants must not have to recruit others to receive learning or support.
+
+## Gufwan's documented foundation and proposed refinements
+
+A reported interview published 27 July 2026 describes announcements through community leaders, student unions, Rotary, women's groups and disability associations, network sharing, a beneficiary hearing a radio announcement, and individual needs assessment before providing mobility aids. This documents community-network outreach through several channels. It does not establish a formal participant referral protocol, recruitment-chain records, selection probabilities or systematic adaptive rules. [Reported interviews](https://religionjournalism.org/hope-on-wheels-at-the-beautiful-gate-how-a-polio-survivor-lifts-others/).
+
+Build on these relationships through diverse starting contacts, voluntary participant referrals, recruitment-route recording and explicit evidence-guided adjustments. Confirm with his team which practices already exist; do not imply they lack records, adaptation or individual assessment. No evidence reviewed directly compares this proposed method with his actual outreach. Improvement remains a question for a Plateau pilot.
+
+## Research examples and limits
+
+| Example | Evidence | Interpretation |
+|---|---|---|
+| Sweden: Johansson, Gulliksen and Gustavsson, online publication 2020 | Explicit adaptive snowball sampling recruited 771 respondents across 35 diagnoses/impairments. Researchers monitored groups, changed recruitment during collection, used intermediaries/tailored information, and offered online, paper, telephone and supported face-to-face participation. | Closest precedent. Demonstrates feasibility and subgroup reach, not superiority over standard outreach or population representativeness; some groups remained small and generalisability was limited. [Study, methods 2.1–2.2 and discussion](https://link.springer.com/article/10.1007/s10209-020-00714-x). |
+| Rural Texas: PCORI-funded chronic-pain research engagement | Snowball versus purposive plus convenience recruitment in two counties: 65% versus 42% attended all three meetings; the snowball group included more people with disabilities. | Supports participant-referral engagement in that setting. Ordinary snowball recruitment, not an adaptive-snowball trial; county differences limit causal interpretation and transfer to Plateau. [Research results](https://www.pcori.org/research-results/2013/comparing-sampling-methods-engage-residents-underrepresented-communities-identify-research-priorities). |
+| Germany: Stöcker and Zindel, 2026 | 1,211 participants through social media, community organisations and sheltered workshops. Routes reached different groups; face-to-face workshops helped include people with higher support needs. | Supports complementary accessible routes, not a direct adaptive-snowball test. Greater diversity alone does not establish population representativeness. [Original study](https://link.springer.com/article/10.1007/s10209-026-01376-x). |
+
+Adaptive sampling is a broad family; formal designs specify how selection depends on information collected during sampling. Adaptive snowball sampling is the term used in the Swedish precedent. **Adaptive snowball recruitment** is our agreed term because the immediate proposal concerns reaching and enrolling people. It does not itself establish a probability sample, population totals or unbiased prevalence estimates. Formal respondent-driven sampling and its estimators are separate choices, not adopted by this label. [Thompson, formal adaptive-design account, 2011](https://www150.statcan.gc.ca/n1/pub/12-001-x/2011002/article/11607-eng.pdf).
+
+Pilot comparisons need comparable periods/effort, inclusion and access measures, reconciled overlapping routes and uncertainty. Before/after waves alone do not prove improvement. Research participation remains optional and separate from services. No fieldwork, numerical targets, observed gains or fitted model is claimed.
+
+## Next action
+
+Discuss and agree the content of the adaptive snowball recruitment slide before implementation. Keep the cycle-first sequence and preservation plan below. Earlier slide-title/copy suggestions are provisional. Future implementation must synchronise the method name across cycle, contents, stage slide, reading, read-aloud, static and print editions. No slide or application changes, generated output, operational records, commit, push or deployment in this checkpoint.
+
+---
+
+# Current continuation: explain the cycle stage by stage — 10 November 2026
+
+The owner clarified that after presenting the complete cycle, the presentation must explain its stages one by one. This supersedes the previous topic-led six-section order, the instruction to review the old participation slide next, and fixed later-slide numbers (including KPI slide 20). Those earlier plans remain below as dated history and reusable content, not the current production order.
+
+## Next-slide composition
+
+Keep slides 1–4 as the opening: cover; contents (revise its destinations when the new sequence is implemented); opportunity and existing foundation; complete database-centred adaptive cycle. Then explain the five stages in the same order as the diagram:
+
+| Planned slide | Cycle stage and proposed title | Content to explain |
+|---|---|---|
+| 5 | Adaptive snowball recruitment — title and visible copy pending discussion | Start through varied trusted connections; invite voluntary participant referrals; record recruitment routes and review gaps; adapt later recruitment and accessible participation options. |
+| 6 | Understand needs — Understand people's skills, interests and learning needs | Review existing skills, interests, participant-agreed learning goals and communication/access requirements with each participant. Record these together so teaching and support decisions have a clear basis. |
+| 7 | Match teaching — Connect people with suitable teaching | Use the recorded profile to identify suitable teaching and facilitator capacity; learner and facilitator agree the pathway and practical arrangements. Record the agreement and any waiting or unmet needs. |
+| 8 | Support practice — Participation needs more than registration | Reuse the existing participation slide's teaching, communication/formats, devices/connectivity where needed and participant-agreed support. Connect them to accessible practical tasks and feedback, and record agreed support and practice evidence. |
+| 9 | Monitor & review — Review progress, update records and adapt | Explain recruitment reach/gaps, teaching/support, learning progress and participant feedback. Update the database; recruitment evidence informs outreach, while learning evidence and feedback inform teaching/support. Return visibly to the cycle. |
+
+For every stage answer: What happens? What is recorded? How do those records guide decisions? How does it connect to the next stage? Keep participant/facilitator judgement explicit; records inform decisions rather than making them automatically. Use the existing cycle labels consistently, with a small highlighted cycle position to orient the audience when implemented. Thought bubbles remain brief optional explanations on slide 4, not substitutes for stage slides.
+
+## What to retain and reuse
+
+- Keep the unity cover, approved James Ahumbe opportunity wording/photograph and documentary foundation collage, database hub, closed ring and six clickable explanations on slide 4.
+- Keep the contents interaction, visual theme, presentation controls, accessibility features, reading/read-aloud/print editions and verified source credits. Revise the contents structure and destinations to reflect the cycle when implementation begins; do not preserve the old order merely to retain 24 slides.
+- Move the existing slide 5 content to the planned Support practice slide 8; retain the historical UBEC discussion photograph and its caveat. Do not discard or overwrite this material when introducing adaptive snowball recruitment as slide 5.
+- Reuse existing community-experience and recruitment research in stage 1 and its supporting notes: starting contacts, referral rounds, complementary routes, proposed statistical refinement, Bayesian updating and recruitment evaluation. Keep the first stage slide concise; detailed mathematics and method comparisons go in the reading edition/supporting notes rather than interrupting the five-stage walkthrough. No research content is deleted by this change.
+- Reuse the planned learning-pathway, teaching and accessible-practice material for stages 2–4. Show the working prototype after the stage walkthrough, then discuss Plateau pilot design and partnership agreements. Later slide numbering and total remain to be settled; the previous 24-slide map is historical.
+- Explain monitoring and its feedback loop in stage 5. Retain the detailed pilot-measure agreement under Decide what success means later in pilot planning, without fixing it to slide 20. Keep cohort/denominator, missingness, baseline/target, responsibility and review-frequency cautions; no invented figures or achieved outcomes.
+
+## Delivery boundary and next action
+
+This checkpoint updates documentation only. The actual deck still has five slides, with the old participation content in position 5 and the old contents mapping. Slides 5–9 above describe the intended revision, not delivered new slides. Next discuss the visible content and title; after agreement, implementation starts with the adaptive snowball recruitment slide 5, preserving/moving the existing participation material and synchronising contents, reading, read-aloud, static and print outputs as appropriate. Review the new slide with the owner before developing the remaining stages. No deck source, generated presentation, operational records, dependency, commit, push or deployment is changed or authorized by this documentation checkpoint. Fieldwork and real recruitment remain separate proposals.
+
+---
+
 # Impact Mosaic: proposed contents and recruitment research
 
 Contents-first implementation · 9 November 2026. Owner approved the six section names and subsection mapping below. Slide 2 is an expandable Table of Contents; slides 3–5 are linked and slides 6–24 are marked Planned. The five existing slides remain the working deck. Local review: `http://127.0.0.1:4175/?page=research`.

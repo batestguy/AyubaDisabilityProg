@@ -25,11 +25,21 @@
   let explanationTrigger;
   document.querySelectorAll('[data-explanation]').forEach(button => button.addEventListener('click', () => {
    const slide = button.closest('.slides > section');
-   const pathway = records[slides.indexOf(slide)].pathway;
+   const record = records[slides.indexOf(slide)];
+   const pathway = record.pathway;
    const key = button.dataset.explanation;
-   const item = key === 'database' ? pathway.database : pathway.steps[Number(key.slice(5))];
+   explanation.dataset.kind = key === 'bayesian' ? 'bayesian' : 'cycle';
+   const item = key === 'bayesian' ? { ...record.recruitment.explanation, explanation: record.recruitment.explanation.text } : key === 'database' ? pathway.database : pathway.steps[Number(key.slice(5))];
    document.querySelector('#explanation-title').textContent = item.title;
    document.querySelector('#explanation-text').textContent = item.explanation;
+   const symbols = document.querySelector('#explanation-symbols');
+   symbols.open = false;
+   symbols.hidden = !item.symbols;
+   document.querySelector('#explanation-symbol-text').textContent = item.symbols || '';
+   const status = document.querySelector('#explanation-status');
+   status.hidden = !item.status;
+   status.textContent = item.status || '';
+
    explanationTrigger = button;
    touch = null;
    window.speechSynthesis?.cancel();
@@ -39,7 +49,7 @@
   }));
   function placeThought() {
    if(!explanation.open || !explanationTrigger) return;
-   const target = explanationTrigger.closest('[data-cycle-step],.cycle-hub').getBoundingClientRect();
+   const target = (explanationTrigger.closest('[data-cycle-step],.cycle-hub') || explanationTrigger).getBoundingClientRect();
    const width = explanation.getBoundingClientRect().width, height = explanation.getBoundingClientRect().height;
    const gap = 32, edge = 16;
    let x, y, side;
@@ -61,7 +71,14 @@
    explanation.style.setProperty('--thought-anchor', `${Math.max(32, Math.min(anchor, (side === 'left' || side === 'right' ? height : width) - 32))}px`);
   }
   window.addEventListener('resize', placeThought);
-  explanation.addEventListener('keydown', event => { if(event.key === 'Tab') { event.preventDefault(); explanation.querySelector('[data-close]').focus(); } });
+  document.querySelector('#explanation-symbols').addEventListener('toggle', () => requestAnimationFrame(placeThought));
+  explanation.addEventListener('keydown', event => {
+   if(event.key !== 'Tab') return;
+   const controls = [...explanation.querySelectorAll('summary,button,a[href],select,input,textarea,[tabindex="0"]')].filter(e => !e.disabled && e.getClientRects().length);
+   const first = controls[0], last = controls.at(-1);
+   if(event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+   else if(!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  });
   explanation.addEventListener('close', () => { touch = null; explanationTrigger?.focus({preventScroll:true}); awake(); });
   let backdropStart = false;
   const outside = event => { const r = explanation.getBoundingClientRect(); return event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom; };

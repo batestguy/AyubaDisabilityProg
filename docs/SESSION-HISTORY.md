@@ -267,3 +267,40 @@ Reviewed the current handoff/code and explained learner/Admin/facilitator connec
 User requested a pre-registration approved-facilitator directory and a general noticeboard for every state. Planning choices: visitors and learners browse; learners request a preferred facilitator with Admin confirmation; signed-in learners/facilitators/Admin read boards; Admin and approved facilitators publish, all signed-in participants reply; home-state default with participation across all 36 states and FCT; extend local demo first; reviewed public introduction with publication consent; text notices/replies with pinning, unread and Admin hide/close controls.
 
 User initially said “Implement the plan” and then explicitly superseded it with “Dont build anyuthing yet, document thorougly for next timew.” Inspection only occurred before that correction; no feature code was written. Created the [complete continuation specification](FACILITATOR-DIRECTORY-STATE-BOARDS-PLAN.md), updated main handoff and README/index/scope pointers, and preserved existing delivered evidence as historical. Future implementation requires a renewed user instruction. No app/model/test/dependency changes, browser mutations, runtime test/build runs, commit/push or deployment are part of this checkpoint. Existing connected workspace visual acceptance remains pending.
+
+
+## 10 November 2026 — Cycle-first presentation continuation
+
+Owner clarified that the complete cycle must be followed by explanations of its stages in order. Updated all active presentation handoffs and research continuation pointers: proposed slides 5–9 now cover adaptive sampling, needs, teaching match, supported practice and monitoring/review. Keep opening slides 1–4; revise contents when implemented; retain/move the old participation slide to Support practice. Existing research, mathematics, teaching content, prototype, pilot measures and partnership material are retained. The old topic-led 24-slide order and fixed KPI slide number are superseded as production instructions. Full composition: [current presentation sequence](RESEARCH-CONTENTS-AND-RECRUITMENT-PLAN.md#current-continuation-explain-the-cycle-stage-by-stage--10-november-2026). Documentation only; actual deck remains five slides. No deck implementation, commit, push or deployment. Next: develop adaptive-sampling slide 5 for owner review.
+
+
+## 10 November 2026 — Adaptive snowball recruitment agreed
+
+Owner agreed adaptive snowball recruitment as the proposed method and requested documentation throughout before slide-content discussion. Updated current handoffs, presentation plans and older Bayesian-framework pointer. Recorded definition, publicly documented outreach and unknowns, Sweden/Texas/Germany evidence with sources and limits. No direct superiority claim or population-representativeness claim; Bayesian modelling optional. Next discuss exact slide content. Documentation only; actual deck unchanged, no commit/push/deployment. See [method record](RESEARCH-CONTENTS-AND-RECRUITMENT-PLAN.md#agreed-method-adaptive-snowball-recruitment--10-november-2026).
+
+
+## 10 November 2026 — Adaptive snowball recruitment slide delivered locally
+
+Built authorized slide5 with documentary acknowledgment, referral/review/adjust loop and clickable proposed Bayesian equation with side explanation. Preserved previous participation slide in shared source for planned Support practice; cycle-first contents and method terminology aligned. 120 tests/typecheck/build and 27 browser accessibility audits passed, zero errors/CSP/resource failures and unchanged saved records. Final print-only fixes visually checked in five-page PDF. Visible preview opened on slide5; owner review next. No commit/push/deployment. See [implementation record](RESEARCH-RECRUITMENT-WORKING.md).
+
+
+## 10 November 2026 — Owner-directed recruitment slide simplification
+
+Corrected fixed-preview clipping by opening Brave with actual window dimensions. Owner then found the compact layout cluttered and authorized simplifying it with engaging charts. Delivered four vertical native concept-icon stages/gold arrows/return, prominent credited photo and acknowledgment, clickable equation and one closing question; moved details into popup/reading.29 accessibility audits and full browser regression pass; six final window-fit checks and five-page print check pass. Brave opened on revised slide5; visual acceptance pending. No commit/push/deployment.
+
+
+## 10 November 2026 — Participant database slide6
+
+Owner requested database explanation after recruitment, acknowledging his interview with linked quote and photograph, then authorized creative illustrated implementation. Delivered native database cylinder/arrows/record icons, four human decision outputs and scoped Plateau status. Dated national ambition and separate FMINO portrait attribution retained. Six-slide outputs/navigation/contents synchronised; next stage7 needs, retained participation planned9. Preflight120 tests/build passed; browser verification completes after enlarged-text wrap correction. [Database record](RESEARCH-DATABASE-WORKING.md). No commit/push/deployment.
+
+Database delivery verification complete: full browser36 accessibility audits and all six-slide/old-popup regressions pass with zero errors/CSP/resource failures and stored-byte preservation. Root six-window/phone200%/six-page PDF inspection complete. Brave visibly on slide6; owner review next.
+
+
+## 10 November 2026 — Facilitator recruitment route and support wording
+
+Owner approved Plan support together and requested facilitator volunteering/recruitment. Added separate incoming routes, facilitator skills/availability record, merged gold arrows and supporting explanation of scope review/support planning. Build/typecheck and full36-audit browser regression plus six geometry/PDF checks pass; stored bytes preserved. Brave refreshed on slide6. No operational database/account/record changes or publication.
+
+
+## 10 November 2026 — Database slide readability
+
+Owner requested bigger fonts. Increased slide6 labels, routes, quote/credits and outcomes; preserved full slide fit through tighter connector spacing and inline outcome icons on shorter windows. Six geometry checks, three focused accessibility audits and six-page print checks pass. Brave refreshed for review; no content/operational changes.
