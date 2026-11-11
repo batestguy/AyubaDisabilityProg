@@ -1,3 +1,9 @@
+# About page: co-creator profiles — 11 November 2026
+
+Owner supplied both co-creators' CVs and photos. The About page now opens with **The co-creators**: Jerry Bannister Zachary first (full-length photo in wheelchair), Yusuf Strong Mashat second, in two columns (stacked on phones). Bios are drawn only from each CV; phone numbers, emails, dates of birth, marital status, referees and Strong's 2009–2015 political aide roles are left out. The intro notes their shared 2025 publication (BMI prediction models, Asian Journal of Probability and Statistics). Photos: `public/photos/cocreator-jerry-bannister-zachary.webp` and `cocreator-strong-yusuf-mashat.webp` (720 px wide, metadata stripped; originals not committed). Strong's name follows the CV ("YUSUF Strong Mashat"). Jerry's name stays "Jerry Bannister Zachary" as used across the site and in publications, although the CV file name reads "Jerry Zachary Bannister" — confirm with owner. The old "Project contributors" list is replaced. Verified: 120 tests and build; browser-learning-navigation, browser-story, browser-production, browser-connected and accessibility (zero violations) pass; laptop and phone screenshots checked, no sideways scrolling.
+
+---
+
 # Hauwa story removed — 11 November 2026
 
 Owner asked to remove everything about Hauwa and leave the roles network as the final content on the Learning Sandbox page. `src/SandboxStory.tsx`, its styles and its no-JavaScript copy are removed; the page now runs heading → roles network → sign-in. The two sewing images stay in `public/photos`. Checks updated to confirm the story is absent. Verified: 120 tests and build; browser-learning-navigation, browser-connected, browser-fresh-demo, browser-production, browser-story and accessibility (zero violations) pass. Committed and pushed with the roles network.

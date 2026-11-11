@@ -1115,3 +1115,14 @@ header nav button { transition: none; }
 .nav-group-items{display:flex;gap:8px}
 @media(max-width:1000px){.nav-group{border:0;padding:0}}
 @media(max-width:700px){#root>header nav{align-items:stretch}.nav-group{width:100%}.nav-group-items{justify-content:space-between}}
+/* About: co-creator profiles, Jerry first, Strong second. */
+.about-creators{margin:8px 0 48px}
+.about-creators>h2{font-size:1.75rem;letter-spacing:-.03em;margin-bottom:8px}
+.about-creators-intro{max-width:760px;margin:0 0 24px}
+.about-creators-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
+.about-creator{display:flex;flex-direction:column;gap:16px}
+.about-creator img{display:block;width:100%;max-width:340px;height:auto;aspect-ratio:72/100;object-fit:cover;object-position:center top;border-radius:8px;background:#f3f6f3}
+.about-creator h3{margin:0;font-size:1.4rem;letter-spacing:0}
+.about-creator-role{margin:2px 0 12px;font-weight:700;color:#14532D}
+.about-creator p{max-width:560px}
+@media(max-width:760px){.about-creators-grid{grid-template-columns:1fr;gap:32px}.about-creator img{max-width:300px}}

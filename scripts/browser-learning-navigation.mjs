@@ -76,7 +76,7 @@ try {
  await button('About').click();
  await page.getByRole('heading', { name: 'About.', exact: true }).waitFor();
  assert.equal(await page.locator('.empty-portrait,.empty-biography').count(), 0);
- assert.match(await page.locator('.about-page').innerText(), /Project contributors/);
+ assert.match(await page.locator('.about-page').innerText(), /The co-creators/);
  await audit('about-page');
  await page.screenshot({ path: 'output/playwright/about-page-desktop.png', fullPage: true });
  await button('Learning Sandbox').click();

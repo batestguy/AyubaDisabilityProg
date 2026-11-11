@@ -114,7 +114,7 @@ assert.equal(await nojs.locator('#static-home details').count(),12);
 assert.equal(await nojs.locator('#static-explore details').count(),0);
 assert.deepEqual(await nojs.getByRole('navigation',{name:'Main navigation'}).getByRole('link').allTextContents(),['Home – Tribute to Gufwan','Research & Data Collection','Learning Sandbox','About']);
 assert.equal(await nojs.locator('#static-about .empty-portrait,#static-about .empty-biography').count(),0);
-for (const name of ['Jerry Bannister Zachary','Strong']) assert.equal(await nojs.locator('#static-about').getByText(name,{exact:true}).count(),1);
+assert.deepEqual(await nojs.locator('#static-about .about-creator h3').allTextContents(),['Jerry Bannister Zachary','Yusuf Strong Mashat']);
 
 // Every dated record remains selectable, with only its source-matched photograph.
 const timeline=page.locator('#milestones');
@@ -222,7 +222,7 @@ assert.equal(await page.getByRole('tab',{name:'User',exact:true}).getAttribute('
 await page.getByRole('button',{name:'About',exact:true}).click();
 assert.equal(await page.locator('.empty-portrait,.empty-biography').count(),0);
 assert.equal(await page.getByRole('heading',{name:'About Impact Mosaic',exact:true}).count(),1);
-for (const name of ['Jerry Bannister Zachary','Strong']) assert.equal(await page.locator('.about-credits').getByText(name,{exact:true}).count(),1);
+assert.deepEqual(await page.locator('.about-creator h3').allTextContents(),['Jerry Bannister Zachary','Yusuf Strong Mashat']);
 await page.getByRole('button',{name:'A+ Text',exact:true}).click();
 for (const width of [390,768,1440]) {
  await page.setViewportSize({width,height:900});

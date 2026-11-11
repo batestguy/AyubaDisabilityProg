@@ -43,3 +43,6 @@ body { margin: 0; background: #FFFFFF; }
 .static-story .proposal-links{display:flex;flex-wrap:wrap;gap:12px 24px}
 .static-story .proposal-sources li{overflow-wrap:anywhere}
 @media print{.static-story .sampling-table-scroll{overflow:visible}.static-story .sampling-methods{min-width:0}}
+
+/* About co-creator photos stay modest in the no-JavaScript story. */
+#static-about .about-creator img{display:block;width:100%;max-width:300px;height:auto;aspect-ratio:72/100;object-fit:cover;object-position:center top}
