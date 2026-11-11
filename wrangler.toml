@@ -1,8 +1,15 @@
-name = "ncpwd-impact-mosaic"
+name = "impact-mosaic"
 compatibility_date = "2026-10-04"
 pages_build_output_dir = "./dist"
 
-[[durable_objects.bindings]]
-name = "AI_LIMITER"
-class_name = "AiLimiter"
-script_name = "impact-mosaic-limiter"
+# The AI usage limiter is not bound yet (11 November 2026): publishing the
+# impact-mosaic-limiter Worker needs a workers.dev subdomain created once in the
+# Cloudflare dashboard (Workers menu). Without the limiter (and GROQ_API_KEY) the
+# /api/assist function returns 503 and the rest of the site works normally.
+# To enable AI later: open the Workers menu once, run
+#   npx wrangler deploy --config worker/wrangler.toml
+# then restore this binding and set the GROQ_API_KEY secret.
+# [[durable_objects.bindings]]
+# name = "AI_LIMITER"
+# class_name = "AiLimiter"
+# script_name = "impact-mosaic-limiter"
