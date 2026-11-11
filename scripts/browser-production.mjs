@@ -95,7 +95,7 @@ assert.equal(await nojs.locator('.static-gallery').count(),0);
 assert.equal(await nojs.locator('.static-story article[id^=static-] figure').count(),10);
 assert.equal(await nojs.locator('#static-home details').count(),12);
 assert.equal(await nojs.locator('#static-explore details').count(),0);
-assert.deepEqual(await nojs.getByRole('navigation',{name:'Main navigation'}).getByRole('link').allTextContents(),['Home','Learning Sandbox','Research & Data Collection','About']);
+assert.deepEqual(await nojs.getByRole('navigation',{name:'Main navigation'}).getByRole('link').allTextContents(),['Home – Tribute to Gufwan','Research & Data Collection','Learning Sandbox','About']);
 
 await nojs.screenshot({path:'output/playwright/production-nojs-mobile.png'});
 assert.equal(await nojs.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true);

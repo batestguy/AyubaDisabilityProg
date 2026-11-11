@@ -168,7 +168,7 @@ assert.equal(
   1,
 );
 await page.setViewportSize({ width: 390, height: 844 });
-await page.getByRole("button", { name: "Home", exact: true }).click();
+await page.getByRole("button", { name: "Home – Tribute to Gufwan", exact: true }).click();
 await page.screenshot({ path: "output/playwright/mobile.png", fullPage: true });
 assert.equal(
   await page.evaluate(

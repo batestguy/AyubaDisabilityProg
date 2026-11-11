@@ -1108,3 +1108,10 @@ header nav button { transition: none; }
  .explore-page .projects-intro,.demo-tools.section,.public-page{padding-top:24px}
  .about-overview{grid-template-columns:minmax(0,1fr);gap:20px}
 }
+/* Main menu: "Possible Projects" groups Research and Learning Sandbox under one visible heading. */
+#root>header nav{align-items:flex-end}
+.nav-group{display:flex;flex-direction:column;gap:2px;padding:0 6px;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+.nav-group-label{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#4a5a52;padding:0 8px;white-space:nowrap}
+.nav-group-items{display:flex;gap:8px}
+@media(max-width:1000px){.nav-group{border:0;padding:0}}
+@media(max-width:700px){#root>header nav{align-items:stretch}.nav-group{width:100%}.nav-group-items{justify-content:space-between}}

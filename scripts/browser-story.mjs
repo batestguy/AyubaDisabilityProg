@@ -112,7 +112,7 @@ assert.equal(await nojs.locator('.static-story article[id^=static-] figure').cou
 assert.match(await nojs.locator('.static-story').innerText(),/Lawrence Edelifo Idemudia/);
 assert.equal(await nojs.locator('#static-home details').count(),12);
 assert.equal(await nojs.locator('#static-explore details').count(),0);
-assert.deepEqual(await nojs.getByRole('navigation',{name:'Main navigation'}).getByRole('link').allTextContents(),['Home','Learning Sandbox','Research & Data Collection','About']);
+assert.deepEqual(await nojs.getByRole('navigation',{name:'Main navigation'}).getByRole('link').allTextContents(),['Home – Tribute to Gufwan','Research & Data Collection','Learning Sandbox','About']);
 assert.equal(await nojs.locator('#static-about .empty-portrait,#static-about .empty-biography').count(),0);
 for (const name of ['Jerry Bannister Zachary','Strong']) assert.equal(await nojs.locator('#static-about').getByText(name,{exact:true}).count(),1);
 
@@ -173,7 +173,7 @@ await strip.getByRole('button').nth(2).focus();
 await page.keyboard.press('Enter');
 assert.equal(await event.locator('time').getAttribute('datetime'),'2024-09-26');
 assert.equal(await page.locator('.opportunity').count(),0);
-assert.deepEqual(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('button').allTextContents(),['Home','Learning Sandbox','Research','About']);
+assert.deepEqual(await page.getByRole('navigation',{name:'Main navigation'}).getByRole('button').allTextContents(),['Home – Tribute to Gufwan','Research','Learning Sandbox','About']);
 const timelineFailure=await browser.newPage();
 await timelineFailure.route('**/photos/civic.webp',route=>route.abort());
 await timelineFailure.goto(new URL('?workspace=earlier', target).href);
@@ -194,8 +194,7 @@ await page.frameLocator('#research-deck').getByRole('link',{name:'Detailed Resea
 await page.getByRole('heading',{name:'Research & Data Collection.',exact:true}).waitFor();
 assert.equal(await page.locator('.sampling-outline').count(),1);
 await page.getByRole('button',{name:'Learning Sandbox',exact:true}).click();
-assert.equal(await page.locator('footer').count(),1);
-assert.equal(await page.getByRole('tab').count(),0);
+assert.equal(await page.locator('footer').count(),0,'Learning Sandbox opens the sign-in page directly');
 for (const name of ['User','Administration','Facilitator']) {
  const tab=page.getByRole('tab',{name,exact:true});
  await tab.click();
@@ -233,7 +232,7 @@ for (const width of [390,768,1440]) {
  }
 }
 await page.getByRole('button',{name:'A+ Text',exact:true}).click();
-await page.getByRole('button',{name:'Home',exact:true}).click();
+await page.getByRole('button',{name:'Home – Tribute to Gufwan',exact:true}).click();
 await page.locator('.photo-carousel').waitFor();
 assert.deepEqual(errors,[]);
 await browser.close();

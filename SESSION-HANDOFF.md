@@ -1,3 +1,10 @@
+# Main menu regrouped — 11 November 2026
+
+Owner asked for **Home – Tribute to Gufwan**, then a visible **Possible Projects** heading over two clickable tabs, **Research** first and **Learning Sandbox** second, then **About**. Implemented in the app menu (labelled group for screen readers) and the no-JavaScript menu; styles keep the same order on phones with no sideways scrolling (checked at 1440, 1024 and 390 pixels wide). Menu assertions in the browser checks updated, plus a leftover story check that still expected the removed sandbox intro page. Verified: 120 tests, typecheck, build; browser-production, browser-story, browser-connected and accessibility (zero violations) pass; browser-learning-navigation passes its menu checks and stops only at the known research-article count (expects 5, deck now has 8). Sandbox and menu work committed and pushed; the research-slide edits below remain uncommitted.
+
+---
+
+
 # Learning Sandbox coherence pass — 11 November 2026
 
 Owner asked whether the sandbox parts were coherent, then authorized all recommended fixes. Done:

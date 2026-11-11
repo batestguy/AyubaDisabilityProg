@@ -44,7 +44,8 @@ async function audit(name) {
 }
 try {
  await page.goto(target);
- assert.deepEqual(await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button').allTextContents(), ['Home', 'Learning Sandbox', 'Research', 'About']);
+ assert.deepEqual(await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('button').allTextContents(), ['Home – Tribute to Gufwan', 'Research', 'Learning Sandbox', 'About']);
+ assert.deepEqual(await page.getByRole('group', { name: 'Possible Projects' }).getByRole('button').allTextContents(), ['Research', 'Learning Sandbox']);
  await button('Learning Sandbox').click();
  await page.getByRole('heading', { name: 'Learning Sandbox.', exact: true }).waitFor();
  await artworkVisible();
@@ -162,7 +163,7 @@ try {
  const nojsContext = await browser.newContext({ javaScriptEnabled: false });
  const nojs = await nojsContext.newPage();
  await nojs.goto(target);
- assert.deepEqual(await nojs.getByRole('navigation', { name: 'Main navigation' }).getByRole('link').allTextContents(), ['Home', 'Learning Sandbox', 'Research & Data Collection', 'About']);
+ assert.deepEqual(await nojs.getByRole('navigation', { name: 'Main navigation' }).getByRole('link').allTextContents(), ['Home – Tribute to Gufwan', 'Research & Data Collection', 'Learning Sandbox', 'About']);
  assert.doesNotMatch(await nojs.locator('#static-explore').innerText(), /sampling|Bayesian|snowball/i);
  assert.equal(await nojs.locator('#static-research .sampling-outline[open]').count(), 1);
  assert.equal(await nojs.locator('#static-research .research-linear article').count(), 5);

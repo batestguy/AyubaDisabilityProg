@@ -268,7 +268,17 @@ export default function App() {
           </span>
         </a>
         <nav aria-label="Main navigation">
-          {[["overview","Home"],["explore","Learning Sandbox"],["research","Research"],["about","About"]].map(([id,title])=><button key={id} aria-current={page===id||(id==='explore'&&['app-demo','sandbox','navigator'].includes(page))?'page':undefined} onClick={()=>navigate(id)}>{title}</button>)}
+          {(() => {
+            const tab = (id: string, title: string) => <button key={id} aria-current={page===id||(id==='explore'&&['app-demo','sandbox','navigator'].includes(page))?'page':undefined} onClick={()=>navigate(id)}>{title}</button>;
+            return <>
+              {tab("overview","Home – Tribute to Gufwan")}
+              <div className="nav-group" role="group" aria-labelledby="nav-projects-label">
+                <span id="nav-projects-label" className="nav-group-label">Possible Projects</span>
+                <div className="nav-group-items">{tab("research","Research")}{tab("explore","Learning Sandbox")}</div>
+              </div>
+              {tab("about","About")}
+            </>;
+          })()}
         </nav>
         <label className="language">
           <span className="sr-only">{t("language")}</span>

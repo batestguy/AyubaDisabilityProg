@@ -27,7 +27,7 @@ for (const section of ["Learning Sandbox", "About"]) {
     console.log(section, audit.violations.map(v => v.id));
   }
 }
-await page.getByRole("button", { name: "Home", exact: true }).click();
+await page.getByRole("button", { name: "Home – Tribute to Gufwan", exact: true }).click();
 for (const view of ["overview", "learner", "expert", "admin"]) {
   if (view === "learner") {
     await page
