@@ -41,3 +41,31 @@
  .remote-support-label,.remote-teaching{height:28px;padding-right:120px;font-size:.65rem}
  .remote-panel-title{font-size:.75rem}
 }
+/* Learning Sandbox story: one learner and one facilitator, shown large, above a smaller community chart. */
+.sandbox-story{--story-ink:#173f36;--story-line:#d9dfd4;--story-soft:#f3f6f3;max-width:1100px;margin:8px auto 40px;color:var(--story-ink)}
+.sandbox-story-eyebrow{margin:0 0 4px;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#4a5a52}
+.sandbox-story h2{margin:0 0 20px;font:normal clamp(1.5rem,3vw,2.1rem)/1.2 Georgia,serif;letter-spacing:0}
+.sandbox-story-scene{display:grid;grid-template-columns:minmax(0,1fr) minmax(120px,170px) minmax(0,1fr);align-items:center;gap:16px}
+.sandbox-story-person{margin:0}
+.sandbox-story-person img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:6px;background:var(--story-soft)}
+.sandbox-story-person figcaption{margin-top:8px;font-size:.95rem}
+.sandbox-story-link{text-align:center;font-size:.9rem;line-height:1.4}
+.sandbox-story-link svg{display:block;width:100%;max-width:150px;margin:0 auto 8px;fill:none;stroke:var(--story-ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sandbox-story-link p{margin:0}
+.sandbox-story-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:24px 0 0;padding:0;list-style:none;counter-reset:story}
+.sandbox-story-steps li{counter-increment:story;display:flex;flex-direction:column;gap:4px;padding:12px;border-top:3px solid var(--story-ink);background:var(--story-soft);font-size:.92rem;line-height:1.45}
+.sandbox-story-steps li strong::before{content:counter(story) ". "}
+/* The community chart sits below the story at a smaller size. */
+.sandbox-community .remote-learning{max-width:1000px}
+.sandbox-community .remote-learning .remote-office img{width:72px}
+.sandbox-community .remote-learning .remote-facilitator img{width:84px}
+.sandbox-community .remote-learning .remote-home img{max-width:76px}
+@media(max-width:900px){.sandbox-story-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){
+ .sandbox-story-scene{grid-template-columns:1fr}
+ .sandbox-story-person{max-width:340px;margin:0 auto;width:100%}
+ .sandbox-story-link svg{max-width:110px;margin-bottom:4px}
+ .sandbox-story-steps{grid-template-columns:1fr}
+ .sandbox-community .remote-learning .remote-office img,.sandbox-community .remote-learning .remote-facilitator img{width:64px}
+ .sandbox-community .remote-learning .remote-home img{max-width:64px}
+}

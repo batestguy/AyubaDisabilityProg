@@ -2,6 +2,10 @@
 
 Initially added 8 November 2026; the current revision replaces the older learning-room banner. Fictional painted scenes, generated with the built-in image_gen tool; these are illustrative activities, not additional courses or programme records.
 
+## Learning Sandbox story above the chart — 11 November 2026
+
+The sandbox page now opens with one made-up learner's story (Hauwa, learning tailoring at home in Bukuru, with facilitator Nanle in Jos), shown large and reusing the sewing learner and facilitator images, followed by five cycle steps. The chart described below now sits underneath it at a smaller size (72/84/76px desktop photos). See `src/SandboxStory.tsx`.
+
 ## Current revision — three role boxes
 
 Latest refinement: increased the actual desktop photo sizes to 96px for administrators, 112px for facilitators and up to 104px for learners; phone photos now use up to 64px. The figure can use 1200px of page width. Added an on-page explanation beneath the diagram. The latest request prioritizes larger, clearer photos, so normal vertical scrolling is allowed instead of enforcing the earlier one-viewport height limit.

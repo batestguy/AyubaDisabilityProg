@@ -55,8 +55,8 @@ try {
   await artworkVisible();
   if (!size) {
    await page.evaluate(() => scrollTo(0, 0));
-   const diagram = await page.locator('.remote-learning').boundingBox();
-   assert.ok(diagram.y < height, `${name}: enlarged diagram begins in the initial viewport`);
+   const story = await page.locator('.sandbox-story').boundingBox();
+   assert.ok(story.y < height, `${name}: learner story begins in the initial viewport`);
    const tutors = await page.locator('.remote-facilitator').evaluateAll(nodes => nodes.map(node => node.getBoundingClientRect().top));
    assert.ok(Math.max(...tutors) - Math.min(...tutors) < 1, 'All four facilitators stay on one row');
   }
