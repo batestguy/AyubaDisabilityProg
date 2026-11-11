@@ -14,7 +14,7 @@ const browser=await chromium.launch({channel:'chrome',headless:true});const cont
 await context.addInitScript(({fixture,sandbox})=>{if(!sessionStorage.getItem('reports-initialized')){sessionStorage.setItem('mosaic-user-demo-v1',fixture);sessionStorage.setItem('mosaic-v1',sandbox);sessionStorage.setItem('reports-initialized','1');}},{fixture:JSON.stringify(fixture),sandbox});
 const page=await context.newPage(),errors=[],posts=[],audits=[];page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(r.method()==='POST')posts.push(r.url());});
 const button=name=>page.getByRole('button',{name,exact:true});const role=name=>page.getByRole('tab',{name,exact:true});const read=()=>page.evaluate(()=>JSON.parse(sessionStorage.getItem('mosaic-user-demo-v1')));
-async function open(){await button('Learning Sandbox').click();await page.getByRole('button',{name:'Open the app demo',exact:false}).click();}
+async function open(){await button('Learning Sandbox').click();}
 async function nav(name){const toggle=button('Administration menu');if(await toggle.isVisible()&&await toggle.getAttribute('aria-expanded')==='false')await toggle.click();await page.getByRole('navigation',{name:'Administration',exact:true}).getByRole('button',{name,exact:true}).click();}
 async function audit(name){const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();audits.push({name,violations:result.violations});assert.deepEqual(result.violations,[],name);}
 function metric(label){return page.locator('.ma-report-metrics article').filter({has:page.getByText(label,{exact:true})}).locator('strong');}

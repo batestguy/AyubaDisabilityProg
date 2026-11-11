@@ -15,7 +15,6 @@ import {
 } from "./store";
 import { sources } from "./evidence";
 import { HomePage } from "./HomePage";
-import { ExplorePage } from "./ExplorePage";
 import { ResearchDataCollectionPage } from "./ResearchDataCollectionPage";
 import { AppDemoPage } from "./AppDemoPage";
 import { AboutPage } from "./AboutPage";
@@ -269,7 +268,7 @@ export default function App() {
           </span>
         </a>
         <nav aria-label="Main navigation">
-          {[["overview","Home"],["explore","Learning Sandbox"],["research","Research"],["about","About"]].map(([id,title])=><button key={id} aria-current={page===id||(id==='explore'&&page==='app-demo')?'page':undefined} onClick={()=>navigate(id)}>{title}</button>)}
+          {[["overview","Home"],["explore","Learning Sandbox"],["research","Research"],["about","About"]].map(([id,title])=><button key={id} aria-current={page===id||(id==='explore'&&['app-demo','sandbox','navigator'].includes(page))?'page':undefined} onClick={()=>navigate(id)}>{title}</button>)}
         </nav>
         <label className="language">
           <span className="sr-only">{t("language")}</span>
@@ -317,7 +316,7 @@ export default function App() {
       <main id="main" tabIndex={-1}>
         {page === "overview" ? (
           <HomePage reduceMotion={reduce} />
-        ) : page === "explore" ? <ExplorePage onOpen={navigate}/> : page === "research-reading" ? <ResearchDataCollectionPage/> : page === "about" ? <AboutPage/> : page === "app-demo" ? <AppDemoPage onOpenPage={navigate}/> : (
+        ) : page === "research-reading" ? <ResearchDataCollectionPage/> : page === "about" ? <AboutPage/> : page === "explore" || page === "app-demo" ? <AppDemoPage onOpenPage={navigate}/> : (
           <>
             <section className="workspace-heading">
               <div>
@@ -1181,7 +1180,7 @@ export default function App() {
           </>
         )}
       </main>
-      {page !== 'app-demo' && <footer>
+      {page !== 'app-demo' && page !== 'explore' && <footer>
         <div>
           <strong>IMPACT MOSAIC</strong>
           <p>

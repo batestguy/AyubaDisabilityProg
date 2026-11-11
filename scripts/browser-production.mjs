@@ -24,7 +24,6 @@ assert.equal(await page.getByRole('dialog').locator('img').evaluate(img=>getComp
 await page.screenshot({path:'output/playwright/production-portrait-dialog.png'});
 await page.keyboard.press('Escape');
 await page.getByRole('button',{name:'Learning Sandbox',exact:true}).click();
-await page.getByRole('button',{name:'Open the app demo',exact:false}).click();
 await page.getByRole('button',{name:'Start my demo journey',exact:true}).waitFor();
 await page.screenshot({path:'output/playwright/user-demo-welcome-desktop.png',fullPage:true});
 await page.getByRole('button',{name:'Explore a sample profile',exact:true}).click();
@@ -83,7 +82,7 @@ await page.getByRole('tab',{name:'Facilitator',exact:true}).click();
 await page.getByRole('heading',{name:'Facilitator overview',exact:true}).waitFor();
 await page.getByRole('heading',{name:'No approved demo trainers yet',exact:true}).waitFor();
 await page.getByRole('button',{name:'Learning Sandbox',exact:true}).click();
-await page.getByRole('button',{name:'Open the app demo',exact:false}).click();await page.getByText('Original sandbox tools',{exact:true}).click();
+await page.getByText('Original sandbox tools',{exact:true}).click();
 await page.getByRole('button',{name:'Explore the learning sandbox'}).click();
 await page.getByLabel('Perspective',{exact:true}).waitFor();
 const response=await page.request.get('http://127.0.0.1:4173/downloads/introduction.pdf');

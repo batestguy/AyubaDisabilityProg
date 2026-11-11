@@ -21,7 +21,7 @@ if (process.env.CONNECTED_CSP) {
 }
 page.on('pageerror',e=>errors.push(e.message)); page.on('request',r=>{if(r.method()==='POST')posts.push(r.url());});
 const button = name => page.getByRole('button',{name,exact:true});
-async function open() { await button('Learning Sandbox').click(); await page.getByRole('button',{name:'Open the app demo',exact:false}).click(); }
+async function open() { await button('Learning Sandbox').click();}
 async function signIn(username, code) { const person=connectedView(await stored()).people.find(p=>p.username===username); const role=person.role==='admin'?'Administration':person.role==='facilitator'?'Facilitator':'Learner'; await button(`Use ${role} interface`).click(); await page.getByLabel('Username',{exact:true}).fill(username); await page.getByLabel('Demo access code',{exact:true}).fill(code); await button('Sign in').click(); await button('Sign out').waitFor(); }
 async function signOut() { await button('Sign out').click(); await page.getByRole('heading',{name:'How would you like to sign in?',exact:true}).waitFor(); }
 async function nav(name) { await page.getByRole('navigation',{name:'Connected workspace',exact:true}).getByRole('button',{name,exact:name!=='Messages'}).click(); }
@@ -81,9 +81,9 @@ try {
  await startChat('amaka','spreadsheet-data');await page.getByLabel('Message to Amaka Obi').fill('Second-course conversation marker for spreadsheet learning.');await button('Send message').click();
  await page.getByText('Second-course conversation marker',{exact:false}).waitFor();assert.equal(await page.getByText('Private teaching marker:',{exact:false}).count(),0);
  await audit('connected-second-course-chat');await signOut();await signIn('admin','DEMO-ADMIN');
- await button('Reset connected sample workspace').click();await button('Keep workspace records').click();assert.equal((await stored()).events.some(e=>e.type==='register'),true);
- await button('Reset connected sample workspace').click();await button('Confirm reset connected workspace').click();await page.getByRole('heading',{name:'How would you like to sign in?'}).waitFor();assert.equal((await stored()).events.length,0);
- await page.evaluate(()=>localStorage.setItem('mosaic-connected-v1','{malformed'));await page.reload();await open();await page.getByRole('heading',{name:'Saved workspace needs attention'}).waitFor();assert.equal(await page.evaluate(()=>localStorage.getItem('mosaic-connected-v1')),'{malformed');await audit('connected-recovery');
- assert.equal(await page.evaluate(()=>sessionStorage.getItem('mosaic-user-demo-v1')),originalBytes);assert.deepEqual(errors,[]);assert.deepEqual(posts,[]);await writeFile('output/playwright/connected-axe.json',JSON.stringify(audits,null,2));
+ await page.locator('.cd-bottom .fresh-demo-controls summary').click();await button('Start a fresh demo').click();await button('Keep current demo').click();assert.equal((await stored()).events.some(e=>e.type==='register'),true);
+ await button('Start a fresh demo').click();await button('Clear demo activity and start fresh').click();await page.getByRole('heading',{name:'How would you like to sign in?'}).waitFor();assert.equal((await stored()).events.length,0);assert.equal((await stored()).cleanStart,true);
+ await page.evaluate(()=>localStorage.setItem('mosaic-connected-v1','{malformed'));await page.reload();await open();await page.getByRole('heading',{name:'Saved Learning Sandbox needs attention'}).waitFor();assert.equal(await page.evaluate(()=>localStorage.getItem('mosaic-connected-v1')),'{malformed');await audit('connected-recovery');
+ assert.equal(await page.evaluate(()=>sessionStorage.getItem('mosaic-user-demo-v1')),null,'Fresh start also clears the older screens');assert.deepEqual(errors,[]);assert.deepEqual(posts,[]);await writeFile('output/playwright/connected-axe.json',JSON.stringify(audits,null,2));
  console.log(`Connected workspace passed: ${audits.length} clean axe audits; individual sign-in, registration, teaching/topic review, study gates, private chat/read states, support, durable reload/reset/recovery, mobile/enlarged text and preserved source records; zero POST.`);
 }catch(error){console.error((await page.locator('body').innerText()).slice(-10000));await page.screenshot({path:'output/playwright/connected-failure.png',fullPage:true});throw error;}finally{await browser.close();}

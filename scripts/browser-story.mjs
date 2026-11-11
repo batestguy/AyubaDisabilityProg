@@ -196,7 +196,6 @@ assert.equal(await page.locator('.sampling-outline').count(),1);
 await page.getByRole('button',{name:'Learning Sandbox',exact:true}).click();
 assert.equal(await page.locator('footer').count(),1);
 assert.equal(await page.getByRole('tab').count(),0);
-await page.getByRole('button',{name:'Open the app demo',exact:false}).click();
 for (const name of ['User','Administration','Facilitator']) {
  const tab=page.getByRole('tab',{name,exact:true});
  await tab.click();

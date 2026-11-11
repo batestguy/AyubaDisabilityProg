@@ -91,7 +91,6 @@ try {
  await audit('about-page');
  await page.screenshot({ path: 'output/playwright/about-page-desktop.png', fullPage: true });
  await button('Learning Sandbox').click();
- await page.getByRole('button', { name: 'Open the app demo', exact: false }).click();
  assert.equal(await button('Learning Sandbox').getAttribute('aria-current'), 'page');
  const savedBefore = await page.evaluate(() => localStorage.getItem('mosaic-connected-v1'));
  await artworkVisible();
@@ -158,7 +157,6 @@ try {
   }
   if (mobile) await audit('research-mobile-200');
   await button('Learning Sandbox').click();
-  await page.getByRole('button', { name: 'Open the app demo', exact: false }).click();
  }
  assert.equal(await page.evaluate(() => localStorage.getItem('mosaic-connected-v1')), savedBefore);
  const nojsContext = await browser.newContext({ javaScriptEnabled: false });
@@ -168,7 +166,8 @@ try {
  assert.doesNotMatch(await nojs.locator('#static-explore').innerText(), /sampling|Bayesian|snowball/i);
  assert.equal(await nojs.locator('#static-research .sampling-outline[open]').count(), 1);
  assert.equal(await nojs.locator('#static-research .research-linear article').count(), 5);
- for (const section of ['#static-explore', '#static-app-demo']) {
+ assert.equal(await nojs.locator('#static-app-demo').count(), 0);
+ for (const section of ['#static-explore']) {
   assert.equal(await nojs.locator(`${section} .sandbox-artwork`).count(), 0);
   assert.equal(await nojs.locator(`${section} .remote-learning img`).count(), 14);
  }

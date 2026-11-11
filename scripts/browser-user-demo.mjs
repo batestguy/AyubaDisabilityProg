@@ -13,7 +13,6 @@ page.on('request', r => { if (r.method() === 'POST') writes.push(r.url()); });
 const button = name => page.getByRole('button', { name, exact: true });
 async function open() {
   await button('Learning Sandbox').click();
-  await page.getByRole('button', { name: 'Open the app demo', exact: false }).click();
 }
 async function nav(name) {
   const toggle = button('My pathway menu');

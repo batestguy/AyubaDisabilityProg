@@ -26,7 +26,7 @@ export function AppDemoPage({onOpenPage}: {onOpenPage:(page:string)=>void}) {
    {!earlier&&!signedIn&&<SandboxArtwork/>}
    {earlier&&<aside className="earlier-demo-notice" aria-label="Earlier demo navigation"><h2>You are viewing earlier demo screens</h2><p>These older screens keep separate records. Use the connected demo for the current learner, facilitator and Administration journey.</p><button onClick={() => select(false)}>Back to connected demo</button><details className="archived-tools"><summary>Original sandbox tools</summary><p>Earlier fictional tools, kept separately from the connected workspace.</p><div className="mp-actions"><button onClick={()=>onOpenPage('sandbox')}>Explore the learning sandbox</button><button onClick={()=>onOpenPage('navigator')}>Open the support navigator</button></div></details></aside>}
   </div>
-  {earlier?<EarlierAppDemoPage/>:<ConnectedWorkspace onOpenEarlier={() => select(true)} onSignedInChange={setSignedIn}/>}
+  {earlier?<EarlierAppDemoPage/>:<ConnectedWorkspace onSignedInChange={setSignedIn}/>}
   {earlier&&<div className="showcase demo-maintenance"><FreshDemoControl/></div>}
  </>;
 }
@@ -88,9 +88,9 @@ function EarlierAppDemoPage() {
   <p>Start your Mosaic Pathways journey in User. Administration coordinates the same records; Facilitator shows assigned learning evidence.</p>
   <div className="mp-actions">{guided ? <button onClick={() => setGuided(false)}>Back to earlier demo</button> : <button className="primary" onClick={() => { setGuided(true); setActive(2); }}>Open guided teaching demo</button>}</div>
   {!storageOk && <div className="mp-error"><p role="alert">Session storage is unavailable or could not be verified. Your changes remain in memory; reload may lose progress. {loaded.warning}</p>{!loaded.recovery && <button onClick={retrySaving}>Retry saving this session</button>}</div>}
-  {loaded.recovery && <section className="mp-card" aria-label="Demo session recovery"><h2>Saved demo needs attention</h2><p role="alert">{loaded.recovery}</p><p>Your saved records have not been replaced. Retry loading, or explicitly reset this demo to start again. The separate learning sandbox is preserved.</p>
+  {loaded.recovery && <section className="mp-card" aria-label="Demo session recovery"><h2>Saved demo needs attention</h2><p role="alert">{loaded.recovery}</p><p>Your saved records have not been replaced. Retry loading, or explicitly reset this demo to start again. The original sandbox tools are preserved.</p>
    <div className="mp-actions"><button onClick={retry}>Retry loading saved demo</button><button onClick={() => setResetting(!resetting)} aria-expanded={resetting}>Reset saved demo</button></div>
-   {resetting && <div><p>Clear this shared demo’s saved profile, progress, requests, course drafts, reviewer assignments, scorecards, support provision/receipt, grants, follow-up, history, fictional geographic profiles, migration backup and temporary files? The separate learning sandbox is preserved.</p><button onClick={reset}>Confirm reset saved demo</button><button onClick={() => setResetting(false)}>Keep saved records</button></div>}
+   {resetting && <div><p>Clear this shared demo’s saved profile, progress, requests, course drafts, reviewer assignments, scorecards, support provision/receipt, grants, follow-up, history, fictional geographic profiles, migration backup and temporary files? The original sandbox tools are preserved.</p><button onClick={reset}>Confirm reset saved demo</button><button onClick={() => setResetting(false)}>Keep saved records</button></div>}
   </section>}
   {resetError && <p role="alert" className="mp-error">{resetError}</p>}
   <div role="tablist" aria-label="App roles" className="role-tabs">{roles.map((role, i) => <button key={role} ref={el => { tabs.current[i] = el; }} role="tab" id={`role-${i}`} aria-controls={`role-panel-${i}`} aria-selected={active === i} tabIndex={active === i ? 0 : -1} onClick={() => setActive(i)} onKeyDown={e => {

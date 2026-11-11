@@ -1,3 +1,16 @@
+# Learning Sandbox coherence pass — 11 November 2026
+
+Owner asked whether the sandbox parts were coherent, then authorized all recommended fixes. Done:
+- **One entry page.** The Learning Sandbox menu item now opens the sign-in page directly; the duplicate intro page (`src/ExplorePage.tsx`) is removed, and the no-JavaScript story has one sandbox section instead of two (`#static-app-demo` removed).
+- **Older layers hidden, not deleted.** The Administration "View earlier demos" button and the recovery-screen link are gone. The earlier screens, guided teaching demo and original sandbox tools still open at `?workspace=earlier` for tests and history.
+- **One name.** The current app's banner, recovery and reset wording say "Learning Sandbox"; the older screens no longer say "the separate learning sandbox" (now "the original sandbox tools").
+- **Fresh start in Administration.** The Administration view now shows the full "Start a fresh demo" control in place of the partial "Reset connected sample workspace" button. It clears the current app and the older screens' records. The recovery screen keeps its own reset for damaged saved data.
+- The menu now also highlights Learning Sandbox on the original tool pages; the footer stays hidden on the sign-in page under both addresses.
+
+Verified: `npm.cmd run preflight` (120 tests, typecheck, build); browser-connected (10 audits), browser-fresh-demo (5 audits, production preview 4173), browser-production and accessibility pass. browser-learning-navigation passes everything up to a research check expecting 5 static research articles (now 8, from the separate deck work); its later sandbox no-JS checks were run separately and pass. Browser scripts were updated to drop the removed "Open the app demo" click. Not run: the other earlier-screen browser scripts. No commit, push or deployment.
+
+---
+
 # Current delivery: closing slide 8 and Nigeria framing — 11 November 2026
 
 Owner asked for a closing slide with a celebratory photo of Gufwan and the Impact Mosaic mark ("the one on the first page of the slides"), and to remove anything Plateau-focused so the deck is framed for Nigeria. **Eight slides are now built.**

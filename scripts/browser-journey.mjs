@@ -1,5 +1,4 @@
 async function openOriginalTools(page) {
- await page.getByRole('button',{name:'Open the app demo',exact:false}).click();
  await page.getByText('Original sandbox tools',{exact:true}).click();
 }
 import { mkdir } from "node:fs/promises";

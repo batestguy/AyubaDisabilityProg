@@ -15,7 +15,6 @@ for (const section of ["Learning Sandbox", "About"]) {
   if (section === "Learning Sandbox") {
     const projectAudit = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
     results.push({ view: section, violations: projectAudit.violations });
-    await page.getByRole("button", { name: "Open the app demo", exact: false }).click();
     for (const role of ["User", "Administration", "Facilitator"]) {
       await page.getByRole("tab", { name: role, exact: true }).click();
       const audit = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
@@ -34,7 +33,6 @@ for (const view of ["overview", "learner", "expert", "admin"]) {
     await page
       .getByRole("button", { name: "Learning Sandbox", exact: true })
       .click();
-    await page.getByRole("button", { name: "Open the app demo", exact: false }).click();
     await page.getByText("Original sandbox tools", { exact: true }).click();
     await page.getByRole("button", { name: "Explore the learning sandbox" }).click();
   }

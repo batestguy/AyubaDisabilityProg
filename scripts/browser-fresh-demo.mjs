@@ -56,7 +56,7 @@ try{
   if(role==='Facilitator')await page.getByText('No learners assigned yet',{exact:true}).waitFor();
   await audit(`fresh-${file}`);await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:`output/playwright/fresh-${file}.png`,fullPage:true});await signOut();
  }
- await button('Use Administration interface').click();await button('Sign in').click();await button('View earlier demos').click();await page.getByRole('heading',{name:'You are viewing earlier demo screens',exact:true}).waitFor();
+ await button('Use Administration interface').click();await button('Sign in').click();assert.equal(await button('View earlier demos').count(),0);assert.equal(await page.locator('.cd-bottom .fresh-demo-controls').count(),1);{const earlierUrl=new URL(target);earlierUrl.searchParams.set('workspace','earlier');await page.goto(earlierUrl.href);await button('Learning Sandbox').click();}await page.getByRole('heading',{name:'You are viewing earlier demo screens',exact:true}).waitFor();
  await button('Open guided teaching demo').click();await button('Back to earlier demo').click();await button('Open guided teaching demo').waitFor();await button('Back to connected demo').click();
  await page.getByRole('region',{name:'Choose a demo interface'}).waitFor();
  const resetUrl=new URL(target);resetUrl.searchParams.set('workspace','earlier');await page.goto(resetUrl.href);

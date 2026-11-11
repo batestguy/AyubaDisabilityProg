@@ -23,7 +23,7 @@ const button = name => page.getByRole('button', { name, exact: true });
 const role = name => page.getByRole('tab', { name, exact: true });
 const guide = () => page.getByRole('region', { name: 'Guided walkthrough', exact: true });
 const saved = () => page.evaluate(() => JSON.parse(sessionStorage.getItem('mosaic-guided-teaching-v1')));
-async function open() { await button('Learning Sandbox').click(); await page.getByRole('button', { name: 'Open the app demo', exact: false }).click(); }
+async function open() { await button('Learning Sandbox').click();}
 async function sample() { await button('Open guided teaching demo').click(); }
 async function next() { await guide().getByRole('button').click(); }
 async function nav(name) { const toggle = button('Teaching demo menu'); if (await toggle.isVisible() && await toggle.getAttribute('aria-expanded') === 'false') await toggle.click(); await page.getByRole('navigation', { name: 'Teaching demo', exact: true }).getByRole('button', { name, exact: true }).click(); }

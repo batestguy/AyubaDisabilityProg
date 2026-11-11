@@ -16,7 +16,7 @@ if(process.env.CONNECTED_CSP){
 page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(r.method()==='POST')posts.push(r.url());});
 const button=name=>page.getByRole('button',{name,exact:true});
 const nav=async name=>page.getByRole('navigation',{name:'Connected workspace',exact:true}).getByRole('button',{name,exact:name!=='Messages'}).click();
-async function open(){await button('Learning Sandbox').click();await page.getByRole('button',{name:'Open the app demo',exact:false}).click();}
+async function open(){await button('Learning Sandbox').click();}
 async function signIn(username,code){if(await button('Sign out').count())await signOut();const person=connectedView(await stored()).people.find(p=>p.username===username);const role=person.role==='admin'?'Administration':person.role==='facilitator'?'Facilitator':'Learner';await button(`Use ${role} interface`).click();await page.getByLabel('Username',{exact:true}).fill(username);await page.getByLabel('Demo access code',{exact:true}).fill(code);await button('Sign in').click();await button('Sign out').waitFor();}
 async function signOut(){await button('Sign out').click();await page.getByRole('heading',{name:'How would you like to sign in?',exact:true}).waitFor();}
 async function audit(name){const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();audits.push({name,violations:result.violations});assert.deepEqual(result.violations,[],name);}

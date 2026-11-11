@@ -6,11 +6,12 @@ import { publicFacilitators } from './connectedCommunity';
 import { RoleHome, FacilitatorDirectory, ChoiceConfirmation, RequestHistory, PublicProfileEditor, PublicProfileReviews, HomeStateSetting, StateBoards, type FacilitatorChoice } from './ConnectedCommunityPanels';
 import { boardStates } from './connectedCommunity';
 import { AdministratorScreenBoundary } from './AdministratorScreenBoundary';
+import { FreshDemoControl } from './FreshDemoControl';
 
 const ConnectedLearnerMap = lazy(() => import('./ConnectedLearnerMap').then(module => ({ default: module.ConnectedLearnerMap })));
 
 type Registration = {name:string;username:string;role:'learner'|'facilitator';goal:string;access:string;bio:string;courseIds:string[];homeState:string;publicIntroduction?:string;publicationConsent?:boolean};
-type Props = {view:ConnectedView;actor:Person|null;onSignIn:(username:string,code:string)=>string|undefined;onSignOut:()=>void;onCommand:(type:ConnectedAction,payload:Record<string,unknown>)=>string|undefined;onRegister:(payload:Registration)=>{error?:string;person?:Person};onReset:()=>void;onOpenEarlier:()=>void;choice:FacilitatorChoice|null;onChoose:(choice:FacilitatorChoice|null)=>void};
+type Props = {view:ConnectedView;actor:Person|null;onSignIn:(username:string,code:string)=>string|undefined;onSignOut:()=>void;onCommand:(type:ConnectedAction,payload:Record<string,unknown>)=>string|undefined;onRegister:(payload:Registration)=>{error?:string;person?:Person};choice:FacilitatorChoice|null;onChoose:(choice:FacilitatorChoice|null)=>void};
 type Run = (type:ConnectedAction,payload:Record<string,unknown>,success?:string)=>boolean;
 const roleName = (role:Person['role']) => role === 'admin' ? 'Administration' : role === 'facilitator' ? 'Facilitator' : 'Learner';
 const date = (at:number) => new Date(at).toLocaleString('en-NG', {dateStyle:'medium', timeStyle:'short'});
@@ -20,7 +21,7 @@ function CourseChoices({courses,chosen,setChosen}:{courses:Course[];chosen:strin
 function NoteAction({label,button,onSubmit,initial=''}:{label:string;button:string;onSubmit:(text:string)=>boolean;initial?:string}) {const [text,setText]=useState(initial);return <form className="cd-form" onSubmit={e=>{e.preventDefault();if(onSubmit(text))setText('');}}><label>{label}<textarea required value={text} onChange={e=>setText(e.target.value)} rows={3}/></label><button type="submit">{button}</button></form>;}
 
 export default function ConnectedDemo(props:Props) {
- const {view,actor,onSignIn,onSignOut,onRegister,onReset,onOpenEarlier}=props;
+ const {view,actor,onSignIn,onSignOut,onRegister}=props;
  const [tab,setTab]=useState('Overview');const [focusTarget,setFocusTarget]=useState('');
  const navigate=(next:string,target='cd-page-title')=>{setTab(next);setFocusTarget(target);setError('');setNotice('');};
  useEffect(()=>{if(focusTarget){document.getElementById(focusTarget)?.focus();setFocusTarget('');}},[tab,focusTarget]);
@@ -35,7 +36,7 @@ export default function ConnectedDemo(props:Props) {
  const enrolments=view.enrolments.filter(e=>actor.role==='admin'||e.learnerId===actor.id||(actor.role==='facilitator'&&actor.status==='active'&&actor.teachingCourseIds.includes(e.course.id)&&currentConnectedAssignment(view,e.learnerId,e.course.id)?.facilitatorId===actor.id));
  const threads=visibleThreads(view,actor.id);const unread=threads.reduce((n,t)=>n+threadUnread(t,actor.id),0);
  const tabs=['Overview',...(actor.role==='learner'?['My learning','Find a facilitator']:['Learners']),...(actor.role==='admin'?['Learner map','Facilitator requests','Facilitators','Courses & topics','Reports']:actor.role==='facilitator'?['Teaching profile']:[]),'Messages','Support','State noticeboards','Activity'];
- return <div className="cd-demo"><div className="cd-banner"><Badge>Sample · saved in this browser</Badge><p>Connected learning workspace. Public demonstration codes; use sample information only.</p></div><div className="cd-shell"><aside className="cd-sidebar"><div className="cd-identity"><span className="cd-avatar" aria-hidden="true">{actor.name.slice(0,1)}</span><div><strong>{actor.name}</strong><small>{roleName(actor.role)} {actor.sample?'· Sample':''}</small></div></div><nav aria-label="Connected workspace">{tabs.map(t=><button key={t} aria-current={t===tab?'page':undefined} onClick={()=>navigate(t)}>{t}{t==='Messages'&&unread>0?<span className="cd-unread" aria-label={`${unread} unread messages`}>{unread}</span>:null}</button>)}</nav><button onClick={onSignOut}>Sign out</button>{actor.role==='admin'&&<button className="cd-quiet" onClick={onOpenEarlier}>View earlier demos</button>}</aside><section className="cd-main"><header className="cd-page-heading"><p className="cd-eyebrow">{roleName(actor.role)} workspace</p><h2 id="cd-page-title" tabIndex={-1}>{tab}</h2></header>{feedback}{selection}<HomeStateSetting actor={actor} run={run}/>
+ return <div className="cd-demo"><div className="cd-banner"><Badge>Sample · saved in this browser</Badge><p>Learning Sandbox. Public demonstration codes; use sample information only.</p></div><div className="cd-shell"><aside className="cd-sidebar"><div className="cd-identity"><span className="cd-avatar" aria-hidden="true">{actor.name.slice(0,1)}</span><div><strong>{actor.name}</strong><small>{roleName(actor.role)} {actor.sample?'· Sample':''}</small></div></div><nav aria-label="Connected workspace">{tabs.map(t=><button key={t} aria-current={t===tab?'page':undefined} onClick={()=>navigate(t)}>{t}{t==='Messages'&&unread>0?<span className="cd-unread" aria-label={`${unread} unread messages`}>{unread}</span>:null}</button>)}</nav><button onClick={onSignOut}>Sign out</button></aside><section className="cd-main"><header className="cd-page-heading"><p className="cd-eyebrow">{roleName(actor.role)} workspace</p><h2 id="cd-page-title" tabIndex={-1}>{tab}</h2></header>{feedback}{selection}<HomeStateSetting actor={actor} run={run}/>
  {tab==='Overview'&&<RoleHome view={view} actor={actor} navigate={navigate}/>}
  {tab==='Find a facilitator'&&actor.role==='learner'&&<><FacilitatorDirectory listings={listings} publishedCourseIds={publishedCourseIds} onChoose={props.onChoose}/><RequestHistory view={view} actor={actor} run={run}/></>}
  {tab==='Facilitator requests'&&actor.role==='admin'&&<RequestHistory view={view} actor={actor} run={run}/>}
@@ -50,7 +51,7 @@ export default function ConnectedDemo(props:Props) {
  {tab==='Messages'&&<Messages actor={actor} view={view} run={run}/>}
  {tab==='Support'&&<Support actor={actor} view={view} run={run} name={name}/>}
  {tab==='Activity'&&<><p>Activity available to your role. Message contents stay in participant conversations.</p><ol className="cd-activity">{visibleConnectedEvents(view,actor.id).slice().reverse().map(event=><li key={event.id}><strong>{event.summary}</strong><small>{event.actorName} · {date(event.at)}</small></li>)}</ol>{visibleConnectedEvents(view,actor.id).length===0&&<p>No activity to show yet.</p>}</>}
- </section></div>{actor.role==='admin'&&<div className="cd-bottom"><button onClick={onReset}>Reset connected sample workspace</button></div>}</div>;
+ </section></div>{actor.role==='admin'&&<div className="cd-bottom"><FreshDemoControl/></div>}</div>;
 }
 
 function SignInRoleIcon({kind}:{kind:string}) {

@@ -14,7 +14,6 @@ const button = (page, name) => page.getByRole('button', { name, exact: true });
 const role = (page, name) => page.getByRole('tab', { name, exact: true });
 async function open(page) {
  await button(page, 'Learning Sandbox').click();
- await page.getByRole('button', { name: 'Open the app demo', exact: false }).click();
 }
 async function adminNav(page, name) {
  const toggle = button(page, 'Administration menu');

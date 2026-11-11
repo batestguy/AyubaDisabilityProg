@@ -34,7 +34,7 @@ page.on('pageerror', e => errors.push(e.message));
 page.on('request', r => { if (r.method() === 'POST') posts.push(r.url()); });
 const button = name => page.getByRole('button', { name, exact: true });
 const role = name => page.getByRole('tab', { name, exact: true });
-async function open() { await button('Learning Sandbox').click(); await page.getByRole('button', { name: 'Open the app demo', exact: false }).click(); await role('Facilitator').click(); }
+async function open() { await button('Learning Sandbox').click();await role('Facilitator').click(); }
 async function audit(name) { const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze(); audits.push({ name, violations: result.violations }); assert.deepEqual(result.violations, [], name); }
 async function nav(name) { const toggle = button('Facilitator menu'); if (await toggle.isVisible() && await toggle.getAttribute('aria-expanded') === 'false') await toggle.click(); await page.getByRole('navigation', { name: 'Facilitator', exact: true }).getByRole('button', { name, exact: true }).click(); }
 const read = () => page.evaluate(() => sessionStorage.getItem('mosaic-user-demo-v1'));
