@@ -7,7 +7,13 @@ Owner asked for a closing slide with a celebratory photo of Gufwan and the Impac
 
 Verified: preflight 120/120 tests, TypeScript and build. The full eight-slide browser regression passed 46 accessibility audits with zero page/CSP/resource errors and saved records unchanged. It now also checks that the deck contains no Plateau wording and that slide 8 has its photo source link and limit, and checks fit and control clearance at the short laptop sizes. Slide 8 was screenshot-checked at 1440×900, 1280×720, 1280×600, 1280×535, 1266×505, 1024×600 and phone, and printed. Owner review of slides 5, 7 and 8 is next.
 
-**Git (11 November 2026):** this work is committed and pushed to `origin/main`. The commit also carries all earlier uncommitted work since `dfe006a`: the database slide 6, the slide 5 revisions, slide 7, slide 8, the Nigeria framing, and their working records and docs. **Not deployed.** Deployment remains a separate manual Cloudflare Pages step (`wrangler pages deploy dist --project-name ncpwd-impact-mosaic --branch main`), and its login was last found expired. Older entries below that say “no commit/push” describe their own time.
+**Git (11 November 2026):** committed as `0ab56d3` (“Add database, cycle-complete and thank-you slides; frame deck for Nigeria”) and pushed to `origin/main` (`dfe006a..0ab56d3`). The working tree was clean after the push. The commit also carries all earlier uncommitted work since `dfe006a`: the database slide 6, the slide 5 revisions, slide 7, slide 8, the Nigeria framing, and their working records and docs. **Not deployed.** Deployment remains a separate manual Cloudflare Pages step (`wrangler pages deploy dist --project-name ncpwd-impact-mosaic --branch main`), and its login was last found expired. Older entries below that say “no commit/push” describe their own time.
+
+**Next steps:**
+1. Owner reviews slides 5, 7 and 8 in the browser. Run `node scripts/serve-production-local.mjs` and open `http://127.0.0.1:4175/?page=research`; press End for slide 8.
+2. Owner decides whether to keep the slide 8 photo, which includes President Tinubu and Bill Gates, or to look for a photo of Gufwan alone.
+3. Owner decides whether to replace the ~40 Plateau mentions outside the deck. These are in the demo sample data, the pilot proposal page (6) and the research data page (1).
+4. Publish only on request. Run `npm run build:research` and `npm run build`, then `wrangler pages deploy dist --project-name ncpwd-impact-mosaic --branch main` after a fresh Cloudflare login.
 
 ---
 
