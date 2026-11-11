@@ -1,3 +1,9 @@
+# README rewritten with live links and screenshots — 11 November 2026
+
+The README is now a project overview: live links for every page, seven screenshots from the live site (`docs/screenshots/*.jpg`, about 1 MB total), what is on the site, the co-creators, what the project does not claim, run/check/rebuild/publish steps and a file map. The previous README (dated work log to 10 November) moved to `docs/README-HISTORY.md`. All live links and file links in the README were checked (HTTP 200 / file present).
+
+---
+
 # Published to Cloudflare Pages — 11 November 2026
 
 Live at **https://impact-mosaic.pages.dev/** (deployment https://a108fcde.impact-mosaic.pages.dev, from commit a537c32 plus the wrangler.toml change). Owner chose the neutral project name `impact-mosaic` over `ncpwd-impact-mosaic` so the address does not suggest an official NCPWD site; `wrangler.toml` renamed accordingly and the Pages project created on the signed-in account. The AI limiter Worker could not be published (Cloudflare requires a workers.dev subdomain, created once by opening the Workers menu in the dashboard), so the Durable Object binding is commented out in `wrangler.toml` with restore steps; `/api/assist` therefore stays unavailable (it already lacked GROQ_API_KEY) and fails closed. Verified live: home 200 with matching asset hash (index-CjXSyjcz.js) and new title line; /research/ and /downloads/pilot-discussion-brief resolve (Pages drops .html with a 308); About shows both co-creators; slide 1 credits both full names; Learning Sandbox network renders; zero page errors; empty POST to /api/assist returns 400. `docs/deployment.md` still names the old project and is historical.
