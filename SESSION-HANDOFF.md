@@ -4,7 +4,6 @@ Owner asked for **Home – Tribute to Gufwan**, then a visible **Possible Projec
 
 ---
 
-
 # Learning Sandbox coherence pass — 11 November 2026
 
 Owner asked whether the sandbox parts were coherent, then authorized all recommended fixes. Done:
@@ -15,6 +14,20 @@ Owner asked whether the sandbox parts were coherent, then authorized all recomme
 - The menu now also highlights Learning Sandbox on the original tool pages; the footer stays hidden on the sign-in page under both addresses.
 
 Verified: `npm.cmd run preflight` (120 tests, typecheck, build); browser-connected (10 audits), browser-fresh-demo (5 audits, production preview 4173), browser-production and accessibility pass. browser-learning-navigation passes everything up to a research check expecting 5 static research articles (now 8, from the separate deck work); its later sandbox no-JS checks were run separately and pass. Browser scripts were updated to drop the removed "Open the app demo" click. Not run: the other earlier-screen browser scripts. No commit, push or deployment.
+
+---
+
+# Current delivery: contents updated to the real slides — 11 November 2026
+
+Owner found the table of contents out of date. It now lists **only the slides that exist**, i.e. every slide except the contents page itself (seven), in four groups:
+- 01 Welcome & Opportunity: slides 1 and 3
+- 02 Our Shared Vision: slide 4
+- 03 Recruitment & Records: slides 5 and 6
+- 04 The Cycle & Thanks: slides 7 and 8
+
+All ten planned placeholders (Understand needs, Match teaching, Support practice, review, prototype, pilot, partnership) were removed, so the earlier 8–17 planned numbering no longer exists. The contents marker now also highlights the cover when you return from it. The retained participation slide object is still in shared source for possible later use. Reading edition and site no-JavaScript contents follow the same data.
+
+Verified: preflight 120/120 tests and build; full browser regression passed 46 accessibility audits with zero errors; all seven contents links were exercised in order with keyboard, focus and return marker. Not committed yet at time of writing; not deployed.
 
 ---
 

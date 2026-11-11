@@ -114,7 +114,7 @@
   };
   function update() {
    const i = deck.getIndices().h;
-   if(i !== contentsIndex) lastContentSlide = i > contentsIndex ? slides[i].id : undefined;
+   if(i !== contentsIndex) lastContentSlide = slides[i].id;
    contentsButton.hidden = i === contentsIndex;
    previous.disabled = i === 0; document.querySelector('#back').disabled = i === 0; selector.value = String(i);
    next.replaceChildren(document.createTextNode(i === slides.length - 1 ? 'Finish' : 'Next '));

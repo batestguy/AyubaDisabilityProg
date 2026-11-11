@@ -208,39 +208,43 @@ try {
  const select=async i=>{await f.locator('#menu-trigger').focus();await f.locator('#menu-trigger').click();await f.locator('#slide-selector').selectOption(String(i));await f.locator('#slide-count').filter({hasText:`${i+1} / 8`}).waitFor();};
  assert.equal(await f.locator('#back').isDisabled(),true);
  const expected=['IMPACT MOSAIC','Table of Contents','Talent is everywhere. Access to learning should be too.','Building on your work: one database, an adaptive cycle',recruitmentSlide.title,databaseSlide.title,cycleSlide.title,'Thank you'];
- // Contents destinations are live only for the five built subsections.
+ // Contents lists every slide except itself: seven live destinations in four groups.
  await select(1);
- assert.equal(await f.locator('.contents-section').count(),6);
+ assert.equal(await f.locator('.contents-section').count(),4);
  assert.equal(await f.locator('.contents-section[open]').count(),0);
- assert.equal(await f.locator('.contents-subsections li a').count(),5);
- assert.equal(await f.locator('.planned-item').count(),10);
- assert.match(await f.locator('.contents-section').nth(0).textContent(),/Adaptive snowball recruitment/i);
+ assert.equal(await f.locator('.contents-subsections li a').count(),7);
+ assert.equal(await f.locator('.planned-item').count(),0,'no planned placeholders');
+ assert.match(await f.locator('.contents-section').nth(2).textContent(),/Adaptive snowball recruitment/i);
+ assert.deepEqual(await f.locator('.contents-subsections li a').evaluateAll(n=>n.map(a=>a.dataset.slide)),[1,3,4,5,6,7,8].map(n=>`research-slide-${n}`),'contents lists every slide in order');
  await audit('contents-collapsed');
  await page.locator('#research-deck').screenshot({path:'output/playwright/research-contents-collapsed.png'});
  const firstGroup=f.locator('.contents-section').nth(0);
  await firstGroup.locator('summary').click();
  await page.locator('#research-deck').screenshot({path:'output/playwright/research-contents-expanded.png'});
  await audit('contents-expanded');
- for(let number=3;number<records.length;number++) { // closing slide is not a contents destination
-  await firstGroup.locator(`li a[data-slide="research-slide-${number}"]`).click();
+ for(const number of [1,3,4,5,6,7,8]) {
+  const link=f.locator(`li a[data-slide="research-slide-${number}"]`);
+  const group=f.locator('.contents-section').filter({has:link});
+  if(!(await group.evaluate(e=>e.open)))await group.locator('summary').click();
+  await link.click();
   assert.equal(await f.locator('#slide-count').innerText(),`${number} / 8`);
   await f.locator('#contents').click();
   assert.equal(await f.locator('#slide-count').innerText(),'2 / 8');
   assert.equal(await f.locator(`li a[data-slide="research-slide-${number}"][aria-current="page"]`).count(),1);
   assert.equal(await f.locator(`li a[data-slide="research-slide-${number}"]`).evaluate(e=>e===document.activeElement),true);
  }
- await firstGroup.locator('.section-start').click();
- assert.equal(await f.locator('#slide-count').innerText(),'3 / 8');
+ await firstGroup.evaluate(e=>{e.open=true;});await firstGroup.locator('.section-start').click();
+ assert.equal(await f.locator('#slide-count').innerText(),'1 / 8');
  await f.locator('#contents').click();
- const plannedGroup=f.locator('.contents-section').nth(2);
- await plannedGroup.locator('summary').click();
+ const thirdGroup=f.locator('.contents-section').nth(2);
+ await thirdGroup.locator('summary').click();
  await firstGroup.locator('summary').evaluate(e=>new Promise(resolve=>setTimeout(resolve,30)));
  assert.equal(await f.locator('.contents-section[open]').count(),1);
- assert.equal(await plannedGroup.locator('.planned-item').count(),1);
+ assert.equal(await thirdGroup.locator('li a').count(),2);
  await page.keyboard.press('ArrowRight');
  assert.equal(await f.locator('#slide-count').innerText(),'2 / 8','contents keyboard does not advance deck');
- await plannedGroup.locator('summary').press('Enter');
- assert.equal(await plannedGroup.getAttribute('open'),null);
+ await thirdGroup.locator('summary').press('Enter');
+ assert.equal(await thirdGroup.getAttribute('open'),null);
  await firstGroup.locator('summary').focus();await page.keyboard.press('Enter');
  assert.equal(await firstGroup.evaluate(e=>e.open),true,'native disclosure keyboard support');
  await firstGroup.locator('summary').press('Enter');
@@ -437,9 +441,9 @@ try {
   assert.equal(await f.locator('.slides > section.present').evaluate(e=>e.scrollWidth<=e.clientWidth+2),true,`contents ${name} width`);
   for(const summary of await f.locator('.contents-section summary').all()) assert.equal(await summary.evaluate(e=>e.scrollWidth<=e.clientWidth+2),true,`contents ${name} summary fits`);
   await page.screenshot({path:`output/playwright/research-contents-${name}.png`});
-  await plannedGroup.locator('summary').click();
-  assert.equal(await f.locator('.slides > section.present').evaluate(e=>e.scrollWidth<=e.clientWidth+2),true,`planned contents ${name} width`);
-  await firstGroup.evaluate(e=>{e.open=false;});await plannedGroup.evaluate(e=>{e.open=false;});
+  await thirdGroup.locator('summary').click();
+  assert.equal(await f.locator('.slides > section.present').evaluate(e=>e.scrollWidth<=e.clientWidth+2),true,`second open group ${name} width`);
+  await firstGroup.evaluate(e=>{e.open=false;});await thirdGroup.evaluate(e=>{e.open=false;});
   await select(4);
   await audit(`mosaic-${name}`);await page.screenshot({path:`output/playwright/research-${name}.png`});
   if(name==='phone-a-plus'){await f.locator('#menu-trigger').click();await f.locator('#deck-large').click();await f.locator('#deck-menu [data-close]').click();}
@@ -453,7 +457,7 @@ try {
  assert.deepEqual(await page.evaluate(()=>({local:{...localStorage},session:{...sessionStorage}})),stored,'stored demo bytes unchanged');
  // Visible central exit returns to the site and preserves records.
  await page.getByRole('button',{name:'Research',exact:true}).click();
- await f.locator('#contents').click();await firstGroup.locator('summary').click();
+ await f.locator('#contents').click();if(!(await firstGroup.evaluate(e=>e.open)))await firstGroup.locator('summary').click();
  await firstGroup.locator('.section-start').click();
  await f.getByRole('button',{name:'Exit presentation',exact:true}).click();
  await page.getByRole('button',{name:'Research',exact:true}).waitFor();
@@ -492,7 +496,7 @@ try {
  await assertDatabaseCopy(np.locator('#static-research'),'site no-JS');
  await np.goto(new URL('research/index.html',origin).href);await np.getByRole('link',{name:'Read all 8 slides without JavaScript'}).click();assert.equal(await np.locator('article').count(),8);assert.equal(await np.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await assertExplanationsIn(np.locator('main'),'standalone no-JS reading');await assertDatabaseCopy(np.locator('main'),'standalone no-JS reading');
  await nojs.close();
- evidence.checks=['seven exact shared explanations; native buttons, Enter/Space, focus trap/restoration, Escape/Close/backdrop, blocked keyboard/swipes','Bayesian and cycle popup desktop/phone/A+/200% fits and scrolls, axe, reading/no-JS/read-aloud parity and print labels/rings/equation','visible central exit preserves records and leaves fullscreen','six-section contents: five live links, ten planned topics, single expansion, keyboard, focus, return/current marker and responsive layout','fullscreen entry/refusal/direct links','eight exact headlines, Nigeria framing with no Plateau wording, closing thank-you with credited 2025 recognition photograph and Impact Mosaic mark, loaded photographs, three-round adaptive snowball dot drawings with key, limit and next-round return and pathway with database/two feedback loops','database quote/date/interview URL and independent photo source; four records, four outcomes, native cylinder and arrows; no invented participant results','database desktop/phone/200%/A+/short-laptop fit, controls and reading/static/speech/print parity','Next/Finish/menu/keyboard/swipe/exit','sources/dialog partner credit/focus/read aloud','OS and manual reduced motion','desktop/phone/200% text','reading/detailed proposal/no-JS/print','cycle completion: five stages with needs met, database hub, restart arc fed by progress evidence and feedback, no invented outcomes; desktop/short-laptop/phone/200%/A+ fit, no overlapping ring boxes, read-aloud/reading/no-JS/print parity','stored demo bytes preserved'];
+ evidence.checks=['seven exact shared explanations; native buttons, Enter/Space, focus trap/restoration, Escape/Close/backdrop, blocked keyboard/swipes','Bayesian and cycle popup desktop/phone/A+/200% fits and scrolls, axe, reading/no-JS/read-aloud parity and print labels/rings/equation','visible central exit preserves records and leaves fullscreen','four-group contents listing all seven other slides, no planned placeholders, single expansion, keyboard, focus, return/current marker and responsive layout','fullscreen entry/refusal/direct links','eight exact headlines, Nigeria framing with no Plateau wording, closing thank-you with credited 2025 recognition photograph and Impact Mosaic mark, loaded photographs, three-round adaptive snowball dot drawings with key, limit and next-round return and pathway with database/two feedback loops','database quote/date/interview URL and independent photo source; four records, four outcomes, native cylinder and arrows; no invented participant results','database desktop/phone/200%/A+/short-laptop fit, controls and reading/static/speech/print parity','Next/Finish/menu/keyboard/swipe/exit','sources/dialog partner credit/focus/read aloud','OS and manual reduced motion','desktop/phone/200% text','reading/detailed proposal/no-JS/print','cycle completion: five stages with needs met, database hub, restart arc fed by progress evidence and feedback, no invented outcomes; desktop/short-laptop/phone/200%/A+ fit, no overlapping ring boxes, read-aloud/reading/no-JS/print parity','stored demo bytes preserved'];
  assert.deepEqual(evidence.errors,[]);assert.deepEqual(evidence.csp,[]);assert.deepEqual(evidence.failed,[]);
  await writeFile('output/playwright/research-verification.json',JSON.stringify(evidence,null,2));console.log('Research presentation checks passed:',evidence);
 }finally{await browser.close();}

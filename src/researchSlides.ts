@@ -32,32 +32,20 @@ export interface ResearchPathway {
 export interface ResearchSubsection { title: string; slideNumber: number; destination?: string }
 export interface ResearchSection { id: string; title: string; subsections: ResearchSubsection[] }
 export const researchSections: ResearchSection[] = [
- { id: 'section-1', title: 'Our Shared Vision & Recruitment', subsections: [
-  { title: 'Talent is everywhere. Access to learning should be too.', slideNumber: 3, destination: 'research-slide-3' },
-  { title: 'Building on your work: one database, an adaptive cycle', slideNumber: 4, destination: 'research-slide-4' },
+ { id: 'section-1', title: 'Welcome & Opportunity', subsections: [
+  { title: 'Impact Mosaic: connecting people, evidence and accessible learning', slideNumber: 1, destination: 'research-slide-1' },
+  { title: 'Talent is everywhere. Access to learning should be too.', slideNumber: 3, destination: 'research-slide-3' }
+ ]},
+ { id: 'section-2', title: 'Our Shared Vision', subsections: [
+  { title: 'Building on your work: one database, an adaptive cycle', slideNumber: 4, destination: 'research-slide-4' }
+ ]},
+ { id: 'section-3', title: 'Recruitment & Records', subsections: [
   { title: 'Adaptive snowball recruitment', slideNumber: 5, destination: 'research-slide-5' },
-  { title: 'A participant database that guides learning and support', slideNumber: 6, destination: 'research-slide-6' },
-  { title: 'One cycle complete — the next one starts better informed', slideNumber: 7, destination: 'research-slide-7' }
+  { title: 'A participant database that guides learning and support', slideNumber: 6, destination: 'research-slide-6' }
  ]},
- { id: 'section-2', title: 'Understand Skills & Needs', subsections: [
-  { title: "Understand people's skills, interests and learning needs", slideNumber: 8 }
- ]},
- { id: 'section-3', title: 'Match Teaching', subsections: [
-  { title: 'Connect people with suitable teaching', slideNumber: 9 }
- ]},
- { id: 'section-4', title: 'Support Practice', subsections: [
-  { title: 'Participation needs more than registration.', slideNumber: 10 }
- ]},
- { id: 'section-5', title: 'Review the Cycle & Design a Pilot for Nigeria', subsections: [
-  { title: 'Review progress, update records and adapt', slideNumber: 11 },
-  { title: 'See the working prototype', slideNumber: 12 },
-  { title: 'Agree a focused pilot in Nigeria', slideNumber: 13 },
-  { title: 'Decide what success means', slideNumber: 14 },
-  { title: 'Move forward when each stage is ready', slideNumber: 15 }
- ]},
- { id: 'section-6', title: 'Build the Partnership', subsections: [
-  { title: 'Build the team around the work', slideNumber: 16 },
-  { title: 'Three agreements to begin', slideNumber: 17 }
+ { id: 'section-4', title: 'The Cycle & Thanks', subsections: [
+  { title: 'One cycle complete — the next one starts better informed', slideNumber: 7, destination: 'research-slide-7' },
+  { title: 'Thank you', slideNumber: 8, destination: 'research-slide-8' }
  ]}
 ];
 
@@ -230,7 +218,7 @@ export const researchSlides: ResearchSlide[] = [
     "layout": "contents",
     "title": "Table of Contents",
     "points": researchSections.map(section => section.title),
-    "note": "Expand a section to see its subsections. Slides 3–7 are available, followed by a closing thank-you slide. The remaining cycle stages, prototype, pilot and partnership are planned; later numbering is provisional.",
+    "note": "Expand a section to see its slides. Every slide in this presentation is listed; select a title to go to it.",
     "images": []
   },
   {
@@ -379,7 +367,7 @@ export const researchSlides: ResearchSlide[] = [
 
 ];
 
-// Preserved unchanged for the planned Support practice slide (position 10).
+// Preserved unchanged for a possible future Support practice slide (not in the current contents).
 export const retainedParticipationSlide: ResearchSlide = {
     "layout": "split",
     "title": "Participation needs more than registration.",

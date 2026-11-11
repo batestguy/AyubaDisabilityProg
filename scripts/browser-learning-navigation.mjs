@@ -166,7 +166,7 @@ try {
  assert.deepEqual(await nojs.getByRole('navigation', { name: 'Main navigation' }).getByRole('link').allTextContents(), ['Home – Tribute to Gufwan', 'Research & Data Collection', 'Learning Sandbox', 'About']);
  assert.doesNotMatch(await nojs.locator('#static-explore').innerText(), /sampling|Bayesian|snowball/i);
  assert.equal(await nojs.locator('#static-research .sampling-outline[open]').count(), 1);
- assert.equal(await nojs.locator('#static-research .research-linear article').count(), 5);
+ assert.equal(await nojs.locator('#static-research .research-linear article').count(), 8);
  assert.equal(await nojs.locator('#static-app-demo').count(), 0);
  for (const section of ['#static-explore']) {
   assert.equal(await nojs.locator(`${section} .sandbox-artwork`).count(), 0);
