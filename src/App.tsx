@@ -291,27 +291,6 @@ export default function App() {
           </select>
         </label>
       </header>
-      <div className="accessbar">
-        <span>
-          Independent showcase · Fictional app data · No assumed NCPWD endorsement
-        </span>
-        <div>
-          <button aria-pressed={large} onClick={() => setLarge(!large)}>
-            A+ Text
-          </button>
-          <button aria-pressed={reduce} onClick={() => setReduce(!reduce)}>
-            Reduce motion
-          </button>
-          <button
-            onClick={() =>
-              read(document.getElementById("main")?.innerText || "")
-            }
-          >
-            Read aloud
-          </button>
-          <button onClick={() => speechSynthesis?.cancel()}>Stop</button>
-        </div>
-      </div>
       {lang !== "en" && (
         <p className="translation-note" role="note">
           Experimental, unreviewed translation. Sample lessons, assessments and
@@ -1194,7 +1173,7 @@ export default function App() {
         <div>
           <strong>IMPACT MOSAIC</strong>
           <p>
-            A proposal by Jerry Bannister Zachary.
+            A proposal by Jerry Bannister Zachary and Yusuf Strong Mashat.
             <br />
             Designed for inclusion. Built for a conversation.
           </p>

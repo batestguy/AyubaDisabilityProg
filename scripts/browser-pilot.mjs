@@ -39,10 +39,10 @@ try {
   audits.push(`research-${mode}`);
   await page.screenshot({ path: `output/playwright/pilot-${mode}.png`, fullPage: true });
  }
- await page.getByRole('button', { name: 'Reduce motion', exact: true }).click();
+ await page.emulateMedia({reducedMotion:'reduce'});
  assert.equal(await page.locator('.sampling-mini-group').first().evaluate(e => getComputedStyle(e).animationName), 'none');
  await page.goto(new URL(briefPath, target).href);
- await page.getByRole('heading', { name: 'Plateau Pilot Discussion Brief', exact: true }).waitFor();
+ await page.getByRole('heading', { name: 'Pilot Discussion Brief', exact: true }).waitFor();
  assert.ok((await page.locator('main').innerText()).includes(objective));
  for (const width of [1440, 390]) {
   await page.setViewportSize({ width, height: 900 });
@@ -55,19 +55,19 @@ try {
  await page.evaluate(() => document.documentElement.style.fontSize = '');
  await page.emulateMedia({ media: 'print' });
  assert.equal(await page.locator('header .proposal-links').isVisible(), false);
- await page.pdf({ path: 'output/playwright/plateau-pilot-discussion-brief.pdf', preferCSSPageSize: true, printBackground: true });
+ await page.pdf({ path: 'output/playwright/pilot-discussion-brief.pdf', preferCSSPageSize: true, printBackground: true });
  await page.screenshot({ path: 'output/playwright/pilot-brief-print.png', fullPage: true });
  const nojsContext = await browser.newContext({ javaScriptEnabled: false });
  const nojs = await nojsContext.newPage();
  await nojs.goto(target);
  await nojs.locator('#static-home .pilot-proposal').getByRole('link', { name: /research plan/ }).click();
  assert.equal(new URL(nojs.url()).hash, '#static-research');
- assert.equal(await nojs.locator('#static-research .sampling-methods').count(), 1);
+ assert.equal(await nojs.locator('#static-research .sampling-methods[aria-describedby="sampling-timing-note"]').count(), 1);
  await nojs.setViewportSize({ width: 390, height: 900 });
  await nojs.evaluate(() => document.documentElement.style.fontSize = '200%');
  assert.equal(await nojs.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
  await nojs.locator('#static-research').getByRole('link', { name: /Discussion Brief/ }).click();
- await nojs.getByRole('heading', { name: 'Plateau Pilot Discussion Brief' }).waitFor();
+ await nojs.getByRole('heading', { name: 'Pilot Discussion Brief' }).waitFor();
  assert.equal(await nojs.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
  await nojs.getByRole('link', { name: /learning sandbox/ }).click();
  assert.equal(new URL(nojs.url()).hash, '#static-explore');

@@ -143,8 +143,8 @@ try {
   for (const name of ['Overview', 'Learners']) { await adminNav(page, name); assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `${name} overflow ${width}`); }
   await button(page, 'View learner details').click(); assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `detail overflow ${width}`);
  }
- await button(page, 'A+ Text').click(); assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'global larger-text detail overflow');
- await audit(page, 'admin-mobile-large-detail'); await page.screenshot({ path: 'output/playwright/admin-learner-mobile.png', fullPage: true }); await page.screenshot({ path: 'output/playwright/admin-learner-mobile-view.png' }); await button(page, 'A+ Text').click();
+ await page.evaluate(() => document.documentElement.classList.add('large')); assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'global larger-text detail overflow');
+ await audit(page, 'admin-mobile-large-detail'); await page.screenshot({ path: 'output/playwright/admin-learner-mobile.png', fullPage: true }); await page.screenshot({ path: 'output/playwright/admin-learner-mobile-view.png' }); await page.evaluate(() => document.documentElement.classList.remove('large'));
  await role(page, 'User').focus(); await page.keyboard.press('ArrowRight'); assert.equal(await role(page, 'Administration').evaluate(el => el === document.activeElement), true);
  await role(page, 'User').click(); await button(page, 'Reset demo').click(); await button(page, 'Keep my demo').click(); assert.equal((await readSession(page)).user.profile.name, 'Updated learner');
  await button(page, 'Reset demo').click(); await button(page, 'Clear user demo records').click();

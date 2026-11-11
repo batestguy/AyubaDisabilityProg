@@ -1126,3 +1126,15 @@ header nav button { transition: none; }
 .about-creator-role{margin:2px 0 12px;font-weight:700;color:#14532D}
 .about-creator p{max-width:560px}
 @media(max-width:760px){.about-creators-grid{grid-template-columns:1fr;gap:32px}.about-creator img{max-width:300px}}
+.about-creator-links{display:flex;flex-wrap:wrap;gap:8px 20px;margin:4px 0 0;padding:0;list-style:none}
+.about-creator-links a{font-weight:700;color:#14532D}
+.about-creator-connect{margin-bottom:4px;font-weight:600}
+.about-creator a,.about-contact a{color:#14532D;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.about-contact{margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}
+.about-creator a,.about-contact a,.about-overview a{color:#14532D;font-weight:700;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
+.about-contact{margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}
+.about-contact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 40px}
+.about-contact h3{margin:0 0 6px;font-size:1.15rem;letter-spacing:0}
+.about-contact ul{margin:0;padding:0;list-style:none;line-height:1.8}
+@media(max-width:760px){.about-contact-grid{grid-template-columns:1fr}}
+.about-contact>h2{font-size:1.75rem;letter-spacing:-.03em;margin-bottom:8px}

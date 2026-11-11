@@ -158,9 +158,9 @@ for (const width of [1440, 768, 390]) {
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `${name} overflow ${width}`);
   }
 }
-await nav('Overview'); await button('A+ Text').click();
+await nav('Overview'); await page.evaluate(() => document.documentElement.classList.add('large'));
 assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, 'enlarged mobile overview');
-await page.screenshot({ path: 'output/playwright/user-demo-mobile.png', fullPage: true }); await button('A+ Text').click();
+await page.screenshot({ path: 'output/playwright/user-demo-mobile.png', fullPage: true }); await page.evaluate(() => document.documentElement.classList.remove('large'));
 await button('Sign out of demo').click(); await button('Resume demo').click();
 await page.reload(); await open();
 stored = await page.evaluate(() => JSON.parse(sessionStorage.getItem('mosaic-user-demo-v1')).user);

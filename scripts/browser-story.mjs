@@ -47,10 +47,10 @@ await page.screenshot({path:'output/playwright/cinematic-dialog.png'});
 await page.keyboard.press('Escape');
 assert.equal(await page.getByRole('dialog').count(),0);
 assert.equal(await first.evaluate(e=>e===document.activeElement),true);
-await page.getByRole('button',{name:'Reduce motion',exact:true}).click();
+await page.emulateMedia({reducedMotion:'reduce'});
 assert.equal(await page.locator('.scene-layer').first().evaluate(e=>getComputedStyle(e).transitionDuration),'0s');
 assert.equal(await page.locator('.scene-image').evaluate(e=>getComputedStyle(e).transform),'none');
-await page.getByRole('button',{name:'Reduce motion',exact:true}).click();
+await page.emulateMedia({reducedMotion:'no-preference'});
 await page.emulateMedia({reducedMotion:'reduce'});
 await page.emulateMedia({reducedMotion:'no-preference'});
 for (const width of [1440,1024,768,480,390]) {
@@ -223,7 +223,7 @@ await page.getByRole('button',{name:'About',exact:true}).click();
 assert.equal(await page.locator('.empty-portrait,.empty-biography').count(),0);
 assert.equal(await page.getByRole('heading',{name:'About Impact Mosaic',exact:true}).count(),1);
 assert.deepEqual(await page.locator('.about-creator h3').allTextContents(),['Jerry Bannister Zachary','Yusuf Strong Mashat']);
-await page.getByRole('button',{name:'A+ Text',exact:true}).click();
+await page.evaluate(() => document.documentElement.classList.add('large'));
 for (const width of [390,768,1440]) {
  await page.setViewportSize({width,height:900});
  for (const section of ['Learning Sandbox','About']) {
@@ -231,7 +231,7 @@ for (const width of [390,768,1440]) {
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,`${section} enlarged-text overflow at ${width}`);
  }
 }
-await page.getByRole('button',{name:'A+ Text',exact:true}).click();
+await page.evaluate(() => document.documentElement.classList.remove('large'));
 await page.getByRole('button',{name:'Home – Tribute to Gufwan',exact:true}).click();
 await page.locator('.photo-carousel').waitFor();
 assert.deepEqual(errors,[]);

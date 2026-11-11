@@ -30,7 +30,7 @@ function SamplingIllustration({ kind }: { kind: string }) {
 export function ResearchDataCollectionPage() {
  return <div className="showcase research-page">
   <section className="section public-page sampling-framework" aria-labelledby="sampling-heading">
-   <div className="site-page-heading"><div><h1>Research &amp; Data Collection.</h1><p>A proposed Plateau pilot: reliable disability data connected to accessible online teaching.</p></div></div>
+   <div className="site-page-heading"><div><h1>Research &amp; Data Collection.</h1><p>A proposed pilot: reliable disability data connected to accessible online teaching.</p></div></div>
    <ResearchPresentation/>
    <Foundation/>
    <TeamContribution/>

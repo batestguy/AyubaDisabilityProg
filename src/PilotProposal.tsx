@@ -1,8 +1,8 @@
 // Shared by the live pages, generated no-JavaScript story and printable brief.
 export const pilot = {
  objective: 'Two statisticians helping build a reliable database of people with disabilities and connect participants to accessible online teaching, building on Gufwan’s foundation.',
- team: 'Jerry Bannister Zachary and Strong propose to contribute recruitment design, data quality checks, coverage monitoring and evaluation. We are two statisticians with a working prototype.',
- scope: 'Plateau is our proposed starting location for a limited pilot. Exact communities, eligibility, participant numbers and courses will be agreed during technical scoping.',
+ team: 'Jerry Bannister Zachary and Yusuf Strong Mashat propose to contribute recruitment design, data quality checks, coverage monitoring and evaluation. We are two statisticians with a working prototype.',
+ scope: 'The starting location for a limited pilot will be agreed with partners. Exact communities, eligibility, participant numbers and courses will be agreed during technical scoping.',
  status: 'This is an independent proposal. Community access, facilitators, funding, secure operational infrastructure and accommodation support remain to be secured. No endorsement, delivery partnership or access to existing beneficiary records is assumed.',
  timing: 'An approximately 20-week sequence is illustrative. The clock starts only after agreed readiness conditions: responsibilities, community permissions, consent and data arrangements, staffing, funding, secure collection and access support. Stages overlap and may take longer. Completion reviews depend on a full course cycle; registration and national expansion remain open-ended.',
  outputs: 'Proposed evidence outputs: a checked register with a duplicate-review log; recruitment and coverage summaries with an outreach-change log; learner matching and waiting lists; cohort attendance and skills summaries; and a review of access barriers, participant feedback and costs. Share only agreed aggregate reporting, with small-group disclosure risks reviewed.',
@@ -15,7 +15,7 @@ export const pilot = {
  ],
  decisions: [
   'Nominate a technical counterpart for a scoping discussion.',
-  'Identify potential community introductions in Plateau, subject to their agreement.',
+  'Identify potential community introductions, subject to their agreement.',
   'Agree pilot-scoping requirements: communities, eligibility, courses, capacity, data governance, costs and readiness.'
  ]
 };
@@ -38,11 +38,11 @@ function Cite({ id }: { id: string }) {
 }
 
 export function ProposalLinks() {
- return <p className="proposal-links"><a href="/?page=research-reading#static-research">Read the research plan →</a> <a href="/downloads/plateau-pilot-discussion-brief.html">Plateau Pilot Discussion Brief →</a> <a href="/?page=explore#static-explore">Explore the learning sandbox →</a></p>;
+ return <p className="proposal-links"><a href="/?page=research-reading#static-research">Read the research plan →</a> <a href="/downloads/pilot-discussion-brief.html">Pilot Discussion Brief →</a> <a href="/?page=explore#static-explore">Explore the learning sandbox →</a></p>;
 }
 
 export function HomeProposal() {
- return <section className="section pilot-proposal" aria-labelledby="home-proposal-heading"><p className="eyebrow">AN INDEPENDENT PROPOSAL · PLATEAU FIRST</p><h2 id="home-proposal-heading">Building on this foundation.</h2><p className="lead">{pilot.objective}</p><p>Voluntary registration would help us understand learning interests and access needs, then match willing learners with reviewed online facilitators and follow up on participation and skills.</p><p>{pilot.scope}</p><p>Our immediate request is a technical discussion, community introductions and agreement on pilot-scoping requirements.</p><ProposalLinks/><p className="sampling-source-note">{pilot.status}</p></section>;
+ return <section className="section pilot-proposal" aria-labelledby="home-proposal-heading"><p className="eyebrow">AN INDEPENDENT PROPOSAL</p><h2 id="home-proposal-heading">Building on this foundation.</h2><p className="lead">{pilot.objective}</p><p>Voluntary registration would help us understand learning interests and access needs, then match willing learners with reviewed online facilitators and follow up on participation and skills.</p><p>{pilot.scope}</p><p>Our immediate request is a technical discussion, community introductions and agreement on pilot-scoping requirements.</p><ProposalLinks/><p className="sampling-source-note">{pilot.status}</p></section>;
 }
 
 export function Foundation() {
@@ -59,7 +59,7 @@ export function TeamContribution() {
 }
 
 export function PilotScope({ brief = false }: { brief?: boolean }) {
- return <section className="pilot-scope"><h2>A proposed Plateau pilot.</h2><p className="sampling-intro">{pilot.scope}</p><p className="sampling-intro">Proposed activities: accessible voluntary registration, weekly coverage reviews, facilitator readiness checks, learner matching and supported teaching, followed by cohort review.</p><p className="sampling-intro">{pilot.timing}</p><h3>Three decisions for a first meeting</h3><ol>{pilot.decisions.map(item => <li key={item}>{item}</li>)}</ol>{!brief && <p><a href="/downloads/plateau-pilot-discussion-brief.html">Open the Plateau Pilot Discussion Brief →</a> · Print or save as PDF in your browser.</p>}</section>;
+ return <section className="pilot-scope"><h2>A proposed pilot.</h2><p className="sampling-intro">{pilot.scope}</p><p className="sampling-intro">Proposed activities: accessible voluntary registration, weekly coverage reviews, facilitator readiness checks, learner matching and supported teaching, followed by cohort review.</p><p className="sampling-intro">{pilot.timing}</p><h3>Three decisions for a first meeting</h3><ol>{pilot.decisions.map(item => <li key={item}>{item}</li>)}</ol>{!brief && <p><a href="/downloads/pilot-discussion-brief.html">Open the Pilot Discussion Brief →</a> · Print or save as PDF in your browser.</p>}</section>;
 }
 
 export const proposedMeasures = [
@@ -84,5 +84,5 @@ export function ProposalSources() {
 }
 
 export function PilotBrief() {
- return <><header><p>IMPACT MOSAIC · INDEPENDENT PROPOSAL · 8 NOVEMBER 2026</p><h1>Plateau Pilot Discussion Brief</h1><p>Use your browser’s Print command to print or save as PDF.</p><p className="proposal-links"><a href="/?page=research-reading#static-research">Read the research plan →</a><a href="/?page=explore#static-explore">Explore the learning sandbox →</a></p></header><main id="brief-main"><section><h2>Objective</h2><p>{pilot.objective}</p></section><Foundation/><TeamContribution/><PilotScope brief/><section><h2>Evidence outputs for review</h2><p>{pilot.outputs}</p><p>Agree measurement definitions, denominators and review frequency using the research plan. No results or targets are claimed.</p></section><Readiness/><ProposalSources/></main><footer><a href="https://deerflow.tech" target="_blank" rel="noreferrer">Created By Deerflow</a></footer></>;
+ return <><header><p>IMPACT MOSAIC · INDEPENDENT PROPOSAL · 8 NOVEMBER 2026</p><h1>Pilot Discussion Brief</h1><p>Use your browser’s Print command to print or save as PDF.</p><p className="proposal-links"><a href="/?page=research-reading#static-research">Read the research plan →</a><a href="/?page=explore#static-explore">Explore the learning sandbox →</a></p></header><main id="brief-main"><section><h2>Objective</h2><p>{pilot.objective}</p></section><Foundation/><TeamContribution/><PilotScope brief/><section><h2>Evidence outputs for review</h2><p>{pilot.outputs}</p><p>Agree measurement definitions, denominators and review frequency using the research plan. No results or targets are claimed.</p></section><Readiness/><ProposalSources/></main><footer><a href="https://deerflow.tech" target="_blank" rel="noreferrer">Created By Deerflow</a></footer></>;
 }
