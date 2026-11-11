@@ -22,3 +22,8 @@ __pycache__/
 
 # Checked-in Quarto runtime; keep the application build /dist ignored.
 !/public/research/research_files/libs/revealjs/dist/
+
+# Private source documents with personal contact details (never commit)
+*CURRICULUM VITAE*.docx
+ATBU NUC ATTACHMENT.docx
+WhatsApp Image *.jpeg

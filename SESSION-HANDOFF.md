@@ -1,3 +1,18 @@
+# Session closeout — 11 November 2026
+
+All work from this session is committed and pushed (latest: README rewrite). The site is live at **https://impact-mosaic.pages.dev/**; a shareable 8-page PDF of the slides is in the owner's Downloads folder (Impact-Mosaic-Slides.pdf, not in the repository). The two CVs and Strong's original photo stay out of git and are now listed in `.gitignore`. Local development and preview servers were stopped.
+
+This session, in order: Learning Sandbox made one coherent entry (older demo layers hidden at `?workspace=earlier`); menu regrouped under Possible Projects; research contents committed; sandbox artwork replaced by the roles network (Hauwa story added then removed); About page co-creator profiles, links and contacts; Plateau removed as pilot location; top strip, language picker, home proposal block and sources list removed; slides credit both co-creators; Cloudflare publish; README rewritten.
+
+**Open items for the owner**
+1. Confirm Strong agrees to his phone number and email being public (now live).
+2. Click the chess, ResearchGate, Zenodo and disability-assistant links once to confirm they open.
+3. Confirm Jerry's name order (site uses Jerry Bannister Zachary; CV file name reads Jerry Zachary Bannister).
+4. To enable the AI helper: open the Cloudflare dashboard Workers menu once, deploy `worker/`, restore the binding in `wrangler.toml`, set GROQ_API_KEY as a secret, redeploy.
+5. The roles diagram lists some features (scorecards, portfolios, report downloads) that exist only in the hidden earlier screens; consider bringing report downloads into the current Administration view.
+
+---
+
 # README rewritten with live links and screenshots — 11 November 2026
 
 The README is now a project overview: live links for every page, seven screenshots from the live site (`docs/screenshots/*.jpg`, about 1 MB total), what is on the site, the co-creators, what the project does not claim, run/check/rebuild/publish steps and a file map. The previous README (dated work log to 10 November) moved to `docs/README-HISTORY.md`. All live links and file links in the README were checked (HTTP 200 / file present).
