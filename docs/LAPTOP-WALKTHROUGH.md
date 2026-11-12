@@ -6,7 +6,7 @@ The video lasts approximately 11 minutes 16 seconds. It shows Home, all eight re
 
 Recording used the current production build in a fresh Chrome context. The website occupies the top of a 1600 × 900 recording stage; a separate caption band sits below it. The original local export is 1920 × 1080 at 30 frames per second. At the user's request, the public download is compressed to 1280 × 720 at 30 frames per second and 28.1 MB (28,100,647 bytes), using H.264 video, AAC stereo audio and fast-start playback. The full running time, captions and content are retained. Browser profiles and saved owner records were preserved. No application interface, schema or production dependency was changed for the recording.
 
-Music uses the owner-supplied “Cheer Up Song – Panam Percy Paul” excerpt from 0:55 to 1:18, repeated at its original speed with one-second crossfades and opening/closing fades. Final audio measured approximately −24.09 LUFS, with a true peak of −11.17 dBTP. The original audio file is not included in the repository.
+Music uses the owner-supplied “Cheer Up Song – Panam Percy Paul” excerpt from 0:55 to 1:18, repeated at its original speed with one-second crossfades and opening/closing fades. The compact download measured approximately −24.13 LUFS, with a true peak of −9.64 dBTP. The original audio file is not included in the repository.
 
 ## Verification
 
@@ -15,6 +15,7 @@ Music uses the owner-supplied “Cheer Up Song – Panam Percy Paul” excerpt f
 - The finished file was decoded completely without errors or timing warnings.
 - Chapter review sheets and full-resolution frames were inspected. Every author biography paragraph was verified fully visible during the About sequence.
 - Separate captions were aligned to the captions actually captured in the picture, accounting for browser capture timing.
+- Compact download: 28,100,647 bytes; complete decoding passed, and a separate visual review confirmed readable captions, biography text and slide labels at native 720p. Uploaded MP4, SRT and chapter files matched their local SHA-256 checksums.
 - A real-time human watch of the whole video was not performed; checks used complete decoding, timing analysis and sampled visual review.
 
 The release contains the final three deliverables. Raw recordings, intermediate encodes, screenshots, sample browser state and verification receipts remain under the ignored `output/` directory.
