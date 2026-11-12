@@ -1,3 +1,21 @@
+# Slide reading summaries shortened — 12 November 2026
+
+Owner requested concise, precise and coherent “Read slide text” panels. Slides 3–8 now use two or three connected paragraphs, 41–65 words per summary, preserving the essential cycle/database/recruitment meanings and proposal qualifications. Full details remain linked; sources/photo credits are in a nested disclosure. Screenshot alt text now describes these as key points. Desktop slides are unchanged.
+
+Build/type check and regenerated capture clipping checks passed. Focused checks at 320/390/430px passed for all six summaries: paragraph/word limits, full-details destinations, source disclosure, six clean axe audits and desktop live-slide preservation. Production deployment bb93b5b0 at https://impact-mosaic.pages.dev/; live HTML and capture manifest match the build. Same six-panel checks repeated on production. Copy-only revision: unit tests were not repeated (120 passed for the preceding implementation).
+
+---
+
+# Mobile access implemented and published — 12 November 2026
+
+Approved plan completed. Slides 3–8 use high-resolution desktop captures at <=700px, with 300% tap-to-enlarge viewing, zoom/pinch/scroll, trapped/restored focus and full text/diagram/source equivalents. Cover and contents stay live; narrow-screen controls occupy separate rows. Every build regenerates the deck and captures with clipping checks. Home tap targets/enlarged headings and the Administration enlarged heading were fixed; no sample records, role logic, photographs, wording or removed toolbars changed. Printed slides remain eight pages, with intended white cover text restored.
+
+Verified: preflight (120 tests, type check/build), 128 slide/layout/text checks and 17 axe audits; final 300% viewer checked in 10 portrait/landscape/enlarged layouts plus axe; 85 public/current-role views with passing evidence; existing research/print, story, connected, pilot and production CSP scripts passed. Fresh viewer review findings fixed and independently rechecked. Captures and printed slides visually inspected. Full evidence and limits: `.agent/mobile-access/report.md` and `pages-report.md`.
+
+Published from uncommitted working tree based on 89ad910 to Cloudflare **impact-mosaic**, final deployment **3d595668**. Production https://impact-mosaic.pages.dev/ verified: app asset, deck HTML/JS/CSS, manifest and all six image bytes match dist; 390px/1440px public-page and presentation smoke passed with 10 clean axe audits and no script/CSP errors. No Git commit or push performed for this task. Chrome simulated phone checks are not formal accessibility certification.
+
+---
+
 # Scholarship wording follow-up — 12 November 2026
 
 Added prestigious to the PTDF scholarship sentence at the owner's request: was awarded the prestigious Petroleum Technology Development Fund (PTDF) PhD Scholarship for 2026/2027. Production build and type check passed; no repeat unit tests for this one-word copy edit (120 tests passed for the preceding profile update). Published to impact-mosaic, deployment ccc684a0. Verified live About HTTP 200, matching index-BgU9TwOM.js asset and exact updated scholarship wording in served bundle. Owner requested commit and push of the profile changes, generated no-JavaScript index.html and these publishing notes to origin/main. Prior entry's uncommitted status describes that earlier checkpoint.

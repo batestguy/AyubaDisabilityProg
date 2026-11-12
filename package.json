@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:research": "node scripts/build-research-presentation.mjs",
+    "build:research": "node scripts/build-research-presentation.mjs && node scripts/capture-research-slides.mjs",
     "dev": "vite --host 127.0.0.1",
-    "build": "node scripts/generate-static-story.mjs && tsc --noEmit && vite build",
+    "build": "npm run build:research && node scripts/generate-static-story.mjs && tsc --noEmit && vite build",
     "typecheck": "tsc --noEmit",
     "test": "node scripts/run-tests.mjs",
     "preview": "vite preview --host 127.0.0.1",

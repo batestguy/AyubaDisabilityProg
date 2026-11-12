@@ -18,6 +18,16 @@ Impact Mosaic is an independent website by two Nigerian statisticians. It brings
 
 Hosted free on Cloudflare Pages. Source: [github.com/batestguy/AyubaDisabilityProg](https://github.com/batestguy/AyubaDisabilityProg).
 
+## Download the walkthrough
+
+[**Download the captioned laptop walkthrough (MP4, 11 minutes 16 seconds)**](https://github.com/batestguy/AyubaDisabilityProg/releases/download/walkthrough-2026-11-12/Impact-Mosaic-Laptop-Walkthrough.mp4)
+
+The video covers Home, all eight research slides, the detailed proposal and discussion brief, and an overview of the Learning Sandbox roles. It finishes with a two-minute About section showing both co-creators' complete profiles side by side. Explanations appear as written captions, with quiet background music and no spoken narration.
+
+[English subtitles (SRT)](https://github.com/batestguy/AyubaDisabilityProg/releases/download/walkthrough-2026-11-12/Impact-Mosaic-Laptop-Walkthrough.en.srt) · [Chapter timestamps](https://github.com/batestguy/AyubaDisabilityProg/releases/download/walkthrough-2026-11-12/Chapters.txt) · [Release page](https://github.com/batestguy/AyubaDisabilityProg/releases/tag/walkthrough-2026-11-12)
+
+The video is a GitHub release download. Recording and verification notes are in [the walkthrough documentation](docs/LAPTOP-WALKTHROUGH.md).
+
 ## Screenshots
 
 Taken from the live site on 11 November 2026.
@@ -94,6 +104,8 @@ Browser checks use an installed Google Chrome through Playwright. With the devel
 node scripts/browser-learning-navigation.mjs
 node scripts/browser-connected.mjs
 node scripts/browser-research-presentation.mjs
+node scripts/browser-mobile-research.mjs # port 4175, or set STORY_URL
+node scripts/browser-mobile-pages.mjs    # port 4175, or set MOBILE_URL
 node scripts/browser-pilot.mjs
 node scripts/browser-story.mjs
 node scripts/browser-production.mjs
@@ -104,7 +116,7 @@ Screenshots and accessibility results are written under `output/playwright` (not
 
 ## Rebuilding the slides and the PDF
 
-The slide content lives in `src/researchSlides.ts`.
+The slide content lives in `src/researchSlides.ts`. Building requires Quarto and Google Chrome in addition to Node.js. Every production build regenerates the presentation and six mobile images, so a content or style change cannot silently ship stale slide images.
 
 ```powershell
 npm.cmd run build:research   # rebuilds presentation/research.qmd and public/research/
@@ -112,6 +124,8 @@ npm.cmd run build            # rebuilds the site, including the no-JavaScript ve
 ```
 
 To save the slides as a shareable PDF, open `/research/index.html` in Chrome and print to PDF. The slides have a tested print layout of one slide per A4 landscape page.
+
+At widths up to 700px, slides 3–8 use 3200 × 2000 desktop captures from `public/research/mobile/`. They initially fit the screen; tap or press Enter to open the scrollable viewer at 300% zoom. Use its zoom buttons, pinch, or the +/−/0 keys; Escape or Close returns focus to the image. “Read slide text” gives concise, connected summaries of the essential points, with full slide details linked separately and source links in an expandable list. Cover and contents remain live. Desktop and printing retain the live slides. `scripts/capture-research-slides.mjs` serves the generated deck locally, rejects clipped captures, and writes a source fingerprint with the images. It does not need a running development server.
 
 ## Publishing
 

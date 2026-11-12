@@ -446,3 +446,8 @@ Added distinct learner adaptive-snowball and facilitator volunteering/recruitmen
 ## 10 November 2026 — Database slide larger typography
 
 CSS-only readability revision. Main record/outcome labels17.6/16px on actual1280×535; role/detail16.8/13.6px. Six final desktop/laptop geometries fit and clear controls. Three focused axe audits (actual laptop, phone, phone200%) pass, no horizontal overflow. Six-page PDF text/render retains facilitator and support labels with line wrapping. Existing full36-audit baseline retained; no redundant full suite/model-test rerun for font sizes. Build/typecheck and whitespace checks complete handoff.
+
+
+## 12 November 2026 — mobile access release
+
+Final Cloudflare deployment: 3d595668, project impact-mosaic, https://impact-mosaic.pages.dev/. Source: uncommitted working tree based on 89ad910. Preflight passed (120 tests, type check and production build); 128 slide/layout/text checks and 17 axe audits; 85 public/current-role views with passing evidence, and focused final 300% viewer recheck passed. Existing research/print, story, connected, pilot and production smoke passed. Eight printed slide pages retained. Live 390px/1440px pages and slide viewer passed with 10 clean axe audits and no script/CSP errors. App asset and all presentation files/six image bytes match dist. Evidence/limits: ../.agent/mobile-access/report.md.

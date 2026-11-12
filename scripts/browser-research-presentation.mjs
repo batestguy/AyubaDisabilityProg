@@ -256,7 +256,7 @@ try {
   assert.equal(await f.locator('.slides>section:not([inert])').count(),1);
   if(i===3){
    assert.equal(await f.locator('.present .pathway-steps>li').count(),5);
-   assert.equal(await f.locator('.present img').count(),2);
+   assert.equal(await f.locator('.present > .composition img').count(),2);
    assert.equal(await f.locator('.present .journey-art').count(),5);
    assert.equal(await f.locator('.present .foundation-photos figure').count(),2);
    for(const photo of await f.locator('.present .foundation-photos img').all()) assert.equal(await photo.evaluate(e=>e.naturalWidth>=950),true,'foundation collage uses original resolution');
@@ -321,8 +321,8 @@ try {
    assert.equal(await f.locator('.present .recruitment-purpose').evaluate(e=>e.getBoundingClientRect().bottom<=e.nextElementSibling.getBoundingClientRect().top),true,'question and answer lead directly into recruitment graphic');
    assert.equal(await f.locator('.present footer').count(),0,'detached footer question removed');
    await assertRecruitmentFlow('desktop');
-   assert.equal(await f.locator('.present img').count(),1,'recruitment uses one documentary photograph');
-   assert.equal(await f.locator('.present img').evaluate(e=>e.naturalWidth>=950),true,'recruitment uses original resolution');
+   assert.equal(await f.locator('.present > .composition img').count(),1,'recruitment uses one documentary photograph');
+   assert.equal(await f.locator('.present > .composition img').evaluate(e=>e.naturalWidth>=950),true,'recruitment uses original resolution');
    await checkBayesian('desktop',true);
   }
   if(i===5)await assertDatabaseFlow('desktop');
@@ -331,11 +331,11 @@ try {
    const text=flat(await f.locator('.slides > section.present').innerText());
    for(const item of closingText)assert.ok(text.includes(item),`closing shows: ${item}`);
    assert.match(text,/not an endorsement of this proposal/i,'closing photo limit visible');
-   assert.equal(await f.locator('.present img').count(),2,'closing photo and Impact Mosaic artwork');
-   assert.equal(await f.locator(`.present a[href="${closingSlide.images[0].source}"]`).count(),1,'closing photo source linked');
+   assert.equal(await f.locator('.present > .composition img').count(),2,'closing photo and Impact Mosaic artwork');
+   assert.equal(await f.locator(`.present > .composition a[href="${closingSlide.images[0].source}"]`).count(),1,'closing photo source linked');
   }
 
-  for(const img of await f.locator('.present img').all())assert.equal(await img.evaluate(e=>e.complete&&e.naturalWidth>0),true);
+  for(const img of await f.locator('.present > .composition img').all())assert.equal(await img.evaluate(e=>e.complete&&e.naturalWidth>0),true);
   await page.waitForTimeout(230);
   assert.equal(await f.locator('.slides > section.present').evaluate(e=>e.scrollHeight<=e.clientHeight+2),true,`desktop fits ${i+1}`);
   await audit(`mosaic-desktop-${i+1}`);
@@ -412,7 +412,8 @@ try {
   }),true,`${name} closing content clears controls`);
   await audit(`closing-${name}`);
  }
- for(const [width,size,name] of [[390,'','phone'],[390,'200%','phone-200'],[1440,'200%','desktop-200'],[390,'','phone-a-plus']]){
+ // Mobile image/viewer behavior is exercised by browser-mobile-research.mjs.
+ for(const [width,size,name] of [[1440,'200%','desktop-200']]){
   await page.setViewportSize({width,height:900});
   await f.locator('html').evaluate((e,size)=>e.style.fontSize=size,size);
   if(name==='phone-a-plus'){await f.locator('#menu-trigger').click();await f.locator('#deck-large').click();await f.locator('#deck-menu [data-close]').click();}

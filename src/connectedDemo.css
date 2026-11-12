@@ -40,4 +40,5 @@
 .cd-sidebar nav button{transition:none}
 .cd-role-back{border:0;padding:0;background:transparent;text-decoration:underline;text-underline-offset:4px}
 .cd-role-back{display:inline-block;margin-bottom:8px;font-size:.9rem}
+.cd-welcome h3{overflow-wrap:anywhere}
 @media(max-width:700px){.cd-role-entry .cd-role-option{display:grid;grid-template-columns:48px minmax(0,1fr);min-height:144px;padding:18px;gap:16px}.cd-role-icon{width:48px;height:48px}.cd-role-content>strong{font-size:1.4rem}.cd-role-description{font-size:.9rem}.cd-role-content{gap:8px}.cd-role-continue{padding-top:10px}}

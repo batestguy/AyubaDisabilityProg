@@ -31,7 +31,8 @@ const CountWord = countWord[0].toUpperCase() + countWord.slice(1);
 const controls = `<button id="back" class="back-button" disabled><span aria-hidden="true">←</span> Back</button><button id="exit-presentation" class="exit-presentation-button">Exit presentation</button><button id="contents" class="contents-button">Contents</button><button id="menu-trigger" class="menu-trigger" aria-haspopup="dialog" aria-controls="deck-menu">Menu</button><span id="slide-count" class="deck-count" role="status" aria-live="polite">1 / ${slides.length}</span><button id="next" class="next-button">Next <span aria-hidden="true">→</span></button>
 <dialog id="deck-menu" aria-labelledby="menu-title"><h2 id="menu-title">Presentation menu</h2><button data-close>Close menu</button><nav aria-label="Presentation options"><button id="previous">Previous slide</button><label>Choose a slide<select id="slide-selector">${slides.map((s, i) => `<option value="${i}">${i + 1}. ${esc(s.title)}</option>`).join('')}</select></label><button id="fullscreen">Full screen</button><a href="reading.html" target="_top">Reading edition / print</a><a href="/?page=research-reading" target="_top">Detailed Research proposal</a><button id="sources">Sources and full image</button><details><summary>Accessibility options</summary><button id="deck-large" aria-pressed="false">A+ Text</button><button id="deck-motion" aria-pressed="false">Reduce motion</button><button id="deck-read">Read current slide aloud</button><button id="deck-stop">Stop reading</button><span id="speech-status" role="status"></span></details><button id="exit">Exit presentation</button></nav></dialog>
 <dialog id="explanation-dialog" aria-labelledby="explanation-title" aria-describedby="explanation-text"><div class="thought-content"><h2 id="explanation-title"></h2><p id="explanation-text"></p><details id="explanation-symbols" hidden><summary>What the symbols mean</summary><p id="explanation-symbol-text"></p></details><p id="explanation-status" hidden></p><button data-close autofocus>Close</button></div></dialog>
-<dialog id="sources-dialog" aria-labelledby="sources-title"><h2 id="sources-title">Sources and full image</h2><button data-close>Close sources</button><div id="source-content"></div></dialog><script src="deck.js"></script>`;
+<dialog id="sources-dialog" aria-labelledby="sources-title"><h2 id="sources-title">Sources and full image</h2><button data-close>Close sources</button><div id="source-content"></div></dialog>
+<dialog id="slide-viewer" aria-labelledby="viewer-title"><div class="viewer-toolbar"><h2 id="viewer-title">Enlarged slide</h2><button id="zoom-out" aria-label="Zoom out">−</button><output id="zoom-level" aria-live="polite">100%</output><button id="zoom-in" aria-label="Zoom in">+</button><button id="zoom-reset">Fit slide</button><button data-close autofocus>Close enlarged slide</button></div><div class="viewer-scroll" tabindex="0" role="region" aria-label="Enlarged slide, scroll to move around"><div class="viewer-canvas"><img id="viewer-image" alt=""></div></div></dialog><script src="deck.js"></script>`;
 const composition = slide => {
  const title = `<h2>${esc(slide.title).replaceAll('\n', '<br>')}</h2>`;
  const lines = slide.points.map(p => `<p>${esc(p)}</p>`).join('');
@@ -113,6 +114,43 @@ const composition = slide => {
 await writeFile('public/research/slides.json', JSON.stringify(slides));
 await writeFile('presentation/before.html', top);
 await writeFile('presentation/after.html', controls);
+// Keep mobile reading concise. Full explanations remain in the reading edition.
+const transcript = (slide, index) => {
+ let essentials;
+ switch (slide.layout) {
+  case 'split': essentials = [
+   'Beautiful Gate has helped remove mobility barriers for people such as James Ahumbe. We propose building on that work by recruiting through trusted referrals and recording skills, interests and learning needs.',
+   'These records would help learners and facilitators agree suitable teaching, track progress and adjust support.'
+  ]; break;
+  case 'pathway': essentials = [
+   'Building on existing community relationships, the proposed pilot in Nigeria follows five stages: recruit, understand needs, match teaching, support practice, and monitor and review.',
+   'One participant database connects the stages. Recruitment evidence guides outreach, while learning progress guides teaching and support. Participants and facilitators make the decisions.'
+  ]; break;
+  case 'recruitment': essentials = [
+   'Start with varied trusted contacts, who may voluntarily invite others they know. Then check who is missing and change outreach routes, including alternatives for people with few connections.',
+   'Proposed Bayesian updating combines starting knowledge with recruitment evidence to inform the next round. The team decides.'
+  ]; break;
+  case 'database': essentials = [
+   'Responding to Ayuba Gufwan’s call for a comprehensive disability database, we propose linking learners recruited through trusted referrals with facilitators who volunteer or are recruited.',
+   'Record learners’ skills, goals and access needs, facilitators’ skills and availability, and agreed pathways and progress. Use these records to understand needs, match teaching, plan support and review progress.',
+   'This is a proposed participant database, not the official national database.'
+  ]; break;
+  case 'cycle': essentials = [
+   'Recruit people often missed, understand their skills and access needs, match them with suitable teaching, support practice, and review progress.',
+   'Record each stage in the participant database. Use progress evidence and feedback from participants and facilitators to improve the next round. This cycle is proposed; no results are available yet.'
+  ]; break;
+  case 'closing': essentials = [
+   'Success is achieved together. Trusted community relationships, shared records and accessible learning connect people with disabilities, facilitators and partners across Nigeria.',
+   `Independent proposal by ${slide.closing.creators[0]}. The photograph records a 2025 national honour, not an endorsement.`
+  ]; break;
+  default: essentials = slide.points;
+ }
+ const sources = [...(slide.links || []), ...slide.images.filter(image => image.source).map(image => ({label: image.credit, url: image.source}))];
+ if(slide.database) sources.unshift({label:'Ayuba Gufwan interview · TheCable, 15 November 2025',url:slide.database.interviewSource});
+ const uniqueSources = [...new Map(sources.map(source=>[source.url,source])).values()];
+ return `<h3>${esc(slide.title)}</h3>${essentials.map(point=>`<p>${esc(point)}</p>`).join('')}<p><a href="reading.html#research-slide-${index+1}" target="_top">Full slide details</a></p>${uniqueSources.length ? `<details><summary>Sources and photo credits</summary><ul>${uniqueSources.map(source=>`<li><a href="${esc(source.url)}">${esc(source.label)}</a></li>`).join('')}</ul></details>` : ''}`;
+};
+const mobileSlide = (slide, i) => i < 2 ? '' : `<div class="mobile-slide"><button class="slide-image-button" aria-haspopup="dialog" aria-controls="slide-viewer" aria-label="Enlarge slide ${i+1}: ${esc(slide.title.replaceAll('\n',' '))}"><img loading="lazy" decoding="async" src="mobile/slide-${i+1}.png" width="3200" height="2000" alt="Slide ${i+1}: ${esc(slide.title.replaceAll('\n',' '))}. Read slide text below for the key points."></button><details class="slide-transcript"><summary>Read slide text</summary>${transcript(slide, i)}</details></div>`;
 const qmd = `---
 pagetitle: "Research proposal | Impact Mosaic"
 format:
@@ -146,7 +184,7 @@ format:
 ${slides.map((slide, i) => `## ${slide.title.replaceAll('\n', ' ')} {#research-slide-${i + 1} .layout-${slide.layout}}
 
 \x60\x60\x60{=html}
-${composition(slide)}
+${composition(slide)}${mobileSlide(slide, i)}
 \x60\x60\x60`).join('\n\n')}
 `;
 await writeFile('presentation/research.qmd', qmd);

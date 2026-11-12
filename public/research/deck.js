@@ -11,7 +11,58 @@
   if(hostParams.get('workspace') === 'earlier') proposal.href = '/?workspace=earlier&page=research-reading';
   const menu = document.querySelector('#deck-menu'), sources = document.querySelector('#sources-dialog');
   const explanation = document.querySelector('#explanation-dialog');
-  const modalOpen = () => menu.open || sources.open || explanation.open;
+  const viewer = document.querySelector('#slide-viewer');
+  const modalOpen = () => menu.open || sources.open || explanation.open || viewer.open;
+  const viewport = viewer.querySelector('.viewer-scroll');
+  const canvas = viewer.querySelector('.viewer-canvas');
+  const viewerImage = document.querySelector('#viewer-image');
+  let zoom = 1, viewerTrigger, pinch;
+  function setZoom(value) {
+   const old = zoom;
+   zoom = Math.max(1, Math.min(8, value));
+   const x = (viewport.scrollLeft + viewport.clientWidth / 2) / old;
+   const y = (viewport.scrollTop + viewport.clientHeight / 2) / old;
+   canvas.style.width = `${viewport.clientWidth * zoom}px`;
+   document.querySelector('#zoom-level').textContent = `${Math.round(zoom * 100)}%`;
+   document.querySelector('#zoom-out').disabled = zoom === 1;
+   document.querySelector('#zoom-in').disabled = zoom === 8;
+   viewport.scrollLeft = x * zoom - viewport.clientWidth / 2;
+   viewport.scrollTop = y * zoom - viewport.clientHeight / 2;
+  }
+  document.querySelector('#zoom-in').onclick = () => setZoom(zoom * 1.5);
+  document.querySelector('#zoom-out').onclick = () => setZoom(zoom / 1.5);
+  document.querySelector('#zoom-reset').onclick = () => setZoom(1);
+  document.querySelectorAll('.slide-image-button').forEach(button => button.onclick = () => {
+   viewerTrigger = button;
+   viewerImage.src = button.querySelector('img').src;
+   viewerImage.alt = button.querySelector('img').alt;
+   viewer.showModal();
+   zoom = 1; setZoom(3); viewport.scrollTo(0, 0);
+  });
+  viewer.addEventListener('close', () => {
+   pinch = null;
+   const target = viewerTrigger?.getClientRects().length ? viewerTrigger : document.querySelector('.slides>section.present');
+   target?.focus({preventScroll:true});
+  });
+  viewer.addEventListener('keydown', e => {
+   if(e.key === 'Tab') {
+    const controls = [...viewer.querySelectorAll('button,[tabindex="0"]')].filter(n=>!n.disabled && n.getClientRects().length);
+    const first = controls[0], last = controls.at(-1);
+    if(e.shiftKey && document.activeElement === first) {e.preventDefault();last.focus();}
+    else if(!e.shiftKey && document.activeElement === last) {e.preventDefault();first.focus();}
+   }
+   if(e.key === '+' || e.key === '=') { e.preventDefault(); setZoom(zoom * 1.5); }
+   if(e.key === '-') { e.preventDefault(); setZoom(zoom / 1.5); }
+   if(e.key === '0') { e.preventDefault(); setZoom(1); }
+  });
+  viewport.addEventListener('touchstart', e => {
+   if(e.touches.length === 2) { e.preventDefault(); pinch = { distance: Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY), zoom }; }
+  }, {passive:false});
+  viewport.addEventListener('touchmove', e => {
+   if(pinch && e.touches.length === 2) { e.preventDefault(); setZoom(pinch.zoom * Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY) / pinch.distance); }
+  }, {passive:false});
+  viewport.addEventListener('touchend', () => { pinch = null; });
+  window.addEventListener('resize', () => { if(viewer.open) setZoom(zoom); });
   const trigger = document.querySelector('#menu-trigger'), previous = document.querySelector('#previous'), next = document.querySelector('#next'), selector = document.querySelector('#slide-selector');
   let timer, returnFocus = trigger;
   const awake = () => { document.body.classList.add('controls-awake'); clearTimeout(timer); timer = setTimeout(() => { if (!modalOpen() && document.activeElement !== trigger) document.body.classList.remove('controls-awake'); }, 2200); };

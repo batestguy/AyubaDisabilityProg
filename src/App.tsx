@@ -252,7 +252,7 @@ export default function App() {
     u.voice = voice;
     speechSynthesis.speak(u);
   }
-  if (page === 'research') return <main className="presentation-shell" aria-label="Impact Mosaic presentation"><iframe id="research-deck" title="Impact Mosaic — five opening slides" src="/research/index.html" allow="fullscreen" onLoad={event => event.currentTarget.contentWindow?.focus()} /></main>;
+  if (page === 'research') return <main className="presentation-shell" aria-label="Impact Mosaic presentation"><iframe id="research-deck" title="Impact Mosaic — eight opening slides" src="/research/index.html" allow="fullscreen" onLoad={event => event.currentTarget.contentWindow?.focus()} /></main>;
   return (
     <>
       <a className="skip" href="#main">

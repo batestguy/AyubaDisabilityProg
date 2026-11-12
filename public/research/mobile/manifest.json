@@ -1,0 +1,41 @@
+{
+  "sourceHash": "5648a920ce7974a6ccc6696cb42954f3db85dacf3a437f072b171abf0c086855",
+  "captures": [
+    {
+      "slide": 3,
+      "file": "mobile/slide-3.png",
+      "width": 3200,
+      "height": 2000
+    },
+    {
+      "slide": 4,
+      "file": "mobile/slide-4.png",
+      "width": 3200,
+      "height": 2000
+    },
+    {
+      "slide": 5,
+      "file": "mobile/slide-5.png",
+      "width": 3200,
+      "height": 2000
+    },
+    {
+      "slide": 6,
+      "file": "mobile/slide-6.png",
+      "width": 3200,
+      "height": 2000
+    },
+    {
+      "slide": 7,
+      "file": "mobile/slide-7.png",
+      "width": 3200,
+      "height": 2000
+    },
+    {
+      "slide": 8,
+      "file": "mobile/slide-8.png",
+      "width": 3200,
+      "height": 2000
+    }
+  ]
+}
