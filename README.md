@@ -20,13 +20,13 @@ Hosted free on Cloudflare Pages. Source: [github.com/batestguy/AyubaDisabilityPr
 
 ## Download the walkthrough
 
-[**Download the captioned laptop walkthrough (MP4, 11 minutes 16 seconds)**](https://github.com/batestguy/AyubaDisabilityProg/releases/download/walkthrough-2026-11-12/Impact-Mosaic-Laptop-Walkthrough.mp4)
+[**Download the captioned laptop walkthrough (MP4, 28.1 MB, 11 minutes 16 seconds)**](https://github.com/batestguy/AyubaDisabilityProg/releases/download/walkthrough-2026-11-12/Impact-Mosaic-Laptop-Walkthrough.mp4)
 
 The video covers Home, all eight research slides, the detailed proposal and discussion brief, and an overview of the Learning Sandbox roles. It finishes with a two-minute About section showing both co-creators' complete profiles side by side. Explanations appear as written captions, with quiet background music and no spoken narration.
 
 [English subtitles (SRT)](https://github.com/batestguy/AyubaDisabilityProg/releases/download/walkthrough-2026-11-12/Impact-Mosaic-Laptop-Walkthrough.en.srt) · [Chapter timestamps](https://github.com/batestguy/AyubaDisabilityProg/releases/download/walkthrough-2026-11-12/Chapters.txt) · [Release page](https://github.com/batestguy/AyubaDisabilityProg/releases/tag/walkthrough-2026-11-12)
 
-The video is a GitHub release download. Recording and verification notes are in [the walkthrough documentation](docs/LAPTOP-WALKTHROUGH.md).
+The video is a 720p GitHub release download. Recording and verification notes are in [the walkthrough documentation](docs/LAPTOP-WALKTHROUGH.md).
 
 ## Screenshots
 
