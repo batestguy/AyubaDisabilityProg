@@ -1,3 +1,13 @@
+# Scholarship wording follow-up — 12 November 2026
+
+Added prestigious to the PTDF scholarship sentence at the owner's request: was awarded the prestigious Petroleum Technology Development Fund (PTDF) PhD Scholarship for 2026/2027. Production build and type check passed; no repeat unit tests for this one-word copy edit (120 tests passed for the preceding profile update). Published to impact-mosaic, deployment ccc684a0. Verified live About HTTP 200, matching index-BgU9TwOM.js asset and exact updated scholarship wording in served bundle. Owner requested commit and push of the profile changes, generated no-JavaScript index.html and these publishing notes to origin/main. Prior entry's uncommitted status describes that earlier checkpoint.
+
+---
+# Strong profile updated and published — 12 November 2026
+
+Owner-approved About profile corrections applied in src/AboutPage.tsx: Lecturer capitalisation, lectures Statistics, University of Jos B.Sc., Acting Dean wording, current ATBU PhD enrolment, full PTDF PhD Scholarship name and 2026/2027, PSSN and MAN memberships, regression analysis and probability distributions, and ResearchGate wording. Existing RSS/CISON memberships, MSc ranking, census experience, project contribution and family sentence retained. Build regenerated index.html no-JavaScript content. Validation: 120 tests, type check and production build passed; existing bundle-size advisory remains. Published directly from the working tree (not committed) to impact-mosaic, deployment a2edb4e4. Verified production About HTTP 200, matching index-BBSP-b7e.js asset, and new education/scholarship/membership text plus retained family sentence in served bundle. No browser rendering check performed for this copy-only change. Source changes remain uncommitted; no Git push performed.
+
+---
 # Session closeout — 11 November 2026
 
 All work from this session is committed and pushed (latest: README rewrite). The site is live at **https://impact-mosaic.pages.dev/**; a shareable 8-page PDF of the slides is in the owner's Downloads folder (Impact-Mosaic-Slides.pdf, not in the repository). The two CVs and Strong's original photo stay out of git and are now listed in `.gitignore`. Local development and preview servers were stopped.
